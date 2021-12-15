@@ -16,3 +16,5 @@ Le site s’adresse aussi aux graphistes souhaitant monétiser leurs créations 
 Le site est géré via un client lourd en C#, qui permet de consulter les statistiques d’achat et de téléchargement des modèles 3D. Les administrateurs disposant du client lourd peuvent directement ajouter des modèles 3D, et valider les modèles envoyées par les utilisateurs. Les fiches « modèles 3D » sont éditables par le client lourd, notamment pour ajouter les infos des fiches modèles.
 
 Le site est conçu de manière évolutive, permettant d’ajouter d’autres types de ressources que des modèles 3D. Par exemple des sons, des sprites 2D, etc.
+
+Test test
