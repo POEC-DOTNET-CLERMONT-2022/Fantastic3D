@@ -9,7 +9,7 @@ La présentation des modèles passe aussi par un système de notations. Les util
 
 Le site dispose d’un système de connexion des utilisateurs, et la connexion à son compte est impérative pour tout téléchargement de modèles 3D. De plus, les utilisateurs peuvent s’abonner au site en mode premium, ce qui leur donne accès au téléchargement de certains modèles (les modèles les plus aboutis, ceux qui sont libres de droits, etc.).
 
-Les utilisateurs ont aussi une wishlist : un simple clic sur l’icône correspondante sur la page 
+Les utilisateurs ont aussi une wishlist : un simple clic sur l’icône correspondante, permet l'ajout a la wishlist, consultable depuis leurs profils. 
 
 Le site s’adresse aussi aux graphistes souhaitant monétiser leurs créations 3D, car ils peuvent mettre à disposition leurs créations 3D sur le site et récupérer l’argent des ventes. Une commission est reversée au site lors de la vente des modèles. Les graphistes disposent d’une page de portfolio présentant leurs créations et proposant de les contacter.
 
@@ -17,4 +17,3 @@ Le site est géré via un client lourd en C#, qui permet de consulter les statis
 
 Le site est conçu de manière évolutive, permettant d’ajouter d’autres types de ressources que des modèles 3D. Par exemple des sons, des sprites 2D, etc.
 
-Test test
