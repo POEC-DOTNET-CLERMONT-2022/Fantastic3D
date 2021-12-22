@@ -3,7 +3,17 @@ using The3DModelWebsite.Tags;
 
 Console.WriteLine("Hello, World!");
 
-var thematicType = new TagType("Thématique", true, false);
+var allTagTypes = new List<TagType>()
+{
+    new TagType("Thématique", true, false),
+    new TagType("Catégories", true, false),
+    new TagType("Style", false, false),
+    new TagType("Format", false, isOnlyOne:true),
+    new TagType("Licence", false, isOnlyOne:true),
+    new TagType("Capacités", false, false),
+};
 
-
-Console.WriteLine("Mon type de tag s'appelle " + thematicType.Name);
+foreach(var tagType in allTagTypes)
+{
+    Console.WriteLine("- " + tagType.Name);
+}
