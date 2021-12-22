@@ -11,6 +11,27 @@ namespace The3DModelWebsite.Tags
     /// </summary>
     internal class TagManager
     {
+        private readonly List<Tag> listeTag = new List<Tag>();
+        public void Add(string Name,  TagType tagType ) 
+        {
+            var montag = new Tag(Name, tagType);
+            listeTag.Add( montag );
 
+        }
+        public void VoirListe()
+        {
+            foreach (Tag montag in listeTag)
+            {
+
+            }
+        }
+        public void Delete(string Name, TagType tagType)
+        {
+            //listeTag.Where( x =>  x.name == Name);
+        }
+        public void EditName()
+        {
+
+        }
     }
 }
