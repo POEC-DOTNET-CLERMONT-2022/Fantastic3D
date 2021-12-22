@@ -11,6 +11,18 @@ namespace The3DModelWebsite.Tags
     /// </summary>
     internal class Tag
     {
+        private string _name;
+        private TagType _tagType;
 
+        public Tag(string name, TagType tagType)
+        {
+            _name = name;
+            _tagType = tagType;
+        }
+
+        public override string ToString()
+        {
+            return $"{_name} (of type {_tagType.Name})";
+        }
     }
 }
