@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Formation POEC Devops .net\\Projet\\Github\\Levraiprojet\\tagmanager\\3DModelWebsite.TagManager\\3DModelWebsite.TagManager.csproj": {}
+    "D:\\FormationCsharp\\repository\\projet-modeles-3D\\tagmanager\\3DModelWebsite.TagManager\\3DModelWebsite.TagManager.csproj": {}
   },
   "projects": {
-    "D:\\Formation POEC Devops .net\\Projet\\Github\\Levraiprojet\\tagmanager\\3DModelWebsite.TagManager\\3DModelWebsite.TagManager.csproj": {
+    "D:\\FormationCsharp\\repository\\projet-modeles-3D\\tagmanager\\3DModelWebsite.TagManager\\3DModelWebsite.TagManager.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Formation POEC Devops .net\\Projet\\Github\\Levraiprojet\\tagmanager\\3DModelWebsite.TagManager\\3DModelWebsite.TagManager.csproj",
+        "projectUniqueName": "D:\\FormationCsharp\\repository\\projet-modeles-3D\\tagmanager\\3DModelWebsite.TagManager\\3DModelWebsite.TagManager.csproj",
         "projectName": "3DModelWebsite.TagManager",
-        "projectPath": "D:\\Formation POEC Devops .net\\Projet\\Github\\Levraiprojet\\tagmanager\\3DModelWebsite.TagManager\\3DModelWebsite.TagManager.csproj",
-        "packagesPath": "C:\\Users\\aerox\\.nuget\\packages\\",
-        "outputPath": "D:\\Formation POEC Devops .net\\Projet\\Github\\Levraiprojet\\tagmanager\\3DModelWebsite.TagManager\\obj\\",
+        "projectPath": "D:\\FormationCsharp\\repository\\projet-modeles-3D\\tagmanager\\3DModelWebsite.TagManager\\3DModelWebsite.TagManager.csproj",
+        "packagesPath": "C:\\Users\\pm\\.nuget\\packages\\",
+        "outputPath": "D:\\FormationCsharp\\repository\\projet-modeles-3D\\tagmanager\\3DModelWebsite.TagManager\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\aerox\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\pm\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -58,7 +58,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

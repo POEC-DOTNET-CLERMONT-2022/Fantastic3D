@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 namespace The3DModelWebsite.Tags
 {
     /// <summary>
-    /// Operations of Add, Delete, Update, and list for the application tags.
+    /// Defines a Tag. A tags holds a name and belongs to a tagType
     /// </summary>
-    internal class TagManager
+    internal class Tag
     {
 
     }
