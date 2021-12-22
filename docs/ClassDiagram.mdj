@@ -9306,7 +9306,8 @@
 							"_parent": {
 								"$ref": "AAAAAAF94W4eglOV3gQ="
 							},
-							"name": "SaveToXML"
+							"name": "SaveToXML",
+							"type": ""
 						}
 					]
 				},
