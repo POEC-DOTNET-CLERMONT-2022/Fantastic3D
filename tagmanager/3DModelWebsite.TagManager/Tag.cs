@@ -24,5 +24,9 @@ namespace The3DModelWebsite.Tags
         {
             return $"{_name} (of type {_tagType.Name})";
         }
+        public void Rename(string newName)
+        {
+            _name = newName;
+        }
     }
 }
