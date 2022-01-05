@@ -9,9 +9,9 @@ namespace Fantastic3D.Persistence
     /// <summary>
     /// Les éléments de cette interface peuvent
     /// </summary>
-    internal interface IDataHandler
+    public interface IDataHandler
     {
-        public void SaveData(object obj);
-        public object GetData();
+        public void SaveData(string dataIdentifier, object obj);
+        public object LoadData(string dataIdentifier);
     }
 }

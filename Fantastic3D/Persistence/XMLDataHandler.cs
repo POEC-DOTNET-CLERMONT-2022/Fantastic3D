@@ -2,12 +2,12 @@
 {
     public class XMLDataHandler : IDataHandler
     {
-        public object GetData()
+        public object LoadData(string dataIdentifier)
         {
             throw new NotImplementedException();
         }
 
-        public void SaveData(object obj)
+        public void SaveData(string dataIdentifier, object obj)
         {
             throw new NotImplementedException();
         }

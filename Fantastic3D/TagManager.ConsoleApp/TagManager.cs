@@ -1,9 +1,5 @@
 ﻿using Fantastic3D.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Fantastic3D.Persistence;
 
 namespace Fantastic3D.Tags
 {
@@ -14,6 +10,8 @@ namespace Fantastic3D.Tags
     {
         private IReader _reader;
         private IWriter _writer;
+        private IDataHandler _dataHandler;
+        private List<Tag> listTag = new List<Tag>();
 
         public TagManager(IReader reader, IWriter writer)
         {
@@ -22,17 +20,28 @@ namespace Fantastic3D.Tags
             _writer = writer;
         }
 
-        private readonly List<Tag> listTag = new List<Tag>();
 
-        public void Add(string Name,  TagType tagType ) 
+        public void Add(string Name,  TagType tagType) 
         { // la verif que le tag nexiste pas deja
             var mytag = new Tag(Name, tagType);
             listTag.Add( mytag );
-            
-
+            _dataHandler.SaveData("tags", listTag);
         }
+
         public void ShowList()
         {
+            if(listTag.Count == 0)
+            {
+                try
+                {
+                    listTag = (List<Tag>)_dataHandler.LoadData("tags");
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+
             int i = 0;
             foreach (Tag mytag in listTag)
             {
