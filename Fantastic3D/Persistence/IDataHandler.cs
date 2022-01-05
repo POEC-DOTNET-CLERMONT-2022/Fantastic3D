@@ -3,7 +3,7 @@
 namespace Fantastic3D.Persistence
 {
     /// <summary>
-    /// Les éléments de cette interface peuvent
+    /// Elements of this interface can Load and Save Data of various formats
     /// </summary>
     public interface IDataHandler
     {
