@@ -1,5 +1,9 @@
 ﻿namespace Fantastic3D.Models
 {
+
+    /// <summary>
+    /// A type of tag, with tag constraints
+    /// </summary>
     public class TagType
     {
         public string Name { get; private set; }
