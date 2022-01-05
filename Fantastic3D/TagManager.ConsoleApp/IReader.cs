@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Fantastic3D.Tags
 {
+    // On ne touche pas les contrats, sinon ça rend un chaton triste !
     internal interface IReader
     {
         public IWriter Writer { get; set; }
