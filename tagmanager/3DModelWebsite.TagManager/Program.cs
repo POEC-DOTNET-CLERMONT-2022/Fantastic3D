@@ -1,5 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using The3DModelWebsite.Tags;
+using Fantastic3D.Tags;
 
 Console.WriteLine("Hello, World!");
 

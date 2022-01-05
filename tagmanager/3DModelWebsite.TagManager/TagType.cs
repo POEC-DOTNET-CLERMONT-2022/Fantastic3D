@@ -1,4 +1,4 @@
-﻿namespace The3DModelWebsite.Tags
+﻿namespace Fantastic3D.Tags
 {
     internal class TagType
     {

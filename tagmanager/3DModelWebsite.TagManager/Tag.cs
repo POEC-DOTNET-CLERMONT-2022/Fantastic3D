@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace The3DModelWebsite.Tags
+namespace Fantastic3D.Tags
 {
     /// <summary>
     /// Defines a Tag. A tags holds a name and belongs to a tagType

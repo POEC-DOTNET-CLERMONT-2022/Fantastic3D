@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace The3DModelWebsite.Tags
+namespace Fantastic3D.Tags
 {
     /// <summary>
     /// Operations of Add, Delete, Update, and list for the application tags.
