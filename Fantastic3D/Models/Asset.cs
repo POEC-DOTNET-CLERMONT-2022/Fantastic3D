@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
 namespace Fantastic3D.Models
 {
@@ -11,26 +7,28 @@ namespace Fantastic3D.Models
     /// </summary>
     public class Asset
     {
-        private Guid _uniqueId;
+        private Guid _id;
         private string _name;
         private string _description;
         private float _price;
         private string _filePath;
         private List<Tag> _tags;
+        private User _creator;
 
-        public Asset(Guid uniqueId, string name, string description, float price, string filePath, List<Tag> tags)
+        public Asset(Guid id, string name, string description, float price, string filePath, List<Tag> tags, User creator)
         {
-            _uniqueId = Guid.NewGuid();
+            _id = id;
             _name = name;
             _description = description;
             _price = price;
             _filePath = filePath;
             _tags = tags;
+            _creator = creator;
         }
 
         public override string ToString()
         {
-            return $"Model: {_name} (price : {_price}, file path : {_filePath}";
+            return $"Model: {_name}, price : {_price}, file path : {_filePath}";
         }
 
     }
