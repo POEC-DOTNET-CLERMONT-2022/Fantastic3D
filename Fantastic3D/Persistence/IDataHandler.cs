@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Fantastic3D.Models;
 
 namespace Fantastic3D.Persistence
 {
@@ -11,7 +7,15 @@ namespace Fantastic3D.Persistence
     /// </summary>
     public interface IDataHandler
     {
+        /// <summary>
+        /// Tries to save the data using identifier dataIdentifier.
+        /// </summary>
         public void SaveData(string dataIdentifier, object obj);
+
+        /// <summary>
+        /// Tries to get the data using the identifier dataIdentifier.
+        /// Returns an empty value if no file exists.
+        /// </summary>
         public object LoadData(string dataIdentifier);
     }
 }
