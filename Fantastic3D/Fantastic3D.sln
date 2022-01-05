@@ -12,6 +12,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GUI.WPFApp", "Fantastic3D.W
 		{61412CA7-1C77-4649-A12B-9A176A58EF1C} = {61412CA7-1C77-4649-A12B-9A176A58EF1C}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence", "Persistence\Persistence.csproj", "{55617FB4-1EF9-4EF5-8B14-4656F3B58D88}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{EBD0BA32-40F8-43D8-9165-F5FDD8AC9A64}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pictures", "Pictures", "{82DC27B9-2462-4051-AC64-064DFFB1B966}"
+	ProjectSection(SolutionItems) = preProject
+		Fantastic3D.WPFApp\atlantic-puffin-2.jpg = Fantastic3D.WPFApp\atlantic-puffin-2.jpg
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,9 +39,16 @@ Global
 		{86F11AB5-EF17-4CC4-A927-5EC7623DDDFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{86F11AB5-EF17-4CC4-A927-5EC7623DDDFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{86F11AB5-EF17-4CC4-A927-5EC7623DDDFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55617FB4-1EF9-4EF5-8B14-4656F3B58D88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55617FB4-1EF9-4EF5-8B14-4656F3B58D88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55617FB4-1EF9-4EF5-8B14-4656F3B58D88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55617FB4-1EF9-4EF5-8B14-4656F3B58D88}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{82DC27B9-2462-4051-AC64-064DFFB1B966} = {EBD0BA32-40F8-43D8-9165-F5FDD8AC9A64}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DA613773-EAFC-4865-9D33-DB1450D00395}
