@@ -1,0 +1,68 @@
+﻿<UserControl x:Class="Fantastic3D.GUI.ModelViewerControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Fantastic3D.GUI"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <StackPanel Background="White">
+        <TextBlock DockPanel.Dock="Top" FontSize="30"  HorizontalAlignment="Center" Background="White">Gestion des modèles</TextBlock>
+        <Grid DockPanel.Dock="Bottom">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="400"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0">
+                <Image Height="200" OpacityMask="White" Source="/atlantic-puffin-2.jpg" />
+
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Prix :"/>
+                    <TextBox>0.0€</TextBox>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Grid.Column="1">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Content="Auteur:" Grid.Row="1" Grid.Column="0"/>
+                    <TextBlock  Grid.Row="1" Grid.Column="1">Johnny ThreeDee</TextBlock>
+                    
+                    <Label Content="Nom:" Grid.Row="2" Grid.Column="0"/>
+                    <TextBox  Grid.Row="2" Grid.Column="1">Low-poly puffin / Macareux low-poly</TextBox>
+
+                </Grid>
+            </StackPanel>
+            <StackPanel Grid.Column="2">
+                <Button x:Name="SaveButton" Height="30">Enregistrer</Button>
+                <Button x:Name="PublishButton" Height="30">Publier</Button>
+                <Button x:Name="RejectButton" Height="30">Rejeter</Button>
+                <Button x:Name="NextButton" Height="30">Suivant</Button>
+                <Label Content="Modèles suivants" />
+                <ListView x:Name="NextModelsList">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="Nom:"/>
+                                <TextBlock Text="{Binding Name}"/>
+                                <TextBlock Text="Size:"/>
+                                <TextBlock Text="{Binding Size}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
+        </Grid>
+    </StackPanel>
+</UserControl>
