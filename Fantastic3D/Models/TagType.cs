@@ -1,6 +1,6 @@
-﻿namespace Fantastic3D.Tags
+﻿namespace Fantastic3D.Models
 {
-    internal class TagType
+    public class TagType
     {
         public string Name { get; private set; }
         /// <summary>

@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Fantastic3D.Tags
+namespace Fantastic3D.Models
 {
     /// <summary>
     /// Defines a Tag. A tags holds a name and belongs to a tagType
     /// </summary>
-    internal class Tag
+    public class Tag
     {
         private string _name;
         private TagType _tagType;

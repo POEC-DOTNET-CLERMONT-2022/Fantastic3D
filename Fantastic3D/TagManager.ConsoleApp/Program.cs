@@ -1,5 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using Fantastic3D.Tags;
+using Fantastic3D.Models;
 
 Console.WriteLine("Hello, World!");
 
@@ -13,7 +13,7 @@ var allTagTypes = new List<TagType>()
     new TagType("Capacités", false, false),
 };
 
-foreach(var tagType in allTagTypes)
+foreach (var tagType in allTagTypes)
 {
     Console.WriteLine("- " + tagType.Name);
 }
