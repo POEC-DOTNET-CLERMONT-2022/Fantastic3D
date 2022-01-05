@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GUI.WPFApp", "Fantastic3D.W
 		{61412CA7-1C77-4649-A12B-9A176A58EF1C} = {61412CA7-1C77-4649-A12B-9A176A58EF1C}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence", "Persistence\Persistence.csproj", "{55617FB4-1EF9-4EF5-8B14-4656F3B58D88}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persistence", "Persistence\Persistence.csproj", "{55617FB4-1EF9-4EF5-8B14-4656F3B58D88}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{EBD0BA32-40F8-43D8-9165-F5FDD8AC9A64}"
 EndProject
@@ -24,11 +24,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pictures", "Pictures", "{82
 		Fantastic3D.WPFApp\atlantic-puffin-2.jpg = Fantastic3D.WPFApp\atlantic-puffin-2.jpg
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DirtyConsoleTests", "DirtyConsoleTests\DirtyConsoleTests.csproj", "{4B284C2E-2EA5-4F82-B9A0-53162EAC3890}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DirtyConsoleTests", "DirtyConsoleTests\DirtyConsoleTests.csproj", "{4B284C2E-2EA5-4F82-B9A0-53162EAC3890}"
 	ProjectSection(ProjectDependencies) = postProject
 		{61412CA7-1C77-4649-A12B-9A176A58EF1C} = {61412CA7-1C77-4649-A12B-9A176A58EF1C}
 		{55617FB4-1EF9-4EF5-8B14-4656F3B58D88} = {55617FB4-1EF9-4EF5-8B14-4656F3B58D88}
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3DModels", "3DModels", "{EB77CF71-E249-476A-A109-7154463CA7B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FantasticService.WCFApp", "FantasticService.WCFApp\FantasticService.WCFApp.csproj", "{5DA13013-ED01-46FA-9BFB-3E39595F1A32}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -56,12 +60,17 @@ Global
 		{4B284C2E-2EA5-4F82-B9A0-53162EAC3890}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4B284C2E-2EA5-4F82-B9A0-53162EAC3890}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4B284C2E-2EA5-4F82-B9A0-53162EAC3890}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DA13013-ED01-46FA-9BFB-3E39595F1A32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DA13013-ED01-46FA-9BFB-3E39595F1A32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DA13013-ED01-46FA-9BFB-3E39595F1A32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DA13013-ED01-46FA-9BFB-3E39595F1A32}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{82DC27B9-2462-4051-AC64-064DFFB1B966} = {EBD0BA32-40F8-43D8-9165-F5FDD8AC9A64}
+		{EB77CF71-E249-476A-A109-7154463CA7B9} = {EBD0BA32-40F8-43D8-9165-F5FDD8AC9A64}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DA613773-EAFC-4865-9D33-DB1450D00395}
