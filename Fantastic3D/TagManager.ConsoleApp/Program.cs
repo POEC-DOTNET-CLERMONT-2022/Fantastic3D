@@ -17,4 +17,12 @@ var allTagTypes = new List<TagType>()
 
 var tagManager = new TagManager(new ConsoleReader(), new ConsoleWritter(), new XMLDataHandler(), allTagTypes);
 
-tagManager.Run();
+var mainMenu = new Menu(new ConsoleReader(), new ConsoleWritter(), tagManager, allTagTypes);
+
+bool WeContinue = true;
+
+do
+{
+    mainMenu.ShowMainMenu();
+
+} while (WeContinue);

@@ -71,31 +71,6 @@ namespace Fantastic3D.Tags
 
         }
 
-        public void Run()
-        {
-            var allTagTypes = new List<TagType>()
-            {
-                new TagType("Thématique", true, false),
-                new TagType("Catégories", true, false),
-                new TagType("Style", false, false),
-                new TagType("Format", false, isOnlyOne:true),
-                new TagType("Licence", false, isOnlyOne:true),
-                new TagType("Capacités", false, false),
-            };
-
-            var tagManager = new TagManager(new ConsoleReader(), new ConsoleWritter(), new XMLDataHandler(), allTagTypes);
-
-            var mainMenu = new Menu(new ConsoleReader(), new ConsoleWritter(), tagManager, allTagTypes);
-
-            bool WeContinue = true;
-
-            do
-            {
-                mainMenu.ShowMainMenu();
-
-            } while (WeContinue);
-        }
-
         /// <summary>
         /// Get the count of the tag list and return it
         /// </summary>
