@@ -5,6 +5,8 @@ using Fantastic3D.Tags;
 
 Console.WriteLine("Hello, World!");
 
+
+// TODO : les types de tag sont codés en dur. Faire un import depuis persistance.
 var allTagTypes = new List<TagType>()
 {
     new TagType("Thématique", true, false),
@@ -15,12 +17,7 @@ var allTagTypes = new List<TagType>()
     new TagType("Capacités", false, false),
 };
 
-foreach (var tagType in allTagTypes)
-{
-    Console.WriteLine("- " + tagType.Name);
-}
-
-var tagManager = new TagManager(new ConsoleReader(), new ConsoleWritter(), new XMLDataHandler());
+var tagManager = new TagManager(new ConsoleReader(), new ConsoleWritter(), new XMLDataHandler(), allTagTypes);
 
 bool WeContinue = true;
 

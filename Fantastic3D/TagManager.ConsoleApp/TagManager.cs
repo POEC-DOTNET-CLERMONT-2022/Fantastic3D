@@ -12,14 +12,16 @@ namespace Fantastic3D.Tags
         private IWriter _writer;
         private IDataHandler _dataHandler;
         private List<Tag> listTag = new List<Tag>();
+        private List<TagType> _tagTypes;
 
-        public TagManager(IReader reader, IWriter writer, IDataHandler dataHandler)
+        public TagManager(IReader reader, IWriter writer, IDataHandler dataHandler, List<TagType> tagTypes)
         {
             _reader = reader;
             _reader.Writer = writer;
             _writer = writer;
 
             _dataHandler = dataHandler;
+            _tagTypes = tagTypes;
         }
 
 
@@ -88,46 +90,64 @@ namespace Fantastic3D.Tags
         /// </summary>
         public void ShowAddMenu()
         {
-            _writer.Display(
-                "\nMenu Add Tag." + Environment.NewLine +
-                "Entrer nom du nouveau tag :" + Environment.NewLine );
+            _writer.Display("Menu Add Tag.");
+
+
+            // TODO : cleanup here
+            #region ancien code (commenté)
+            //_writer.Display("Quel est le nom du type de tag :" + Environment.NewLine);
+            //var TagTypeName = _reader.ReadText();
+
+            //_writer.Display("Le Tag est'il mendaté ? 1 Oui - 2 Non." + Environment.NewLine);
+            //var getTagMendatory = _reader.ReadId(1, 2);
+            //bool tagMendatory = false;
+            //switch (getTagMendatory)
+            //{
+            //    case 1:
+            //        tagMendatory = true;
+            //        break;
+            //    case 2:
+            //        tagMendatory = false;
+            //        break;
+            //}
+
+            //Console.WriteLine(tagMendatory);
+            //_writer.Display("Le Tag peu etre utilisé plusieurs fois ? Oui/Non." + Environment.NewLine);
+            //var getTagOnlyOne = _reader.ReadId(1, 2);
+            //bool TagOnlyOne = true;
+            //switch(getTagOnlyOne)
+            //{
+            //    case 1:
+            //        TagOnlyOne = false;
+            //        break;
+            //    case 2:
+            //        TagOnlyOne = true;
+            //        break;
+            //}
+            //Console.WriteLine(TagOnlyOne);
+            #endregion
+
+
+
+            //TagType TagType = new TagType(TagTypeName, tagMendatory, TagOnlyOne);
+            _writer.Display("Quel est le type de ce tag ?");
+            var displayedLines = new List<string>();
+            var keyToPress = 0;
+            foreach (TagType tagType in _tagTypes)
+            {
+                displayedLines.Add($"{keyToPress++} : {tagType.Name}");
+            }
+            _writer.Display(string.Join(Environment.NewLine, displayedLines));
+
+            int tagTypeId = _reader.ReadId(0, keyToPress - 1);
+
+
+
+            _writer.Display($"Entrer nom du nouveau tag (de type {_tagTypes[tagTypeId]}) :");
             var TagName = _reader.ReadText();
 
-            _writer.Display("Quel est le nom du type de tag :" + Environment.NewLine);
-            var TagTypeName = _reader.ReadText();
 
-            _writer.Display("Le Tag est'il mendaté ? 1 Oui - 2 Non." + Environment.NewLine);
-            var getTagMendatory = _reader.ReadId(1, 2);
-            bool tagMendatory = false;
-            switch(getTagMendatory)    
-            {
-                case 1:
-                    tagMendatory = true;
-                    break;
-                case 2:
-                    tagMendatory = false;
-                    break;
-            }
-
-            Console.WriteLine(tagMendatory);
-            _writer.Display("Le Tag peu etre utilisé plusieurs fois ? Oui/Non." + Environment.NewLine);
-            var getTagOnlyOne = _reader.ReadId(1,2);
-            bool TagOnlyOne = true;
-            switch(getTagOnlyOne)
-            {
-                case 1:
-                    TagOnlyOne = false;
-                    break;
-                case 2:
-                    TagOnlyOne = true;
-                    break;
-            }
-            Console.WriteLine(TagOnlyOne);
-
-            TagType TagType = new TagType(TagTypeName, tagMendatory, TagOnlyOne);
-            Tag newTag = new Tag(TagName, TagType);
-
-            Add(TagName, TagType);
+            Add(TagName, _tagTypes[tagTypeId]);
         }
 
         public void GetMainMenuInput()
@@ -145,7 +165,7 @@ namespace Fantastic3D.Tags
                     //ShowEditMenu();
                     break;
                 case 4:
-                    //ShowDeeteMenu();
+                    //ShowDeleteMenu();
                     break;
                 case 5:
                     Environment.Exit(0);
