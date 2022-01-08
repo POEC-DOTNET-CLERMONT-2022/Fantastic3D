@@ -7,7 +7,7 @@ namespace Fantastic3D.Models
     /// A type of tag, with tag constraints
     /// </summary>
     [DataContract]
-    public class TagType
+    public class TagType : IPersistable
     {
         [DataMember]
         public string Name { get; private set; }
