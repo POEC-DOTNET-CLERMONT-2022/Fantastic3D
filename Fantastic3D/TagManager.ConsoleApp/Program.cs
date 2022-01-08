@@ -3,8 +3,6 @@ using Fantastic3D.Models;
 using Fantastic3D.Persistence;
 using Fantastic3D.Tags;
 
-Console.WriteLine("Hello, World!");
-
 
 // TODO : les types de tag sont codés en dur. Faire un import depuis persistance.
 //var allTagTypes = new List<TagType>()
@@ -23,10 +21,12 @@ dummyDataMaker.LoadData(allTagTypes);
 
 var tagManager = new TagManager(new ConsoleReader(), new ConsoleWritter(), new DummyDataHandler<Tag>(), allTagTypes);
 
+var mainMenu = new Menu(new ConsoleReader(), new ConsoleWritter(), tagManager, allTagTypes);
+
 bool WeContinue = true;
 
 do
 {
-    tagManager.ShowMainMenu();
+    mainMenu.ShowMainMenu();
 
-}while (WeContinue);
+} while (WeContinue);
