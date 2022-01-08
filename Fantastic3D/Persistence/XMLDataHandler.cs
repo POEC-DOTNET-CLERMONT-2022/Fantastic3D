@@ -3,52 +3,35 @@ using System.Runtime.Serialization;
 
 namespace Fantastic3D.Persistence
 {
-    public class XMLDataHandler : IDataHandler
+    public class XMLDataHandler<T> : IDataHandler<T> where T: IPersistable
     {
-
-        private readonly string _appDataPath = Environment.CurrentDirectory;
         //private readonly string _appDataPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-        private readonly DataContractSerializer _tagListSerializer = new DataContractSerializer(typeof(List<Tag>));
 
-        public object LoadData(string dataIdentifier)
-        {
-            switch(dataIdentifier)
-            { 
-                case "tags":
-                    List<Tag> output = new List<Tag>();
-                    if (File.Exists(_appDataPath))
-                    {
-                        FileStream file = File.Open(_appDataPath, FileMode.Open);
-                        var readValue = _tagListSerializer.ReadObject(file);
-                        if (readValue != null)
-                        {
-                            output = (List<Tag>)readValue;
-                        }
-                        file.Close();
-                    }
-                    return output;
-                default:
-                    throw new DataTypeNotSupportedException($"Loading of this type of data is not supported : {dataIdentifier}");
-                    return null;
-            }
-        }
+        private readonly string _xmlDataPath = Environment.CurrentDirectory + $"/{nameof(T)}.xml";
+        private readonly DataContractSerializer _dataSerializer = new DataContractSerializer(typeof(List<T>));
 
-        public void SaveData(string dataIdentifier, object obj)
+        public void LoadData(List<T> loadedList)
         {
-            FileStream file = File.Create($"{_appDataPath}/{dataIdentifier}.xml");
-            switch (dataIdentifier)
+            if (File.Exists(_xmlDataPath))
             {
-                case "tags":
-                    if (file != null)
-                    {
-                        _tagListSerializer.WriteObject(file, obj as List<Tag>);
-                        file.Close();
-                    }
-                    break;
-                default:
-                    throw new DataTypeNotSupportedException($"Saving for this type of data is not supported : {dataIdentifier}");
+                FileStream file = File.Open(_xmlDataPath, FileMode.Open);
+                var readValue = _dataSerializer.ReadObject(file);
+                if (readValue != null)
+                {
+                    loadedList.AddRange((List<T>)readValue);
+                }
+                file.Close();
             }
         }
 
+        public void SaveData(List<T> listToSave)
+        {
+            FileStream file = File.Create(_xmlDataPath);
+            if (file != null)
+            {
+                _dataSerializer.WriteObject(file, listToSave);
+                file.Close();
+            }
+        }
     }
 }
