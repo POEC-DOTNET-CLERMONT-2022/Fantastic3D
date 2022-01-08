@@ -7,9 +7,12 @@ var allTagTypes = new List<TagType>();
 var dummyDataMaker = new DummyDataHandler<TagType>();
 dummyDataMaker.LoadData(allTagTypes);
 
-var tagManager = new TagManager(new ConsoleReader(), new ConsoleWritter(), new XMLDataHandler<Tag>(), allTagTypes);
+var tagReader = new ConsoleReader();
+var tagWritter = new ConsoleWritter();
 
-var mainMenu = new Menu(new ConsoleReader(), new ConsoleWritter(), tagManager, allTagTypes);
+var tagManager = new TagManager(tagReader, tagWritter, new XMLDataHandler<Tag>(), allTagTypes);
+
+var mainMenu = new Menu( tagReader, tagWritter, tagManager, allTagTypes);
 
 bool WeContinue = true;
 
