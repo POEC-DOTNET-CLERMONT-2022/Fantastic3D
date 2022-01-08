@@ -7,7 +7,7 @@ namespace Fantastic3D.Persistence
     {
         //private readonly string _appDataPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
 
-        private readonly string _xmlDataPath = Environment.CurrentDirectory + $"/{nameof(T)}.xml";
+        private readonly string _xmlDataPath = Environment.CurrentDirectory + $"/{typeof(T).Name}.xml";
         private readonly DataContractSerializer _dataSerializer = new DataContractSerializer(typeof(List<T>));
 
         public void LoadData(List<T> loadedList)
