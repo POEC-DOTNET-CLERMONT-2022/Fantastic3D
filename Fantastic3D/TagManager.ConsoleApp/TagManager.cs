@@ -10,11 +10,11 @@ namespace Fantastic3D.Tags
     {
         private IReader _reader;
         private IWriter _writer;
-        private IDataHandler _dataHandler;
+        private IDataHandler<Tag> _dataHandler;
         private List<Tag> listTag = new List<Tag>();
         private List<TagType> _tagTypes;
 
-        public TagManager(IReader reader, IWriter writer, IDataHandler dataHandler, List<TagType> tagTypes)
+        public TagManager(IReader reader, IWriter writer, IDataHandler<Tag> dataHandler, List<TagType> tagTypes)
         {
             _reader = reader;
             _reader.Writer = writer;
@@ -30,7 +30,7 @@ namespace Fantastic3D.Tags
         { // la verif que le tag nexiste pas deja
             var mytag = new Tag(Name, tagType);
             listTag.Add( mytag );
-            _dataHandler.SaveData("tags", listTag);
+            _dataHandler.SaveData(listTag);
         }
 
         public void ShowList()
@@ -39,7 +39,7 @@ namespace Fantastic3D.Tags
             {
                 try
                 {
-                    listTag = (List<Tag>)_dataHandler.LoadData("tags");
+                    _dataHandler.LoadData(listTag);
                 }
                 catch (Exception ex)
                 {
