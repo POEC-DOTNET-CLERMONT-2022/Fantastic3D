@@ -8,7 +8,7 @@ var dummyDataMaker = new DummyDataHandler<TagType>();
 dummyDataMaker.LoadData(allTagTypes);
 
 var tagReader = new ConsoleReader();
-var tagWritter = new ConsoleWritter();
+var tagWritter = new ConsoleWriter();
 
 var tagManager = new TagManager(tagReader, tagWritter, new XMLDataHandler<Tag>(), allTagTypes);
 

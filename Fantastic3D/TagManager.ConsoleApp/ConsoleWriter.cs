@@ -2,7 +2,7 @@
 using Fantastic3D.Models;
 using Fantastic3D.Tags;
 
-internal class ConsoleWritter : IWriter
+internal class ConsoleWriter : IWriter
 {
     void IWriter.Display(string text)
     {
