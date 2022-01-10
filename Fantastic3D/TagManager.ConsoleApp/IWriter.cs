@@ -13,19 +13,19 @@ namespace Fantastic3D.Tags
         /// <summary>
         /// Displays any string of text.
         /// </summary>
-        internal void Display(string text);
+        public void Display(string text);
         /// <summary>
         /// Displays an object of the Tag type
         /// </summary>
-        internal void DisplayTag(Tag tag);
+        public void DisplayTag(Tag tag);
         /// <summary>
         /// Changes the title of the app
         /// </summary>
-        internal void SetAppTitle(string title);
+        public void SetAppTitle(string title);
         /// <summary>
         /// Clears the screen and change the title of the current menu section
         /// </summary>
-        internal void SetMenuHeader(string title);
+        public void SetMenuHeader(string title);
 
     }
 }

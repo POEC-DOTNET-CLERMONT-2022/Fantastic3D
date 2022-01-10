@@ -6,19 +6,19 @@ internal class ConsoleWriter : IWriter
 {
     private string _appTitle = "";
     private string _menuSectionTitle = "";
-    void IWriter.Display(string text)
+    public void Display(string text)
     {
         Console.WriteLine(text);
     }
 
-    void IWriter.SetAppTitle(string title)
+    public void SetAppTitle(string title)
     {
         _appTitle = title;
         Console.Clear();
         Console.WriteLine(_appTitle);
     }
 
-    void IWriter.SetMenuHeader(string sectionHeader)
+    public void SetMenuHeader(string sectionHeader)
     {
         _menuSectionTitle = sectionHeader;
         Console.Clear();
@@ -26,7 +26,7 @@ internal class ConsoleWriter : IWriter
         Console.WriteLine(_menuSectionTitle);
     }
 
-    void IWriter.DisplayTag(Tag tag)
+    public void DisplayTag(Tag tag)
     {
         Console.WriteLine(tag);
     }
