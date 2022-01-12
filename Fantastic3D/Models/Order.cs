@@ -1,15 +1,20 @@
-﻿
+﻿using System.Runtime.Serialization;
 
 namespace Fantastic3D.Models
 {
     /// <summary>
     /// Define an order, the order date, the buyer and the list of his purchase
     /// </summary>
-    internal class Order
+    [DataContract]
+    internal class Order : IPersistable
     {
+        [DataMember]
         private Guid _orderId;
+        [DataMember]
         private DateTime _date;
+        [DataMember]
         private List<Purchase> _purchaseList;
+        [DataMember]
         private User _purchasingUser;
 
         public Order(Guid orderId, DateTime date, List<Purchase> purchaseList, User purchasingUser)

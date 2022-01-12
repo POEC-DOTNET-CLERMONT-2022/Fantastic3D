@@ -6,7 +6,7 @@ using Fantastic3D.Persistence;
 
 Console.WriteLine("Cette application permet de tester ce qu'on a implémenté hors de tout contexte, pour nous assurer que les éléments sont solides et n'ont pas trop de dépendance.");
 
-var dataHandler = new XMLDataHandler();
+var dataHandler = new XmlDataHandler();
 
 var tagTypeOne = new TagType("Thématique", true, false);
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Fantastic3D.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,9 +15,16 @@ namespace Fantastic3D.Tags
         /// Reads a text input from the user. 
         /// </summary>
         internal string ReadText();
+
         /// <summary>
         /// Reads a number input from the user. You can set allowed values.
         /// </summary>
         internal int ReadId(int lowerBound = 0, int higherBound = 0);
+
+        /// <summary>
+        /// Asks the user to choose an element from the list and returns the chosen element.
+        /// Uses the "ToString()" method to display it.
+        /// </summary>
+        internal T GetElementFromList<T>(List<T> choices, string prompt);
     }
 }

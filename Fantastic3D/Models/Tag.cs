@@ -6,7 +6,7 @@ namespace Fantastic3D.Models
     /// Defines a Tag. A tags holds a name and belongs to a tagType
     /// </summary>
     [DataContract]
-    public class Tag
+    public class Tag : IPersistable
     {
         [DataMember]
         private string _name;

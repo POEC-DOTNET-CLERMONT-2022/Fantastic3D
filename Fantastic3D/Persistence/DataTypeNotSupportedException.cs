@@ -3,8 +3,11 @@
 namespace Fantastic3D.Persistence
 {
     [Serializable]
-    internal class DataTypeNotSupportedException : Exception
+    public class DataTypeNotSupportedException : Exception
     {
+        /// <summary>
+        /// Exception for a type of data that isn't supported by the handler.
+        /// </summary>
         public DataTypeNotSupportedException()
         {
         }

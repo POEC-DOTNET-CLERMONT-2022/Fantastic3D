@@ -1,18 +1,26 @@
-﻿
+﻿using System.Runtime.Serialization;
 
 namespace Fantastic3D.Models
 {
     /// <summary>
     /// Defines an asset, his price and his associated tags.
     /// </summary>
-    public class Asset
+    [DataContract]
+    public class Asset : IPersistable
     {
+        [DataMember]
         private Guid _id;
+        [DataMember]
         private string _name;
+        [DataMember]
         private string _description;
+        [DataMember]
         private float _price;
+        [DataMember]
         private string _filePath;
-        private List<Tag> _tags;
+        [DataMember]
+        private List<Tag> _tags;    // TODO : vérifier si ça ne duplique pas les instances de tag, si oui il faut faire le lien Asset <--> Tag autrement.
+        [DataMember]
         private User _creator;
 
         public Asset(Guid id, string name, string description, float price, string filePath, List<Tag> tags, User creator)

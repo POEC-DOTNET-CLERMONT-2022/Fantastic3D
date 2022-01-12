@@ -3,29 +3,21 @@ using Fantastic3D.Models;
 using Fantastic3D.Persistence;
 using Fantastic3D.Tags;
 
-Console.WriteLine("Hello, World!");
+var allTagTypes = new List<TagType>();
+var dummyDataMaker = new DummyDataHandler<TagType>();
+dummyDataMaker.LoadData(allTagTypes);
 
-var allTagTypes = new List<TagType>()
-{
-    new TagType("Thématique", true, false),
-    new TagType("Catégories", true, false),
-    new TagType("Style", false, false),
-    new TagType("Format", false, isOnlyOne:true),
-    new TagType("Licence", false, isOnlyOne:true),
-    new TagType("Capacités", false, false),
-};
+var tagReader = new ConsoleReader();
+var tagWritter = new ConsoleWriter();
 
-foreach (var tagType in allTagTypes)
-{
-    Console.WriteLine("- " + tagType.Name);
-}
+var tagManager = new TagManager(tagReader, tagWritter, new XmlDataHandler<Tag>(), allTagTypes);
 
-var tagManager = new TagManager(new ConsoleReader(), new ConsoleWritter(), new XMLDataHandler());
+var mainMenu = new Menu( tagReader, tagWritter, tagManager, allTagTypes);
 
 bool WeContinue = true;
 
 do
 {
-    tagManager.ShowMainMenu();
+    mainMenu.ShowMainMenu();
 
-}while (WeContinue);
+} while (WeContinue);

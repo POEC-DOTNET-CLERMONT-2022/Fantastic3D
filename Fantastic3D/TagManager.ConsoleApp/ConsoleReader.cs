@@ -5,11 +5,24 @@ using Fantastic3D.Tags;
 internal class ConsoleReader : IReader
 {
     public IWriter Writer { get; set; }
+    
+    public T GetElementFromList<T>(List<T> choices, string prompt)
+    {
+        int choiceIndex = 1;
+        foreach (var item in choices)
+        {
+            Writer.Display($"{choiceIndex++} : {item}");
+        }
+        int choiceWithOffset = this.ReadId(1, choiceIndex - 1);
 
-    int IReader.ReadId(int lowerBound, int higherBound)
+        return choices[choiceWithOffset - 1];
+    }
+
+    public int ReadId(int lowerBound, int higherBound)
     {
         bool valueIsCorrect = false;
         int outputValue = 0;
+        //int cursorPosition = Console.GetCursorPosition();
         while(!valueIsCorrect)
         {
             var userInput = Console.ReadLine();
@@ -24,7 +37,7 @@ internal class ConsoleReader : IReader
         return outputValue;
     }
 
-    string IReader.ReadText()
+    public string ReadText()
     {
         // TODO : une boucle, tant que c'est "null", refaire un readline
         bool stringIsCorrect = false;

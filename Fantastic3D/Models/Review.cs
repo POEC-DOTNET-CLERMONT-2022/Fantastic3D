@@ -1,17 +1,25 @@
-﻿
+﻿using System.Runtime.Serialization;
+
 namespace Fantastic3D.Models
 {
     /// <summary>
     /// Define the review, the asset and ihs autor, the note and the comment associed
     /// and if it's published or not
     /// </summary>
-    public class Review
+    [DataContract]
+    public class Review : IPersistable
     {
+        [DataMember]
         private Guid _id;
+        [DataMember]
         private int _note;
+        [DataMember]
         private string _comment;
+        [DataMember]
         private bool _isPublished;
+        [DataMember]
         private Asset _asset;
+        [DataMember]
         private User _author;
         public Review(Guid id, int note, string comment, bool isPublished, Asset asset, User autorUser)
         {
