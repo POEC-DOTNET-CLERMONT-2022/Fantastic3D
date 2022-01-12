@@ -32,7 +32,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DirtyConsoleTests", "DirtyC
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3DModels", "3DModels", "{EB77CF71-E249-476A-A109-7154463CA7B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FantasticService.WCFApp", "FantasticService.WCFApp\FantasticService.WCFApp.csproj", "{5DA13013-ED01-46FA-9BFB-3E39595F1A32}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExternalDataReader.WPFApp", "ExternalDataReader.WPFApp\ExternalDataReader.WPFApp.csproj", "{6831C941-0DC6-437F-A5B6-64B7680840BA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCF.Services", "F3DAssetService\WCF.Services.csproj", "{8FBA2226-0AD4-48DC-9A8F-901B823F9501}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fantastic3D.Legacy.Dtos", "Fantastic3D.Legacy.Dtos\Fantastic3D.Legacy.Dtos.csproj", "{D2EA52A8-CFB5-4461-8A72-1729007FFED4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Legacy", "Legacy", "{5FE79A80-FC37-4E07-86B3-1DDFD5748169}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -60,10 +66,18 @@ Global
 		{4B284C2E-2EA5-4F82-B9A0-53162EAC3890}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4B284C2E-2EA5-4F82-B9A0-53162EAC3890}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4B284C2E-2EA5-4F82-B9A0-53162EAC3890}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5DA13013-ED01-46FA-9BFB-3E39595F1A32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5DA13013-ED01-46FA-9BFB-3E39595F1A32}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5DA13013-ED01-46FA-9BFB-3E39595F1A32}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5DA13013-ED01-46FA-9BFB-3E39595F1A32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6831C941-0DC6-437F-A5B6-64B7680840BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6831C941-0DC6-437F-A5B6-64B7680840BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6831C941-0DC6-437F-A5B6-64B7680840BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6831C941-0DC6-437F-A5B6-64B7680840BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FBA2226-0AD4-48DC-9A8F-901B823F9501}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FBA2226-0AD4-48DC-9A8F-901B823F9501}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FBA2226-0AD4-48DC-9A8F-901B823F9501}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FBA2226-0AD4-48DC-9A8F-901B823F9501}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2EA52A8-CFB5-4461-8A72-1729007FFED4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2EA52A8-CFB5-4461-8A72-1729007FFED4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2EA52A8-CFB5-4461-8A72-1729007FFED4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2EA52A8-CFB5-4461-8A72-1729007FFED4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -71,6 +85,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{82DC27B9-2462-4051-AC64-064DFFB1B966} = {EBD0BA32-40F8-43D8-9165-F5FDD8AC9A64}
 		{EB77CF71-E249-476A-A109-7154463CA7B9} = {EBD0BA32-40F8-43D8-9165-F5FDD8AC9A64}
+		{8FBA2226-0AD4-48DC-9A8F-901B823F9501} = {5FE79A80-FC37-4E07-86B3-1DDFD5748169}
+		{D2EA52A8-CFB5-4461-8A72-1729007FFED4} = {5FE79A80-FC37-4E07-86B3-1DDFD5748169}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DA613773-EAFC-4865-9D33-DB1450D00395}
