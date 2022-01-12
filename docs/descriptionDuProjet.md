@@ -17,3 +17,4 @@ Le site est géré via un client lourd en C#, qui permet de consulter les statis
 
 Le site est conçu de manière évolutive, permettant d’ajouter d’autres types de ressources que des modèles 3D. Par exemple des sons, des sprites 2D, etc.
 
+
