@@ -23,6 +23,17 @@ namespace Fantastic3D.Persistence
                         new TagType("Capacités", false, false),
                     });
                     break;
+                case List<Asset> assetsList:
+                    var tagList = new List<Tag>();
+                    var fakeUser = new User(Guid.NewGuid(), "fake.user@dontmind.me", "foobar", "1 avenue de la Data, Dropville", UserRole.premium);
+                    assetsList.AddRange(new List<Asset>()
+                    {
+                        new Asset("Puffin lowPoly", "A low-poly puffin. How convenient!", 0f, "puffin.fbx", "atlantic-puffin-2.jpg", tagList, fakeUser),
+                        new Asset("Haunted castle", "A haunted castle. How scary!", 0f, "castle.3ds", "castle.jpg", tagList, fakeUser),
+                        new Asset("Saxophone", "A musical instrument called saxophone. How jazzy!", 0f, "sax.fbx", "sax.jpg", tagList, fakeUser),
+
+                    });;
+                    break;
                 default:
                     throw new DataTypeNotSupportedException("No dummy data for this Type of Data.");
             }
