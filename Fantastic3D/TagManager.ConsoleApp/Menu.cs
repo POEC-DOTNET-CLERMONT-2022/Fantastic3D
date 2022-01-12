@@ -66,22 +66,22 @@ namespace Fantastic3D.Tags
         public void ShowAddMenu()
         {
             _writer.Display("Menu Add Tag.");
-            _writer.Display("Quel est le type de ce tag ?");
-            var displayedLines = new List<string>();
-            var keyToPress = 0;
+            var retrievedTag = _reader.GetElementFromList(_tagTypes, "Quel est le type de ce tag ?");
+            //var displayedLines = new List<string>();
+            //var keyToPress = 0;
 
-            foreach (TagType tagType in _tagTypes)
-            {
-                displayedLines.Add($"{keyToPress++} : {tagType.Name}");
-            }
-            _writer.Display(string.Join(Environment.NewLine, displayedLines));
+            //foreach (TagType tagType in _tagTypes)
+            //{
+            //    displayedLines.Add($"{keyToPress++} : {tagType.Name}");
+            //}
+            //_writer.Display(string.Join(Environment.NewLine, displayedLines));
 
-            int tagTypeId = _reader.ReadId(0, keyToPress - 1);
+            //int tagTypeId = _reader.ReadId(0, keyToPress - 1);
 
-            _writer.Display($"Entrer nom du nouveau tag (de type {_tagTypes[tagTypeId]}) :");
+            _writer.Display($"Entrer nom du nouveau tag (de type {retrievedTag.Name}) :");
             var TagName = _reader.ReadText();
 
-            _tagManager.Add(TagName, _tagTypes[tagTypeId]);
+            _tagManager.Add(TagName, retrievedTag);
         }
 
 

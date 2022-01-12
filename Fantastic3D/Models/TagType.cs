@@ -27,5 +27,10 @@ namespace Fantastic3D.Models
             IsMandatory = isMandatory;
             IsOnlyOne = isOnlyOne;
         }
+
+        public override string ToString()
+        {
+            return $"{Name} (" + (IsMandatory ? "obligatoire " : "") + (IsOnlyOne ? "unique" : "plusieurs") + ").";
+        }
     }
 }

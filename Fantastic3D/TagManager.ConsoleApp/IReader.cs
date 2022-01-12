@@ -25,6 +25,6 @@ namespace Fantastic3D.Tags
         /// Asks the user to choose an element from the list and returns the chosen element.
         /// Uses the "ToString()" method to display it.
         /// </summary>
-        internal T GetElementFromList<T>(List<T> choices);
+        internal T GetElementFromList<T>(List<T> choices, string prompt);
     }
 }
