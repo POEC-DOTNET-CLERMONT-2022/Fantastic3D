@@ -10,7 +10,7 @@ dummyDataMaker.LoadData(allTagTypes);
 var tagReader = new ConsoleReader();
 var tagWritter = new ConsoleWriter();
 
-var tagManager = new TagManager(tagReader, tagWritter, new XMLDataHandler<Tag>(), allTagTypes);
+var tagManager = new TagManager(tagReader, tagWritter, new XmlDataHandler<Tag>(), allTagTypes);
 
 var mainMenu = new Menu( tagReader, tagWritter, tagManager, allTagTypes);
 

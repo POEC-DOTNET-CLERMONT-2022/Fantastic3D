@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 
 namespace Fantastic3D.Persistence
 {
-    public class XMLDataHandler<T> : IDataHandler<T> where T: IPersistable
+    public class XmlDataHandler<T> : IDataHandler<T> where T: IPersistable
     {
         //private readonly string _appDataPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
 
