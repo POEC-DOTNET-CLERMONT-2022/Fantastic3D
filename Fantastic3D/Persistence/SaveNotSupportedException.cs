@@ -6,7 +6,7 @@ namespace Fantastic3D.Persistence
     /// Exception raised when the handler can only load, but not save.
     /// </summary>
     [Serializable]
-    internal class SaveNotSupportedException : Exception
+    public class SaveNotSupportedException : Exception
     {
         public SaveNotSupportedException()
         {
