@@ -1,13 +1,13 @@
 ## Présentation du projet Fantastic3D.
 <a href="https://zupimages.net/viewer.php?id=22/02/3ak5.png"><img src="https://zupimages.net/up/22/02/3ak5.png" alt="" /></a>
-Fantastic3d, c'est un site de téléchargement et/ou de mise en vente de ressources 3D pour les particuliers et les proffesionels.
-Il s'adresse principalement aux infographistes 3D mais aussi aux développeurs de jeux vidéo et toutes personnes étant amenée à apprendre, utiliser ou créer une scène en 3D.
+Fantastic3d, c'est tout d'abord un site de téléchargement et/ou de mise en vente de ressources 3D.  
+Pour les particuliers et les proffesionels, il s'adresse principalement aux infographistes 3D mais aussi aux développeurs de jeux vidéo et toutes personnes étant amenée à apprendre, utiliser ou créer des scènes 3D.
 
 ## Caractéristiques :
-Le projet répond à plusieurs besoins utilisateurs :
+Le projet répond à plusieurs problématiques et besoins utilisateurs :
 - Sur la conception de leur modèles 3D.
-- Sur la création de scènes 3D.
-- Aux développeurs pour les intégrer dans leur environnement .
+- Sur la composition de scènes 3D.
+- Aux développeurs pour les intégrer dans leur environnement.
 - Pour un débutant qui aurai besoin d'un modèle pour apprendre à modéliser en 3D.
 
 Il permet aussi aux membres du site qui souhaitent monétiser leurs créations 3D, de les mettre en vente sur notre site et ainsi gagner de l'argent à travers leurs créations.
