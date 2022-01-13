@@ -32,13 +32,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DirtyConsoleTests", "DirtyC
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3DModels", "3DModels", "{EB77CF71-E249-476A-A109-7154463CA7B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExternalDataReader.WPFApp", "ExternalDataReader.WPFApp\ExternalDataReader.WPFApp.csproj", "{6831C941-0DC6-437F-A5B6-64B7680840BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExternalDataReader.WPFApp", "ExternalDataReader.WPFApp\ExternalDataReader.WPFApp.csproj", "{6831C941-0DC6-437F-A5B6-64B7680840BA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCF.Services", "F3DAssetService\WCF.Services.csproj", "{8FBA2226-0AD4-48DC-9A8F-901B823F9501}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fantastic3D.Legacy.Dtos", "Fantastic3D.Legacy.Dtos\Fantastic3D.Legacy.Dtos.csproj", "{D2EA52A8-CFB5-4461-8A72-1729007FFED4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fantastic3D.Legacy.Dtos", "Fantastic3D.Legacy.Dtos\Fantastic3D.Legacy.Dtos.csproj", "{D2EA52A8-CFB5-4461-8A72-1729007FFED4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Legacy", "Legacy", "{5FE79A80-FC37-4E07-86B3-1DDFD5748169}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FantasticUsers.API", "Fantastic3D.Users.API\FantasticUsers.API.csproj", "{AE5A1148-030D-4EF0-A963-67A0356C385C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{61412CA7-1C77-4649-A12B-9A176A58EF1C} = {61412CA7-1C77-4649-A12B-9A176A58EF1C}
+		{55617FB4-1EF9-4EF5-8B14-4656F3B58D88} = {55617FB4-1EF9-4EF5-8B14-4656F3B58D88}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -78,6 +84,10 @@ Global
 		{D2EA52A8-CFB5-4461-8A72-1729007FFED4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2EA52A8-CFB5-4461-8A72-1729007FFED4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2EA52A8-CFB5-4461-8A72-1729007FFED4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE5A1148-030D-4EF0-A963-67A0356C385C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE5A1148-030D-4EF0-A963-67A0356C385C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE5A1148-030D-4EF0-A963-67A0356C385C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE5A1148-030D-4EF0-A963-67A0356C385C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
