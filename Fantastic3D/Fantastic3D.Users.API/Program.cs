@@ -22,7 +22,7 @@ using (var scope = app.Services.CreateScope())
 
     var context = services.GetRequiredService<LocalDbContext>();
     context.Database.EnsureCreated();
-    
+    //context.Database.Migrate();
 }
 
 

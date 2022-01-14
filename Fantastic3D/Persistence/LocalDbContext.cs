@@ -19,11 +19,11 @@ namespace Fantastic3D.Persistence
 
         public DbSet<User> Users { get; set; }
 
-        //public override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-        //    EntityTypeBuilder<User> userCatalog = modelBuilder.Entity<User>().ToTable("User");
-        //    userCatalog.HasKey(u => u._id);
-        //}
-            
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            var userBuilder = modelBuilder.Entity<User>();
+            base.OnModelCreating(modelBuilder);
+        }
+
     }
 }

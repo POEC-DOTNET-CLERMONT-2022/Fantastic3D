@@ -7,7 +7,8 @@ namespace Fantastic3D.Models
     /// <summary>
     /// Define an user, email, pass, billing adress and his role 
     /// </summary>
-    public enum UserRole { Admin, Premium, Basic };
+    [DataContract]
+    public enum UserRole {[DataMember] Admin = 'A', [DataMember] Premium = 'P', [DataMember] Basic = 'B'};
 
 
     [DataContract, Table("users")]
@@ -15,50 +16,53 @@ namespace Fantastic3D.Models
     {
         [Key, DataMember, Column("id")]
         public Guid Id { get; set; }
-        [DataMember, Column("username")]
-        private string _username;
-        [DataMember, Column("first_name")]
-        private string _firstName;
-        [DataMember, Column("last_name")]
-        private string _lastName;
-        [DataMember, Column("email")]
-        private string _email;
-        [DataMember, Column("password")]
-        private string _password;
-        [DataMember, Column("hash_salt")]
-        private string _hashSalt;
-        [DataMember, Column("billing_address")]
-        private string _billingAddress;
-        [DataMember, Column("role")]
-        private UserRole _role;
+        [DataMember][Required, StringLength(20)]
+        public string Username { get; set; }
+        [DataMember][StringLength(100)]
+        public string FirstName { get; set; }
+        [DataMember][StringLength(100)]
+        public string LastName { get; set; }
+        [DataMember][Required, StringLength(160), DataType(DataType.EmailAddress)]
+        public string Email { get; set; }
+        [DataMember][Required, StringLength(160), DataType(DataType.Password)]
+        public string Password { get; set; }
+        [DataMember][Required, StringLength(64)]   // Note : un salt de 64 caractères nous permet d'aller jusqu'à l'algo SHA-256.
+        public string HashSalt { get; private set; }
+        [DataMember][Required, StringLength(200)]
+        public string BillingAddress { get; set; }
+        [DataMember]
+        [Required, StringLength(200)]
+        public UserRole Role { get; set; }
 
         public User() {}
 
         public User(Guid id, string username, string firstName, string lastName, string email, string password, string billingAdress, UserRole role)
         {
             Id = id;
-            _username = username;
-            _firstName = firstName;
-            _lastName = lastName;
-            _email = email;
-            _password = Utilities.PasswordHash(password, out _hashSalt);
-            _billingAddress = billingAdress;
-            _role = role;
+            Username = username;
+            FirstName = firstName;
+            LastName = lastName;
+            Email = email;
+            Password = Utilities.PasswordHash(password, out string genereatedHashSalt);
+            HashSalt = genereatedHashSalt;
+            BillingAddress = billingAdress;
+            Role = role;
         }
         
         public void SetNewPassword(string plainPassword)
         {
-            _password = Utilities.PasswordHash(plainPassword, out _hashSalt);
+            Password = Utilities.PasswordHash(plainPassword, out string newHashSalt);
+            HashSalt = newHashSalt;
         }
 
         public bool MatchPassword(string plainPassword)
         {
-            return (_password == Utilities.PasswordHash(plainPassword, _hashSalt));
+            return (Password == Utilities.PasswordHash(plainPassword, HashSalt));
         }
 
         public override string ToString()
         {
-            return $"Email : {_email}, Pass : {_password}, BillingAdresse : {_billingAddress}, Role : {_role})";
+            return $"Email : {Email}, Pass : {Password}, BillingAdresse : {BillingAddress}, Role : {Role})";
         }
     }
 }
