@@ -25,7 +25,7 @@ namespace Fantastic3D.Persistence
                     break;
                 case List<Asset> assetsList:
                     var tagList = new List<Tag>();
-                    var fakeUser = new User(Guid.NewGuid(), "fake.user@dontmind.me", "foobar", "1 avenue de la Data, Dropville", UserRole.premium);
+                    var fakeUser = new User(Guid.NewGuid(), "fakeuser", "Fake", "User", "fake.user@dontmind.me", "foobar", "1 avenue de la Data, Dropville", UserRole.Premium);
                     assetsList.AddRange(new List<Asset>()
                     {
                         new Asset("Puffin lowPoly", "A low-poly puffin. How convenient!", 0f, "puffin.fbx", "atlantic-puffin-2.jpg", tagList, fakeUser),
