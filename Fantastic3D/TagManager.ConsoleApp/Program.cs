@@ -8,11 +8,10 @@ var dummyDataMaker = new DummyDataHandler<TagType>();
 dummyDataMaker.LoadData(allTagTypes);
 
 var tagReader = new ConsoleReader();
-var tagWritter = new ConsoleWriter();
+var tagWriter = new ConsoleWriter();
 
-var tagManager = new TagManager(tagReader, tagWritter, new XmlDataHandler<Tag>(), allTagTypes);
-
-var mainMenu = new Menu( tagReader, tagWritter, tagManager, allTagTypes);
+var tagManager = new TagManager(new XmlDataHandler<Tag>(), allTagTypes);
+var mainMenu = new Menu( tagReader, tagWriter, tagManager, allTagTypes);
 
 bool WeContinue = true;
 

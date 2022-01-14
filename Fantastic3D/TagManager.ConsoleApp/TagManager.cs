@@ -8,76 +8,78 @@ namespace Fantastic3D.Tags
     /// </summary>
     internal class TagManager
     {
-        private IReader _reader;
-        private IWriter _writer;
         private IDataHandler<Tag> _dataHandler;
-        private List<Tag> listTag = new List<Tag>();
+        private List<Tag> _listTag = new List<Tag>();
         private List<TagType> _tagTypes;
 
-        public TagManager(IReader reader, IWriter writer, IDataHandler<Tag> dataHandler, List<TagType> tagTypes)
+        public TagManager( IDataHandler<Tag> dataHandler, List<TagType> tagTypes)
         {
-            _reader = reader;
-            _reader.Writer = writer;
-            _writer = writer;
-
             _dataHandler = dataHandler;
             _tagTypes = tagTypes;
-
         }
 
+        public List<Tag> listTag
+        { get { return _listTag; } }    
+  
 
-        public void Add(string Name,  TagType tagType) 
-        { // la verif que le tag nexiste pas deja
-            var mytag = new Tag(Name, tagType);
-            listTag.Add( mytag );
-            _dataHandler.SaveData(listTag);
-        }
-
-        public void ShowList()
+        /// <summary>
+        /// Load Tag list if exist
+        /// </summary>
+        public void LoadList()
         {
-            if(listTag.Count == 0)
+            if(_listTag.Count == 0)
             {
                 try
                 {
-                    _dataHandler.LoadData(listTag);
+                    _dataHandler.LoadData(_listTag);
                 }
                 catch (Exception ex)
                 {
-
+                    // TODO Faire le catch de 
                 }
             }
-
-            int i = 0;
-            foreach (Tag mytag in listTag)
-            {
-                i++;
-                _reader.Writer.Display(i.ToString() + ". " + mytag);
-            }
         }
+
+
+        /// <summary>
+        /// Add tag with his type
+        /// </summary>
+        /// <param name="Name"></param>
+        /// <param name="tagType"></param>
+        public void Add(string Name, TagType tagType)
+        {
+            var mytag = new Tag(Name, tagType);
+            _listTag.Add(mytag);
+            _dataHandler.SaveData(_listTag);
+        }
+
+
+        /// <summary>
+        /// Delete Tag by id
+        /// </summary>
+        /// <param name="tagId"></param>
         public void Delete(int tagId)
         {
-            // delete a parti d'un num, 1. tag
-            // il aura qua selectioner un chiffre pour supp le tag corespondant
-
-            listTag.RemoveAt(tagId);
-        }
-        public void EditName(int tagId)
-        {
-            
-            _writer.Display("Veuillez saisir le nouveau nom du tag");
-            var inputName = _reader.ReadText();
-            listTag[tagId].Rename(inputName);
-
-
+            _listTag.RemoveAt(tagId);
         }
 
         /// <summary>
-        /// Get the count of the tag list and return it
+        /// Edit Tag by id
+        /// </summary>
+        /// <param name="tagId"></param>
+        /// <param name="inputName"></param>
+        public void EditName(int tagId,string inputName)
+        {
+            _listTag[tagId].Rename(inputName);
+        }
+
+        /// <summary>
+        /// Return the list count
         /// </summary>
         /// <returns></returns>
         public int GetTagListCount()
         {
-            return listTag.Count;
+            return _listTag.Count;
         }
     }
 }

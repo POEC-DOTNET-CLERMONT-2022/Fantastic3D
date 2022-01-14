@@ -21,7 +21,7 @@ namespace Fantastic3D.Models
 
         public override string ToString()
         {
-            return $"{_name} (of type {_tagType.Name})";
+            return $"{_name} (de type {_tagType.Name})";
         }
         public void Rename(string newName)
         {

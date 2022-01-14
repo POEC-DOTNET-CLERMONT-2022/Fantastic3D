@@ -1,6 +1,4 @@
-﻿
-
-using Fantastic3D.Models;
+﻿using Fantastic3D.Models;
 
 namespace Fantastic3D.Tags
 {
@@ -20,13 +18,16 @@ namespace Fantastic3D.Tags
             _tagTypes = tagTypes;
         }
 
+
         /// <summary>
         ///  Print Main menu and wait for user input
         /// </summary>
         public void ShowMainMenu()
         {
+            _writer.SetAppTitle("Tag Crud");
+            _writer.SetMenuHeader(" Menu Principal." + Environment.NewLine );
+
             _writer.Display(
-                "Menu Principal." + Environment.NewLine +
                 "1. Liste des Tags." + Environment.NewLine +
                 "2. Ajouter un Tag." + Environment.NewLine +
                 "3. Editer un Tag." + Environment.NewLine +
@@ -36,7 +37,7 @@ namespace Fantastic3D.Tags
         }
 
         /// <summary>
-        /// Get the user input from the main menu and call submenu or function
+        /// Get the user input from the main menu and call submenu 
         /// </summary>
         public void GetMainMenuInput()
         {
@@ -44,7 +45,7 @@ namespace Fantastic3D.Tags
             switch (UserInputInt)
             {
                 case 1:
-                    _tagManager.ShowList();
+                    ShowMenuList();
                     break;
                 case 2:
                     ShowAddMenu();
@@ -60,28 +61,40 @@ namespace Fantastic3D.Tags
                     break;
             }
         }
+
+
+        /// <summary>
+        /// Print the tag list 
+        /// </summary>
+        public void ShowMenuList()
+        {
+            _writer.SetAppTitle("Tag Crud");
+            _writer.SetMenuHeader(" Menu List de Tag(s)." + Environment.NewLine);
+
+            _tagManager.LoadList();
+            int i = 0;
+            foreach (Tag mytag in _tagManager.listTag)
+            {
+                i++;
+                _reader.Writer.Display(i.ToString() + ". " + mytag);
+            }
+            _writer.Display("\nEntrer une touche pour continuer ");
+            var waitUser = _reader.ReadText();
+        }
         /// <summary>
         /// Print Menu Add, and get user input for add tag
         /// </summary>
         public void ShowAddMenu()
         {
-            _writer.Display("Menu Add Tag.");
+            _writer.SetAppTitle("Tag Crud");
+            _writer.SetMenuHeader(" Menu Add Tag" + Environment.NewLine);
             var retrievedTag = _reader.GetElementFromList(_tagTypes, "Quel est le type de ce tag ?");
-            //var displayedLines = new List<string>();
-            //var keyToPress = 0;
-
-            //foreach (TagType tagType in _tagTypes)
-            //{
-            //    displayedLines.Add($"{keyToPress++} : {tagType.Name}");
-            //}
-            //_writer.Display(string.Join(Environment.NewLine, displayedLines));
-
-            //int tagTypeId = _reader.ReadId(0, keyToPress - 1);
-
             _writer.Display($"Entrer nom du nouveau tag (de type {retrievedTag.Name}) :");
             var TagName = _reader.ReadText();
-
             _tagManager.Add(TagName, retrievedTag);
+            _writer.Display("\nLe tag à bien etait ajouté ");
+            _writer.Display("Entrer une touche pour continuer ");
+            var waitUser = _reader.ReadText();
         }
 
 
@@ -90,11 +103,17 @@ namespace Fantastic3D.Tags
         /// </summary>
         public void ShowDeleteMenu()
         {
-            _tagManager.ShowList();
+            _writer.SetAppTitle("Tag Crud");
+            _writer.SetMenuHeader(" Menu Delete Tag" + Environment.NewLine);
+            ShowMenuList();
             int tagCount = _tagManager.GetTagListCount() ;
-            _writer.Display("Entrer lid du tag pour le supprimer :");
+            _writer.Display("Entrer l'id du tag pour le supprimer :");
            int tagTypeId = _reader.ReadId(1, tagCount  );
             _tagManager.Delete(tagTypeId -1);
+            _writer.Display("\nLe tag à bien etait supprimé ");
+            _writer.Display("Entrer une touche pour continuer ");
+            var waitUser = _reader.ReadText();
+
         }
 
         /// <summary>
@@ -102,11 +121,18 @@ namespace Fantastic3D.Tags
         /// </summary>
         public void ShowEditMenu()
         {
-            _tagManager.ShowList();
+            _writer.SetAppTitle("Tag Crud");
+            _writer.SetMenuHeader(" Menu EditerTag" + Environment.NewLine);
+            ShowMenuList();
             int tagCount = _tagManager.GetTagListCount();
-            _writer.Display("Entrer lid du tag pour l'editer :");
+            _writer.Display("Entrer l'id du tag pour l'editer :");
             int tagTypeId = _reader.ReadId(1, tagCount);
-            _tagManager.EditName(tagTypeId - 1);
+            _writer.Display("Veuillez saisir le nouveau nom du tag");
+            var inputName = _reader.ReadText();
+            _tagManager.EditName(tagTypeId - 1, inputName);
+            _writer.Display("\nLe tag à bien etait édité ");
+            _writer.Display("Entrer une touche pour continuer ");
+            var waitUser = _reader.ReadText();
         }
     }
 }

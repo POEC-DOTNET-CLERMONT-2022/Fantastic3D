@@ -21,8 +21,6 @@ internal class ConsoleWriter : IWriter
     public void SetMenuHeader(string sectionHeader)
     {
         _menuSectionTitle = sectionHeader;
-        Console.Clear();
-        Console.WriteLine(_appTitle);
         Console.WriteLine(_menuSectionTitle);
     }
 
