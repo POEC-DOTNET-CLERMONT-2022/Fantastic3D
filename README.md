@@ -1,5 +1,7 @@
-## Présentation du projet Fantastic3D.
-<a href="https://zupimages.net/viewer.php?id=22/02/3ak5.png"><img src="https://zupimages.net/up/22/02/3ak5.png" alt="" /></a>
+## Présentation du projet Fantastic3D.    <img src="https://github.com/Sylvain125/Fantastic3D/blob/main/docs/Fantastic3DLogo.png" width="200">
+
+<img src="https://zupimages.net/up/22/02/3ak5.png" width="800">
+
 Fantastic3d, c'est tout d'abord un site de téléchargement et/ou de mise en vente de ressources 3D.  
 Pour les particuliers et les proffesionels, il s'adresse principalement aux infographistes 3D mais aussi aux développeurs de jeux vidéo et toutes personnes étant amenée à apprendre, utiliser ou créer des scènes 3D.
 
@@ -15,7 +17,9 @@ Les membres disposent d’une page de portfolio présentant leurs créations et 
 Sous réserve de validation des modèles par les administrateurs.
 Une commission est reversée au site lors de la vente de leurs modèles. 
 
-## Fonctionnement :
+## Fonctionnement :  
+<img src="https://github.com/Sylvain125/Fantastic3D/blob/main/docs/ClassDiagram.jpg" width="300"><img src="https://github.com/Sylvain125/Fantastic3D/blob/main/docs/TagManagerClassDiagram.png" width="300">
+
 Le site dispose d'un système de connexion des utilisateurs, la connexion à son compte est impérative pour tout téléchargement de modèles 3D.
 De plus, les utilisateurs peuvent s’abonner au site en mode premium.
 Ce qui leur donne accès au téléchargement de certains modèles (les modèles les plus aboutis, ceux qui sont libres de droits, etc.)
@@ -51,14 +55,12 @@ Par exemple des sons, des sprites 2D, etc.
 
 ## Composants du projet :
 
-- Application Console pour la gestion des tags :
+- L'Application Console pour la gestion des tags :
+<img src="https://i.ibb.co/hBZ8PKz/Projet-App-Console.png" width="250">
 
-<a href="https://ibb.co/hBZ8PKz"><img src="https://i.ibb.co/hBZ8PKz/Projet-App-Console.png" alt="Projet-App-Console" ></a>
+- Le clients lourd WPF :  
 
-- Le clients lourd WPF :
-
-<a href="https://ibb.co/sWW5WDG"><img src="https://i.ibb.co/sWW5WDG/Projet-WPF.png" alt="Projet-WPF"></a>
-<a href="https://ibb.co/Xst0LcF"><img src="https://i.ibb.co/Xst0LcF/Projet-Wpf-Reader.png" alt="Projet-Wpf-Reader" ></a>
+<img src="https://i.ibb.co/sWW5WDG/Projet-WPF.png" width="250"> <img src="https://i.ibb.co/Xst0LcF/Projet-Wpf-Reader.png" width="250">
 
 - Service WCF :
 
