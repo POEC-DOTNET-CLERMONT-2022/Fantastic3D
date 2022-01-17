@@ -24,7 +24,7 @@ internal class ConsoleWriter : IWriter
         Console.WriteLine(_menuSectionTitle);
     }
 
-    public void DisplayTag(Tag tag)
+    public void DisplayTag(TagEntity tag)
     {
         Console.WriteLine(tag);
     }

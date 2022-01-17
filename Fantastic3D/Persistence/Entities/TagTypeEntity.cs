@@ -7,7 +7,7 @@ namespace Fantastic3D.Persistence.Entities
     /// A type of tag, with tag constraints
     /// </summary>
     [DataContract]
-    public class TagType : IPersistable
+    public class TagTypeEntity : IPersistable
     {
         [DataMember]
         public string Name { get; private set; }
@@ -21,7 +21,7 @@ namespace Fantastic3D.Persistence.Entities
         /// </summary>
         public bool IsOnlyOne { get; private set; }
 
-        public TagType(string name, bool isMandatory, bool isOnlyOne)
+        public TagTypeEntity(string name, bool isMandatory, bool isOnlyOne)
         {
             Name = name;
             IsMandatory = isMandatory;

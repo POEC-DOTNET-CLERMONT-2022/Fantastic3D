@@ -6,7 +6,7 @@ namespace Fantastic3D.Persistence.Entities
     /// Define an purchase, the asset, the price and if the creator has been paid
     /// </summary>
     [DataContract]
-    public class Purchase : IPersistable
+    public class PurchaseEntity : IPersistable
     {
         [DataMember]
         private Guid _id;
@@ -15,9 +15,9 @@ namespace Fantastic3D.Persistence.Entities
         [DataMember]
         private float _purchasePrice;
         [DataMember]
-        private Asset _asset;
+        private AssetEntity _asset;
 
-        public Purchase(Guid id, bool isPaidToCreator, float purchasePrice, Asset asset)
+        public PurchaseEntity(Guid id, bool isPaidToCreator, float purchasePrice, AssetEntity asset)
         {
             _id = id;
             _isPaidToCreator = isPaidToCreator;

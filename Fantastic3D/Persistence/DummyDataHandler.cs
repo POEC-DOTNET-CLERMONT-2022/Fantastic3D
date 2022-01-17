@@ -13,25 +13,25 @@ namespace Fantastic3D.Persistence
         {
             switch (loadedList)
             {
-                case List<TagType> tagTypeList:
-                    tagTypeList.AddRange(new List<TagType>()
+                case List<TagTypeEntity> tagTypeList:
+                    tagTypeList.AddRange(new List<TagTypeEntity>()
                     {
-                        new TagType("Thématique", true, false),
-                        new TagType("Catégories", true, false),
-                        new TagType("Style", false, false),
-                        new TagType("Format", false, isOnlyOne:true),
-                        new TagType("Licence", false, isOnlyOne:true),
-                        new TagType("Capacités", false, false),
+                        new TagTypeEntity("Thématique", true, false),
+                        new TagTypeEntity("Catégories", true, false),
+                        new TagTypeEntity("Style", false, false),
+                        new TagTypeEntity("Format", false, isOnlyOne:true),
+                        new TagTypeEntity("Licence", false, isOnlyOne:true),
+                        new TagTypeEntity("Capacités", false, false),
                     });
                     break;
-                case List<Asset> assetsList:
-                    var tagList = new List<Tag>();
-                    var fakeUser = new User(Guid.NewGuid(), "fakeuser", "Fake", "User", "fake.user@dontmind.me", "foobar", "1 avenue de la Data, Dropville", UserRole.Premium);
-                    assetsList.AddRange(new List<Asset>()
+                case List<AssetEntity> assetsList:
+                    var tagList = new List<TagEntity>();
+                    var fakeUser = new UserEntity(1, "fakeuser", "Fake", "User", "fake.user@dontmind.me", "foobar", "1 avenue de la Data, Dropville", UserRole.Premium);
+                    assetsList.AddRange(new List<AssetEntity>()
                     {
-                        new Asset("Puffin lowPoly", "A low-poly puffin. How convenient!", 0f, "puffin.fbx", "atlantic-puffin-2.jpg", tagList, fakeUser),
-                        new Asset("Haunted castle", "A haunted castle. How scary!", 0f, "castle.3ds", "castle.jpg", tagList, fakeUser),
-                        new Asset("Saxophone", "A musical instrument called saxophone. How jazzy!", 0f, "sax.fbx", "sax.jpg", tagList, fakeUser),
+                        new AssetEntity("Puffin lowPoly", "A low-poly puffin. How convenient!", 0f, "puffin.fbx", "atlantic-puffin-2.jpg", tagList, fakeUser),
+                        new AssetEntity("Haunted castle", "A haunted castle. How scary!", 0f, "castle.3ds", "castle.jpg", tagList, fakeUser),
+                        new AssetEntity("Saxophone", "A musical instrument called saxophone. How jazzy!", 0f, "sax.fbx", "sax.jpg", tagList, fakeUser),
 
                     });
                     break;

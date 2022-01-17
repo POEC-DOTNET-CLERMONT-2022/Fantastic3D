@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GUI.WPFApp", "Fantastic3D.W
 		{55617FB4-1EF9-4EF5-8B14-4656F3B58D88} = {55617FB4-1EF9-4EF5-8B14-4656F3B58D88}
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persistence", "Persistence\Persistence.csproj", "{55617FB4-1EF9-4EF5-8B14-4656F3B58D88}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fantastic3D.Persistence", "Persistence\Fantastic3D.Persistence.csproj", "{55617FB4-1EF9-4EF5-8B14-4656F3B58D88}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{EBD0BA32-40F8-43D8-9165-F5FDD8AC9A64}"
 EndProject
@@ -22,14 +22,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pictures", "Pictures", "{82
 		Fantastic3D.WPFApp\atlantic-puffin-2.jpg = Fantastic3D.WPFApp\atlantic-puffin-2.jpg
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DirtyConsoleTests", "DirtyConsoleTests\DirtyConsoleTests.csproj", "{4B284C2E-2EA5-4F82-B9A0-53162EAC3890}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.DirtyConsoleTests", "DirtyConsoleTests\App.DirtyConsoleTests.csproj", "{4B284C2E-2EA5-4F82-B9A0-53162EAC3890}"
 	ProjectSection(ProjectDependencies) = postProject
 		{55617FB4-1EF9-4EF5-8B14-4656F3B58D88} = {55617FB4-1EF9-4EF5-8B14-4656F3B58D88}
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3DModels", "3DModels", "{EB77CF71-E249-476A-A109-7154463CA7B9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExternalDataReader.WPFApp", "ExternalDataReader.WPFApp\ExternalDataReader.WPFApp.csproj", "{6831C941-0DC6-437F-A5B6-64B7680840BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.ExternalDataReader.WPFApp", "ExternalDataReader.WPFApp\App.ExternalDataReader.WPFApp.csproj", "{6831C941-0DC6-437F-A5B6-64B7680840BA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCF.Services", "F3DAssetService\WCF.Services.csproj", "{8FBA2226-0AD4-48DC-9A8F-901B823F9501}"
 EndProject
@@ -37,12 +37,18 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fantastic3D.Legacy.Dtos", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Legacy", "Legacy", "{5FE79A80-FC37-4E07-86B3-1DDFD5748169}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FantasticUsers.API", "Fantastic3D.Users.API\FantasticUsers.API.csproj", "{AE5A1148-030D-4EF0-A963-67A0356C385C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fantastic3D.API", "Fantastic3D.Users.API\Fantastic3D.API.csproj", "{AE5A1148-030D-4EF0-A963-67A0356C385C}"
 	ProjectSection(ProjectDependencies) = postProject
+		{1FB1F830-2290-4660-9DBD-ACD7B8343771} = {1FB1F830-2290-4660-9DBD-ACD7B8343771}
 		{55617FB4-1EF9-4EF5-8B14-4656F3B58D88} = {55617FB4-1EF9-4EF5-8B14-4656F3B58D88}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiData", "DataTransfertObjects\ApiData.csproj", "{713258BE-C0A4-4657-807A-BC1CD2F06A49}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fantastic3D.ApiClient", "DataTransfertObjects\Fantastic3D.ApiClient.csproj", "{713258BE-C0A4-4657-807A-BC1CD2F06A49}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1FB1F830-2290-4660-9DBD-ACD7B8343771} = {1FB1F830-2290-4660-9DBD-ACD7B8343771}
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fantastic3D.Dto", "Fantastic3D.Dto\Fantastic3D.Dto.csproj", "{1FB1F830-2290-4660-9DBD-ACD7B8343771}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -86,6 +92,10 @@ Global
 		{713258BE-C0A4-4657-807A-BC1CD2F06A49}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{713258BE-C0A4-4657-807A-BC1CD2F06A49}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{713258BE-C0A4-4657-807A-BC1CD2F06A49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FB1F830-2290-4660-9DBD-ACD7B8343771}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FB1F830-2290-4660-9DBD-ACD7B8343771}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FB1F830-2290-4660-9DBD-ACD7B8343771}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FB1F830-2290-4660-9DBD-ACD7B8343771}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

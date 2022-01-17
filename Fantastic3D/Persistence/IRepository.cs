@@ -1,10 +1,10 @@
-﻿namespace Fantastic3D.Persistence.Entities
+﻿namespace Fantastic3D.Persistence
 {
     /// <summary>
     /// Interface for generic repository classes for IPersistable edition
     /// </summary>
     public interface IRepository<T>
-        where T : IPersistable
+        where T : Entities.IPersistable
     {
         public IEnumerable<T> GetAll();
         public T Get(int id);

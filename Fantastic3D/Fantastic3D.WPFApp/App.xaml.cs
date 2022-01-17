@@ -14,7 +14,6 @@ namespace Fantastic3D.GUI
     /// </summary>
     public partial class App : Application
     {
-        private readonly IDataHandler<User> _userData;
 
 
     }

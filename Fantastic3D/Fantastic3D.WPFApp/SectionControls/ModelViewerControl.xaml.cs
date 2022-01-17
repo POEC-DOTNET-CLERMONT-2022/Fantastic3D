@@ -1,4 +1,4 @@
-﻿using Fantastic3D.Models;
+﻿using Fantastic3D.Persistence.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +21,7 @@ namespace Fantastic3D.GUI
     /// </summary>
     public partial class ModelViewerControl : UserControl
     {
-        public List<Asset> ModelsToValidate { get; set; }
+        public List<AssetEntity> ModelsToValidate { get; set; }
         public ModelViewerControl()
         {
             InitializeComponent();

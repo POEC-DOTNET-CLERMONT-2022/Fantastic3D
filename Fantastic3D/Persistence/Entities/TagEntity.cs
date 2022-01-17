@@ -6,14 +6,14 @@ namespace Fantastic3D.Persistence.Entities
     /// Defines a Tag. A tags holds a name and belongs to a tagType
     /// </summary>
     [DataContract]
-    public class Tag : IPersistable
+    public class TagEntity : IPersistable
     {
         [DataMember]
         private string _name;
         [DataMember]
-        private TagType _tagType;
+        private TagTypeEntity _tagType;
 
-        public Tag(string name, TagType tagType)
+        public TagEntity(string name, TagTypeEntity tagType)
         {
             _name = name;
             _tagType = tagType;

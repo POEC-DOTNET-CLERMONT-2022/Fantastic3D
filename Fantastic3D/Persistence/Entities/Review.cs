@@ -18,10 +18,10 @@ namespace Fantastic3D.Persistence.Entities
         [DataMember]
         private bool _isPublished;
         [DataMember]
-        private Asset _asset;
+        private AssetEntity _asset;
         [DataMember]
-        private User _author;
-        public Review(Guid id, int note, string comment, bool isPublished, Asset asset, User autorUser)
+        private UserEntity _author;
+        public Review(Guid id, int note, string comment, bool isPublished, AssetEntity asset, UserEntity autorUser)
         {
             _id = id;
             _note = note;

@@ -17,7 +17,7 @@ namespace Fantastic3D.Tags
         /// <summary>
         /// Displays an object of the Tag type
         /// </summary>
-        public void DisplayTag(Tag tag);
+        public void DisplayTag(TagEntity tag);
         /// <summary>
         /// Changes the title of the app
         /// </summary>
