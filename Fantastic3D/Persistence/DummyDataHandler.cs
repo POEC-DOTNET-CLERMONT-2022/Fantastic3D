@@ -1,4 +1,5 @@
 ﻿using Fantastic3D.Models;
+using AutoFixture;
 
 namespace Fantastic3D.Persistence
 {
@@ -35,7 +36,11 @@ namespace Fantastic3D.Persistence
                     });;
                     break;
                 default:
-                    throw new DataTypeNotSupportedException("No dummy data for this Type of Data.");
+                    var fixture = new Fixture();
+                    var createdList = fixture.CreateMany<T>(15).ToList();
+                    loadedList.AddRange(createdList);
+                    break;
+                    //throw new DataTypeNotSupportedException("No dummy data for this Type of Data.");
             }
         }
 
