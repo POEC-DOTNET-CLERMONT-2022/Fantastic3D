@@ -33,7 +33,7 @@ namespace Fantastic3D.Persistence
                         new Asset("Haunted castle", "A haunted castle. How scary!", 0f, "castle.3ds", "castle.jpg", tagList, fakeUser),
                         new Asset("Saxophone", "A musical instrument called saxophone. How jazzy!", 0f, "sax.fbx", "sax.jpg", tagList, fakeUser),
 
-                    });;
+                    });
                     break;
                 default:
                     var fixture = new Fixture();

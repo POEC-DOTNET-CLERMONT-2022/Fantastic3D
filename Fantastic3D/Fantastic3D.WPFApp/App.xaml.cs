@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using Fantastic3D.Persistence;
 
 namespace Fantastic3D.GUI
 {
@@ -13,5 +14,8 @@ namespace Fantastic3D.GUI
     /// </summary>
     public partial class App : Application
     {
+        private readonly IDataHandler<User> _userData;
+
+
     }
 }
