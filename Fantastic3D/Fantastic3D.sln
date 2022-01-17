@@ -8,7 +8,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TagManager.ConsoleApp", "Ta
 		{55617FB4-1EF9-4EF5-8B14-4656F3B58D88} = {55617FB4-1EF9-4EF5-8B14-4656F3B58D88}
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GUI.WPFApp", "Fantastic3D.WPFApp\GUI.WPFApp.csproj", "{86F11AB5-EF17-4CC4-A927-5EC7623DDDFF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Fantastic3DManager", "Fantastic3D.WPFApp\App.Fantastic3DManager.csproj", "{86F11AB5-EF17-4CC4-A927-5EC7623DDDFF}"
 	ProjectSection(ProjectDependencies) = postProject
 		{55617FB4-1EF9-4EF5-8B14-4656F3B58D88} = {55617FB4-1EF9-4EF5-8B14-4656F3B58D88}
 	EndProjectSection
@@ -49,6 +49,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fantastic3D.ApiClient", "Da
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fantastic3D.Dto", "Fantastic3D.Dto\Fantastic3D.Dto.csproj", "{1FB1F830-2290-4660-9DBD-ACD7B8343771}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fantastic3D.AppModels", "Fantastic3D.AppModels\Fantastic3D.AppModels.csproj", "{67989EB3-939C-40AF-A2FB-9B1C25532ED8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -96,6 +98,10 @@ Global
 		{1FB1F830-2290-4660-9DBD-ACD7B8343771}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1FB1F830-2290-4660-9DBD-ACD7B8343771}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1FB1F830-2290-4660-9DBD-ACD7B8343771}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67989EB3-939C-40AF-A2FB-9B1C25532ED8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67989EB3-939C-40AF-A2FB-9B1C25532ED8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67989EB3-939C-40AF-A2FB-9B1C25532ED8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67989EB3-939C-40AF-A2FB-9B1C25532ED8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -9,7 +9,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Persistence\Fantastic3D.Persistence.csproj" />
+    <ProjectReference Include="..\DataTransfertObjects\Fantastic3D.ApiClient.csproj" />
+    <ProjectReference Include="..\Fantastic3D.AppModels\Fantastic3D.AppModels.csproj" />
+    <ProjectReference Include="..\Fantastic3D.Dto\Fantastic3D.Dto.csproj" />
   </ItemGroup>
 
 </Project>

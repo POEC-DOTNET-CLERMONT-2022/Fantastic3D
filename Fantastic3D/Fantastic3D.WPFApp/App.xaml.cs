@@ -5,7 +5,6 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using Fantastic3D.Persistence.Entities;
 
 namespace Fantastic3D.GUI
 {
