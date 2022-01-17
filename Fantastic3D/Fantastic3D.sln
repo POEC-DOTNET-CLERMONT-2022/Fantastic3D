@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csproj", "{61412CA7-1C77-4649-A12B-9A176A58EF1C}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TagManager.ConsoleApp", "TagManager.ConsoleApp\TagManager.ConsoleApp.csproj", "{3EC46B60-8AC0-408F-A932-2D96AEEAB3F7}"
 	ProjectSection(ProjectDependencies) = postProject
 		{55617FB4-1EF9-4EF5-8B14-4656F3B58D88} = {55617FB4-1EF9-4EF5-8B14-4656F3B58D88}
@@ -12,7 +10,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TagManager.ConsoleApp", "Ta
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GUI.WPFApp", "Fantastic3D.WPFApp\GUI.WPFApp.csproj", "{86F11AB5-EF17-4CC4-A927-5EC7623DDDFF}"
 	ProjectSection(ProjectDependencies) = postProject
-		{61412CA7-1C77-4649-A12B-9A176A58EF1C} = {61412CA7-1C77-4649-A12B-9A176A58EF1C}
 		{55617FB4-1EF9-4EF5-8B14-4656F3B58D88} = {55617FB4-1EF9-4EF5-8B14-4656F3B58D88}
 	EndProjectSection
 EndProject
@@ -27,7 +24,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pictures", "Pictures", "{82
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DirtyConsoleTests", "DirtyConsoleTests\DirtyConsoleTests.csproj", "{4B284C2E-2EA5-4F82-B9A0-53162EAC3890}"
 	ProjectSection(ProjectDependencies) = postProject
-		{61412CA7-1C77-4649-A12B-9A176A58EF1C} = {61412CA7-1C77-4649-A12B-9A176A58EF1C}
 		{55617FB4-1EF9-4EF5-8B14-4656F3B58D88} = {55617FB4-1EF9-4EF5-8B14-4656F3B58D88}
 	EndProjectSection
 EndProject
@@ -43,9 +39,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Legacy", "Legacy", "{5FE79A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FantasticUsers.API", "Fantastic3D.Users.API\FantasticUsers.API.csproj", "{AE5A1148-030D-4EF0-A963-67A0356C385C}"
 	ProjectSection(ProjectDependencies) = postProject
-		{61412CA7-1C77-4649-A12B-9A176A58EF1C} = {61412CA7-1C77-4649-A12B-9A176A58EF1C}
 		{55617FB4-1EF9-4EF5-8B14-4656F3B58D88} = {55617FB4-1EF9-4EF5-8B14-4656F3B58D88}
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiData", "DataTransfertObjects\ApiData.csproj", "{713258BE-C0A4-4657-807A-BC1CD2F06A49}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,10 +50,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{61412CA7-1C77-4649-A12B-9A176A58EF1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{61412CA7-1C77-4649-A12B-9A176A58EF1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{61412CA7-1C77-4649-A12B-9A176A58EF1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{61412CA7-1C77-4649-A12B-9A176A58EF1C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3EC46B60-8AC0-408F-A932-2D96AEEAB3F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3EC46B60-8AC0-408F-A932-2D96AEEAB3F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3EC46B60-8AC0-408F-A932-2D96AEEAB3F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -89,6 +82,10 @@ Global
 		{AE5A1148-030D-4EF0-A963-67A0356C385C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE5A1148-030D-4EF0-A963-67A0356C385C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE5A1148-030D-4EF0-A963-67A0356C385C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{713258BE-C0A4-4657-807A-BC1CD2F06A49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{713258BE-C0A4-4657-807A-BC1CD2F06A49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{713258BE-C0A4-4657-807A-BC1CD2F06A49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{713258BE-C0A4-4657-807A-BC1CD2F06A49}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

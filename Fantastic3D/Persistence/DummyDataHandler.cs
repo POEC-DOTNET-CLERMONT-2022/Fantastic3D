@@ -1,4 +1,4 @@
-﻿using Fantastic3D.Models;
+﻿using Fantastic3D.Persistence.Entities;
 using AutoFixture;
 
 namespace Fantastic3D.Persistence

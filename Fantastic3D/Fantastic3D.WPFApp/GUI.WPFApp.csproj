@@ -9,17 +9,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="atlantic-puffin-2.jpg" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="atlantic-puffin-2.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Models\Models.csproj" />
+    <ProjectReference Include="..\Persistence\Persistence.csproj" />
   </ItemGroup>
 
 </Project>

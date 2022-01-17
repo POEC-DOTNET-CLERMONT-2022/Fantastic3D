@@ -1,5 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using Fantastic3D.Models;
+using Fantastic3D.Persistence.Entities;
 using Fantastic3D.Persistence;
 
 // This is code dégueulasse, don't put it en prod !

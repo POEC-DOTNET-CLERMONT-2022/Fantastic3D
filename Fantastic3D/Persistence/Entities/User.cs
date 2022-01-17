@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.Serialization;
 
-namespace Fantastic3D.Entities
+namespace Fantastic3D.Persistence.Entities
 {
     /// <summary>
     /// Define an user, email, pass, billing adress and his role 

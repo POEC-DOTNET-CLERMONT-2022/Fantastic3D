@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace Fantastic3D.Entities
+namespace Fantastic3D.Persistence.Entities
 {
     /// <summary>
     /// Define an purchase, the asset, the price and if the creator has been paid

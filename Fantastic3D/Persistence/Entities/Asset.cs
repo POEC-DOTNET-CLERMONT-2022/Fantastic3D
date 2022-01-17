@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace Fantastic3D.Entities
+namespace Fantastic3D.Persistence.Entities
 {
     /// <summary>
     /// Defines an asset, his price and his associated tags.

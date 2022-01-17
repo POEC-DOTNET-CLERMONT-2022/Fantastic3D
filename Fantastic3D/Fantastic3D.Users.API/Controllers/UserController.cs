@@ -1,7 +1,7 @@
 ﻿using Fantastic3D.UsersAPI;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Fantastic3D.Models;
+using Fantastic3D.Persistence.Entities;
 using Fantastic3D.Persistence;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860

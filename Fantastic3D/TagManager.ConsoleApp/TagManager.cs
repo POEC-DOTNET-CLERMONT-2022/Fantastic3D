@@ -1,4 +1,4 @@
-﻿using Fantastic3D.Models;
+﻿using Fantastic3D.Persistence.Entities;
 using Fantastic3D.Persistence;
 
 namespace Fantastic3D.Tags

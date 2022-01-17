@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace Fantastic3D.Entities
+namespace Fantastic3D.Persistence.Entities
 {
     /// <summary>
     /// Define an order, the order date, the buyer and the list of his purchase

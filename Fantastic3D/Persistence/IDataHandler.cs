@@ -6,7 +6,7 @@ namespace Fantastic3D.Persistence
     /// Elements of this interface can Load and Save Data implementing IPeristable
     /// </summary>
     public interface IDataHandler<T>
-        where T : Models.IPersistable
+        where T : Entities.IPersistable
     {
         /// <summary>
         /// 

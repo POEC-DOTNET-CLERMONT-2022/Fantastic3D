@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace Fantastic3D.Entities
+namespace Fantastic3D.Persistence.Entities
 {
     /// <summary>
     /// Defines a Tag. A tags holds a name and belongs to a tagType
