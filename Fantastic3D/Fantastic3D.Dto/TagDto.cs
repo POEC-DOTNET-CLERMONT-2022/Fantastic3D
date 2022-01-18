@@ -9,9 +9,9 @@ namespace Fantastic3D.Dto
     public class TagDto
     {
         [DataMember]
-        private string _name;
+        public string Name { get; set; } = string.Empty;
         [DataMember]
-        private Guid _tagType;   // Tag Type ID
+        public Guid TagType { get; set; }   // Tag Type ID
 
     }
 }

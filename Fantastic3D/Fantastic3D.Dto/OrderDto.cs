@@ -9,12 +9,12 @@ namespace Fantastic3D.Dto
     internal class OrderDto
     {
         [DataMember]
-        private Guid _orderId;
+        public Guid OrderId { get; set; }
         [DataMember]
-        private DateTime _date;
+        public DateTime Date { get; set; }
         [DataMember]
-        private List<Guid> _purchaseList;
+        public List<Guid> PurchaseList { get; set; } = new();
         [DataMember]
-        private int _purchasingUser;
+        public int PurchasingUser { get; set; }
     }
 }

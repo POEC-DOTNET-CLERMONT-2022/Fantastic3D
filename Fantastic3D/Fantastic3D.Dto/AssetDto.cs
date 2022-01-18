@@ -8,17 +8,29 @@ namespace Fantastic3D.Dto
     [DataContract]
     public class AssetDto
     {
-        public enum Status { Unpublished, Published, Rejected, Removed }
-
-        private Guid _id;
-        private string _name;
-        private string _description;
-        private float _price;
-        private string _filePath;
-        private string _picturePath;
-        private List<Guid> _tags;    // List of Tags Ids
-        private int _creator;       // User ID
-        private string _status;
+        [DataMember]
+        public static string[] AvailableStatus = new string[] { "Unpublished", "Published", "Rejected", "Removed" };
+        [DataMember]
+        public Guid Id { get; set; }
+        [DataMember]
+        public string Name { get; set; } = string.Empty;
+        [DataMember]
+        public string Description { get; set; } = string.Empty;
+        [DataMember]
+        public float Price { get; set; }
+        [DataMember]
+        public string FilePath { get; set; } = string.Empty;
+        [DataMember]
+        public string PicturePath { get; set; } = string.Empty;
+        [DataMember]
+        public List<Guid> Tags { get; set; } = new();    // List of Tags Ids
+        [DataMember]
+        public int Creator { get; set; }        // User ID
+        [DataMember]
+        /// <summary>
+        /// Status ID. Use the AvailableStatus Array to match Status and IDs
+        /// </summary>
+        public int Status { get; set; }
 
     }
 }

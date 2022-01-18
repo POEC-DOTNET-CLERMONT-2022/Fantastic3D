@@ -10,7 +10,7 @@ namespace Fantastic3D.Dto
     public class TagTypeDto
     {
         [DataMember]
-        public string Name { get; private set; }
+        public string Name { get; private set; } = string.Empty;
         /// <summary>
         /// Defines if at tag is mandatory (needs to be added at least 1 time to an asset)
         /// </summary>

@@ -9,13 +9,13 @@ namespace Fantastic3D.Dto
     public class PurchaseDto
     {
         [DataMember]
-        private Guid _id;
+        public Guid Id { get; set; }
         [DataMember]
-        private bool _isPaidToCreator;
+        public bool IsPaidToCreator { get; set; }
         [DataMember]
-        private float _purchasePrice;
+        public float PurchasePrice { get; set; }
         [DataMember]
-        private Guid _asset;        // Asset ID
+        public Guid Asset { get; set; }        // Asset ID
 
     }
 }

@@ -8,20 +8,20 @@ namespace Fantastic3D.Dto
         [DataMember]
         public int Id { get; set; }
         [DataMember]
-        public string Username { get; set; }
+        public string Username { get; set; } = string.Empty;
         [DataMember]
-        public string FirstName { get; set; }
+        public string FirstName { get; set; } = string.Empty;
         [DataMember]
-        public string LastName { get; set; }
+        public string LastName { get; set; } = string.Empty;
         [DataMember]
-        public string Email { get; set; }
+        public string Email { get; set; } = string.Empty;
         [DataMember]
-        public string Password { get; set; }
+        public string Password { get; set; } = string.Empty;
         [DataMember]
-        public string HashSalt { get; private set; }
+        public string HashSalt { get; private set; } = string.Empty;
         [DataMember]
-        public string BillingAddress { get; set; }
+        public string BillingAddress { get; set; } = string.Empty;
         [DataMember]
-        public string Role { get; set; }
+        public string Role { get; set; } = string.Empty;
     }
 }
