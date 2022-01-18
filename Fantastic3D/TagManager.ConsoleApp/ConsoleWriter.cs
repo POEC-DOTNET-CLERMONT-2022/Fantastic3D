@@ -3,23 +3,30 @@
     internal class ConsoleWriter : IWriter
     {
         private string _appTitle = "";
-        private string _menuSectionTitle = "";
         public void Display(string text)
         {
             Console.WriteLine(text);
         }
 
+        private void ClearAndShowTitle()
+        {
+            Console.Clear();
+            var previousForegroundColor = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"***** {_appTitle} *****");
+            Console.ForegroundColor = previousForegroundColor;
+        }
+
         public void SetAppTitle(string title)
         {
             _appTitle = title;
-            Console.Clear();
-            Console.WriteLine(_appTitle);
+            ClearAndShowTitle();
         }
 
         public void SetMenuHeader(string sectionHeader)
         {
-            _menuSectionTitle = sectionHeader;
-            Console.WriteLine(_menuSectionTitle);
+            ClearAndShowTitle();
+            Console.WriteLine(sectionHeader);
         }
 
         public void DisplayTag(Fantastic3D.Persistence.Entities.TagEntity tag)
