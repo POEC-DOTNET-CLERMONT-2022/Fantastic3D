@@ -18,7 +18,7 @@ Sous réserve de validation des modèles par les administrateurs.
 Une commission est reversée au site lors de la vente de leurs modèles. 
 
 ## Fonctionnement :  
-<img src="https://github.com/Sylvain125/Fantastic3D/blob/main/docs/ClassDiagram.jpg" width="300"><img src="https://github.com/Sylvain125/Fantastic3D/blob/main/docs/TagManagerClassDiagram.png" width="300">
+
 
 Le site dispose d'un système de connexion des utilisateurs, la connexion à son compte est impérative pour tout téléchargement de modèles 3D.
 De plus, les utilisateurs peuvent s’abonner au site en mode premium.
@@ -62,5 +62,5 @@ Par exemple des sons, des sprites 2D, etc.
 
 <img src="https://i.ibb.co/sWW5WDG/Projet-WPF.png" width="250"> <img src="https://i.ibb.co/Xst0LcF/Projet-Wpf-Reader.png" width="250">
 
-- Service WCF :
+<img src="https://github.com/Sylvain125/Fantastic3D/blob/main/docs/ClassDiagram.jpg" width="300"><img src="https://github.com/Sylvain125/Fantastic3D/blob/main/docs/TagManagerClassDiagram.png" width="300">
 
