@@ -37,11 +37,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fantastic3D.API", "Fantasti
 		{55617FB4-1EF9-4EF5-8B14-4656F3B58D88} = {55617FB4-1EF9-4EF5-8B14-4656F3B58D88}
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fantastic3D.ApiClient", "DataTransfertObjects\Fantastic3D.ApiClient.csproj", "{713258BE-C0A4-4657-807A-BC1CD2F06A49}"
-	ProjectSection(ProjectDependencies) = postProject
-		{1FB1F830-2290-4660-9DBD-ACD7B8343771} = {1FB1F830-2290-4660-9DBD-ACD7B8343771}
-	EndProjectSection
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fantastic3D.Dto", "Fantastic3D.Dto\Fantastic3D.Dto.csproj", "{1FB1F830-2290-4660-9DBD-ACD7B8343771}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fantastic3D.AppModels", "Fantastic3D.AppModels\Fantastic3D.AppModels.csproj", "{67989EB3-939C-40AF-A2FB-9B1C25532ED8}"
@@ -78,10 +73,6 @@ Global
 		{AE5A1148-030D-4EF0-A963-67A0356C385C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE5A1148-030D-4EF0-A963-67A0356C385C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE5A1148-030D-4EF0-A963-67A0356C385C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{713258BE-C0A4-4657-807A-BC1CD2F06A49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{713258BE-C0A4-4657-807A-BC1CD2F06A49}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{713258BE-C0A4-4657-807A-BC1CD2F06A49}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{713258BE-C0A4-4657-807A-BC1CD2F06A49}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1FB1F830-2290-4660-9DBD-ACD7B8343771}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1FB1F830-2290-4660-9DBD-ACD7B8343771}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1FB1F830-2290-4660-9DBD-ACD7B8343771}.Release|Any CPU.ActiveCfg = Release|Any CPU
