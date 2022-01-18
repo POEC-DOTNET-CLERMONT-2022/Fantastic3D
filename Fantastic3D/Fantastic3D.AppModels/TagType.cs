@@ -1,13 +1,13 @@
 ﻿using System.Runtime.Serialization;
 
-namespace Fantastic3D.Models
+namespace Fantastic3D.AppModels
 {
 
     /// <summary>
     /// A type of tag, with tag constraints
     /// </summary>
     [DataContract]
-    public class TagType : IPersistable
+    public class TagType : ObservableModel
     {
         [DataMember]
         public string Name { get; private set; }

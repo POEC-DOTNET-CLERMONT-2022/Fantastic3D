@@ -1,5 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using Fantastic3D.Models;
+using Fantastic3D.Persistence.Entities;
 using Fantastic3D.Tags;
 
 internal class ConsoleWriter : IWriter
@@ -24,7 +24,7 @@ internal class ConsoleWriter : IWriter
         Console.WriteLine(_menuSectionTitle);
     }
 
-    public void DisplayTag(Tag tag)
+    public void DisplayTag(TagEntity tag)
     {
         Console.WriteLine(tag);
     }

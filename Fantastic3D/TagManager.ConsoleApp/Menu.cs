@@ -1,4 +1,4 @@
-﻿using Fantastic3D.Models;
+﻿using Fantastic3D.Persistence.Entities;
 
 namespace Fantastic3D.Tags
 {
@@ -7,9 +7,9 @@ namespace Fantastic3D.Tags
         private IReader _reader;
         private IWriter _writer;
         private TagManager _tagManager;
-        private List<TagType> _tagTypes;
+        private List<TagTypeEntity> _tagTypes;
 
-        public Menu(IReader reader, IWriter writer, TagManager tagManager, List<TagType> tagTypes)
+        public Menu(IReader reader, IWriter writer, TagManager tagManager, List<TagTypeEntity> tagTypes)
         {
             _reader = reader;
             _reader.Writer = writer;
@@ -73,7 +73,7 @@ namespace Fantastic3D.Tags
 
             _tagManager.LoadList();
             int i = 0;
-            foreach (Tag mytag in _tagManager.listTag)
+            foreach (TagEntity mytag in _tagManager.listTag)
             {
                 i++;
                 _reader.Writer.Display(i.ToString() + ". " + mytag);

@@ -1,4 +1,4 @@
-﻿using Fantastic3D.Models;
+﻿using Fantastic3D.Persistence.Entities;
 using Fantastic3D.Persistence;
 
 namespace Fantastic3D.Tags
@@ -8,17 +8,17 @@ namespace Fantastic3D.Tags
     /// </summary>
     internal class TagManager
     {
-        private IDataHandler<Tag> _dataHandler;
-        private List<Tag> _listTag = new List<Tag>();
-        private List<TagType> _tagTypes;
+        private IDataHandler<TagEntity> _dataHandler;
+        private List<TagEntity> _listTag = new List<TagEntity>();
+        private List<TagTypeEntity> _tagTypes;
 
-        public TagManager( IDataHandler<Tag> dataHandler, List<TagType> tagTypes)
+        public TagManager( IDataHandler<TagEntity> dataHandler, List<TagTypeEntity> tagTypes)
         {
             _dataHandler = dataHandler;
             _tagTypes = tagTypes;
         }
 
-        public List<Tag> listTag
+        public List<TagEntity> listTag
         { get { return _listTag; } }    
   
 
@@ -46,9 +46,9 @@ namespace Fantastic3D.Tags
         /// </summary>
         /// <param name="Name"></param>
         /// <param name="tagType"></param>
-        public void Add(string Name, TagType tagType)
+        public void Add(string Name, TagTypeEntity tagType)
         {
-            var mytag = new Tag(Name, tagType);
+            var mytag = new TagEntity(Name, tagType);
             _listTag.Add(mytag);
             _dataHandler.SaveData(_listTag);
         }

@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.Serialization;
 
-namespace Fantastic3D.Models
+namespace Fantastic3D.Persistence.Entities
 {
     /// <summary>
     /// Define an user, email, pass, billing adress and his role 
@@ -12,10 +12,10 @@ namespace Fantastic3D.Models
 
 
     [DataContract, Table("users")]
-    public class User : IPersistable
+    public class UserEntity : IPersistable
     {
         [Key, DataMember, Column("id")]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         [DataMember][Required, StringLength(20)]
         public string Username { get; set; }
         [DataMember][StringLength(100)]
@@ -34,9 +34,9 @@ namespace Fantastic3D.Models
         [Required, StringLength(200)]
         public UserRole Role { get; set; }
 
-        public User() {}
+        public UserEntity() {}
 
-        public User(Guid id, string username, string firstName, string lastName, string email, string password, string billingAdress, UserRole role)
+        public UserEntity(int id, string username, string firstName, string lastName, string email, string password, string billingAdress, UserRole role)
         {
             Id = id;
             Username = username;

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Fantastic3D.Models
+namespace Fantastic3D.Persistence.Entities
 {
     internal static class Utilities
     {

@@ -3,19 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csproj", "{61412CA7-1C77-4649-A12B-9A176A58EF1C}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TagManager.ConsoleApp", "TagManager.ConsoleApp\TagManager.ConsoleApp.csproj", "{3EC46B60-8AC0-408F-A932-2D96AEEAB3F7}"
 	ProjectSection(ProjectDependencies) = postProject
 		{55617FB4-1EF9-4EF5-8B14-4656F3B58D88} = {55617FB4-1EF9-4EF5-8B14-4656F3B58D88}
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GUI.WPFApp", "Fantastic3D.WPFApp\GUI.WPFApp.csproj", "{86F11AB5-EF17-4CC4-A927-5EC7623DDDFF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Fantastic3DManager", "Fantastic3D.WPFApp\App.Fantastic3DManager.csproj", "{86F11AB5-EF17-4CC4-A927-5EC7623DDDFF}"
 	ProjectSection(ProjectDependencies) = postProject
-		{61412CA7-1C77-4649-A12B-9A176A58EF1C} = {61412CA7-1C77-4649-A12B-9A176A58EF1C}
+		{55617FB4-1EF9-4EF5-8B14-4656F3B58D88} = {55617FB4-1EF9-4EF5-8B14-4656F3B58D88}
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persistence", "Persistence\Persistence.csproj", "{55617FB4-1EF9-4EF5-8B14-4656F3B58D88}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fantastic3D.Persistence", "Persistence\Fantastic3D.Persistence.csproj", "{55617FB4-1EF9-4EF5-8B14-4656F3B58D88}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{EBD0BA32-40F8-43D8-9165-F5FDD8AC9A64}"
 EndProject
@@ -24,27 +22,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pictures", "Pictures", "{82
 		Fantastic3D.WPFApp\atlantic-puffin-2.jpg = Fantastic3D.WPFApp\atlantic-puffin-2.jpg
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DirtyConsoleTests", "DirtyConsoleTests\DirtyConsoleTests.csproj", "{4B284C2E-2EA5-4F82-B9A0-53162EAC3890}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.DirtyConsoleTests", "DirtyConsoleTests\App.DirtyConsoleTests.csproj", "{4B284C2E-2EA5-4F82-B9A0-53162EAC3890}"
 	ProjectSection(ProjectDependencies) = postProject
-		{61412CA7-1C77-4649-A12B-9A176A58EF1C} = {61412CA7-1C77-4649-A12B-9A176A58EF1C}
 		{55617FB4-1EF9-4EF5-8B14-4656F3B58D88} = {55617FB4-1EF9-4EF5-8B14-4656F3B58D88}
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3DModels", "3DModels", "{EB77CF71-E249-476A-A109-7154463CA7B9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExternalDataReader.WPFApp", "ExternalDataReader.WPFApp\ExternalDataReader.WPFApp.csproj", "{6831C941-0DC6-437F-A5B6-64B7680840BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fantastic3D.Dto", "Fantastic3D.Dto\Fantastic3D.Dto.csproj", "{1FB1F830-2290-4660-9DBD-ACD7B8343771}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCF.Services", "F3DAssetService\WCF.Services.csproj", "{8FBA2226-0AD4-48DC-9A8F-901B823F9501}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fantastic3D.AppModels", "Fantastic3D.AppModels\Fantastic3D.AppModels.csproj", "{67989EB3-939C-40AF-A2FB-9B1C25532ED8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fantastic3D.Legacy.Dtos", "Fantastic3D.Legacy.Dtos\Fantastic3D.Legacy.Dtos.csproj", "{D2EA52A8-CFB5-4461-8A72-1729007FFED4}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Legacy", "Legacy", "{5FE79A80-FC37-4E07-86B3-1DDFD5748169}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FantasticUsers.API", "Fantastic3D.Users.API\FantasticUsers.API.csproj", "{AE5A1148-030D-4EF0-A963-67A0356C385C}"
-	ProjectSection(ProjectDependencies) = postProject
-		{61412CA7-1C77-4649-A12B-9A176A58EF1C} = {61412CA7-1C77-4649-A12B-9A176A58EF1C}
-		{55617FB4-1EF9-4EF5-8B14-4656F3B58D88} = {55617FB4-1EF9-4EF5-8B14-4656F3B58D88}
-	EndProjectSection
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fantastic3D.API", "Fantastic3D.API\Fantastic3D.API.csproj", "{7EDA3857-A654-4DB0-9384-F4C2B7D24741}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -52,10 +41,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{61412CA7-1C77-4649-A12B-9A176A58EF1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{61412CA7-1C77-4649-A12B-9A176A58EF1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{61412CA7-1C77-4649-A12B-9A176A58EF1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{61412CA7-1C77-4649-A12B-9A176A58EF1C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3EC46B60-8AC0-408F-A932-2D96AEEAB3F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3EC46B60-8AC0-408F-A932-2D96AEEAB3F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3EC46B60-8AC0-408F-A932-2D96AEEAB3F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -72,22 +57,18 @@ Global
 		{4B284C2E-2EA5-4F82-B9A0-53162EAC3890}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4B284C2E-2EA5-4F82-B9A0-53162EAC3890}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4B284C2E-2EA5-4F82-B9A0-53162EAC3890}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6831C941-0DC6-437F-A5B6-64B7680840BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6831C941-0DC6-437F-A5B6-64B7680840BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6831C941-0DC6-437F-A5B6-64B7680840BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6831C941-0DC6-437F-A5B6-64B7680840BA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8FBA2226-0AD4-48DC-9A8F-901B823F9501}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8FBA2226-0AD4-48DC-9A8F-901B823F9501}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8FBA2226-0AD4-48DC-9A8F-901B823F9501}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8FBA2226-0AD4-48DC-9A8F-901B823F9501}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D2EA52A8-CFB5-4461-8A72-1729007FFED4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D2EA52A8-CFB5-4461-8A72-1729007FFED4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D2EA52A8-CFB5-4461-8A72-1729007FFED4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D2EA52A8-CFB5-4461-8A72-1729007FFED4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AE5A1148-030D-4EF0-A963-67A0356C385C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AE5A1148-030D-4EF0-A963-67A0356C385C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AE5A1148-030D-4EF0-A963-67A0356C385C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AE5A1148-030D-4EF0-A963-67A0356C385C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FB1F830-2290-4660-9DBD-ACD7B8343771}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FB1F830-2290-4660-9DBD-ACD7B8343771}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FB1F830-2290-4660-9DBD-ACD7B8343771}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FB1F830-2290-4660-9DBD-ACD7B8343771}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67989EB3-939C-40AF-A2FB-9B1C25532ED8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67989EB3-939C-40AF-A2FB-9B1C25532ED8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67989EB3-939C-40AF-A2FB-9B1C25532ED8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67989EB3-939C-40AF-A2FB-9B1C25532ED8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7EDA3857-A654-4DB0-9384-F4C2B7D24741}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EDA3857-A654-4DB0-9384-F4C2B7D24741}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EDA3857-A654-4DB0-9384-F4C2B7D24741}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EDA3857-A654-4DB0-9384-F4C2B7D24741}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -95,8 +76,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{82DC27B9-2462-4051-AC64-064DFFB1B966} = {EBD0BA32-40F8-43D8-9165-F5FDD8AC9A64}
 		{EB77CF71-E249-476A-A109-7154463CA7B9} = {EBD0BA32-40F8-43D8-9165-F5FDD8AC9A64}
-		{8FBA2226-0AD4-48DC-9A8F-901B823F9501} = {5FE79A80-FC37-4E07-86B3-1DDFD5748169}
-		{D2EA52A8-CFB5-4461-8A72-1729007FFED4} = {5FE79A80-FC37-4E07-86B3-1DDFD5748169}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DA613773-EAFC-4865-9D33-DB1450D00395}

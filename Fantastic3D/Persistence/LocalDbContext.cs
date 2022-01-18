@@ -1,4 +1,4 @@
-﻿using Fantastic3D.Models;
+﻿using Fantastic3D.Persistence.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -17,11 +17,11 @@ namespace Fantastic3D.Persistence
 
         }
 
-        public DbSet<User> Users { get; set; }
+        public DbSet<UserEntity> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            var userBuilder = modelBuilder.Entity<User>();
+            var userBuilder = modelBuilder.Entity<UserEntity>();
             base.OnModelCreating(modelBuilder);
         }
 

@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore.SqlServer;
 using Fantastic3D.Persistence;
+using Fantastic3D.Persistence.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 

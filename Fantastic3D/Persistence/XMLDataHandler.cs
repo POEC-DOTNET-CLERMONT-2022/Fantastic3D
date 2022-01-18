@@ -1,4 +1,4 @@
-﻿using Fantastic3D.Models;
+﻿using Fantastic3D.Persistence.Entities;
 using System.Runtime.Serialization;
 
 namespace Fantastic3D.Persistence

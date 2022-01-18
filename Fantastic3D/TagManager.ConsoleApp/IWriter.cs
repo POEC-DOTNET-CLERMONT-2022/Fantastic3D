@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Fantastic3D.Models;
+using Fantastic3D.Persistence.Entities;
 
 namespace Fantastic3D.Tags
 {
@@ -17,7 +17,7 @@ namespace Fantastic3D.Tags
         /// <summary>
         /// Displays an object of the Tag type
         /// </summary>
-        public void DisplayTag(Tag tag);
+        public void DisplayTag(TagEntity tag);
         /// <summary>
         /// Changes the title of the app
         /// </summary>

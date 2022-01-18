@@ -1,12 +1,12 @@
 ﻿using System.Runtime.Serialization;
 
-namespace Fantastic3D.Models
+namespace Fantastic3D.Persistence.Entities
 {
     /// <summary>
     /// Defines an asset, his price and his associated tags.
     /// </summary>
     [DataContract]
-    public class Asset : IPersistable
+    public class AssetEntity : IPersistable
     {
         public enum Status { Unpublished, Published, Rejected, Removed }
 
@@ -23,13 +23,13 @@ namespace Fantastic3D.Models
         [DataMember]
         private string _picturePath;
         [DataMember]
-        private List<Tag> _tags;    // TODO : vérifier si ça ne duplique pas les instances de tag, si oui il faut faire le lien Asset <--> Tag autrement.
+        private List<TagEntity> _tags;    // TODO : vérifier si ça ne duplique pas les instances de tag, si oui il faut faire le lien Asset <--> Tag autrement.
         [DataMember]
-        private User _creator;
+        private UserEntity _creator;
         [DataMember]
         private Status _status;
 
-        public Asset(Guid id, string name, string description, float price, string filePath, string picturePath, List<Tag> tags, User creator, Status status)
+        public AssetEntity(Guid id, string name, string description, float price, string filePath, string picturePath, List<TagEntity> tags, UserEntity creator, Status status)
         {
             _id = id;
             _name = name;
@@ -45,7 +45,7 @@ namespace Fantastic3D.Models
         /// <summary>
         /// Constructor for an Asset, setting it with a NewGuid and with an Unpublished status.
         /// </summary>
-        public Asset(string name, string description, float price, string filePath, string picturePath, List<Tag> tags, User creator)
+        public AssetEntity(string name, string description, float price, string filePath, string picturePath, List<TagEntity> tags, UserEntity creator)
             : this(Guid.NewGuid(), name, description, price, filePath, picturePath, tags, creator, Status.Unpublished) { }
 
         public override string ToString()

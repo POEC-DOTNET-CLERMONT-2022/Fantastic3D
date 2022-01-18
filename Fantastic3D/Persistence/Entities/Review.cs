@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace Fantastic3D.Models
+namespace Fantastic3D.Persistence.Entities
 {
     /// <summary>
     /// Define the review, the asset and ihs autor, the note and the comment associed
@@ -18,10 +18,10 @@ namespace Fantastic3D.Models
         [DataMember]
         private bool _isPublished;
         [DataMember]
-        private Asset _asset;
+        private AssetEntity _asset;
         [DataMember]
-        private User _author;
-        public Review(Guid id, int note, string comment, bool isPublished, Asset asset, User autorUser)
+        private UserEntity _author;
+        public Review(Guid id, int note, string comment, bool isPublished, AssetEntity asset, UserEntity autorUser)
         {
             _id = id;
             _note = note;

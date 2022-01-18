@@ -1,12 +1,12 @@
 ﻿using System.Runtime.Serialization;
 
-namespace Fantastic3D.Models
+namespace Fantastic3D.AppModels
 {
     /// <summary>
     /// Define an order, the order date, the buyer and the list of his purchase
     /// </summary>
     [DataContract]
-    internal class Order : IPersistable
+    internal class Order : ObservableModel
     {
         [DataMember]
         private Guid _orderId;

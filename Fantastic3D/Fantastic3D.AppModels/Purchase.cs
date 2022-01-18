@@ -1,12 +1,12 @@
 ﻿using System.Runtime.Serialization;
 
-namespace Fantastic3D.Models
+namespace Fantastic3D.AppModels
 {
     /// <summary>
     /// Define an purchase, the asset, the price and if the creator has been paid
     /// </summary>
     [DataContract]
-    public class Purchase : IPersistable
+    public class Purchase : ObservableModel
     {
         [DataMember]
         private Guid _id;

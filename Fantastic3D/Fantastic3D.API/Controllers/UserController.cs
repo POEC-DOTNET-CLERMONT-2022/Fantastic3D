@@ -1,7 +1,6 @@
-﻿using Fantastic3D.UsersAPI;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Fantastic3D.Models;
+using Fantastic3D.Persistence.Entities;
 using Fantastic3D.Persistence;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -23,7 +22,7 @@ namespace Fantastic32.UsersAPI.Controllers
         /// Retrieves all the users.
         /// </summary>
         [HttpGet]
-        public IEnumerable<User> Get()
+        public IEnumerable<UserEntity> Get()
         {
             return _context.Users;
         }
@@ -34,14 +33,14 @@ namespace Fantastic32.UsersAPI.Controllers
         /// </summary>
         /// <param name="id" example="5">The user's ID.</param>
         [HttpGet("{id}")]
-        public User Get(int id)
+        public UserEntity Get(int id)
         {
             return _context.Users.ElementAt(id);
         }
 
         // POST api/<UserController>
         [HttpPost]
-        public void Post([FromBody] User newUser)
+        public void Post([FromBody] UserEntity newUser)
         {
             _context.Users.Add(newUser);
         }
@@ -53,7 +52,7 @@ namespace Fantastic32.UsersAPI.Controllers
         /// <param name="id" example="5">The user's ID.</param>
         /// <param name="value">Full description of an user</param>
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] User value)
+        public void Put(int id, [FromBody] UserEntity value)
         {
             throw new NotImplementedException();
         }
