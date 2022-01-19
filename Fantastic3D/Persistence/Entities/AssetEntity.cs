@@ -13,10 +13,9 @@ namespace Fantastic3D.Persistence.Entities
         public enum PublicationStatus { Unpublished, Published, Rejected, Removed }
         [Key, Column("Id")]
         public int Id { get; set; }
-        private static int _currentId = 1;
         public string Name { get; set; } = String.Empty;
         public string Description { get; set; }
-        public float Prince { get; set; }
+        public float Price { get; set; }
         public string FilePath { get; set; }
         public string PicturePath { get; set; }
         // allows the relationnal table to be created between
@@ -33,28 +32,27 @@ namespace Fantastic3D.Persistence.Entities
         {
             this.Reviews = new HashSet<ReviewEntity>();
         }
-        public AssetEntity(int id, string name, string description, float price, string filePath, string picturePath, List<TagEntity> tags, UserEntity creator, PublicationStatus status)
+        public AssetEntity(string name, string description, float price, string filePath, string picturePath, int creatorId, PublicationStatus status)
         {
-            Id = id;
             Name = name;
             Description = description;
-            Prince = price;
+            Price = price;
             FilePath = filePath;
             PicturePath = picturePath;
-            Tags = tags;
-            Creator = creator;
+            Tags = new List<TagEntity>();
+            CreatorId = creatorId;
             Status = status;
         }
 
         /// <summary>
         /// Constructor for an Asset, setting it with a NewGuid and with an Unpublished status.
         /// </summary>
-        public AssetEntity(string name, string description, float price, string filePath, string picturePath, List<TagEntity> tags, UserEntity creator)
-            : this(_currentId++, name, description, price, filePath, picturePath, tags, creator, PublicationStatus.Unpublished) { }
+        public AssetEntity(string name, string description, float price, string filePath, string picturePath, int creator)
+            : this(name, description, price, filePath, picturePath, creator, PublicationStatus.Unpublished) { }
 
         public override string ToString()
         {
-            return $"Model: {Name}, price : {Prince}, file path : {FilePath}";
+            return $"Model: {Name}, price : {Price}, file path : {FilePath}";
         }
 
     }

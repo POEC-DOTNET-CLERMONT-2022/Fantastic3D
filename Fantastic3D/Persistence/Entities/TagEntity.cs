@@ -19,6 +19,12 @@ namespace Fantastic3D.Persistence.Entities
 
         public TagEntity() { }
 
+        public TagEntity(string name, int tagTypeId)
+        {
+            Name = name;
+            TagTypeId = tagTypeId;
+        }
+
         public override string ToString()
         {
             return $"{Name} (de type {TagType.Name})";

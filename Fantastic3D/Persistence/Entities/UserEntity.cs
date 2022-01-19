@@ -39,9 +39,8 @@ namespace Fantastic3D.Persistence.Entities
 
         public UserEntity() {}
 
-        public UserEntity(int id, string username, string firstName, string lastName, string email, string password, string billingAdress, UserRole role)
+        public UserEntity(string username, string firstName, string lastName, string email, string password, string billingAdress, UserRole role)
         {
-            Id = id;
             Username = username;
             FirstName = firstName;
             LastName = lastName;

@@ -11,6 +11,7 @@ namespace Fantastic3D.Persistence
         {
 
         }
+        public DbSet<UserEntity> Users { get; set; }
 
         public DbSet<AssetEntity> Assets { get; set; }
         public DbSet<OrderEntity> Orders { get; set; }
@@ -18,7 +19,6 @@ namespace Fantastic3D.Persistence
         public DbSet<ReviewEntity> Reviews { get; set; }
         public DbSet<TagEntity> Tags { get; set; }
         public DbSet<TagTypeEntity> TagTypes { get; set; }
-        public DbSet<UserEntity> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

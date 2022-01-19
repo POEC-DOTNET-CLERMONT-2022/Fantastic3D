@@ -24,14 +24,38 @@ namespace Fantastic3D.Persistence
                         new TagTypeEntity("Capacités", false, false),
                     });
                     break;
+                case List<TagEntity> tagList:
+                    tagList.AddRange(new List<TagEntity>()
+                    {
+                        new TagEntity("Horreur", 1),
+                        new TagEntity("Moderne", 1),
+                        new TagEntity("fbx", 4),
+                        new TagEntity("obj", 4),
+                        new TagEntity("Usage personnel", 5),
+                        new TagEntity("Usage commercial", 5),
+                        new TagEntity("Libre de droits", 5),
+                        new TagEntity("Texture", 6),
+                        new TagEntity("Rigging", 6),
+                        new TagEntity("Animation", 6),
+                    });
+                    break;
                 case List<AssetEntity> assetsList:
-                    var tagList = new List<TagEntity>();
-                    var fakeUser = new UserEntity(1, "fakeuser", "Fake", "User", "fake.user@dontmind.me", "foobar", "1 avenue de la Data, Dropville", UserRole.Premium);
+                    //var tagList = new List<TagEntity>();
+                    //var fakeUser = new UserEntity(1, "fakeuser", "Fake", "User", "fake.user@dontmind.me", "foobar", "1 avenue de la Data, Dropville", UserRole.Premium);
                     assetsList.AddRange(new List<AssetEntity>()
                     {
-                        new AssetEntity("Puffin lowPoly", "A low-poly puffin. How convenient!", 0f, "puffin.fbx", "atlantic-puffin-2.jpg", tagList, fakeUser),
-                        new AssetEntity("Haunted castle", "A haunted castle. How scary!", 0f, "castle.3ds", "castle.jpg", tagList, fakeUser),
-                        new AssetEntity("Saxophone", "A musical instrument called saxophone. How jazzy!", 0f, "sax.fbx", "sax.jpg", tagList, fakeUser),
+                        new AssetEntity("Puffin lowPoly", "A low-poly puffin. How convenient!", 0f, "puffin.fbx", "atlantic-puffin-2.jpg", 1),
+                        new AssetEntity("Haunted castle", "A haunted castle. How scary!", 0f, "castle.3ds", "castle.jpg", 1),
+                        new AssetEntity("Saxophone", "A musical instrument called saxophone. How jazzy!", 0f, "sax.fbx", "sax.jpg", 1),
+
+                    });
+                    break;
+                case List<UserEntity> userList:
+                    userList.AddRange(new List<UserEntity>()
+                    {
+                        new UserEntity("Alain", "Alain", "Terieur", "aterr@hotmail.com", "1234", "110 avenue des près", UserRole.Admin),
+                        new UserEntity("DaFlash", "Barry", "Badlen", "bbadlen@csi.ccpd.gov", "1234", "1 avenue des bolides", UserRole.Premium),
+                        new UserEntity("Kiki", "Carl", "Ikki", "carliki@hotmail.com", "1234", "3 chemin du Kernel", UserRole.Basic),
 
                     });
                     break;

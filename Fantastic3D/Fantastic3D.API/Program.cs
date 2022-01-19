@@ -8,7 +8,6 @@ using Fantastic3D.AppModels;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -19,7 +18,6 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 // Mapping en dur,le auto marche pas je le fait comme ca
 //builder.Services.AddAutoMapper(typeof(UserDtoProfile));
-//builder.Services.AddAutoMapper(typeof(UserModelProfile));
 
 
 builder.Services.AddDbContext<LocalDbContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultContext")));
@@ -32,7 +30,9 @@ using (var scope = app.Services.CreateScope())
     var services = scope.ServiceProvider;
 
     var context = services.GetRequiredService<LocalDbContext>();
+
     context.Database.EnsureCreated();
+    DataSeeder.PopulateData(context);
     //context.Database.Migrate();
 }
 
