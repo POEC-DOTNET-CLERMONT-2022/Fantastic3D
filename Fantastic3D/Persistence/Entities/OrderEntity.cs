@@ -5,7 +5,7 @@ namespace Fantastic3D.Persistence.Entities
     /// <summary>
     /// Define an order, the order date, the buyer and the list of his purchase
     /// </summary>
-    internal class OrderEntity : IPersistable
+    public class OrderEntity : IPersistable
     {
         [Key]
         public Guid OrderId { get; set; }
