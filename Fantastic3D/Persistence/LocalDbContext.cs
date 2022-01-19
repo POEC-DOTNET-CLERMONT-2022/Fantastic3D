@@ -1,6 +1,7 @@
 ﻿using Fantastic3D.Persistence.Entities;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;	
+using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace Fantastic3D.Persistence
 {
@@ -21,7 +22,14 @@ namespace Fantastic3D.Persistence
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            var userBuilder = modelBuilder.Entity<UserEntity>();
+            foreach (var entityType in modelBuilder.Model.GetEntityTypes())
+            {
+                // Le code ci-dessous évite que la suppression en cascade par foreign key.
+                entityType.GetForeignKeys()
+                    .Where(fk => !fk.IsOwnership && fk.DeleteBehavior == DeleteBehavior.Cascade)
+                    .ToList()
+                    .ForEach(fk => fk.DeleteBehavior = DeleteBehavior.Restrict);
+            }
             base.OnModelCreating(modelBuilder);
         }
 
