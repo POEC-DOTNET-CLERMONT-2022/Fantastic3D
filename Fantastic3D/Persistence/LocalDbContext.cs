@@ -1,12 +1,6 @@
 ﻿using Fantastic3D.Persistence.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 
 namespace Fantastic3D.Persistence
 {
@@ -17,6 +11,12 @@ namespace Fantastic3D.Persistence
 
         }
 
+        public DbSet<AssetEntity> Assets { get; set; }
+        public DbSet<OrderEntity> Orders { get; set; }
+        public DbSet<PurchaseEntity> Purchases { get; set; }
+        public DbSet<ReviewEntity> Reviews { get; set; }
+        public DbSet<TagEntity> Tags { get; set; }
+        public DbSet<TagTypeEntity> TagTypes { get; set; }
         public DbSet<UserEntity> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
