@@ -20,14 +20,14 @@ namespace Fantastic3D.Persistence
             //    { typeof(TagTypeEntity), nameof(TagTypes) },
             //};
         }
-        //public DbSet<UserEntity> Users { get; set; }
-        //public DbSet<AssetEntity> Assets { get; set; }
-        //public DbSet<OrderEntity> Orders { get; set; }
-        //public DbSet<PurchaseEntity> Purchases { get; set; }
-        //public DbSet<ReviewEntity> Reviews { get; set; }
-        //public DbSet<TagEntity> Tags { get; set; }
-        //public DbSet<TagTypeEntity> TagTypes { get; set; }
-        //public Dictionary<Type, string> DbSetForType { get; }
+        public DbSet<UserEntity> Users { get; set; }
+        public DbSet<AssetEntity> Assets { get; set; }
+        public DbSet<OrderEntity> Orders { get; set; }
+        public DbSet<PurchaseEntity> Purchases { get; set; }
+        public DbSet<ReviewEntity> Reviews { get; set; }
+        public DbSet<TagEntity> Tags { get; set; }
+        public DbSet<TagTypeEntity> TagTypes { get; set; }
+        public Dictionary<Type, string> DbSetForType { get; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
