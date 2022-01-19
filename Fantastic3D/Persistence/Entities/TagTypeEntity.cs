@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
 
 namespace Fantastic3D.Persistence.Entities
 {
@@ -9,7 +10,8 @@ namespace Fantastic3D.Persistence.Entities
     [DataContract]
     public class TagTypeEntity : IPersistable
     {
-        [DataMember]
+        [Key]
+        public int Id { get; set; }
         public string Name { get; private set; }
         /// <summary>
         /// Defines if at tag is mandatory (needs to be added at least 1 time to an asset)

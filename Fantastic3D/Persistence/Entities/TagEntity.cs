@@ -1,31 +1,30 @@
-﻿using System.Runtime.Serialization;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Fantastic3D.Persistence.Entities
 {
     /// <summary>
     /// Defines a Tag. A tags holds a name and belongs to a tagType
     /// </summary>
-    [DataContract]
     public class TagEntity : IPersistable
     {
-        [DataMember]
-        private string _name;
-        [DataMember]
-        private TagTypeEntity _tagType;
+        [Key]
+        public int Id;
+        public string Name;
+        public TagTypeEntity TagType;
 
         public TagEntity(string name, TagTypeEntity tagType)
         {
-            _name = name;
-            _tagType = tagType;
+            Name = name;
+            TagType = tagType;
         }
 
         public override string ToString()
         {
-            return $"{_name} (de type {_tagType.Name})";
+            return $"{Name} (de type {TagType.Name})";
         }
         public void Rename(string newName)
         {
-            _name = newName;
+            Name = newName;
         }
     }
 }

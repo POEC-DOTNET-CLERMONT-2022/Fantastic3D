@@ -1,33 +1,29 @@
-﻿using System.Runtime.Serialization;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Fantastic3D.Persistence.Entities
 {
     /// <summary>
     /// Define an purchase, the asset, the price and if the creator has been paid
     /// </summary>
-    [DataContract]
     public class PurchaseEntity : IPersistable
     {
-        [DataMember]
-        private Guid _id;
-        [DataMember]
-        private bool _isPaidToCreator;
-        [DataMember]
-        private float _purchasePrice;
-        [DataMember]
-        private AssetEntity _asset;
+        [Key]
+        public Guid Id { get; set; }
+        public bool IsPaidToCreator { get; set; }
+        public float PurchasePrice { get; set; }
+        public AssetEntity Asset { get; set; }
 
         public PurchaseEntity(Guid id, bool isPaidToCreator, float purchasePrice, AssetEntity asset)
         {
-            _id = id;
-            _isPaidToCreator = isPaidToCreator;
-            _purchasePrice = purchasePrice;
-            _asset = asset;
+            Id = id;
+            IsPaidToCreator = isPaidToCreator;
+            PurchasePrice = purchasePrice;
+            Asset = asset;
         }
 
         public override string ToString()
         {
-            return $"Payé au créateur : {_isPaidToCreator}, Prix : {_purchasePrice}, Asset : {_asset}";
+            return $"Payé au créateur : {IsPaidToCreator}, Prix : {PurchasePrice}, Asset : {Asset}";
         }
     }
 }
