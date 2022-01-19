@@ -5,16 +5,16 @@ namespace Fantastic3D.AppModels
     /// <summary>
     /// Define an purchase, the asset, the price and if the creator has been paid
     /// </summary>
-    [DataContract]
+
     public class Purchase : ObservableModel
     {
-        [DataMember]
+      
         private Guid _id;
-        [DataMember]
+        
         private bool _isPaidToCreator;
-        [DataMember]
+        
         private float _purchasePrice;
-        [DataMember]
+        
         private Asset _asset;
 
         public Purchase(Guid id, bool isPaidToCreator, float purchasePrice, Asset asset)
