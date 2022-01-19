@@ -6,7 +6,7 @@ namespace Fantastic3D.Dto
     /// Data Transfert Object for an order
     /// </summary>
     [DataContract]
-    internal class OrderDto
+    public class OrderDto
     {
         [DataMember]
         public Guid OrderId { get; set; }
