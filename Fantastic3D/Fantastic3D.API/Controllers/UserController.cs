@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Fantastic3D.Persistence.Entities;
 using Fantastic3D.Persistence;
+using Fantastic3D.Dto;
 using AutoMapper;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -21,15 +22,14 @@ namespace Fantastic32.UsersAPI.Controllers
             _mapper = mapper;
         }
 
-
         // GET: api/<UserController>
         /// <summary>
         /// Retrieves all the users.
         /// </summary>
         [HttpGet]
-        public IEnumerable<UserEntity> Get()
+        public IEnumerable<UserDto> Get()
         {
-            return _context.Users;
+            return _context.Users.Select(user => _mapper.Map<UserDto>(user));
         }
 
         // GET api/<UserController>/5
@@ -38,16 +38,17 @@ namespace Fantastic32.UsersAPI.Controllers
         /// </summary>
         /// <param name="id" example="5">The user's ID.</param>
         [HttpGet("{id}")]
-        public UserEntity Get(int id)
+        public UserDto Get(int id)
         {
-            return _context.Users.ElementAt(id);
+            return _mapper.Map<UserDto>(_context.Users.Single(user => user.Id == id));
         }
 
         // POST api/<UserController>
         [HttpPost]
-        public void Post([FromBody] UserEntity newUser)
+        public void Post([FromBody] UserDto newUser)
         {
-            _context.Users.Add(newUser);
+            _context.Users.Add(_mapper.Map<UserEntity>(newUser));
+            _context.SaveChanges();
         }
 
         // PUT api/<UserController>/5
@@ -57,7 +58,7 @@ namespace Fantastic32.UsersAPI.Controllers
         /// <param name="id" example="5">The user's ID.</param>
         /// <param name="value">Full description of an user</param>
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] UserEntity value)
+        public void Put(int id, [FromBody] UserDto value)
         {
             throw new NotImplementedException();
         }
