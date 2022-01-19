@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Fantastic3D.Persistence.Entities;
 using Fantastic3D.Persistence;
+using AutoMapper;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -12,11 +13,15 @@ namespace Fantastic32.UsersAPI.Controllers
     public class UserController : ControllerBase
     {
         LocalDbContext _context;
+        private IMapper _mapper;
 
-        public UserController(LocalDbContext context)
+        public UserController(LocalDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
+
+
         // GET: api/<UserController>
         /// <summary>
         /// Retrieves all the users.

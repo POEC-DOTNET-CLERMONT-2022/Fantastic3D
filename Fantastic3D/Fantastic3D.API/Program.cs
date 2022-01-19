@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore.SqlServer;
 using Fantastic3D.Persistence;
 using Fantastic3D.Persistence.Entities;
+using Fantastic3D.AppModels;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,15 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// Pour faire le mapping selon les profile en auto
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+// Mapping en dur,le auto marche pas je le fait comme ca
+//builder.Services.AddAutoMapper(typeof(UserDtoProfile));
+//builder.Services.AddAutoMapper(typeof(UserModelProfile));
+
+
 builder.Services.AddDbContext<LocalDbContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultContext")));
 
 

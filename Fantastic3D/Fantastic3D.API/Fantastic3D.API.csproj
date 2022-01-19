@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Fantastic3D.AppModels\Fantastic3D.AppModels.csproj" />
     <ProjectReference Include="..\Persistence\Fantastic3D.Persistence.csproj" />
   </ItemGroup>
 
