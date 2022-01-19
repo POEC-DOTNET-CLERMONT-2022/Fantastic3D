@@ -11,10 +11,10 @@ namespace Fantastic3D.Persistence.Entities
     public enum UserRole {[DataMember] Admin = 'A', [DataMember] Premium = 'P', [DataMember] Basic = 'B'};
 
 
-    [DataContract, Table("users")]
+    [DataContract, Table("User")]
     public class UserEntity : IPersistable
     {
-        [Key, DataMember, Column("id")]
+        [Key, DataMember, Column("Id")]
         public int Id { get; set; }
         [DataMember][Required, StringLength(20)]
         public string Username { get; set; }
@@ -33,6 +33,9 @@ namespace Fantastic3D.Persistence.Entities
         [DataMember]
         [Required, StringLength(200)]
         public UserRole Role { get; set; }
+
+        public virtual ICollection<AssetEntity> CreatedAssets { get; private set; }
+        public virtual ICollection<ReviewEntity> Reviews { get; private set; }
 
         public UserEntity() {}
 
@@ -58,11 +61,6 @@ namespace Fantastic3D.Persistence.Entities
         public bool MatchPassword(string plainPassword)
         {
             return (Password == Utilities.PasswordHash(plainPassword, HashSalt));
-        }
-
-        public override string ToString()
-        {
-            return $"Email : {Email}, Pass : {Password}, BillingAdresse : {BillingAddress}, Role : {Role})";
         }
     }
 }
