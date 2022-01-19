@@ -10,7 +10,7 @@ namespace Fantastic3D.Persistence.Entities
     public class OrderEntity : IPersistable
     {
         [Key]
-        public int OrderId { get; set; }
+        public int Id { get; set; }
         public DateTime Date { get; set; }
 
         public int PurchasingUserId { get; set; }

@@ -13,13 +13,11 @@ namespace Fantastic32.UsersAPI.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        LocalDbContext _context;
-        private IMapper _mapper;
+        private IRepository<UserDto, UserEntity> _repository;
 
         public UserController(LocalDbContext context, IMapper mapper)
         {
-            _context = context;
-            _mapper = mapper;
+            _repository = new DbRepository<UserDto, UserEntity>(context, mapper);
         }
 
         // GET: api/<UserController>
@@ -29,7 +27,7 @@ namespace Fantastic32.UsersAPI.Controllers
         [HttpGet]
         public IEnumerable<UserDto> Get()
         {
-            return _context.Users.Select(user => _mapper.Map<UserDto>(user));
+            return _repository.GetAll();
         }
 
         // GET api/<UserController>/5
@@ -40,15 +38,14 @@ namespace Fantastic32.UsersAPI.Controllers
         [HttpGet("{id}")]
         public UserDto Get(int id)
         {
-            return _mapper.Map<UserDto>(_context.Users.Single(user => user.Id == id));
+            return _repository.Get(id);
         }
 
         // POST api/<UserController>
         [HttpPost]
         public void Post([FromBody] UserDto newUser)
         {
-            _context.Users.Add(_mapper.Map<UserEntity>(newUser));
-            _context.SaveChanges();
+            _repository.Add(newUser);
         }
 
         // PUT api/<UserController>/5
@@ -58,22 +55,9 @@ namespace Fantastic32.UsersAPI.Controllers
         /// <param name="id" example="5">The user's ID.</param>
         /// <param name="value">Full description of an user</param>
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] UserDto value)
+        public void Put(int id, [FromBody] UserDto newUserValues)
         {
-            throw new NotImplementedException();
-        }
-
-        // PATCH api/<UserController>/role/5
-        /// <summary>
-        /// Allows the change of a single parameter of an user.
-        /// </summary>
-        /// <param name="id" example="5">The user's ID.</param>
-        /// <param name="field" example="lastName">The field to change (firstName, lastName, email or role).</param>
-        /// <param name="value" example="Skywalker">The new value for this field.</param>
-        [HttpPatch("{id}/{field}")]
-        public void Patch(int id, [FromBody] string value)
-        {
-            throw new NotImplementedException();
+            _repository.Update(id, newUserValues);
         }
 
         // DELETE api/<UserController>/5
@@ -85,7 +69,7 @@ namespace Fantastic32.UsersAPI.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            _repository.Delete(id);
         }
     }
 }
