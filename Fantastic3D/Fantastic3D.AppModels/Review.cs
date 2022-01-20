@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Fantastic3D.DataManager;
 namespace Fantastic3D.AppModels
 {
-    public class Review
+    public class Review : ObservableModel, IManageable
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public int Note { get; set; }
         public string Comment { get; set; }
         private bool IsPublished { get; set; }

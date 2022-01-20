@@ -1,5 +1,5 @@
 ﻿using System.Runtime.Serialization;
-
+using Fantastic3D.DataManager;
 namespace Fantastic3D.AppModels
 {
 
@@ -7,9 +7,9 @@ namespace Fantastic3D.AppModels
     /// A type of tag, with tag constraints
     /// </summary>
  
-    public class TagType : ObservableModel
+    public class TagType : ObservableModel, IManageable
     {
-     
+        public int Id { get; set; }
         public string Name { get; private set; }
         /// <summary>
         /// Defines if at tag is mandatory (needs to be added at least 1 time to an asset)

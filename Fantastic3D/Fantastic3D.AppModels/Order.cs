@@ -1,16 +1,16 @@
 ﻿using System.Runtime.Serialization;
-
+using Fantastic3D.DataManager;
 namespace Fantastic3D.AppModels
 {
     /// <summary>
     /// Define an order, the order date, the buyer and the list of his purchase
     /// </summary>
     
-    internal class Order : ObservableModel
+    internal class Order : ObservableModel, IManageable;
     {
-        
-        private Guid _orderId;
-        
+
+        public int Id { get; set; }
+
         private DateTime _date;
 
         private List<Purchase> _purchaseList;

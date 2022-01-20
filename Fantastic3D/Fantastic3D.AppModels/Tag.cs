@@ -1,13 +1,14 @@
 ﻿using System.Runtime.Serialization;
-
+using Fantastic3D.DataManager;
 namespace Fantastic3D.AppModels
 {
     /// <summary>
     /// Defines a Tag. A tags holds a name and belongs to a tagType
     /// </summary>
     
-    public class Tag : ObservableModel
+    public class Tag : ObservableModel, IManageable
     {
+        public int Id { get; set; }
 
         private string _name;
 

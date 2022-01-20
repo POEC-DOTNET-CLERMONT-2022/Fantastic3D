@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.Serialization;
-
+using Fantastic3D.DataManager;
 namespace Fantastic3D.AppModels
 {
     /// <summary>
@@ -9,7 +9,7 @@ namespace Fantastic3D.AppModels
     /// </summary>
     [DataContract]
     public enum UserRole {[DataMember] Admin = 'A', [DataMember] Premium = 'P', [DataMember] Basic = 'B'};
-    public class User : ObservableModel
+    public class User : ObservableModel, IManageable
     {
         public int Id { get; set; }
         public string Username { get; set; }

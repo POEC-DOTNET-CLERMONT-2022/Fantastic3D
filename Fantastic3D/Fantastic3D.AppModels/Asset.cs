@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using Fantastic3D.DataManager;
+using System.Runtime.Serialization;
 
 namespace Fantastic3D.AppModels
 {
@@ -6,10 +7,10 @@ namespace Fantastic3D.AppModels
     /// Defines an asset, his price and his associated tags.
     /// </summary>
     [DataContract]
-    public class Asset : ObservableModel, IWithId
+    public class Asset : ObservableModel, IManageable
     {
         public enum Status { Unpublished, Published, Rejected, Removed }
-
+        public int Id { get; set; }
         private Guid _id;
         private string _name;
         private string _description;
