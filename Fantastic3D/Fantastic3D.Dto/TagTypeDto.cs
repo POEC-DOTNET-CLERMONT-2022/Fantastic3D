@@ -9,9 +9,8 @@ namespace Fantastic3D.Dto
     [DataContract]
     public class TagTypeDto : IManageable
     {
-        public int Id { get; set; }
         [DataMember]
-        public int Id { get; set; };
+        public int Id { get; set; }
         [DataMember]
         public string Name { get; private set; } = string.Empty;
         /// <summary>
