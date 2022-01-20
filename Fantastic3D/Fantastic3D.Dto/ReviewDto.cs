@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 namespace Fantastic3D.Dto
 {
     [DataContract]
-    public class ReviewDto
+    public class ReviewDto : IWithId
     {
         [DataMember]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         [DataMember]
         public int Note { get; set; }
         [DataMember]

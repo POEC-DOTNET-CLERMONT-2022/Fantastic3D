@@ -6,10 +6,10 @@ namespace Fantastic3D.Dto
     /// Data Transfert Object for a purchase
     /// </summary>
     [DataContract]
-    public class PurchaseDto
+    public class PurchaseDto : IWithId
     {
         [DataMember]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         [DataMember]
         public bool IsPaidToCreator { get; set; }
         [DataMember]

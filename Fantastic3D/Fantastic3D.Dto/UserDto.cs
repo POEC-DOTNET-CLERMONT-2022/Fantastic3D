@@ -3,7 +3,7 @@
 namespace Fantastic3D.Dto
 {
     [DataContract]
-    public class UserDto
+    public class UserDto : IWithId
     {
         [DataMember]
         public int Id { get; set; }

@@ -6,12 +6,12 @@ namespace Fantastic3D.Dto
     /// Data Transfert Object for an asset
     /// </summary>
     [DataContract]
-    public class AssetDto
+    public class AssetDto : IWithId
     {
         [DataMember]
         public static string[] AvailableStatus = new string[] { "Unpublished", "Published", "Rejected", "Removed" };
         [DataMember]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         [DataMember]
         public string Name { get; set; } = string.Empty;
         [DataMember]

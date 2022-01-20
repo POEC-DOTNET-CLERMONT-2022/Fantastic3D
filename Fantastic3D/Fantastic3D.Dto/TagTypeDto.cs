@@ -7,7 +7,7 @@ namespace Fantastic3D.Dto
     /// Data Transfert Object for a type of tag
     /// </summary>
     [DataContract]
-    public class TagTypeDto
+    public class TagTypeDto : IWithId
     {
         [DataMember]
         public string Name { get; private set; } = string.Empty;
