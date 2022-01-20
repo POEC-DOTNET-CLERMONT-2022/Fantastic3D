@@ -1,5 +1,5 @@
 ﻿using System.Runtime.Serialization;
-
+using Fantastic3D.DataManager;
 namespace Fantastic3D.Dto
 {
 
@@ -7,8 +7,9 @@ namespace Fantastic3D.Dto
     /// Data Transfert Object for a type of tag
     /// </summary>
     [DataContract]
-    public class TagTypeDto : IWithId
+    public class TagTypeDto : IManageable
     {
+        public int Id { get; set; }
         [DataMember]
         public int Id { get; set; };
         [DataMember]

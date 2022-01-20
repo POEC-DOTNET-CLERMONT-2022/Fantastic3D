@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.Serialization;
+using Fantastic3D.DataManager;
 
 namespace Fantastic3D.Persistence.Entities
 {
@@ -12,7 +13,7 @@ namespace Fantastic3D.Persistence.Entities
 
 
     [DataContract, Table("User")]
-    public class UserEntity : IPersistable
+    public class UserEntity : IManageable
     {
         [Key, DataMember, Column("Id")]
         public int Id { get; set; }

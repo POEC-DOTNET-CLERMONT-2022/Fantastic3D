@@ -1,4 +1,4 @@
-﻿
+﻿using Fantastic3D.DataManager;
 
 namespace Fantastic3D.Persistence
 {
@@ -6,7 +6,7 @@ namespace Fantastic3D.Persistence
     /// Elements of this interface can Load and Save Data implementing IPeristable
     /// </summary>
     public interface IDataHandler<T>
-        where T : Entities.IPersistable
+        where T : IManageable
     {
         /// <summary>
         /// 

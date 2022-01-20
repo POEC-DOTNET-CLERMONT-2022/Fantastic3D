@@ -1,12 +1,12 @@
 ﻿using System.Runtime.Serialization;
-
+using Fantastic3D.DataManager;
 namespace Fantastic3D.Dto
 {
     /// <summary>
     /// Data Transfert Object for an order
     /// </summary>
     [DataContract]
-    public class OrderDto : IWithId
+    public class OrderDto : IManageable
     {
         [DataMember]
         public int Id { get; set; }

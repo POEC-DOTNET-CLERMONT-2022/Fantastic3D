@@ -1,12 +1,12 @@
 ﻿using System.Runtime.Serialization;
-
+using Fantastic3D.DataManager;
 namespace Fantastic3D.Dto
 {
     /// <summary>
     /// Data Transfert Object for a Tag. A tags holds a name and belongs to a tagType
     /// </summary>
     [DataContract]
-    public class TagDto : IWithId
+    public class TagDto : IManageable
     {
         [DataMember]
         public int Id { get; set; }

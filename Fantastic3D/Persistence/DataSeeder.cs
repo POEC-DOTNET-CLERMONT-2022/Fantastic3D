@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Fantastic3D.DataManager;
 
 namespace Fantastic3D.Persistence
 {
@@ -11,7 +12,7 @@ namespace Fantastic3D.Persistence
     {
         public static void PopulateData(LocalDbContext context)
         {
-            if (!context.Users.Any())
+            if (!context.Set<UserEntity>().Any())
             {
                 var userList = new List<UserEntity>()
                 {
@@ -22,39 +23,39 @@ namespace Fantastic3D.Persistence
                 context.AddRange(userList);
                 context.SaveChanges();
             }
-            if (!context.TagTypes.Any())
+            if (!context.Set<TagTypeEntity>().Any())
             {
                 context.AddRange(GetDummyData<TagTypeEntity>());
                 context.SaveChanges();
             }
-            if (!context.Tags.Any())
+            if (!context.Set<TagEntity>().Any())
             {
                 context.AddRange(GetDummyData<TagEntity>());
                 context.SaveChanges();
             }
-            if (!context.Assets.Any())
+            if (!context.Set<AssetEntity>().Any())
             {
                 context.AddRange(GetDummyData<AssetEntity>());
                 context.SaveChanges();
             }
             // TODO : Ajouter manuellement un jeu de données Plausible pour les types suivnats
             // (Fixture ne gère pas les dépendances fortes des ID)
-            //if (!context.Orders.Any())
+            //if (!context.Set<OrderEntity>().Any())
             //{
             //    context.AddRange(GetDummyData<OrderEntity>());
             //}
-            //if (!context.Purchases.Any())
+            //if (!context.Set<PurchaseEntity>().Any())
             //{
             //    context.AddRange(GetDummyData<PurchaseEntity>());
             //}
-            //if (!context.Reviews.Any())
+            //if (!context.Set<ReviewEntity>().Any())
             //{
             //    context.AddRange(GetDummyData<ReviewEntity>());
             //}
             context.SaveChanges();
         }
 
-        static List<T> GetDummyData<T>() where T : IPersistable
+        static List<T> GetDummyData<T>() where T : IManageable
         {
             var dataSource = new DummyDataHandler<T>();
             var dummyData = new List<T>();

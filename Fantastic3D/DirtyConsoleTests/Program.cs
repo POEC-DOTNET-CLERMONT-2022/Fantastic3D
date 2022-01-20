@@ -1,23 +1,23 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using Fantastic3D.Persistence.Entities;
 using Fantastic3D.Persistence;
-
+using Fantastic3D.DataManager;
 // This is code dégueulasse, don't put it en prod !
 
 Console.WriteLine("Cette application permet de tester ce qu'on a implémenté hors de tout contexte, pour nous assurer que les éléments sont solides et n'ont pas trop de dépendance.");
 
 var dataHandler = new XmlDataHandler<TagEntity>();
 
-var tagTypeOne = new TagTypeEntity("Thématique", true, false);
+//var tagTypeOne = new TagTypeEntity("Thématique", true, false);
 
-var maListe = new List<TagEntity>();
-maListe.Add(new TagEntity("Horreur", tagTypeOne));
-maListe.Add(new TagEntity("Western", tagTypeOne));
-maListe.Add(new TagEntity("Moderne", tagTypeOne));
-maListe.Add(new TagEntity("Sci-fi", tagTypeOne));
-maListe.Add(new TagEntity("Antique", tagTypeOne));
+//var maListe = new List<TagEntity>();
+//maListe.Add(new TagEntity("Horreur", tagTypeOne));
+//maListe.Add(new TagEntity("Western", tagTypeOne));
+//maListe.Add(new TagEntity("Moderne", tagTypeOne));
+//maListe.Add(new TagEntity("Sci-fi", tagTypeOne));
+//maListe.Add(new TagEntity("Antique", tagTypeOne));
 
-dataHandler.SaveData(maListe);
+//dataHandler.SaveData(maListe);
 
 // Exemple de rendu
 // <ArrayOfTag xmlns="http://schemas.datacontract.org/2004/07/Fantastic3D.Models" xmlns:i="http://www.w3.org/2001/XMLSchema-instance">

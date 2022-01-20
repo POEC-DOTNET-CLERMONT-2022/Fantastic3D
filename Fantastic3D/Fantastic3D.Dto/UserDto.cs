@@ -1,9 +1,9 @@
 ﻿using System.Runtime.Serialization;
-
+using Fantastic3D.DataManager;
 namespace Fantastic3D.Dto
 {
     [DataContract]
-    public class UserDto : IWithId
+    public class UserDto : IManageable
     {
         [DataMember]
         public int Id { get; set; }

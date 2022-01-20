@@ -1,12 +1,13 @@
 ﻿using Fantastic3D.Persistence.Entities;
 using AutoFixture;
+using Fantastic3D.DataManager;
 
 namespace Fantastic3D.Persistence
 {
     /// <summary>
     /// Dummy Data generation for quick testing. Should not be used in the final project.
     /// </summary>
-    public class DummyDataHandler<T> : IDataHandler<T> where T : IPersistable
+    public class DummyDataHandler<T> : IDataHandler<T> where T : IManageable
     {
 
         public void LoadData(List<T> loadedList)

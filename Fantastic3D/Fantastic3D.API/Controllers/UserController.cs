@@ -3,8 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Fantastic3D.Persistence.Entities;
 using Fantastic3D.Persistence;
 using Fantastic3D.Dto;
-using AutoMapper;
-
+using Fantastic3D.DataManager;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Fantastic32.UsersAPI.Controllers
@@ -13,13 +12,12 @@ namespace Fantastic32.UsersAPI.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        LocalDbContext _context;
-        private IMapper _mapper;
+        private IDataManager<UserDto, UserEntity> _data;
 
-        public UserController(LocalDbContext context, IMapper mapper)
+        public UserController(LocalDbContext context, AutoMapper.IMapper mapper)
         {
-            _context = context;
-            _mapper = mapper;
+            // Todo : déplacer l'injection de dépendance directement dans le DataManager
+            _data = new DbDataManager<UserDto, UserEntity>(context, mapper);
         }
 
         // GET: api/<UserController>
@@ -27,9 +25,11 @@ namespace Fantastic32.UsersAPI.Controllers
         /// Retrieves all the users.
         /// </summary>
         [HttpGet]
-        public IEnumerable<UserDto> Get()
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<UserDto>))]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public IActionResult Get()
         {
-            return _context.Users.Select(user => _mapper.Map<UserDto>(user));
+            return (_data.GetAll().Any()) ? Ok(_data.GetAll()) : NoContent();
         }
 
         // GET api/<UserController>/5
@@ -38,17 +38,39 @@ namespace Fantastic32.UsersAPI.Controllers
         /// </summary>
         /// <param name="id" example="5">The user's ID.</param>
         [HttpGet("{id}")]
-        public UserDto Get(int id)
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(UserDto))]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public IActionResult Get(int id)
         {
-            return _mapper.Map<UserDto>(_context.Users.Single(user => user.Id == id));
+            try
+            {
+                var retrievedData = _data.Get(id);
+                if (retrievedData == null)
+                    return NotFound(id);
+                return Ok(retrievedData);
+            }
+            catch(InvalidOperationException ioe)
+            {
+                return BadRequest(ioe.Message);
+            }
         }
 
         // POST api/<UserController>
         [HttpPost]
-        public void Post([FromBody] UserDto newUser)
+        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(UserDto))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public IActionResult Post([FromBody] UserDto newUser)
         {
-            _context.Users.Add(_mapper.Map<UserEntity>(newUser));
-            _context.SaveChanges();
+            try
+            {
+                _data.Add(newUser);
+                return base.Created(Request.Query.ToString() , newUser);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(newUser);
+            }
         }
 
         // PUT api/<UserController>/5
@@ -58,22 +80,19 @@ namespace Fantastic32.UsersAPI.Controllers
         /// <param name="id" example="5">The user's ID.</param>
         /// <param name="value">Full description of an user</param>
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] UserDto value)
+        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(UserDto))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public IActionResult Put(int id, [FromBody] UserDto newUserValues)
         {
-            throw new NotImplementedException();
-        }
-
-        // PATCH api/<UserController>/role/5
-        /// <summary>
-        /// Allows the change of a single parameter of an user.
-        /// </summary>
-        /// <param name="id" example="5">The user's ID.</param>
-        /// <param name="field" example="lastName">The field to change (firstName, lastName, email or role).</param>
-        /// <param name="value" example="Skywalker">The new value for this field.</param>
-        [HttpPatch("{id}/{field}")]
-        public void Patch(int id, [FromBody] string value)
-        {
-            throw new NotImplementedException();
+            try
+            {
+                _data.Update(id, newUserValues);
+                return base.Created(Request.Query.ToString(), newUserValues);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(newUserValues);
+            }
         }
 
         // DELETE api/<UserController>/5
@@ -83,9 +102,19 @@ namespace Fantastic32.UsersAPI.Controllers
         /// </summary>
         /// <param name="id" example="5">The user's ID.</param>
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public IActionResult Delete(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _data.Delete(id);
+                return NoContent();
+            }
+            catch
+            {
+                return NotFound(id);
+            }
         }
     }
 }

@@ -1,6 +1,6 @@
-﻿
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Fantastic3D.DataManager;
 
 namespace Fantastic3D.Persistence.Entities
 {
@@ -8,7 +8,7 @@ namespace Fantastic3D.Persistence.Entities
     /// Defines an asset, his price and his associated tags.
     /// </summary>
     [Table("Asset")]
-    public class AssetEntity : IPersistable
+    public class AssetEntity : IManageable
     {
         public enum PublicationStatus { Unpublished, Published, Rejected, Removed }
         [Key, Column("Id")]
