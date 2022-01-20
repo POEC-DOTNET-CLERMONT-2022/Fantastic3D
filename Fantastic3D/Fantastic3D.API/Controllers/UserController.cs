@@ -4,7 +4,7 @@ using Fantastic3D.Persistence.Entities;
 using Fantastic3D.Persistence;
 using Fantastic3D.Dto;
 using AutoMapper;
-
+using Fantastic3D.DataManager;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Fantastic32.UsersAPI.Controllers
@@ -13,11 +13,11 @@ namespace Fantastic32.UsersAPI.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private IRepository<UserDto, UserEntity> _repository;
+        private IDataManager<UserDto, UserEntity> _dbManager;
 
         public UserController(LocalDbContext context, IMapper mapper)
         {
-            _repository = new DbRepository<UserDto, UserEntity>(context, mapper);
+            _dbManager = new DbDataManager<UserDto, UserEntity>(context, mapper);
         }
 
         // GET: api/<UserController>
@@ -27,7 +27,7 @@ namespace Fantastic32.UsersAPI.Controllers
         [HttpGet]
         public IEnumerable<UserDto> Get()
         {
-            return _repository.GetAll();
+            return _dbManager.GetAll();
         }
 
         // GET api/<UserController>/5
@@ -38,14 +38,14 @@ namespace Fantastic32.UsersAPI.Controllers
         [HttpGet("{id}")]
         public UserDto Get(int id)
         {
-            return _repository.Get(id);
+            return _dbManager.Get(id);
         }
 
         // POST api/<UserController>
         [HttpPost]
         public void Post([FromBody] UserDto newUser)
         {
-            _repository.Add(newUser);
+            _dbManager.Add(newUser);
         }
 
         // PUT api/<UserController>/5
@@ -57,7 +57,7 @@ namespace Fantastic32.UsersAPI.Controllers
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] UserDto newUserValues)
         {
-            _repository.Update(id, newUserValues);
+            _dbManager.Update(id, newUserValues);
         }
 
         // DELETE api/<UserController>/5
@@ -69,7 +69,7 @@ namespace Fantastic32.UsersAPI.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            _repository.Delete(id);
+            _dbManager.Delete(id);
         }
     }
 }

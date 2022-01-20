@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Runtime.Serialization;
+using Fantastic3D.DataManager;
 
 namespace Fantastic3D.Persistence.Entities
 {
@@ -9,7 +9,7 @@ namespace Fantastic3D.Persistence.Entities
     /// and if it's published or not
     /// </summary>
     [Table("Review")]
-    public class ReviewEntity : IPersistable
+    public class ReviewEntity : IManageable
     {
         [Key, Required]
         public int Id { get; set; }

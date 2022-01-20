@@ -6,8 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Fantastic3D.DataManager\Fantastic3D.DataManager.csproj" />
-  </ItemGroup>
-
 </Project>

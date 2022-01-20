@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Fantastic3D.DataManager;
 
 namespace Fantastic3D.Persistence.Entities
 {
@@ -7,7 +8,7 @@ namespace Fantastic3D.Persistence.Entities
     /// Defines a Tag. A tags holds a name and belongs to a tagType
     /// </summary>
     [Table("Tag")]
-    public class TagEntity : IPersistable
+    public class TagEntity : IManageable
     {
         [Key]
         public int Id { get; set; }

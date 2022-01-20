@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Fantastic3D.DataManager\Fantastic3D.DataManager.csproj" />
     <ProjectReference Include="..\Fantastic3D.Dto\Fantastic3D.Dto.csproj" />
   </ItemGroup>
 

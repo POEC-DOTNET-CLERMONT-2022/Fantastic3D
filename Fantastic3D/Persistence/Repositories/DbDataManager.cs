@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Fantastic3D.DataManager;
 
 namespace Fantastic3D.Persistence
 {
@@ -13,15 +14,15 @@ namespace Fantastic3D.Persistence
     /// </summary>
     /// <typeparam name="TTransfered">A Dto type, used in the method's arguments and return types.</typeparam>
     /// <typeparam name="TEntity">An Entity type, that will be written in the DataBase.</typeparam>
-    public class DbRepository<TTransfered, TEntity> : IRepository<TTransfered, TEntity>
-        where TTransfered : class, new()
-        where TEntity : class, Entities.IPersistable, new()
+    public class DbDataManager<TTransfered, TEntity> : IDataManager<TTransfered, TEntity>
+        where TTransfered : class, IManageable, new()
+        where TEntity : class, IManageable, new()
     {
         LocalDbContext _context;
         private IMapper _mapper;
         private DbSet<TEntity> _dataSet;
 
-        public DbRepository(LocalDbContext context, IMapper mapper)
+        public DbDataManager(LocalDbContext context, IMapper mapper)
         {
             _context = context;
             _dataSet = context.Set<TEntity>();

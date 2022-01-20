@@ -1,12 +1,12 @@
 ﻿using System.Runtime.Serialization;
-
+using Fantastic3D.DataManager;
 namespace Fantastic3D.Dto
 {
     /// <summary>
     /// Data Transfert Object for an asset
     /// </summary>
     [DataContract]
-    public class AssetDto : IWithId
+    public class AssetDto : IManageable
     {
         [DataMember]
         public static string[] AvailableStatus = new string[] { "Unpublished", "Published", "Rejected", "Removed" };

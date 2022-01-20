@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Fantastic3D.DataManager;
 
 namespace Fantastic3D.Persistence.Entities
 {
@@ -7,7 +8,7 @@ namespace Fantastic3D.Persistence.Entities
     /// Define an order, the order date, the buyer and the list of his purchase
     /// </summary>
     [Table("Order")]
-    public class OrderEntity : IPersistable
+    public class OrderEntity : IManageable
     {
         [Key]
         public int Id { get; set; }

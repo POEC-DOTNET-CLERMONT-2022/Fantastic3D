@@ -4,11 +4,11 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
-
+using Fantastic3D.DataManager;
 namespace Fantastic3D.Dto
 {
     [DataContract]
-    public class ReviewDto : IWithId
+    public class ReviewDto : IManageable
     {
         [DataMember]
         public int Id { get; set; }

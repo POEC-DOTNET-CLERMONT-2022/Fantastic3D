@@ -1,9 +1,10 @@
 ﻿using Fantastic3D.Persistence.Entities;
 using System.Runtime.Serialization;
+using Fantastic3D.DataManager;
 
 namespace Fantastic3D.Persistence
 {
-    public class XmlDataHandler<T> : IDataHandler<T> where T: IPersistable
+    public class XmlDataHandler<T> : IDataHandler<T> where T: IManageable
     {
         private readonly string _xmlDataPath = Environment.CurrentDirectory + $"/{typeof(T).Name}.xml";
         private readonly DataContractSerializer _dataSerializer = new DataContractSerializer(typeof(List<T>));

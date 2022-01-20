@@ -48,7 +48,7 @@ namespace Fantastic3D.Tags
         /// <param name="tagType"></param>
         public void Add(string Name, TagTypeEntity tagType)
         {
-            var mytag = new TagEntity(Name, tagType);
+            var mytag = new TagEntity(Name, tagType.Id);
             _listTag.Add(mytag);
             _dataHandler.SaveData(_listTag);
         }

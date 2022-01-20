@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Fantastic3D.DataManager;
 
 namespace Fantastic3D.Persistence
 {
@@ -54,7 +55,7 @@ namespace Fantastic3D.Persistence
             context.SaveChanges();
         }
 
-        static List<T> GetDummyData<T>() where T : IPersistable
+        static List<T> GetDummyData<T>() where T : IManageable
         {
             var dataSource = new DummyDataHandler<T>();
             var dummyData = new List<T>();
