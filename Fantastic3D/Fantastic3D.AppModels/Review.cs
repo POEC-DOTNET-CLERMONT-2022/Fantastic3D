@@ -14,7 +14,7 @@ namespace Fantastic3D.AppModels
         private bool IsPublished { get; set; }
         public int Asset { get; set; }
         public int Author { get; set; }
-        public Review(Guid id, int note, string comment, bool isPublished, int asset, int author)
+        public Review(int id, int note, string comment, bool isPublished, int asset, int author)
         {
             Id = id;
             Note = note;

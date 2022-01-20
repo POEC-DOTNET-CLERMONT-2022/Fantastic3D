@@ -6,7 +6,7 @@ namespace Fantastic3D.AppModels
     /// Define an order, the order date, the buyer and the list of his purchase
     /// </summary>
     
-    internal class Order : ObservableModel, IManageable;
+    internal class Order : ObservableModel, IManageable
     {
 
         public int Id { get; set; }
@@ -17,9 +17,9 @@ namespace Fantastic3D.AppModels
       
         private User _purchasingUser;
 
-        public Order(Guid orderId, DateTime date, List<Purchase> purchaseList, User purchasingUser)
+        public Order(int orderId, DateTime date, List<Purchase> purchaseList, User purchasingUser)
         {
-            _orderId = orderId;
+            Id = orderId;
             _date = date;
             _purchaseList = purchaseList;
             _purchasingUser = purchasingUser;
