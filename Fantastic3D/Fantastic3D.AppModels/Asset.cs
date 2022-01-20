@@ -6,7 +6,7 @@ namespace Fantastic3D.AppModels
     /// Defines an asset, his price and his associated tags.
     /// </summary>
     [DataContract]
-    public class Asset : ObservableModel
+    public class Asset : ObservableModel, IWithId
     {
         public enum Status { Unpublished, Published, Rejected, Removed }
 

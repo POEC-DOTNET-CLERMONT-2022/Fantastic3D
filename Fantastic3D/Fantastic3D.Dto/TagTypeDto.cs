@@ -11,6 +11,8 @@ namespace Fantastic3D.Dto
     {
         public int Id { get; set; }
         [DataMember]
+        public int Id { get; set; };
+        [DataMember]
         public string Name { get; private set; } = string.Empty;
         /// <summary>
         /// Defines if at tag is mandatory (needs to be added at least 1 time to an asset)
