@@ -12,7 +12,7 @@ namespace Fantastic3D.Persistence.Entities
     [Table("TagType")]
     public class TagTypeEntity : IManageable
     {
-        [Key, Required]
+        [Key, Required, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string Name { get; private set; }
         /// <summary>

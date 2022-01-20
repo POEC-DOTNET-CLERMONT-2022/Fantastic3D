@@ -10,6 +10,7 @@ namespace Fantastic3D.Persistence.Entities
     [Table("Order")]
     public class OrderEntity : IManageable
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public int Id { get; set; }
         public DateTime Date { get; set; }

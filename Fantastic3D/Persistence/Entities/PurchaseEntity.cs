@@ -10,7 +10,7 @@ namespace Fantastic3D.Persistence.Entities
     [Table("Purchase")]
     public class PurchaseEntity : IManageable
     {
-        [Key]
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public bool IsPaidToCreator { get; set; }
         public float PurchasePrice { get; set; }

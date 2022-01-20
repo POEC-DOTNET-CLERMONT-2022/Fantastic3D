@@ -11,6 +11,7 @@ namespace Fantastic3D.Persistence.Entities
     public class AssetEntity : IManageable
     {
         public enum PublicationStatus { Unpublished, Published, Rejected, Removed }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key, Column("Id")]
         public int Id { get; set; }
         public string Name { get; set; } = String.Empty;

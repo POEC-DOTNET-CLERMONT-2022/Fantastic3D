@@ -11,7 +11,7 @@ namespace Fantastic3D.Persistence.Entities
     [Table("Review")]
     public class ReviewEntity : IManageable
     {
-        [Key, Required]
+        [Key, Required, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public int Note { get; set; }
         public string Comment { get; set; }
