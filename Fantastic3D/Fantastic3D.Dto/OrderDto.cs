@@ -6,10 +6,10 @@ namespace Fantastic3D.Dto
     /// Data Transfert Object for an order
     /// </summary>
     [DataContract]
-    public class OrderDto
+    public class OrderDto : IWithId
     {
         [DataMember]
-        public Guid OrderId { get; set; }
+        public int Id { get; set; }
         [DataMember]
         public DateTime Date { get; set; }
         [DataMember]
