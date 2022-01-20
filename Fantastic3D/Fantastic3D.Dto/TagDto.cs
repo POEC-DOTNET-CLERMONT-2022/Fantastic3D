@@ -9,10 +9,10 @@ namespace Fantastic3D.Dto
     public class TagDto : IWithId
     {
         [DataMember]
+        public int Id { get; set; }
+        [DataMember]
         public string Name { get; set; } = string.Empty;
         [DataMember]
         public Guid TagType { get; set; }   // Tag Type ID
-
-        public int Id { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     }
 }

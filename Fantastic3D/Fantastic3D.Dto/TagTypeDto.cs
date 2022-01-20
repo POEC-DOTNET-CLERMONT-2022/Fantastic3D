@@ -10,6 +10,8 @@ namespace Fantastic3D.Dto
     public class TagTypeDto : IWithId
     {
         [DataMember]
+        public int Id { get; set; };
+        [DataMember]
         public string Name { get; private set; } = string.Empty;
         /// <summary>
         /// Defines if at tag is mandatory (needs to be added at least 1 time to an asset)
@@ -19,6 +21,7 @@ namespace Fantastic3D.Dto
         /// <summary>
         /// Defines if a tag must only be used once or can be used multiple times.
         /// </summary>
+        [DataMember]
         public bool IsOnlyOne { get; private set; }
     }
 }
