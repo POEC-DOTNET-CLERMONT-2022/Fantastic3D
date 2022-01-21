@@ -1,6 +1,5 @@
-﻿using Fantastic3D.Persistence.Entities;
+﻿using Fantastic3D.DataManager;
 using System.Runtime.Serialization;
-using Fantastic3D.DataManager;
 
 namespace Fantastic3D.Persistence
 {
