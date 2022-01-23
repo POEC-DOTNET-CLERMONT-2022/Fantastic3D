@@ -5,8 +5,16 @@ namespace Fantastic3D.Persistence
 {
     public class XmlDataHandler<T> : IDataHandler<T> where T: IManageable
     {
-        private readonly string _xmlDataPath = Environment.CurrentDirectory + $"/{typeof(T).Name}.xml";
+        private string _xmlDataPath;
         private readonly DataContractSerializer _dataSerializer = new DataContractSerializer(typeof(List<T>));
+
+        public string GetPath => _xmlDataPath;
+
+        public XmlDataHandler(string? contextPath)
+        {
+            contextPath = contextPath ?? Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            _xmlDataPath = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, contextPath, $"XmlFiles\\{typeof(T).Name}.xml"));
+        }
 
         public void LoadData(List<T> loadedList)
         {

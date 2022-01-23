@@ -10,7 +10,8 @@ dummyDataMaker.LoadData(allTagTypes);
 var tagReader = new ConsoleReader();
 var tagWriter = new ConsoleWriter();
 
-var tagManager = new TagManager(new XmlDataHandler<TagEntity>(), allTagTypes);
+const string dataPathFromConsoleApp = @"..\Data\";
+var tagManager = new TagManager(new XmlDataHandler<TagEntity>(dataPathFromConsoleApp), allTagTypes);
 var mainMenu = new Menu( tagReader, tagWriter, tagManager, allTagTypes);
 
 bool WeContinue = true;
