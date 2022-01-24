@@ -23,9 +23,14 @@ namespace Fantastic3D.GUI
     {
         private ModelViewerControl modelViewer { get; set; } = new();
         private ModelListControl modelList { get; set; } = new();
+        private HomeScreenControl homeScreen { get; set; } = new();
+        private ReviewControl reviewList { get; set; } = new();
+        private UserListControl userList { get; set; } = new();
+        private OrderListControl orderList { get; set; } = new();
         public MainWindow()
         {
             InitializeComponent();
+            ShowContent(homeScreen);
         }
 
         public void ShowContent(UserControl userControl)
@@ -40,14 +45,31 @@ namespace Fantastic3D.GUI
 
         private void MenuHomeButton_Click(object sender, RoutedEventArgs e)
         {
-
+            ShowContent(homeScreen);
         }
 
         private void MenuModelButton_Click(object sender, RoutedEventArgs e)
         {
 
             ShowContent(modelList);
-            ShowContent(modelViewer);
+            //ShowContent(modelViewer);
+        }
+
+        private void MenuUsersButton_Click(object sender, RoutedEventArgs e)
+        {
+            ShowContent(userList);
+        }
+
+        private void MenuOrdersButton_Click(object sender, RoutedEventArgs e)
+        {
+            ShowContent(orderList);
+
+        }
+
+        private void MenuReviewsButton_Click(object sender, RoutedEventArgs e)
+        {
+            ShowContent(reviewList);
+
         }
     }
 }

@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Fantastic3D.GUI
+namespace Fantastic3D.GUI.SectionControls
 {
     /// <summary>
     /// Logique d'interaction pour ModelViewerControl.xaml

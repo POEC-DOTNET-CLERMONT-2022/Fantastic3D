@@ -10,9 +10,9 @@
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Background="#FF5C91AD">
             <Button x:Name="MenuHomeButton" Width="100" Height="50" Click="MenuHomeButton_Click">Accueil</Button>
             <Button x:Name="MenuModelButton" Width="100" Height="50" Click="MenuModelButton_Click">Modèles</Button>
-            <Button x:Name="MenuUsersButton" Width="100" Height="50">Utilisateurs</Button>
-            <Button x:Name="MenuOrdersButton" Width="100" Height="50">Commande</Button>
-            <Button x:Name="MenuReviewsButton" Width="100" Height="50">Avis</Button>
+            <Button x:Name="MenuUsersButton" Width="100" Height="50" Click="MenuUsersButton_Click">Utilisateurs</Button>
+            <Button x:Name="MenuOrdersButton" Width="100" Height="50" Click="MenuOrdersButton_Click">Commande</Button>
+            <Button x:Name="MenuReviewsButton" Width="100" Height="50" Click="MenuReviewsButton_Click">Avis</Button>
         </StackPanel>
         
         <ContentControl x:Name="MainContent" DockPanel.Dock="Bottom"></ContentControl>
