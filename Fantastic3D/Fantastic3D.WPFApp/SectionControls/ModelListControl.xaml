@@ -6,8 +6,8 @@
              xmlns:local="clr-namespace:Fantastic3D.GUI.SectionControls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <StackPanel Background="White">
-        <TextBlock DockPanel.Dock="Top" FontSize="30"  HorizontalAlignment="Center" Background="White">Gestion des modèles</TextBlock>
+    <StackPanel Background="{DynamicResource MaterialDesignBackground}">
+        <TextBlock DockPanel.Dock="Top" FontSize="30"  HorizontalAlignment="Center">Gestion des modèles</TextBlock>
         
         <DataGrid Height="289" d:ItemsSource="{d:SampleData ItemCount=5}" Width="654"/>
 

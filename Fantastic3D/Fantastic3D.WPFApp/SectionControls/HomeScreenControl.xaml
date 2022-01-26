@@ -6,9 +6,9 @@
              xmlns:local="clr-namespace:Fantastic3D.GUI.SectionControls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <StackPanel Background="White">
-        <TextBlock DockPanel.Dock="Top" FontSize="30"  HorizontalAlignment="Center" Background="White">Bienvenue sur Fantastic 3D Manager !</TextBlock>
-        <TextBlock DockPanel.Dock="Top" FontSize="20"  HorizontalAlignment="Center" Foreground="Blue">Ici, il y aura des stats et la liste des modèles à valider.</TextBlock>
+    <StackPanel Background="{DynamicResource MaterialDesignBackground}">
+        <TextBlock DockPanel.Dock="Top" FontSize="30"  HorizontalAlignment="Center">Bienvenue sur Fantastic 3D Manager !</TextBlock>
+        <TextBlock DockPanel.Dock="Top" FontSize="20"  HorizontalAlignment="Center">Ici, il y aura des stats et la liste des modèles à valider.</TextBlock>
 
 
 

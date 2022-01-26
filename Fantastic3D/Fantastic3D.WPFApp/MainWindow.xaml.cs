@@ -51,8 +51,8 @@ namespace Fantastic3D.GUI
         private void MenuModelButton_Click(object sender, RoutedEventArgs e)
         {
 
-            ShowContent(modelList);
-            //ShowContent(modelViewer);
+            //ShowContent(modelList);
+            ShowContent(modelViewer);
         }
 
         private void MenuUsersButton_Click(object sender, RoutedEventArgs e)

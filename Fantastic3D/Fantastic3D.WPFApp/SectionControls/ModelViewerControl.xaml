@@ -6,8 +6,8 @@
              xmlns:local="clr-namespace:Fantastic3D.GUI"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <StackPanel Background="White">
-        <TextBlock DockPanel.Dock="Top" FontSize="30"  HorizontalAlignment="Center" Background="White">Gestion des modèles</TextBlock>
+    <StackPanel Background="{DynamicResource MaterialDesignBackground}">
+        <TextBlock DockPanel.Dock="Top" FontSize="30"  HorizontalAlignment="Center">Gestion des modèles</TextBlock>
         <Grid DockPanel.Dock="Bottom">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
