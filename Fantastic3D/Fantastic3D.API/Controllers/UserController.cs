@@ -4,7 +4,6 @@ using Fantastic3D.Persistence.Entities;
 using Fantastic3D.Persistence;
 using Fantastic3D.Dto;
 using Fantastic3D.DataManager;
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Fantastic32.UsersAPI.Controllers
 {
@@ -16,8 +15,7 @@ namespace Fantastic32.UsersAPI.Controllers
 
         public UserController(IDataManager<UserDto, UserEntity> dataManager) 
         {
-            // Todo : déplacer l'injection de dépendance directement dans le DataManager
-            _data = dataManager; // new DbDataManager<UserDto, UserEntity>(context, mapper);
+            _data = dataManager;
         }
 
         // GET: api/<UserController>
