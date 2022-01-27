@@ -14,10 +14,10 @@ namespace Fantastic32.UsersAPI.Controllers
     {
         private IDataManager<UserDto, UserEntity> _data;
 
-        public UserController(LocalDbContext context, AutoMapper.IMapper mapper)
+        public UserController(IDataManager<UserDto, UserEntity> dataManager) 
         {
             // Todo : déplacer l'injection de dépendance directement dans le DataManager
-            _data = new DbDataManager<UserDto, UserEntity>(context, mapper);
+            _data = dataManager; // new DbDataManager<UserDto, UserEntity>(context, mapper);
         }
 
         // GET: api/<UserController>

@@ -2,26 +2,18 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore.SqlServer;
 using Fantastic3D.Persistence;
-using Fantastic3D.Persistence.Entities;
-using Fantastic3D.AppModels;
+using Fantastic3D.DataManager;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
-// Pour faire le mapping selon les profile en auto
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-// Mapping en dur,le auto marche pas je le fait comme ca
-//builder.Services.AddAutoMapper(typeof(UserDtoProfile));
-
-
+builder.Services.AddScoped(typeof(IDataManager<,>), typeof(DbDataManager<,>));
+builder.Services.AddScoped<DbContext, LocalDbContext>();
 builder.Services.AddDbContext<LocalDbContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultContext")));
-
 
 var app = builder.Build();
 
@@ -33,13 +25,8 @@ using (var scope = app.Services.CreateScope())
 
     context.Database.EnsureCreated();
     DataSeeder.PopulateData(context);
-    //context.Database.Migrate();
 }
 
-
-
-
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -47,9 +34,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();
