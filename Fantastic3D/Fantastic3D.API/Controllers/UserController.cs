@@ -5,7 +5,7 @@ using Fantastic3D.Persistence;
 using Fantastic3D.Dto;
 using Fantastic3D.DataManager;
 
-namespace Fantastic32.UsersAPI.Controllers
+namespace Fantastic3D.UsersAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
