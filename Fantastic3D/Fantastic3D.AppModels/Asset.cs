@@ -9,41 +9,35 @@ namespace Fantastic3D.AppModels
     [DataContract]
     public class Asset : ObservableModel, IManageable
     {
-        public enum Status { Unpublished, Published, Rejected, Removed }
+        public enum PublicationStatus { Unpublished, Published, Rejected, Removed }
         public int Id { get; set; }
-        private Guid _id;
-        private string _name;
-        private string _description;
-        private float _price;
-        private string _filePath;
-        private string _picturePath;
-        private List<Tag> _tags;    // TODO : vérifier si ça ne duplique pas les instances de tag, si oui il faut faire le lien Asset <--> Tag autrement.
-        private User _creator;
-        private Status _status;
+        public string Name { get; set; } = String.Empty;
+        public string Description { get; set; }
+        public float Price { get; set; }
+        public string FilePath { get; set; }
+        public string PicturePath { get; set; }
+        public ICollection<Tag> Tags { get; private set; }
+        public PublicationStatus Status { get; set; }
+        public User Creator { get; private set; }
+        public ICollection<Review> Reviews { get; private set; }
 
-        public Asset(Guid id, string name, string description, float price, string filePath, string picturePath, List<Tag> tags, User creator, Status status)
+        public Asset()
         {
-            _id = id;
-            _name = name;
-            _description = description;
-            _price = price;
-            _filePath = filePath;
-            _picturePath = picturePath;
-            _tags = tags;
-            _creator = creator;
-            _status = status;
+
         }
 
-        /// <summary>
-        /// Constructor for an Asset, setting it with a NewGuid and with an Unpublished status.
-        /// </summary>
-        public Asset(string name, string description, float price, string filePath, string picturePath, List<Tag> tags, User creator)
-            : this(Guid.NewGuid(), name, description, price, filePath, picturePath, tags, creator, Status.Unpublished) { }
-
-        public override string ToString()
+        public Asset(int id, string name, string description, float price, string filePath, string picturePath, int creatorId, PublicationStatus status, User creator, ICollection<Review> reviews)
         {
-            return $"Model: {_name}, price : {_price}, file path : {_filePath}";
+            Id = id;
+            Name = name;
+            Description = description;
+            Price = price;
+            FilePath = filePath;
+            PicturePath = picturePath;
+            Tags = new List<Tag>();
+            Status = status;
+            Creator = creator;
+            Reviews = reviews;
         }
-
     }
 }
