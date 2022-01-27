@@ -23,6 +23,8 @@ namespace Fantastic3D.GUI.SectionControls
         public ReviewControl()
         {
             InitializeComponent();
+            
         }
+
     }
 }

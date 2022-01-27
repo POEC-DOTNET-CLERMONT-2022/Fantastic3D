@@ -11,7 +11,7 @@
         TextElement.FontWeight="Medium"
         TextElement.FontSize="14"
         Title="Fantastic 3D Manager GUI" Height="450" Width="800">
-    <DockPanel>
+    <DockPanel >
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
             <Button x:Name="MenuHomeButton" Height="50" Click="MenuHomeButton_Click">Accueil</Button>
             <Button x:Name="MenuModelButton"  Height="50" Click="MenuModelButton_Click">Modèles</Button>
@@ -21,7 +21,7 @@
             <Image Source="{DynamicResource Logo}" Height="50" Width="370" HorizontalAlignment="Right" Margin="0,0,10,0"/>
 
         </StackPanel>
-
+        
         <ContentControl x:Name="MainContent" DockPanel.Dock="Bottom"></ContentControl>
     </DockPanel>
 </Window>

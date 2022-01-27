@@ -10,6 +10,7 @@
         <TextBlock DockPanel.Dock="Top" FontSize="30"  HorizontalAlignment="Center">Gestion des avis</TextBlock>
 
         <DataGrid Height="289" d:ItemsSource="{d:SampleData ItemCount=10}" Width="654"/>
+        
 
     </StackPanel>
 </UserControl>

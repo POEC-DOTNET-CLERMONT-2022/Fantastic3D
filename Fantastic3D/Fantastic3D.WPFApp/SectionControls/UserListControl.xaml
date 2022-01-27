@@ -5,11 +5,30 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Fantastic3D.GUI.SectionControls"
              mc:Ignorable="d" 
+             Loaded="Window_Loaded"
              d:DesignHeight="450" d:DesignWidth="800">
-    <StackPanel Background="{DynamicResource MaterialDesignBackground}">
+    <StackPanel Background="{DynamicResource MaterialDesignBackground}" >
+        <Button Content="Charge" Click="Window_Loaded">
+            
+        </Button>
         <TextBlock DockPanel.Dock="Top" FontSize="30"  HorizontalAlignment="Center">Gestion des utilisateurs</TextBlock>
 
-        <DataGrid Height="289" d:ItemsSource="{d:SampleData ItemCount=10}" Width="654"/>
+        <!--<DataGrid Height="289" d:ItemsSource="{d:SampleData ItemCount=10}" Width="654"/>-->
+
+        <ListBox x:Name="ListUser" Height="289" Width="654"  SelectedItem="{Binding Path= CurrentUser}" ItemsSource="{Binding Users}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <WrapPanel>
+                        <TextBlock Text="Id:"/>
+                        <TextBlock Text="{Binding Id}"/>
+                        <TextBlock Text=" Nom: "/>
+                        <TextBlock Text="{Binding Username}"/>
+                        <TextBlock Text=" - "/>
+                        <TextBlock Text="{Binding FirstName}"/>
+                    </WrapPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
 
     </StackPanel>
 </UserControl>

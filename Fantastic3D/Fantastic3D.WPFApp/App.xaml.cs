@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AutoMapper;
+using Fantastic3D.AppModels;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -14,12 +16,14 @@ namespace Fantastic3D.GUI
     public partial class App : Application
     {
         private const string SERVER_URL = "";
-
+        public IMapper Mapper { get; }
         public App()
         {
             // Ajouter l'automapper ici (MapperConfig AddMaps)
-
+            var configuration = new MapperConfiguration(cfg => cfg.AddMaps(typeof(UserModelProfile)));
+            Mapper = new Mapper(configuration);
         }
 
+        
     }
 }
