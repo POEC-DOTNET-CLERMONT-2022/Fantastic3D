@@ -16,28 +16,28 @@ namespace Fantastic3D.AppModels
         public float Price { get; set; }
         public string FilePath { get; set; }
         public string PicturePath { get; set; }
-        public ICollection<Tag> Tags { get; private set; }
+        //public ICollection<Tag> Tags { get; private set; }
         public PublicationStatus Status { get; set; }
-        public User Creator { get; private set; }
-        public ICollection<Review> Reviews { get; private set; }
+        //public User Creator { get; private set; }
+        //public ICollection<Review> Reviews { get; private set; }
 
         public Asset()
         {
 
         }
 
-        public Asset(int id, string name, string description, float price, string filePath, string picturePath, int creatorId, PublicationStatus status, User creator, ICollection<Review> reviews)
-        {
-            Id = id;
-            Name = name;
-            Description = description;
-            Price = price;
-            FilePath = filePath;
-            PicturePath = picturePath;
-            Tags = new List<Tag>();
-            Status = status;
-            Creator = creator;
-            Reviews = reviews;
-        }
+        //public Asset(int id, string name, string description, float price, string filePath, string picturePath, int creatorId, PublicationStatus status, User creator, ICollection<Review> reviews)
+        //{
+        //    Id = id;
+        //    Name = name;
+        //    Description = description;
+        //    Price = price;
+        //    FilePath = filePath;
+        //    PicturePath = picturePath;
+        //    Tags = new List<Tag>();
+        //    Status = status;
+        //    Creator = creator;
+        //    Reviews = reviews;
+        //}
     }
 }
