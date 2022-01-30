@@ -27,15 +27,8 @@ namespace Fantastic3D.GUI.SectionControls
             InitializeComponent();
 
             ModelsToValidate = new();
-            // TODO: Faire la population des données avec des données correspondant aux modèles.
-            //ModelsToValidate.Add(new Asset("Gaufrier", 52));
-            //ModelsToValidate.Add(new Asset("Voiture de sport", 21));
-            //ModelsToValidate.Add(new Asset("Pot de cookies", 500));
-            //ModelsToValidate.Add(new Asset("Zombie Baron Samedi", 58));
 
             NextModelsList.ItemsSource = ModelsToValidate;
-            //NextModelsList.UpdateLayout();
-            //ModelsToValidate[0].Item1
         }
 
     }
