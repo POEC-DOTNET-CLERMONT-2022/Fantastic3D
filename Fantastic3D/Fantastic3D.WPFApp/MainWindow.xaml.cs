@@ -57,7 +57,7 @@ namespace Fantastic3D.GUI
 
         private void MenuUsersButton_Click(object sender, RoutedEventArgs e)
         {
-            ShowContent(new UserListControl());
+            ShowContent(userList);
         }
 
         private void MenuOrdersButton_Click(object sender, RoutedEventArgs e)

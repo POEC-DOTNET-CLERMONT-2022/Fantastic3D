@@ -1,22 +1,11 @@
 ﻿using AutoMapper;
 using Fantastic3D.AppModels;
+using Fantastic3D.DataManager;
+using Fantastic3D.Dto;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Fantastic3D.GUI.SectionControls
 {
@@ -26,28 +15,8 @@ namespace Fantastic3D.GUI.SectionControls
     public partial class UserListControl : UserControl
     {
         public UserList UsersList { get; set; } = new UserList();
-
-        public Client _client = new Client();
-
-        private readonly IMapper _mapper = ((App)Application.Current).Mapper;
-
-        //private readonly DependencyProperty dependencyProperty =
-        //    DependencyProperty.Register("CurrentUser", typeof(User), typeof(UserListControl));
-
-        //private User currentUser;
-        //public User CurrentUser
-        //{
-        //    get { return GetValue(dependencyProperty) as User; }
-        //    set
-        //    {
-        //        if (currentUser != value)
-        //        {
-        //            SetValue(dependencyProperty, value);
-        //        }
-        //    }
-        //}
-
-
+        public IDataManager<User, UserDto> _dataSource = new ApiDataManager<User, UserDto>();
+        //private readonly IMapper _mapper = ((App)Application.Current).Mapper;
 
         public UserListControl()
         {
@@ -55,17 +24,33 @@ namespace Fantastic3D.GUI.SectionControls
             DataContext = UsersList;
         }
 
-        private async void Window_Loaded(object sender, RoutedEventArgs e)
+        // Get All Users and bind them into the listbox
+        private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            var maRequeteAll = await _client.GetAll();
-
-            var Users = _mapper.Map<IEnumerable<User>>(maRequeteAll);
-
-            UsersList.Users = new ObservableCollection<User>(Users);
-
+            LoadUsers();
         }
 
+        private void LoadUsers()
+        {
+            try
+            { 
+                var Users = _dataSource.GetAll();
+                if (Users != null)
+                {
+                    UsersList.Users = new ObservableCollection<User>(Users);
+                }
 
 
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Source de données non accessible", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void Reload_Click(object sender, RoutedEventArgs e)
+        {
+            LoadUsers();
+        }
     }
 }
