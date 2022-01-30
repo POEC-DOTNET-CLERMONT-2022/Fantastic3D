@@ -16,31 +16,31 @@
             <StackPanel Margin="5" Width="250">
                 <DockPanel >
                     <Label Content="Psedo: " FontSize="12"/>
-                    <TextBox x:Name="AjoutName" Margin="5" Text="{Binding CurrentUser.Username, UpdateSourceTrigger=PropertyChanged}" FontSize="12" Cursor="IBeam"  />
+                    <TextBox x:Name="Username" Margin="5" Text="{Binding CurrentUser.Username, UpdateSourceTrigger=PropertyChanged}" FontSize="12" Cursor="IBeam"  />
                 </DockPanel>
                 <DockPanel >
                     <Label Content="Nom: " FontSize="12"/>
-                    <TextBox x:Name="AjoutName2" Margin="5" FontSize="12" Text="{Binding CurrentUser.FirstName, UpdateSourceTrigger=PropertyChanged}"  />
+                    <TextBox x:Name="FirstName" Margin="5" FontSize="12" Text="{Binding CurrentUser.FirstName, UpdateSourceTrigger=PropertyChanged}"  />
                 </DockPanel>
                 <DockPanel >
                     <Label Content="Prénom: " FontSize="12"/>
-                    <TextBox x:Name="AjoutName22" Margin="5" FontSize="12" Text="{Binding CurrentUser.LastName, UpdateSourceTrigger=PropertyChanged}"  />
+                    <TextBox x:Name="LastName" Margin="5" FontSize="12" Text="{Binding CurrentUser.LastName, UpdateSourceTrigger=PropertyChanged}"  />
                 </DockPanel>
                 <DockPanel >
                     <Label Content="Email: " FontSize="12"/>
-                    <TextBox x:Name="AjoutName223" Margin="5"  FontSize="12" Text="{Binding CurrentUser.Email, UpdateSourceTrigger=PropertyChanged}" Cursor="IBeam"  />
+                    <TextBox x:Name="Email" Margin="5"  FontSize="12" Text="{Binding CurrentUser.Email, UpdateSourceTrigger=PropertyChanged}" Cursor="IBeam"  />
                 </DockPanel>
                 <DockPanel >
                     <Label Content="Addresse: " FontSize="12"/>
-                    <TextBox x:Name="AjoutName222" FontSize="12" Margin="5" Text="{Binding CurrentUser.BillingAddress, UpdateSourceTrigger=PropertyChanged}"  />
+                    <TextBox x:Name="BillingAddress" FontSize="12" Margin="5" Text="{Binding CurrentUser.BillingAddress, UpdateSourceTrigger=PropertyChanged}"  />
                 </DockPanel>
                 <DockPanel >
                     <Label Content="Role: " FontSize="12"/>
-                    <TextBox x:Name="AjoutName228" FontSize="12" Margin="5" Text="{Binding CurrentUser.Role, UpdateSourceTrigger=PropertyChanged}" Cursor="IBeam"  />
+                    <TextBox x:Name="Role" FontSize="12" Margin="5" Text="{Binding CurrentUser.Role, UpdateSourceTrigger=PropertyChanged}" Cursor="IBeam"  />
                 </DockPanel>
-                <Button Content="Ajouter" Height="24" Margin="5" FontSize="12"></Button>
-                <Button Content="Supprimer" Height="24" Margin="5" FontSize="12"></Button>
-                <Button Content="Editer" Height="24" Margin="5" FontSize="12" Cursor="Hand"></Button>
+                <Button Content="Ajouter" Height="24" Margin="5" FontSize="12" Click="Button_AddUser" Cursor="Hand"></Button>
+                <Button Content="Supprimer" Height="24" Margin="5" FontSize="12" Cursor="Hand" Click="Button_DeleteUser"></Button>
+                <Button Content="Editer" Height="24" Margin="5" FontSize="12"  Click="Button_EditUser" Cursor="Hand"></Button>
                 <Button Content="Recharger" Height="24" x:Name="Reload" Margin="5" FontSize="12" Click="Reload_Click"></Button>
             </StackPanel>
             <Rectangle Width="10" Margin="5, 10 " >
