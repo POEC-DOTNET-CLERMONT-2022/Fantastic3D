@@ -92,30 +92,15 @@ namespace Fantastic3D.GUI.SectionControls
 
         private void Button_DeleteUser(object sender, RoutedEventArgs e)
         {
-            HttpClient client = new HttpClient();
-
-            client.BaseAddress = new Uri("https://localhost:7164/");
-
-            var id = 3;
-
-            var url = "/api/User/" + id;
-
-            HttpResponseMessage response = client.DeleteAsync(url).Result;
-
-            if (response.IsSuccessStatusCode)
-
+            try
             {
-                MessageBox.Show("User Deleted");
+                int id = 2;
+
+                _dataSource.Delete(id);
                 LoadUsers();
-
-                // BindEmployeeList();
-
             }
-
-            else
-
+            catch
             {
-                MessageBox.Show("Error Code" + response.StatusCode + " : Message - " + response.ReasonPhrase);
 
             }
         }
