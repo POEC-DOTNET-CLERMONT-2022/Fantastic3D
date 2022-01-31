@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Fantastic3D.Dto;
-using Fantastic3D.Persistence.Entities;
 
 namespace Fantastic3D.Persistence.Entities
 {
@@ -13,21 +7,13 @@ namespace Fantastic3D.Persistence.Entities
     {
         public UserDtoProfile()
         {
-            CreateMap<UserEntity, UserDto>();
-
-            CreateMap<TagEntity, TagDto>();
-
-            CreateMap<TagTypeEntity, TagTypeDto>();
-
-            CreateMap<AssetEntity, AssetDto>();
-
-            CreateMap<OrderEntity, OrderDto>();
-
-            CreateMap<PurchaseEntity, PurchaseDto>();
-
-            CreateMap<ReviewEntity, ReviewDto>();
-
-
+            CreateMap<UserEntity, UserDto>().ReverseMap();
+            CreateMap<TagEntity, TagDto>().ReverseMap();
+            CreateMap<TagTypeEntity, TagTypeDto>().ReverseMap();
+            CreateMap<AssetEntity, AssetDto>().ReverseMap();
+            CreateMap<OrderEntity, OrderDto>().ReverseMap();
+            CreateMap<PurchaseEntity, PurchaseDto>().ReverseMap();
+            CreateMap<ReviewEntity, ReviewDto>().ReverseMap();
         }
     }
 }
