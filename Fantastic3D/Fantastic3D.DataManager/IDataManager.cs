@@ -9,10 +9,10 @@
         where TTransfered : IManageable, new()
         where TPersistant : IManageable, new()
     {
-        public IEnumerable<TTransfered> GetAll();
-        public TTransfered Get(int id);
-        public void Add(TTransfered transferedObject);
-        public void Update(int id, TTransfered transferedObject);
-        public void Delete(int id);
+        public Task<IEnumerable<TTransfered>> GetAllAsync();
+        public Task<TTransfered> GetAsync(int id);
+        public Task AddAsync(TTransfered transferedObject);
+        public Task UpdateAsync(int id, TTransfered transferedObject);
+        public Task DeleteAsync(int id);
     }
 }

@@ -29,37 +29,40 @@ namespace Fantastic3D.Persistence
             _mapper = mapper;
         }
 
-        public TTransfered Get(int id)
+        public async Task<TTransfered> GetAsync(int id)
         {
-            return _mapper.Map<TTransfered>(_dataSet.Single(user => user.Id == id));
+            var result = await _dataSet.SingleAsync(user => user.Id == id);
+            return _mapper.Map<TTransfered>(result);
         }
 
-        public IEnumerable<TTransfered> GetAll()
+        public async Task<IEnumerable<TTransfered>> GetAllAsync()
         {
-            return _dataSet.Select(user => _mapper.Map<TTransfered>(user));
+            return await Task.FromResult(_dataSet.Select(user => _mapper.Map<TTransfered>(user)));
         }
 
-        public void Add(TTransfered objectToAdd)
+        public async Task AddAsync(TTransfered objectToAdd)
         {
             if (objectToAdd == null)
                 throw new ArgumentNullException("Can't add an empty value.");
             // TODO : [DbRepository/ADD] gérer le dédoublonnage lors de l'ajout, ici ou dans le modèle d'entités
             _dataSet.Add(_mapper.Map<TEntity>(objectToAdd));
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void Update(int id, TTransfered transferedObject)
+        public async Task UpdateAsync(int id, TTransfered transferedObject)
         {
-            throw new NotImplementedException();
+            _dataSet.Update(_mapper.Map<TEntity>(transferedObject));
+            await _context.SaveChangesAsync();
         }
 
-        public void Delete(int id)
+        public async Task DeleteAsync(int id)
         {
+            // Todo : [DbRepository/DEL] remplacer Find par une creation d'objet ayant juste l'ID recherché
             var dataToDelete = _dataSet.Find(id);
             if (dataToDelete == null)
                 throw new NullReferenceException("Element to delete wasn't found");
             _dataSet.Remove(dataToDelete);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
 }
