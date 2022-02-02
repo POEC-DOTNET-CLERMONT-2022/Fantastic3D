@@ -33,17 +33,15 @@ namespace Fantastic3D.GUI.SectionControls
             LoadUsers();
         }
 
-        private void LoadUsers()
+        private async void LoadUsers()
         {
             try
             { 
-                var Users = _dataSource.GetAll();
+                var Users =  await _dataSource.GetAllAsync();
                 if (Users != null)
                 {
                     UsersList.Users = new ObservableCollection<User>(Users);
                 }
-
-
             }
             catch (Exception ex)
             {
@@ -56,9 +54,9 @@ namespace Fantastic3D.GUI.SectionControls
             LoadUsers();
         }
 
-        private void Button_AddUser(object sender, RoutedEventArgs e)
+        private async void Button_AddUser(object sender, RoutedEventArgs e)
         {
-            UserDto newDto = new UserDto();
+            User newDto = new UserDto();
             //newDto.Id = 4;
             newDto.FirstName = FirstName.Text;
             newDto.LastName = LastName.Text;
@@ -68,24 +66,11 @@ namespace Fantastic3D.GUI.SectionControls
             //newDto.Role = Role.Text;
             newDto.BillingAddress = BillingAddress.Text;
 
-            HttpClient client = new HttpClient();
+            var maRequeteAll = await _dataSource.AddAsync(newDto);
 
-            client.BaseAddress = new Uri("https://localhost:7164/");
-            client.DefaultRequestHeaders.Accept.Add(
-                 new MediaTypeWithQualityHeaderValue("application/json"));
-            HttpResponseMessage response = client.PostAsJsonAsync("/api/User", newDto).Result;
+            MessageBox.Show("Ajouté avec succès", "ADD", MessageBoxButton.OK, MessageBoxImage.Information);
 
-            if (response.IsSuccessStatusCode)
 
-            {
-                MessageBox.Show("Employee Added");
-            }
-
-            else
-
-            {
-                MessageBox.Show("Error Code" + response.StatusCode + " : Message - " + response.ReasonPhrase + response.ToString());
-            }
         }
 
 

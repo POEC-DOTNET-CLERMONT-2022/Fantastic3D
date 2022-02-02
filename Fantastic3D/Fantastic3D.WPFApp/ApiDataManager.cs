@@ -30,47 +30,34 @@ namespace Fantastic3D.GUI
         }
         //    // Le chat a dit : 000000000111111111111111111111111111111
 
-        public IEnumerable<TModel> GetAll()
+        public async Task<IEnumerable<TModel>> GetAllAsync()
         {
             try
-            { 
-                HttpResponseMessage response = client.GetAsync(url).Result;
+            {
+                var request = await client.GetFromJsonAsync<IEnumerable<TDto>>(url);
 
-                if (response.IsSuccessStatusCode)
+                if (request == null)
                 {
-                    var result = response.Content.ReadFromJsonAsync<IEnumerable<TDto>>().Result;
-
-                    var mappedValues = _mapper.Map<IEnumerable<TModel>>(result);
-                    return mappedValues;
-
+                    throw new Exception($"Requete null");
                 }
                 else
                 {
-                    return Enumerable.Empty<TModel>();
+                    var mappedValues = _mapper.Map<IEnumerable<TModel>>(request);
+                    return mappedValues;
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception($"L'API n'a pas répondu {ex.Message}", ex);
+                throw new Exception($"{ex.Message}", ex);
             }
         }
 
-        public void Add(TModel transferedObject)
+        public async Task AddAsync(TModel userInfoDto)
         {
-            //client.DefaultRequestHeaders.Accept.Add(
-            //     new MediaTypeWithQualityHeaderValue("application/json"));
-            var response = client.PostAsJsonAsync("api/employee", transferedObject).Result;
-            if (response.IsSuccessStatusCode)
+            
+            var response = await client.PostAsJsonAsync("api/employee", userInfoDto);
+            //return response;
 
-            {
-                MessageBox.Show("Employee Added");
-            }
-
-            else
-
-            {
-                MessageBox.Show("Error Code" + response.StatusCode + " : Message - " + response.ReasonPhrase);
-            }
         }
 
         public void Delete(int id)
