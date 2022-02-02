@@ -71,15 +71,16 @@ namespace Fantastic3D.GUI
                 string urlAppend = "/" + id;
 
                 HttpResponseMessage response = await client.DeleteAsync(url + urlAppend);
-                if (response.IsSuccessStatusCode)
-                {
-                    MessageBox.Show("User Deleted");
-                    //return;
-                }
-                else
-                {
-                    MessageBox.Show("Error Code" + response.StatusCode + " : Message - " + response.ReasonPhrase);
-                }
+                // TODO : Gérer autrement le statut du Delete (APIDataManager doit être découplée de WPF)
+                // if (response.IsSuccessStatusCode)
+                // {
+                //     MessageBox.Show("User Deleted");
+                //     //return;
+                //  }
+                // else
+                // {
+                //     MessageBox.Show("Error Code" + response.StatusCode + " : Message - " + response.ReasonPhrase);
+                // }
             }
             catch
                 (Exception ex)
