@@ -45,10 +45,9 @@ namespace Fantastic3D.GUI.SectionControls
                 if (Assets != null)
                 {
                     AssetsList.Items = new ObservableCollection<Asset>(Assets);
+                    MessageBox.Show($"{Assets.Count()} modèles 3D trouvés.", "Connexion réussie", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
-                if()
-                MessageBox.Show($"{Assets.Count()} modèles 3D trouvés.", "Connexion réussie", MessageBoxButton.OK, MessageBoxImage.Information);
-
+                MessageBox.Show($"Aucun modèle 3D trouvé. La base de donnée est peut-être vide ou l'API est innaccessible.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (Exception ex)
             {
