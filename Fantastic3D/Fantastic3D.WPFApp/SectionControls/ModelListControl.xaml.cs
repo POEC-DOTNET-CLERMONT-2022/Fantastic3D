@@ -37,15 +37,16 @@ namespace Fantastic3D.GUI.SectionControls
             LoadAssets();
         }
 
-        private void LoadAssets()
+        private async void LoadAssets()
         {
             try
             {
-                var Assets = _dataSource.GetAll();
+                var Assets = await _dataSource.GetAllAsync();
                 if (Assets != null)
                 {
                     AssetsList.Items = new ObservableCollection<Asset>(Assets);
                 }
+                if()
                 MessageBox.Show($"{Assets.Count()} modèles 3D trouvés.", "Connexion réussie", MessageBoxButton.OK, MessageBoxImage.Information);
 
             }
