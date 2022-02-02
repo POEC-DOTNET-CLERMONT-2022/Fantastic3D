@@ -37,7 +37,8 @@ namespace Fantastic3D.Persistence
 
         public async Task<IEnumerable<TTransfered>> GetAllAsync()
         {
-            return await Task.FromResult(_dataSet.Select(user => _mapper.Map<TTransfered>(user)));
+            var dataList = await _dataSet.ToListAsync();
+            return dataList.Select(item => _mapper.Map<TTransfered>(item));
         }
 
         public async Task AddAsync(TTransfered objectToAdd)
