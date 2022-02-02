@@ -21,78 +21,66 @@ namespace Fantastic3D.GUI
     {
         HttpClient client = new HttpClient();
 
-        private string url = "https://localhost:7164/api/" + typeof(TModel).Name;
+        private string url = "https://localhost:7164/api/" + typeof(TModel).Name ;
         private IMapper _mapper = ((App)Application.Current).Mapper;
 
         public ApiDataManager()
         {
-            client.BaseAddress = new Uri("https://localhost:7164/");
+            //client.BaseAddress = new Uri("https://localhost:7164/");
         }
-        //    // Le chat a dit : 000000000111111111111111111111111111111
+        
 
-        public IEnumerable<TModel> GetAll()
+        //Getall
+        public async Task<IEnumerable<TModel>> GetAllAsync()
         {
             try
-            { 
-                HttpResponseMessage response = client.GetAsync(url).Result;
+            {
+                var request = await client.GetFromJsonAsync<IEnumerable<TDto>>(url);
 
-                if (response.IsSuccessStatusCode)
+                if (request == null)
                 {
-                    var result = response.Content.ReadFromJsonAsync<IEnumerable<TDto>>().Result;
-
-                    var mappedValues = _mapper.Map<IEnumerable<TModel>>(result);
-                    return mappedValues;
-
+                    throw new Exception($"Requete null");
                 }
                 else
                 {
-                    return Enumerable.Empty<TModel>();
+                    var mappedValues = _mapper.Map<IEnumerable<TModel>>(request);
+                    return mappedValues;
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception($"L'API n'a pas répondu {ex.Message}", ex);
+                throw new Exception($"{ex.Message}", ex);
             }
         }
 
-        public void Add(TModel transferedObject)
+
+        // Add- Post
+        public async Task AddAsync(TModel value)
         {
-            //client.DefaultRequestHeaders.Accept.Add(
-            //     new MediaTypeWithQualityHeaderValue("application/json"));
-            var response = client.PostAsJsonAsync("api/employee", transferedObject).Result;
-            if (response.IsSuccessStatusCode)
+            var mappedValue = _mapper.Map<TDto>(value);
+            var response = await client.PostAsJsonAsync(url, mappedValue);
+            //return response;
 
-            {
-                MessageBox.Show("Employee Added");
-            }
-
-            else
-
-            {
-                MessageBox.Show("Error Code" + response.StatusCode + " : Message - " + response.ReasonPhrase);
-            }
         }
 
-        public void Delete(int id)
+        // Delete
+        public async Task DeleteAsync(int id)
         {
             try
             {
-                var url = "/api/User/" + id;
+                string urlAppend = "/" + id;
 
-                HttpResponseMessage response = client.DeleteAsync(url).Result;
-                if (response.IsSuccessStatusCode)
-
-                {
-                    MessageBox.Show("User Deleted");
-                    //return;
-                }
-
-                else
-
-                {
-                    MessageBox.Show("Error Code" + response.StatusCode + " : Message - " + response.ReasonPhrase);
-
-                }
+                HttpResponseMessage response = await client.DeleteAsync(url + urlAppend);
+                // TODO : Gérer autrement le statut du Delete (APIDataManager doit être découplée de WPF)
+                // if (response.IsSuccessStatusCode)
+                // {
+                //     MessageBox.Show("User Deleted");
+                //     //return;
+                //  }
+                // else
+                // {
+                //     MessageBox.Show("Error Code" + response.StatusCode + " : Message - " + response.ReasonPhrase);
+                // }
             }
             catch
                 (Exception ex)
@@ -101,15 +89,50 @@ namespace Fantastic3D.GUI
             }
         }
 
-        public TModel Get(int id)
+        // GetById
+        public async Task<TModel> GetAsync(int id)
         {
-                throw new NotImplementedException();
+            try
+            {
+                var urltotal = url +"/"+ id;
+                var request = await client.GetFromJsonAsync<TDto>(urltotal);
+
+                if (request == null)
+                {
+                    throw new Exception($"Requete null");
+                }
+                else
+                {
+                    var mappedValues = _mapper.Map<TModel>(request);
+                    return mappedValues;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"{ex.Message}", ex);
+            }
         }
 
 
-        public void Update(int id, TModel transferedObject)
+        // Update
+        public async Task UpdateAsync(int id, TModel transferedObject)
         {
-                throw new NotImplementedException();
+            string urlAppend = "/" + id;
+
+            var mappedValues = _mapper.Map<TDto>(transferedObject);
+            
+            var response  = await client.PutAsJsonAsync(url + urlAppend, mappedValues);
+
+           if (response.IsSuccessStatusCode)
+            {
+                MessageBox.Show("User Deleted");
+                //return;
+            }
+           else
+            {
+                MessageBox.Show("Error Code" + response.StatusCode + " : Message - " + response.ReasonPhrase);
+            }
+
         }
     }
 

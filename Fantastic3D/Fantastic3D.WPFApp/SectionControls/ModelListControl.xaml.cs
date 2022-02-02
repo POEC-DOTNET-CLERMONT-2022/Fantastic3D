@@ -37,17 +37,21 @@ namespace Fantastic3D.GUI.SectionControls
             LoadAssets();
         }
 
-        private void LoadAssets()
+        private async void LoadAssets()
         {
             try
             {
-                var Assets = _dataSource.GetAll();
-                if (Assets != null)
+                var Assets = await _dataSource.GetAllAsync();
+                if (Assets != null && Assets.Count() > 0)
                 {
                     AssetsList.Items = new ObservableCollection<Asset>(Assets);
+                    MessageBox.Show($"{Assets.Count()} modèles 3D trouvés.", "Connexion réussie", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
-                MessageBox.Show($"{Assets.Count()} modèles 3D trouvés.", "Connexion réussie", MessageBoxButton.OK, MessageBoxImage.Information);
+                else
+                {
+                    MessageBox.Show($"Aucun modèle 3D trouvé. La base de donnée est peut-être vide ou l'API est innaccessible.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
 
+                }
             }
             catch (Exception ex)
             {

@@ -1,105 +1,103 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Fantastic3D.Persistence.Entities;
+using Fantastic3D.Persistence;
 using Fantastic3D.Dto;
 using Fantastic3D.DataManager;
-using Fantastic3D.Persistence.Entities;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
-namespace Fantastic3D.API.Controllers
+namespace Fantastic3D.UsersAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class GenericController<TOut, TIn> : ControllerBase
-       where TOut : IManageable, new()
-       where TIn : IManageable, new()
+    public class UserController : ControllerBase
     {
-        private IDataManager<TOut, TIn> _data;
+        private IDataManager<UserDto, UserEntity> _data;
 
-        public GenericController(IDataManager<TOut, TIn> dataManager)
+        public UserController(IDataManager<UserDto, UserEntity> dataManager) 
         {
             _data = dataManager;
         }
 
-        // GET: api/<GenericController>
+        // GET: api/<UserController>
         /// <summary>
         /// Retrieves all the users.
         /// </summary>
         [HttpGet]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<UserDto>))]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public IActionResult Get()
         {
-            var data = _data.GetAllAsync().Result;
-            return (data.Any()) ? Ok(data) : NoContent();
+            return (_data.GetAllAsync().Any()) ? Ok(_data.GetAllAsync()) : NoContent();
         }
 
-        // GET api/<GenericController>/5
+        // GET api/<UserController>/5
         /// <summary>
-        /// Retrieves the informations of a database content
+        /// Retrieves the informations of an user.
         /// </summary>
-        /// <param name="id" example="5">The element ID.</param>
+        /// <param name="id" example="5">The user's ID.</param>
         [HttpGet("{id}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(UserDto))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult Get(int id)
         {
             try
             {
-                var retrievedData = _data.GetAsync(id).Result;
+                var retrievedData = _data.GetAsync(id);
                 if (retrievedData == null)
                     return NotFound(id);
                 return Ok(retrievedData);
             }
-            catch (InvalidOperationException ioe)
+            catch(InvalidOperationException ioe)
             {
                 return BadRequest(ioe.Message);
             }
         }
 
-        // POST api/<GenericController>
+        // POST api/<UserController>
         [HttpPost]
-        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(UserDto))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IActionResult Post([FromBody] TOut newValue)
+        public IActionResult Post([FromBody] UserDto newUser)
         {
             try
             {
-                _data.AddAsync(newValue);
-                return base.Created(Request.Query.ToString(), newValue);
+                _data.Add(newUser);
+                
+                return base.Created(Request.Query.ToString() , newUser);
             }
             catch (Exception e)
             {
-                return BadRequest(newValue);
+                return BadRequest(e.Message.ToString());
             }
         }
 
-        // PUT api/<GenericController>/5
+        // PUT api/<UserController>/5
         /// <summary>
         /// Changes the informations of an user.
         /// </summary>
         /// <param name="id" example="5">The user's ID.</param>
         /// <param name="value">Full description of an user</param>
         [HttpPut("{id}")]
-        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(UserDto))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IActionResult Put(int id, [FromBody] TOut updatedValue)
+        public IActionResult Put(int id, [FromBody] UserDto newUserValues)
         {
             try
             {
-                _data.UpdateAsync(id, updatedValue);
-                return base.Created(Request.Query.ToString(), updatedValue);
+                _data.UpdateAsync(id, newUserValues);
+                return base.Created(Request.Query.ToString(), newUserValues);
             }
             catch (Exception e)
             {
-                return BadRequest(updatedValue);
+                return BadRequest(newUserValues);
             }
         }
 
-        // DELETE api/<GenericController>/5
-        // GET api/<GenericController>/5
+        // DELETE api/<UserController>/5
+        // GET api/<UserController>/5
         /// <summary>
-        /// Deletes a value by its id.
+        /// Deletes an user by its id.
         /// </summary>
         /// <param name="id" example="5">The user's ID.</param>
         [HttpDelete("{id}")]
@@ -109,7 +107,7 @@ namespace Fantastic3D.API.Controllers
         {
             try
             {
-                _data.DeleteAsync(id);
+                _data.Delete(id);
                 return NoContent();
             }
             catch

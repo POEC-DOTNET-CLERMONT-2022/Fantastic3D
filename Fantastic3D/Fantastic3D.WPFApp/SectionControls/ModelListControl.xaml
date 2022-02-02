@@ -10,8 +10,7 @@
     <StackPanel Background="{DynamicResource MaterialDesignBackground}">
         <TextBlock DockPanel.Dock="Top" FontSize="30"  HorizontalAlignment="Center">Gestion des modèles</TextBlock>
 
-        <DataGrid Height="289" SelectedItem="{Binding Path= CurrentUser}" ItemsSource="{Binding Items}"  Width="654" AutoGenerateColumns="True">
-        </DataGrid>
+        <DataGrid Height="289" SelectedItem="{Binding Path=CurrentAsset}" ItemsSource="{Binding Items}"  Width="654" AutoGenerateColumns="True" IsReadOnly="True"/>
 
     </StackPanel>
 
