@@ -60,13 +60,13 @@ namespace Fantastic3D.GUI
 
         }
 
-        public void Delete(int id)
+        public async Task DeleteAsync(int id)
         {
             try
             {
                 var url = "/api/User/" + id;
 
-                HttpResponseMessage response = client.DeleteAsync(url).Result;
+                HttpResponseMessage response = await client.DeleteAsync(url);
                 if (response.IsSuccessStatusCode)
 
                 {
@@ -88,15 +88,15 @@ namespace Fantastic3D.GUI
             }
         }
 
-        public TModel Get(int id)
+
+        public Task<TModel> GetAsync(int id)
         {
-                throw new NotImplementedException();
+            throw new NotImplementedException();
         }
 
-
-        public void Update(int id, TModel transferedObject)
+        public Task UpdateAsync(int id, TModel transferedObject)
         {
-                throw new NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 
