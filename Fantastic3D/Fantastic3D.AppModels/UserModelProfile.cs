@@ -12,19 +12,19 @@ namespace Fantastic3D.AppModels
     {
         public UserModelProfile()
         {
-            CreateMap<UserDto, User>();
+            CreateMap<UserDto, User>().ReverseMap();
 
-            CreateMap<TagDto, Tag>();
+            CreateMap<TagDto, Tag>().ReverseMap();
 
-            CreateMap<TagTypeDto, TagType>();
+            CreateMap<TagTypeDto, TagType>().ReverseMap();
 
-            CreateMap<AssetDto, Asset>();
+            CreateMap<AssetDto, Asset>().ReverseMap();
 
-            CreateMap<OrderDto, Order>();
+            CreateMap<OrderDto, Order>().ReverseMap();
 
-            CreateMap<PurchaseDto, Purchase>();
+            CreateMap<PurchaseDto, Purchase>().ReverseMap();
 
-            CreateMap<ReviewDto, Review>();
+            CreateMap<ReviewDto, Review>().ReverseMap();
 
 
         }

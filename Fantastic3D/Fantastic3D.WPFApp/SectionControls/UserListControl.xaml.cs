@@ -18,6 +18,7 @@ namespace Fantastic3D.GUI.SectionControls
     public partial class UserListControl : UserControl
     {
         public UserList UsersList { get; set; } = new UserList();
+        public User UserInForm { get; set; } = new User();
         public IDataManager<User, UserDto> _dataSource = new ApiDataManager<User, UserDto>();
         //private readonly IMapper _mapper = ((App)Application.Current).Mapper;
 
@@ -56,21 +57,21 @@ namespace Fantastic3D.GUI.SectionControls
 
         private async void Button_AddUser(object sender, RoutedEventArgs e)
         {
-            User newDto = new UserDto();
-            //newDto.Id = 4;
-            newDto.FirstName = FirstName.Text;
-            newDto.LastName = LastName.Text;
-            newDto.Email = Email.Text;
-            newDto.Password = "ppppp";
-           // newDto.HashSalt = string.Empty;
-            //newDto.Role = Role.Text;
-            newDto.BillingAddress = BillingAddress.Text;
+            User userToAdd = new User();
+            userToAdd.Username = Username.Text;
+            userToAdd.FirstName = FirstName.Text;
+            userToAdd.LastName = LastName.Text;
+            userToAdd.Email = Email.Text;
+            userToAdd.Password = "";
+            userToAdd.Role = UserRole.Basic;
+            userToAdd.BillingAddress = BillingAddress.Text;
 
-            var maRequeteAll = await _dataSource.AddAsync(newDto);
+            var totalUsers = UsersList.Users.Count;
 
+            await _dataSource.AddAsync(userToAdd);
+            LoadUsers();
             MessageBox.Show("Ajouté avec succès", "ADD", MessageBoxButton.OK, MessageBoxImage.Information);
-
-
+            // todo : verifier que k'ajout a etait fiat
         }
 
 
@@ -79,54 +80,33 @@ namespace Fantastic3D.GUI.SectionControls
         {
             try
             {
-                int id = 2;
-
-                _dataSource.Delete(id);
-                LoadUsers();
+                if (MessageBox.Show($"Voulez-vous vraiment supprimer {UsersList.CurrentUser.Username} ?", 
+                    "Suppression", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                    _dataSource.DeleteAsync(UsersList.CurrentUser.Id);
+                
             }
             catch
             {
 
             }
+            LoadUsers();
         }
 
         private void Button_EditUser(object sender, RoutedEventArgs e)
         {
+            User newUpdat = new User();
+            newUpdat.Id = UsersList.CurrentUser.Id;
+            newUpdat.Username = Username.Text;
+            newUpdat.FirstName = FirstName.Text;
+            newUpdat.LastName = LastName.Text;
+            newUpdat.Email = Email.Text;
+            newUpdat.Password = "";
+            newUpdat.Role = UserRole.Basic;
+            newUpdat.BillingAddress = BillingAddress.Text;
 
-            UserDto newDto = new UserDto();
-            //newDto.Id = 4;
-            newDto.FirstName = FirstName.Text;
-            newDto.LastName = LastName.Text;
-            newDto.Email = Email.Text;
-            newDto.Password = "ppppp";
-            // newDto.HashSalt = string.Empty;
-            //newDto.Role = Role.Text;
-            newDto.BillingAddress = BillingAddress.Text;
-
-            HttpClient client = new HttpClient();
-
-            client.BaseAddress = new Uri("https://localhost:7164/");
-            var id = 2;
-            var url = "/api/User/" + id;
-
-            HttpResponseMessage response = client.PutAsJsonAsync(url, newDto).Result;
-
-            if (response.IsSuccessStatusCode)
-
-            {
-                MessageBox.Show("User Editer");
-                LoadUsers();
-
-                // BindEmployeeList();
-
-            }
-
-            else
-
-            {
-                MessageBox.Show("Error Code" + response.StatusCode + " : Message - " + response.ReasonPhrase);
-
-            }
+            if (MessageBox.Show($"Voulez-vous vraiment Editer {UsersList.CurrentUser.Username} ?",
+                    "Suppression", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                _dataSource.UpdateAsync(UsersList.CurrentUser.Id, newUpdat);
         }
     }
 }
