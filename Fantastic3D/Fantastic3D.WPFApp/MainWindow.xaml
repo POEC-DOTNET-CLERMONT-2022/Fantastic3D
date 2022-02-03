@@ -18,7 +18,7 @@
             <Button x:Name="MenuUsersButton" Height="50" Click="MenuUsersButton_Click">Utilisateurs</Button>
             <Button x:Name="MenuOrdersButton"  Height="50" Click="MenuOrdersButton_Click">Commandes</Button>
             <Button x:Name="MenuReviewsButton" Height="50" Click="MenuReviewsButton_Click">Avis</Button>
-            <Image Source="{DynamicResource Logo}" Height="50" Width="370" HorizontalAlignment="Right" Margin="0,0,10,0"/>
+            <Image HorizontalAlignment="Right" Margin="0,0,0,0" Source="/medias/Fantastic3DLogoAppRender.png" Height="60" Width="250"/>
 
         </StackPanel>
         
