@@ -30,7 +30,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Fantastic3DLogoAppRender.png" />
     <Resource Include="medias\Fantastic3DLogoAppRender.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
