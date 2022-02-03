@@ -1,4 +1,5 @@
 ﻿using Fantastic3D.GUI.SectionControls;
+using Fantastic3D.GUI.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,55 +22,50 @@ namespace Fantastic3D.GUI
     /// </summary>
     public partial class MainWindow : Window
     {
-        private ModelViewerControl modelViewer { get; set; } = new();
-        private ModelListControl modelList { get; set; } = new();
-        private HomeScreenControl homeScreen { get; set; } = new();
-        private ReviewControl reviewList { get; set; } = new();
-        private UserListControl userList { get; set; } = new();
-        private OrderListControl orderList { get; set; } = new();
+
+        public INavigator Navigator { get; } = new Navigator();
         public MainWindow()
         {
             InitializeComponent();
-            ShowContent(homeScreen);
-        }
 
-        public void ShowContent(UserControl userControl)
-        {
-            MainContent.Content = userControl;
-        }
+            Navigator.RegisterViews(new List<Control>()
+            {
+                new ModelViewerControl(),
+                new ModelListControl(),
+                new HomeScreenControl(),
+                new ReviewControl(),
+                new UserListControl(),
+                new OrderListControl()
+            });
+            Navigator.CurrentViewControl = MainContent;
 
-        private void TopMenuControl_Loaded(object sender, RoutedEventArgs e)
-        {
-
+            Navigator.NavigateTo(typeof(HomeScreenControl));
         }
 
         private void MenuHomeButton_Click(object sender, RoutedEventArgs e)
         {
-            ShowContent(homeScreen);
+            Navigator.NavigateTo(typeof(HomeScreenControl));
         }
 
         private void MenuModelButton_Click(object sender, RoutedEventArgs e)
         {
 
-            ShowContent(modelList);
-            //ShowContent(modelViewer);
+            Navigator.NavigateTo(typeof(ModelListControl));
         }
 
         private void MenuUsersButton_Click(object sender, RoutedEventArgs e)
         {
-            ShowContent(userList);
+            Navigator.NavigateTo(typeof(UserListControl));
         }
 
         private void MenuOrdersButton_Click(object sender, RoutedEventArgs e)
         {
-            ShowContent(orderList);
-
+            Navigator.NavigateTo(typeof(OrderListControl));
         }
 
         private void MenuReviewsButton_Click(object sender, RoutedEventArgs e)
         {
-            ShowContent(reviewList);
-
+            Navigator.NavigateTo(typeof(ReviewControl));
         }
     }
 }
