@@ -11,7 +11,7 @@ namespace Fantastic3D.GUI.Utilities
     /// <summary>
     /// Allows the navigation
     /// </summary>
-    internal class Navigator : ObservableModel, INavigator
+    public class Navigator : ObservableModel, INavigator
     {
         private List<Control> _availableViews { get; set; } = new List<Control>();
         private Stack<Control> _previousViews { get; set; } = new Stack<Control>();

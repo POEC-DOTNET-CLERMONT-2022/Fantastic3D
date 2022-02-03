@@ -7,7 +7,7 @@ using System.Windows.Controls;
 
 namespace Fantastic3D.GUI.Utilities
 {
-    internal interface INavigator
+    public interface INavigator
     {
         ContentControl CurrentViewControl { get; set; }
         bool CanGoBack { get; }
