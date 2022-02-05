@@ -23,7 +23,7 @@ namespace Fantastic3D.Dto
         [DataMember]
         public string PicturePath { get; set; } = string.Empty;
         [DataMember]
-        public List<Guid> Tags { get; set; } = new();    // List of Tags Ids
+        public List<int> Tags { get; set; } = new();    // List of Tags Ids
         [DataMember]
         public int Creator { get; set; }        // User ID
         [DataMember]
