@@ -11,6 +11,8 @@ namespace Fantastic3D.Dto
         [DataMember]
         public int Id { get; set; }
         [DataMember]
+        public int OrderId { get; set; }
+        [DataMember]
         public bool IsPaidToCreator { get; set; }
         [DataMember]
         public float PurchasePrice { get; set; }

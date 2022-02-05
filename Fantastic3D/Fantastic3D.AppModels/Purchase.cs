@@ -9,7 +9,7 @@ namespace Fantastic3D.AppModels
     public class Purchase : ObservableModel, IManageable
     {
         public int Id { get; set; }
-        private Guid _id;
+        private int _purchaseId;
         
         private bool _isPaidToCreator;
         
@@ -17,9 +17,10 @@ namespace Fantastic3D.AppModels
         
         private Asset _asset;
 
-        public Purchase(Guid id, bool isPaidToCreator, float purchasePrice, Asset asset)
+        public Purchase(int id, int purchaseId, bool isPaidToCreator, float purchasePrice, Asset asset)
         {
-            _id = id;
+            Id = id;
+            _purchaseId = purchaseId;
             _isPaidToCreator = isPaidToCreator;
             _purchasePrice = purchasePrice;
             _asset = asset;
