@@ -7,8 +7,7 @@ namespace Fantastic3D.AppModels
     /// <summary>
     /// Define an user, email, pass, billing adress and his role 
     /// </summary>
-    [DataContract]
-    public enum UserRole {[DataMember] Admin = 'A', [DataMember] Premium = 'P', [DataMember] Basic = 'B'};
+    public enum UserRole {Admin = 9, Premium = 5, Basic = 0 };
     public class User : ObservableModel, IManageable
     {
         public int Id { get; set; }
@@ -17,13 +16,12 @@ namespace Fantastic3D.AppModels
         public string LastName { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        public string HashSalt { get; private set; }
         public string BillingAddress { get; set; }
         public UserRole Role { get; set; }
 
         public User() {}
 
-        public User(int id, string username, string firstName, string lastName, string email, string password, string hashSalt, string billingAddress, UserRole role)
+        public User(int id, string username, string firstName, string lastName, string email, string password, string billingAddress, UserRole role)
         {
             Id = id;
             Username = username;
@@ -31,7 +29,6 @@ namespace Fantastic3D.AppModels
             LastName = lastName;
             Email = email;
             Password = password;
-            HashSalt = hashSalt;
             BillingAddress = billingAddress;
             Role = role;
         }

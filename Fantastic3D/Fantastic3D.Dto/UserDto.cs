@@ -18,8 +18,6 @@ namespace Fantastic3D.Dto
         [DataMember]
         public string Password { get; set; } = string.Empty;
         [DataMember]
-        public string HashSalt { get; private set; } = string.Empty;
-        [DataMember]
         public string BillingAddress { get; set; } = string.Empty;
         [DataMember]
         public string Role { get; set; } = string.Empty;

@@ -9,7 +9,7 @@ namespace Fantastic3D.Persistence.Entities
     /// Define an user, email, pass, billing adress and his role 
     /// </summary>
     [DataContract]
-    public enum UserRole {[DataMember] Admin = 'A', [DataMember] Premium = 'P', [DataMember] Basic = 'B'};
+    public enum UserRole {[DataMember] Admin = 9, [DataMember] Premium = 5, [DataMember] Basic = 0};
 
 
     [Table("User")]
