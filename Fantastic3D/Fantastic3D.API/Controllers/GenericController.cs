@@ -13,7 +13,7 @@ namespace Fantastic3D.API.Controllers
        where TOut : IManageable, new()
        where TIn : IManageable, new()
     {
-        private IDataManager<TOut, TIn> _data;
+        internal IDataManager<TOut, TIn> _data;
 
         public GenericController(IDataManager<TOut, TIn> dataManager)
         {
@@ -66,7 +66,7 @@ namespace Fantastic3D.API.Controllers
             try
             {
                 _data.AddAsync(newValue);
-                return base.Created(Request.Query.ToString(), newValue);
+                return Created(Request.Query.ToString(), newValue);
             }
             catch (Exception e)
             {
