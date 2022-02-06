@@ -12,6 +12,7 @@ namespace Fantastic3D.Persistence.Entities
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+        public int OrderId { get; set; }
         public bool IsPaidToCreator { get; set; }
         public float PurchasePrice { get; set; }
         public int AssetId { get; set; }
