@@ -67,5 +67,26 @@ namespace Fantastic3D.GUI.SectionControls
             NextModelsList.ItemsSource = ModelsToValidate;
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Faulty endpoints. Tags can't be edited.", "Invalid operation", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            _assetsSource.UpdateAsync(CurrentAsset.Id, CurrentAsset);
+        }
+
+        private void PublishButton_Click(object sender, RoutedEventArgs e)
+        {
+            CurrentAsset.Status = Asset.PublicationStatus.Published;
+            _assetsSource.UpdateAsync(CurrentAsset.Id, CurrentAsset);
+        }
+
+        private void RejectButton_Click(object sender, RoutedEventArgs e)
+        {
+            CurrentAsset.Status = Asset.PublicationStatus.Rejected;
+            _assetsSource.UpdateAsync(CurrentAsset.Id, CurrentAsset);
+        }
     }
 }

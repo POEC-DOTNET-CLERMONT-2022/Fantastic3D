@@ -10,7 +10,23 @@
     <StackPanel Background="{DynamicResource MaterialDesignBackground}">
         <TextBlock DockPanel.Dock="Top" FontSize="30"  HorizontalAlignment="Center">Gestion des modèles</TextBlock>
 
-        <DataGrid x:Name="AssetDataGrid" Height="289" SelectedItem="{Binding Path=SelectedAsset}" ItemsSource="{Binding Items}"  Width="654" AutoGenerateColumns="True" IsReadOnly="True" MouseDoubleClick="DataGrid_MouseDoubleClick" SelectionChanged="DataGrid_SelectionChanged" Cursor="IBeam"/>
+        <DataGrid x:Name="AssetDataGrid" Height="289" SelectedItem="{Binding Path=SelectedAsset}" ItemsSource="{Binding Items}"  Width="654" AutoGenerateColumns="False" IsReadOnly="True" MouseDoubleClick="DataGrid_MouseDoubleClick" SelectionChanged="DataGrid_SelectionChanged" Cursor="IBeam">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Nom" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Créateur" Binding="{Binding Creator}"/>
+                <DataGridTemplateColumn Header="Prix">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Price}"/>
+                                <TextBlock Text="€"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="État de publication" Binding="{Binding Status}"/>
+            </DataGrid.Columns>
+        </DataGrid>
 
     </StackPanel>
 

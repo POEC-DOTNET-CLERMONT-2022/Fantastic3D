@@ -45,7 +45,7 @@ namespace Fantastic3D.GUI.SectionControls
             try
             {
                 var Assets = await _dataSource.GetAllAsync();
-                if (Assets != null && Assets.Count() > 0)
+                if (Assets != null && Assets.Any())
                 {
                     AssetsList.Items = new ObservableCollection<Asset>(Assets);
                     if(messageBoxHasBeenShown)
