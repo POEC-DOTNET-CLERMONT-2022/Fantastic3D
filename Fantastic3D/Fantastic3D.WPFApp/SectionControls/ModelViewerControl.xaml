@@ -3,52 +3,110 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:Fantastic3D.GUI"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"  x:Name="root">
     <StackPanel Background="{DynamicResource MaterialDesignBackground}">
-        <TextBlock DockPanel.Dock="Top" FontSize="30"  HorizontalAlignment="Center">Gestion des modèles</TextBlock>
+        <!--<TextBlock DockPanel.Dock="Top" FontSize="30"  HorizontalAlignment="Center">Gestion des modèles</TextBlock>-->
         <Grid DockPanel.Dock="Bottom">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
-                <ColumnDefinition Width="400"/>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="200"/>
             </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="0">
-                <Image Height="200" OpacityMask="White" Source="/atlantic-puffin-2.jpg" />
-
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Prix :"/>
-                    <TextBox>0.0€</TextBox>
+            <DockPanel DataContext="{Binding ., ElementName=root}" Grid.Column="0">
+                <StackPanel DockPanel.Dock="Left" Width="200">
+                    <Image Height="200" OpacityMask="White" Source="{Binding CurrentAsset.PicturePath}" />
+                    <Button
+                          Style="{StaticResource MaterialDesignPaperSecondaryLightButton}"
+                          ToolTip="Resource name: MaterialDesignPaperSecondaryLightButton"
+                          Content="Voir en 3D"
+                          IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
+                    <TextBox
+                      Text="{Binding CurrentAsset.Price}"
+                      materialDesign:HintAssist.Hint="Prix"
+                      Style="{StaticResource MaterialDesignFilledTextBox}"
+                      VerticalAlignment="Center" Cursor="IBeam"/>
                 </StackPanel>
-            </StackPanel>
+                <StackPanel DockPanel.Dock="Right">
+                    <TextBox
+                      Text="{Binding CurrentAsset.Name}"
+                      materialDesign:HintAssist.Hint="Nom du modèle"
+                      Style="{StaticResource MaterialDesignFilledTextBox}"
+                      VerticalAlignment="Center" Cursor="IBeam"/>
+                    <TextBox
+                      Text="{Binding CurrentAsset}"
+                      materialDesign:HintAssist.Hint="Créateur"
+                      Style="{StaticResource MaterialDesignFilledTextBox}"
+                      VerticalAlignment="Center" IsEnabled="False" Cursor="IBeam"/>
+                    <WrapPanel Orientation="Horizontal">
+                        <ComboBox
+                                x:Name="LicenseComboBox"
+                                Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                                materialDesign:HintAssist.Hint="License"
+                                ItemsSource="{Binding LicencesList}"
+                                Width="180">
+                            <ComboBoxItem IsSelected="True" Content="Usage commercial"/>
+                            <ComboBoxItem Content="Usage personnel"/>
+                            <ComboBoxItem Content="Libre de droit"/>
+                            <ComboBoxItem Content="MIT"/>
+                        </ComboBox>
+                        <ComboBox
+                                x:Name="FormatComboBox"
+                                Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                                materialDesign:HintAssist.Hint="Format"
+                                ItemsSource="{Binding FormatsList}"
+                                Width="180">
+                            <ComboBoxItem IsSelected="True" Content="Obj"/>
+                            <ComboBoxItem Content="Fbx"/>
+                            <ComboBoxItem Content="3ds"/>
+                            <ComboBoxItem Content="Max"/>
+                            <ComboBoxItem Content="X3D"/>
+                            <ComboBoxItem Content="STL"/>
+                        </ComboBox>
+                    </WrapPanel>
+                    <Button
+                      Style="{StaticResource MaterialDesignPaperButton}"
+                      ToolTip="Ouvre une fenêtre vous permettant d'éditer les tags de l'asset."
+                      Content="Editer les tags"
+                      IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Click="Button_Click" />
+                    <TextBox
+                        Text="{Binding CurrentAsset.Description}"
+                        TextWrapping="Wrap"
+                        VerticalAlignment="Stretch"
+                        MinWidth="280"
+                        AcceptsReturn="True"
+                        VerticalScrollBarVisibility="Auto"
+                        SpellCheck.IsEnabled="True"
+                        materialDesign:HintAssist.Hint="Description"
+                        Height="80" />
+                </StackPanel>
+            </DockPanel>
             <StackPanel Grid.Column="1">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="100"/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <Label Content="Auteur:" Grid.Row="1" Grid.Column="0"/>
-                    <TextBlock  Grid.Row="1" Grid.Column="1">Johnny ThreeDee</TextBlock>
-                    
-                    <Label Content="Nom:" Grid.Row="2" Grid.Column="0"/>
-                    <TextBox  Grid.Row="2" Grid.Column="1">Low-poly puffin / Macareux low-poly</TextBox>
-
-                </Grid>
-            </StackPanel>
-            <StackPanel Grid.Column="2">
-                <Button x:Name="SaveButton" Height="30">Enregistrer</Button>
-                <Button x:Name="PublishButton" Height="30">Publier</Button>
-                <Button x:Name="RejectButton" Height="30">Rejeter</Button>
-                <Button x:Name="NextButton" Height="30">Suivant</Button>
+                <Button x:Name="SaveButton" Height="30" Click="SaveButton_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="ContentSaveEditOutline" Margin="0,0,10,0"/>
+                        <TextBlock Text="Enregistrer"/>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="PublishButton" Height="30" Click="PublishButton_Click" Cursor="Hand">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Publish" Margin="0,0,10,0"/>
+                        <TextBlock Text="Publier"/>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="RejectButton" Height="30" Click="RejectButton_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="ContentSaveOffOutline" Margin="0,0,10,0"/>
+                        <TextBlock Text="Rejeter"/>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="NextButton" Height="30">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="SkipNextOutline" Margin="0,0,10,0"/>
+                        <TextBlock Text="Suivant"/>
+                    </StackPanel>
+                </Button>
                 <Label Content="Modèles suivants" />
                 <ListView x:Name="NextModelsList">
                     <ListView.ItemTemplate>

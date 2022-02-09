@@ -25,7 +25,10 @@ namespace Fantastic3D.GUI.SectionControls
     public partial class ModelListControl : UserControl
     {
         public ObservableList<Asset> AssetsList { get; set; } = new ObservableList<Asset>();
+        //public Asset SelectedAsset { get; set; }
         public IDataManager<Asset, AssetDto> _dataSource = new ApiDataManager<Asset, AssetDto>();
+
+        bool messageBoxHasBeenShown = false;
         public ModelListControl()
         {
             InitializeComponent();
@@ -42,10 +45,14 @@ namespace Fantastic3D.GUI.SectionControls
             try
             {
                 var Assets = await _dataSource.GetAllAsync();
-                if (Assets != null && Assets.Count() > 0)
+                if (Assets != null && Assets.Any())
                 {
                     AssetsList.Items = new ObservableCollection<Asset>(Assets);
-                    MessageBox.Show($"{Assets.Count()} modèles 3D trouvés.", "Connexion réussie", MessageBoxButton.OK, MessageBoxImage.Information);
+                    if(messageBoxHasBeenShown)
+                    { 
+                        MessageBox.Show($"{Assets.Count()} modèles 3D trouvés.", "Connexion réussie", MessageBoxButton.OK, MessageBoxImage.Information);
+                        messageBoxHasBeenShown = true;
+                    }
                 }
                 else
                 {
@@ -57,6 +64,17 @@ namespace Fantastic3D.GUI.SectionControls
             {
                 MessageBox.Show(ex.Message, "Source de données non accessible", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //MessageBox.Show(AssetsList.CurrentItem.Name);
+        }
+
+        private void DataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            ((MainWindow)Application.Current.MainWindow).Navigator.NavigateTo(typeof(ModelViewerControl));
+            ((ModelViewerControl)((MainWindow)Application.Current.MainWindow).Navigator.CurrentViewControl.Content).CurrentAsset = (Asset)AssetDataGrid.CurrentItem;
         }
     }
 }
