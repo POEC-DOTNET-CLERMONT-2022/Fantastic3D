@@ -57,13 +57,7 @@ namespace Fantastic3D.GUI.SectionControls
         public ModelViewerControl()
         {
             InitializeComponent();
-
             ModelsToValidate = new List<Asset>();
-
-            //ModelsToValidate = _assetsSource.GetAllAsync().Result
-            //    .Where(asset => asset.Status == Asset.PublicationStatus.Unpublished).ToList();
-
-
             NextModelsList.ItemsSource = ModelsToValidate;
         }
 
