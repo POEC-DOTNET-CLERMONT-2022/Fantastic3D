@@ -13,8 +13,9 @@ namespace Fantastic3D.Dto
         [DataMember]
         public DateTime Date { get; set; }
         [DataMember]
-        public List<Guid> PurchaseList { get; set; } = new();
+        public int PurchasesCount { get; set; }
         [DataMember]
-        public int PurchasingUser { get; set; }
+        public int PurchasingUserId { get; set; }
+        public int Purchases { get; set; }
     }
 }

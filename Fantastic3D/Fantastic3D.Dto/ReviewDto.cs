@@ -19,8 +19,8 @@ namespace Fantastic3D.Dto
         [DataMember]
         private bool IsPublished { get; set; }
         [DataMember]
-        public int Asset { get; set; }
+        public int AssetId { get; set; }
         [DataMember]
-        public int Author { get; set; }
+        public int AuthorId { get; set; }
     }
 }

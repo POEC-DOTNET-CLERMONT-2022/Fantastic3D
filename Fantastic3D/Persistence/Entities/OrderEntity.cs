@@ -14,10 +14,9 @@ namespace Fantastic3D.Persistence.Entities
         [Key]
         public int Id { get; set; }
         public DateTime Date { get; set; }
-
         public int PurchasingUserId { get; set; }
         public virtual UserEntity PurchasingUser { get; private set; }
-        public virtual ICollection<PurchaseEntity> PurchaseList { get; private set; }
+        public virtual ICollection<PurchaseEntity> Purchases { get; private set; }
 
         public OrderEntity() {}
 
