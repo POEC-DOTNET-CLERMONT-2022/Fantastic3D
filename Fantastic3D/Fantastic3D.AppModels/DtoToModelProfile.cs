@@ -8,25 +8,17 @@ using Fantastic3D.Dto;
 
 namespace Fantastic3D.AppModels
 {
-    public class UserModelProfile : Profile 
+    public class DtoToModelProfile : Profile 
     {
-        public UserModelProfile()
+        public DtoToModelProfile()
         {
             CreateMap<UserDto, User>().ReverseMap();
-
-            CreateMap<TagDto, Tag>().ReverseMap();
-
             CreateMap<TagTypeDto, TagType>().ReverseMap();
-
+            CreateMap<TagDto, Tag>().ReverseMap();
             CreateMap<AssetDto, Asset>().ReverseMap();
-
             CreateMap<OrderDto, Order>().ReverseMap();
-
             CreateMap<PurchaseDto, Purchase>().ReverseMap();
-
             CreateMap<ReviewDto, Review>().ReverseMap();
-
-
         }
     }
 }
