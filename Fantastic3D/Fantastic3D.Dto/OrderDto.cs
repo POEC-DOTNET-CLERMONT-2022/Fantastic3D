@@ -16,6 +16,5 @@ namespace Fantastic3D.Dto
         public int PurchasesCount { get; set; }
         [DataMember]
         public int PurchasingUserId { get; set; }
-        public int Purchases { get; set; }
     }
 }
