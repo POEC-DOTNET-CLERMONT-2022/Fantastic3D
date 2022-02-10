@@ -59,7 +59,6 @@ namespace Fantastic3D.GUI
         {
             var mappedValue = _mapper.Map<TDto>(value);
             var response = await client.PostAsJsonAsync(url, mappedValue);
-            //return response;
 
         }
 
@@ -71,10 +70,8 @@ namespace Fantastic3D.GUI
                 string urlAppend = "/" + id;
 
                 HttpResponseMessage response = await client.DeleteAsync(url + urlAppend);
-                // TODO : Gérer autrement le statut du Delete (APIDataManager doit être découplée de WPF)
             }
-            catch
-                (Exception ex)
+            catch (Exception ex)
             {
                 throw new Exception($"L'API n'a pas répondu {ex.Message}", ex);
             }
@@ -100,7 +97,7 @@ namespace Fantastic3D.GUI
             }
             catch (Exception ex)
             {
-                throw new Exception($"{ex.Message}", ex);
+                throw new HttpRequestException($"{ex.Message}", ex);
             }
         }
 
@@ -108,22 +105,13 @@ namespace Fantastic3D.GUI
         // Update
         public async Task UpdateAsync(int id, TModel transferedObject)
         {
-            string urlAppend = "/" + id;
-
+            var putUrl = url + "/" + id;
             var mappedValues = _mapper.Map<TDto>(transferedObject);
-            
-            var response  = await client.PutAsJsonAsync(url + urlAppend, mappedValues);
-
-           if (response.IsSuccessStatusCode)
+            var response = await client.PutAsJsonAsync(putUrl, mappedValues);
+            if (response == null)
             {
-                MessageBox.Show("User Deleted");
-                //return;
+                throw new HttpRequestException("Http client did not send any request");
             }
-           else
-            {
-                MessageBox.Show("Error Code" + response.StatusCode + " : Message - " + response.ReasonPhrase);
-            }
-
         }
     }
 
