@@ -20,7 +20,7 @@ namespace Fantastic3D.GUI
         public App()
         {
             // Ajouter l'automapper ici (MapperConfig AddMaps)
-            var configuration = new MapperConfiguration(cfg => cfg.AddMaps(typeof(UserModelProfile)));
+            var configuration = new MapperConfiguration(cfg => cfg.AddMaps(typeof(DtoToModelProfile)));
             Mapper = new Mapper(configuration);
         }
 

@@ -88,7 +88,7 @@ namespace Fantastic3D.API.Controllers
             try
             {
                 _data.UpdateAsync(id, updatedValue);
-                return base.Created(Request.Query.ToString(), updatedValue);
+                return base.Created(Request.Query.ToString(), _data.GetAsync(id).Result);
             }
             catch (Exception e)
             {
