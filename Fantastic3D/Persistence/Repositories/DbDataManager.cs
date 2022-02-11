@@ -45,7 +45,8 @@ namespace Fantastic3D.Persistence
         public async Task AddAsync(TTransfered objectToAdd)
         {
             if (objectToAdd == null)
-                throw new ArgumentNullException("Can't add an empty value.");
+
+                throw new DataRecordException("Can't add an empty value.");
             // TODO : [DbRepository/ADD] gérer le dédoublonnage lors de l'ajout, ici ou dans le modèle d'entités
             _dataSet.Add(_mapper.Map<TEntity>(objectToAdd));
             await _context.SaveChangesAsync();
@@ -56,7 +57,7 @@ namespace Fantastic3D.Persistence
             var objectToUpdate = _mapper.Map<TEntity>(transferedObject);
 
             if (objectToUpdate == null)
-                throw new ArgumentException("Could not convert object.");
+                throw new DataRecordException("Could not convert object.");
             if (objectToUpdate.Id == 0)
                 objectToUpdate.Id = id;
             if (objectToUpdate.Id != id)
@@ -74,7 +75,11 @@ namespace Fantastic3D.Persistence
             { 
                 _dataSet.Update(objectToUpdate);
             }
-            await _context.SaveChangesAsync();
+            var affectedRows = await _context.SaveChangesAsync();
+            if(affectedRows != 1)
+            {
+                throw new DataRecordException("More than one row was affected by this update.");
+            }
         }
 
         public async Task DeleteAsync(int id)
@@ -82,7 +87,7 @@ namespace Fantastic3D.Persistence
             // Todo : [DbRepository/DEL] remplacer Find par une creation d'objet ayant juste l'ID recherché
             var dataToDelete = _dataSet.Find(id);
             if (dataToDelete == null)
-                throw new NullReferenceException("Element to delete wasn't found");
+                throw new DataRecordException("Element to delete wasn't found");
             _dataSet.Remove(dataToDelete);
             await _context.SaveChangesAsync();
         }
