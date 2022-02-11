@@ -15,20 +15,21 @@ namespace Fantastic3D.GUI
             where TModel : class, IManageable, new()
             where TDto : class, IManageable, new()
     {
-        HttpClient client = new HttpClient();
+        HttpClient _client;
+        string _endpointUrl = typeof(TModel).Name + "/";
         private IMapper _mapper;
 
-        public ApiDataManager(string apiBaseUrl, IMapper mapper)
+        public ApiDataManager(HttpClient client, IMapper mapper)
         {
             _mapper = mapper;
-            client.BaseAddress = new Uri(apiBaseUrl + typeof(TModel).Name);
+            _client = client;
         }
 
         public async Task<IEnumerable<TModel>> GetAllAsync()
         {
             try
             {
-                var retrievedObjects = await client.GetFromJsonAsync<IEnumerable<TDto>>("");
+                var retrievedObjects = await _client.GetFromJsonAsync<IEnumerable<TDto>>(_endpointUrl);
 
                 if (retrievedObjects == null)
                 {
@@ -44,13 +45,14 @@ namespace Fantastic3D.GUI
             {
                 throw new Exception($"{ex.Message}", ex);
             }
+            throw new Exception("GET ALL URL > " + _client.BaseAddress + _endpointUrl);
         }
 
         public async Task<TModel> GetAsync(int id)
         {
             try
             {
-                var retrievedObject = await client.GetFromJsonAsync<TDto>(id.ToString());
+                var retrievedObject = await _client.GetFromJsonAsync<TDto>(_endpointUrl + id);
 
                 if (retrievedObject == null)
                 {
@@ -66,22 +68,25 @@ namespace Fantastic3D.GUI
             {
                 throw new HttpRequestException($"{ex.Message}", ex);
             }
+            throw new Exception("GET URL > " + _client.BaseAddress + _endpointUrl + id);
         }
 
         public async Task AddAsync(TModel addedObject)
         {
             var mappedObject = _mapper.Map<TDto>(addedObject);
-            var httpResponse = await client.PostAsJsonAsync("", mappedObject);
+            var httpResponse = await _client.PostAsJsonAsync(_endpointUrl, mappedObject);
             if (httpResponse == null)
             {
                 throw new DataRecordException($"Aucune réponse de l'API lors de l'ajout d'un nouvel objet. Objet : {addedObject}");
             }
+            throw new Exception("POST URL > " + _client.BaseAddress + _endpointUrl);
         }
 
         public async Task UpdateAsync(int id, TModel transferedObject)
         {
             var mappedValues = _mapper.Map<TDto>(transferedObject);
-            var httpResponse = await client.PutAsJsonAsync(id.ToString(), mappedValues);
+            var httpResponse = await _client.PutAsJsonAsync(_endpointUrl + id, mappedValues);
+            throw new Exception("PUT URL > " + _client.BaseAddress + _endpointUrl + id);
             if (httpResponse == null)
             {
                 throw new DataRecordException($"Aucune réponse de l'API lors de la mise à jour des données. Objet {transferedObject}, mis à jour à l'id {id}");
@@ -92,12 +97,13 @@ namespace Fantastic3D.GUI
         {
             try
             {
-                HttpResponseMessage response = await client.DeleteAsync(id.ToString());
+                HttpResponseMessage response = await _client.DeleteAsync(_endpointUrl + id);
             }
             catch (Exception ex)
             {
                 throw new DataRecordException($"Erreur lors de la suppression de l'objet {id}. Message complet : {ex.Message}", ex);
             }
+            throw new Exception("DELETE URL > " + _client.BaseAddress + _endpointUrl + id);
         }
     }
 }
