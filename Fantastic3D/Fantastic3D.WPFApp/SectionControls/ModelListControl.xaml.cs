@@ -26,7 +26,8 @@ namespace Fantastic3D.GUI.SectionControls
     {
         public ObservableList<Asset> AssetsList { get; set; } = new ObservableList<Asset>();
         //public Asset SelectedAsset { get; set; }
-        public IDataManager<Asset, AssetDto> _dataSource = new ApiDataManager<Asset, AssetDto>();
+        public IDataManager<Asset, AssetDto> _dataSource =
+            new ApiDataManager<Asset, AssetDto>(((App)Application.Current).ApiBaseUrl, ((App)Application.Current).Mapper);
 
         bool messageBoxHasBeenShown = false;
         public ModelListControl()

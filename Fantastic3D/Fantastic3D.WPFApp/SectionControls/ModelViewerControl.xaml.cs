@@ -51,7 +51,8 @@ namespace Fantastic3D.GUI.SectionControls
             }
         }
 
-        public IDataManager<Asset, AssetDto> _assetsSource = new ApiDataManager<Asset, AssetDto>();
+        public IDataManager<Asset, AssetDto> _assetsSource =
+            new ApiDataManager<Asset, AssetDto>(((App) Application.Current).ApiBaseUrl, ((App) Application.Current).Mapper);
         public ModelViewerControl()
         {
             InitializeComponent();
