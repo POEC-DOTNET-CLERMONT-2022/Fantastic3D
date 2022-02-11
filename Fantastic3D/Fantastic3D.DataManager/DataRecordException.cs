@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace Fantastic3D.DataManager
 {
     /// <summary>
-    /// Represents errors that occur when recording data through a DataManager.
+    /// Represents errors that occurs when recording data through a DataManager.
     /// </summary>
     [Serializable]
     public class DataRecordException : Exception
