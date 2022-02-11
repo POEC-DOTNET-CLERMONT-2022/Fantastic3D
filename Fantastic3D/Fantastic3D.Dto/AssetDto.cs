@@ -9,28 +9,24 @@ namespace Fantastic3D.Dto
     public class AssetDto : IManageable
     {
         [DataMember]
-        public static string[] AvailableStatus = new string[] { "Unpublished", "Published", "Rejected", "Removed" };
-        [DataMember]
         public int Id { get; set; }
         [DataMember]
-        public string Name { get; set; } = string.Empty;
+        public string Name { get; set; }
         [DataMember]
-        public string Description { get; set; } = string.Empty;
+        public string Description { get; set; }
         [DataMember]
         public float Price { get; set; }
         [DataMember]
-        public string FilePath { get; set; } = string.Empty;
+        public string FilePath { get; set; }
         [DataMember]
-        public string PicturePath { get; set; } = string.Empty;
+        public string PicturePath { get; set; }
         [DataMember]
-        public List<int> Tags { get; set; } = new();    // List of Tags Ids
-        [DataMember]
-        public int Creator { get; set; }        // User ID
+        public int CreatorId { get; set; }
         [DataMember]
         /// <summary>
         /// Status ID. Use the AvailableStatus Array to match Status and IDs
         /// </summary>
-        public int Status { get; set; }
+        public string Status { get; set; }
 
     }
 }

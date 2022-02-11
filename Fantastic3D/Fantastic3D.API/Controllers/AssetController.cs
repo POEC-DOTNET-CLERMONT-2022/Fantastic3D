@@ -9,10 +9,10 @@ namespace Fantastic3D.API.Controllers
     [ApiController]
     public class AssetController : GenericController<AssetDto, AssetEntity>
     {
-        internal IDataManager<TagDto, TagEntity> _tagsData;
-        public AssetController(IDataManager<AssetDto, AssetEntity> dataManager, IDataManager<TagDto, TagEntity> tagsManager) : base(dataManager)
+        internal INestedDataManager<TagDto, AssetEntity, TagEntity> _tagsData;
+        public AssetController(IDataManager<AssetDto, AssetEntity> dataManager, INestedDataManager<TagDto, AssetEntity, TagEntity> nestedDataManager) : base(dataManager)
         {
-            _tagsData = tagsManager;
+            _tagsData = nestedDataManager;
         }
         // GET api/Asset/5/Tag/
         /// <summary>
@@ -25,10 +25,9 @@ namespace Fantastic3D.API.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult GetTags(int id)
         {
-
             try
             {
-                var retrievedData = _data.GetAsync(id).Result.Tags;
+                var retrievedData = _tagsData.GetTagsAsync(id).Result;
                 if (retrievedData == null)
                     return NotFound(id);
                 return Ok(retrievedData);
@@ -50,22 +49,12 @@ namespace Fantastic3D.API.Controllers
         {
             try
             {
-                var assetToUpdate = _data.GetAsync(id).Result;
-                if(_tagsData.GetAsync(tagId) == null)
-                {
-                    return BadRequest("There is not tag with the id: "+ tagId);
-                }
-                if (!assetToUpdate.Tags.Contains(tagId))
-                {
-                    assetToUpdate.Tags.Add(tagId);
-                }
-
-                _data.UpdateAsync(assetToUpdate.Id, assetToUpdate);
-                return AcceptedAtRoute(Request.Query.ToString(), assetToUpdate);
+                _tagsData.AddTagAsync(id, tagId);
+                return Ok($"Tag {tagId} added to asset {id}.");
             }
-            catch (InvalidOperationException ioe)
+            catch (Exception ex)
             {
-                return BadRequest(ioe.Message);
+                return BadRequest(ex.Message);
             }
         }
         // DELETE api/Asset/5/Tag/8
@@ -80,19 +69,14 @@ namespace Fantastic3D.API.Controllers
         {
             try
             {
-                var assetToUpdate = _data.GetAsync(id).Result;
-                if (!assetToUpdate.Tags.Contains(tagId))
-                {
-                    assetToUpdate.Tags.Remove(tagId);
-                    _data.UpdateAsync(assetToUpdate.Id, assetToUpdate);
-                    return AcceptedAtRoute(Request.Query.ToString(), assetToUpdate); // return NoContent(); ?
-                }
-                return NotFound(id);
-
+                var task = _tagsData.RemoveTagAsync(id, tagId);
+                if (task.Result)
+                    return Ok($"Tag {tagId} removed from asset {id}.");
+                return BadRequest("Tag add action did not happen.");
             }
-            catch (InvalidOperationException ioe)
+            catch (Exception ex)
             {
-                return BadRequest(ioe.Message);
+                return BadRequest(ex.Message);
             }
         }
     }

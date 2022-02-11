@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Fantastic3D.DataManager;
+using Fantastic3D.Persistence.Entities;
 
 namespace Fantastic3D.Persistence
 {
@@ -31,7 +32,7 @@ namespace Fantastic3D.Persistence
 
         public async Task<TTransfered> GetAsync(int id)
         {
-            var result = await _dataSet.SingleAsync(user => user.Id == id);
+            var result = await _dataSet.SingleAsync(item => item.Id == id);
             return _mapper.Map<TTransfered>(result);
         }
 
@@ -52,7 +53,27 @@ namespace Fantastic3D.Persistence
 
         public async Task UpdateAsync(int id, TTransfered transferedObject)
         {
-            _dataSet.Update(_mapper.Map<TEntity>(transferedObject));
+            var objectToUpdate = _mapper.Map<TEntity>(transferedObject);
+
+            if (objectToUpdate == null)
+                throw new ArgumentException("Could not convert object.");
+            if (objectToUpdate.Id == 0)
+                objectToUpdate.Id = id;
+            if (objectToUpdate.Id != id)
+                throw new IdMismatchException("Id sent is the method did not match Id of the object and can potentially cause an update of the wrong object.");
+            if(objectToUpdate is AssetEntity assetToUpdate)
+            {
+                var assetInDb = await _context.Set<AssetEntity>().SingleAsync(item => item.Id == assetToUpdate.Id);
+                if (assetToUpdate.CreatorId == 0)
+                    assetToUpdate.CreatorId = assetInDb.CreatorId;
+                if (!assetToUpdate.Tags.Any() && assetInDb.Tags.Any())
+                    assetToUpdate.Tags = assetInDb.Tags;
+                _context.Set<AssetEntity>().Update(assetToUpdate);
+            }
+            else
+            { 
+                _dataSet.Update(objectToUpdate);
+            }
             await _context.SaveChangesAsync();
         }
 
