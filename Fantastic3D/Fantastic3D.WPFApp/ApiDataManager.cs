@@ -45,7 +45,6 @@ namespace Fantastic3D.GUI
             {
                 throw new Exception($"{ex.Message}", ex);
             }
-            throw new Exception("GET ALL URL > " + _client.BaseAddress + _endpointUrl);
         }
 
         public async Task<TModel> GetAsync(int id)
@@ -68,7 +67,6 @@ namespace Fantastic3D.GUI
             {
                 throw new HttpRequestException($"{ex.Message}", ex);
             }
-            throw new Exception("GET URL > " + _client.BaseAddress + _endpointUrl + id);
         }
 
         public async Task AddAsync(TModel addedObject)
@@ -79,14 +77,12 @@ namespace Fantastic3D.GUI
             {
                 throw new DataRecordException($"Aucune réponse de l'API lors de l'ajout d'un nouvel objet. Objet : {addedObject}");
             }
-            throw new Exception("POST URL > " + _client.BaseAddress + _endpointUrl);
         }
 
         public async Task UpdateAsync(int id, TModel transferedObject)
         {
             var mappedValues = _mapper.Map<TDto>(transferedObject);
             var httpResponse = await _client.PutAsJsonAsync(_endpointUrl + id, mappedValues);
-            throw new Exception("PUT URL > " + _client.BaseAddress + _endpointUrl + id);
             if (httpResponse == null)
             {
                 throw new DataRecordException($"Aucune réponse de l'API lors de la mise à jour des données. Objet {transferedObject}, mis à jour à l'id {id}");
@@ -103,7 +99,6 @@ namespace Fantastic3D.GUI
             {
                 throw new DataRecordException($"Erreur lors de la suppression de l'objet {id}. Message complet : {ex.Message}", ex);
             }
-            throw new Exception("DELETE URL > " + _client.BaseAddress + _endpointUrl + id);
         }
     }
 }
