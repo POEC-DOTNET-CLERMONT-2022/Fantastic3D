@@ -15,7 +15,7 @@ namespace Fantastic3D.GUI
     /// </summary>
     public partial class App : Application
     {
-        private const string SERVER_URL = "";
+        public string ApiBaseUrl = "https://localhost:7164/api/";
         public IMapper Mapper { get; }
         public App()
         {
