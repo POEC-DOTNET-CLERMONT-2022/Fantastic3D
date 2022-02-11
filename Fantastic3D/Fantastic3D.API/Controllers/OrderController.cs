@@ -20,9 +20,9 @@ namespace Fantastic3D.API.Controllers
         [HttpGet("{id}/Purchase/")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public IActionResult GetPurchases(int orderId)
+        public async Task<IActionResult> GetPurchases(int orderId)
         {
-            var data = _purchasesData.GetAllAsync().Result;
+            var data = await _purchasesData.GetAllAsync();
             return (data.Any()) ? Ok(data) : NoContent();
         }
 
@@ -35,11 +35,11 @@ namespace Fantastic3D.API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public IActionResult GetPurchase(int id, int purchaseId)
+        public async Task<IActionResult> GetPurchase(int id, int purchaseId)
         {
             try
             {
-                var retrievedData = _purchasesData.GetAsync(purchaseId).Result;
+                var retrievedData = await _purchasesData.GetAsync(purchaseId);
                 if (retrievedData == null)
                     return NotFound(purchaseId);
                 return Ok(retrievedData);
@@ -54,17 +54,17 @@ namespace Fantastic3D.API.Controllers
         [HttpPost("{id}/Purchase/")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IActionResult PostPurchase(int id, [FromBody] PurchaseDto newValue)
+        public async Task<IActionResult> PostPurchase(int id, [FromBody] PurchaseDto newValue)
         {
             try
             {
                 newValue.OrderId = id;
-                _purchasesData.AddAsync(newValue);
+                await _purchasesData.AddAsync(newValue);
                 return Created(Request.Query.ToString(), newValue);
             }
-            catch (Exception e)
+            catch (DataRecordException e)
             {
-                return BadRequest(newValue);
+                return BadRequest(e.Message);
             }
         }
 
@@ -77,16 +77,16 @@ namespace Fantastic3D.API.Controllers
         [HttpPut("{id}/Purchase/{purchaseId}")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IActionResult PutPurchase(int id, int purchaseId, [FromBody] PurchaseDto updatedValue)
+        public async Task<IActionResult> PutPurchase(int id, int purchaseId, [FromBody] PurchaseDto updatedValue)
         {
             try
             {
-                _purchasesData.UpdateAsync(purchaseId, updatedValue);
+                await _purchasesData.UpdateAsync(purchaseId, updatedValue);
                 return base.Created(Request.Query.ToString(), updatedValue);
             }
-            catch (Exception e)
+            catch (DataRecordException e)
             {
-                return BadRequest(updatedValue);
+                return BadRequest(e.Message);
             }
         }
 
@@ -98,11 +98,11 @@ namespace Fantastic3D.API.Controllers
         [HttpDelete("{id}/Purchase/{purchaseId}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult DeletePurchase(int id, int purchaseId)
+        public async Task<IActionResult> DeletePurchase(int id, int purchaseId)
         {
             try
             {
-                _purchasesData.DeleteAsync(purchaseId);
+                await _purchasesData.DeleteAsync(purchaseId);
                 return NoContent();
             }
             catch

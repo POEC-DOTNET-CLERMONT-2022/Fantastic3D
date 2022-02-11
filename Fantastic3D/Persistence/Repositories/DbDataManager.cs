@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Fantastic3D.DataManager;
+using Fantastic3D.Persistence.Entities;
 
 namespace Fantastic3D.Persistence
 {
@@ -31,7 +32,7 @@ namespace Fantastic3D.Persistence
 
         public async Task<TTransfered> GetAsync(int id)
         {
-            var result = await _dataSet.SingleAsync(user => user.Id == id);
+            var result = await _dataSet.SingleAsync(item => item.Id == id);
             return _mapper.Map<TTransfered>(result);
         }
 
@@ -44,7 +45,8 @@ namespace Fantastic3D.Persistence
         public async Task AddAsync(TTransfered objectToAdd)
         {
             if (objectToAdd == null)
-                throw new ArgumentNullException("Can't add an empty value.");
+
+                throw new DataRecordException("Can't add an empty value.");
             // TODO : [DbRepository/ADD] gérer le dédoublonnage lors de l'ajout, ici ou dans le modèle d'entités
             _dataSet.Add(_mapper.Map<TEntity>(objectToAdd));
             await _context.SaveChangesAsync();
@@ -52,8 +54,32 @@ namespace Fantastic3D.Persistence
 
         public async Task UpdateAsync(int id, TTransfered transferedObject)
         {
-            _dataSet.Update(_mapper.Map<TEntity>(transferedObject));
-            await _context.SaveChangesAsync();
+            var objectToUpdate = _mapper.Map<TEntity>(transferedObject);
+
+            if (objectToUpdate == null)
+                throw new DataRecordException("Could not convert object.");
+            if (objectToUpdate.Id == 0)
+                objectToUpdate.Id = id;
+            if (objectToUpdate.Id != id)
+                throw new IdMismatchException("Id sent is the method did not match Id of the object and can potentially cause an update of the wrong object.");
+            if(objectToUpdate is AssetEntity assetToUpdate)
+            {
+                var assetInDb = await _context.Set<AssetEntity>().SingleAsync(item => item.Id == assetToUpdate.Id);
+                if (assetToUpdate.CreatorId == 0)
+                    assetToUpdate.CreatorId = assetInDb.CreatorId;
+                if (!assetToUpdate.Tags.Any() && assetInDb.Tags.Any())
+                    assetToUpdate.Tags = assetInDb.Tags;
+                _context.Set<AssetEntity>().Update(assetToUpdate);
+            }
+            else
+            { 
+                _dataSet.Update(objectToUpdate);
+            }
+            var affectedRows = await _context.SaveChangesAsync();
+            if(affectedRows != 1)
+            {
+                throw new DataRecordException("More than one row was affected by this update.");
+            }
         }
 
         public async Task DeleteAsync(int id)
@@ -61,7 +87,7 @@ namespace Fantastic3D.Persistence
             // Todo : [DbRepository/DEL] remplacer Find par une creation d'objet ayant juste l'ID recherché
             var dataToDelete = _dataSet.Find(id);
             if (dataToDelete == null)
-                throw new NullReferenceException("Element to delete wasn't found");
+                throw new DataRecordException("Element to delete wasn't found");
             _dataSet.Remove(dataToDelete);
             await _context.SaveChangesAsync();
         }

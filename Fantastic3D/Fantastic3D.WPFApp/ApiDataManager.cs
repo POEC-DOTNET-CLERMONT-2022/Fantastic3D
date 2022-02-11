@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
-using Fantastic3D.AppModels;
 using Fantastic3D.DataManager;
-using Fantastic3D.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,41 +8,37 @@ using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 
 namespace Fantastic3D.GUI
 {
     public class ApiDataManager<TModel, TDto> : IDataManager<TModel, TDto>
             where TModel : class, IManageable, new()
             where TDto : class, IManageable, new()
-
     {
-        HttpClient client = new HttpClient();
+        HttpClient _client;
+        string _endpointUrl = typeof(TModel).Name + "/";
+        private IMapper _mapper;
 
-        private string url = "https://localhost:7164/api/" + typeof(TModel).Name ;
-        private IMapper _mapper = ((App)Application.Current).Mapper;
-
-        public ApiDataManager()
+        public ApiDataManager(HttpClient client, IMapper mapper)
         {
-            //client.BaseAddress = new Uri("https://localhost:7164/");
+            _mapper = mapper;
+            _client = client;
         }
-        
 
-        //Getall
         public async Task<IEnumerable<TModel>> GetAllAsync()
         {
             try
             {
-                var request = await client.GetFromJsonAsync<IEnumerable<TDto>>(url);
+                var retrievedObjects = await _client.GetFromJsonAsync<IEnumerable<TDto>>(_endpointUrl);
 
-                if (request == null)
+                if (retrievedObjects == null)
                 {
-                    throw new Exception($"Requete null");
+                    throw new DataRetrieveException("Aucune donnée n'a été récupérée lors d'une opération de récupération générale.");
                 }
                 else
                 {
-                    var mappedValues = _mapper.Map<IEnumerable<TModel>>(request);
-                    return mappedValues;
+                    var mappedObjects = _mapper.Map<IEnumerable<TModel>>(retrievedObjects);
+                    return mappedObjects;
                 }
             }
             catch (Exception ex)
@@ -53,79 +47,58 @@ namespace Fantastic3D.GUI
             }
         }
 
-
-        // Add- Post
-        public async Task AddAsync(TModel value)
-        {
-            var mappedValue = _mapper.Map<TDto>(value);
-            var response = await client.PostAsJsonAsync(url, mappedValue);
-            //return response;
-
-        }
-
-        // Delete
-        public async Task DeleteAsync(int id)
-        {
-            try
-            {
-                string urlAppend = "/" + id;
-
-                HttpResponseMessage response = await client.DeleteAsync(url + urlAppend);
-                // TODO : Gérer autrement le statut du Delete (APIDataManager doit être découplée de WPF)
-            }
-            catch
-                (Exception ex)
-            {
-                throw new Exception($"L'API n'a pas répondu {ex.Message}", ex);
-            }
-        }
-
-        // GetById
         public async Task<TModel> GetAsync(int id)
         {
             try
             {
-                var urltotal = url +"/"+ id;
-                var request = await client.GetFromJsonAsync<TDto>(urltotal);
+                var retrievedObject = await _client.GetFromJsonAsync<TDto>(_endpointUrl + id);
 
-                if (request == null)
+                if (retrievedObject == null)
                 {
-                    throw new Exception($"Requete null");
+                    throw new DataRetrieveException($"Aucune donnée n'a été récupérée lors d'une récupération d'objet individuel. Id : {id}");
                 }
                 else
                 {
-                    var mappedValues = _mapper.Map<TModel>(request);
-                    return mappedValues;
+                    var mappedObjects = _mapper.Map<TModel>(retrievedObject);
+                    return mappedObjects;
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception($"{ex.Message}", ex);
+                throw new HttpRequestException($"{ex.Message}", ex);
             }
         }
 
+        public async Task AddAsync(TModel addedObject)
+        {
+            var mappedObject = _mapper.Map<TDto>(addedObject);
+            var httpResponse = await _client.PostAsJsonAsync(_endpointUrl, mappedObject);
+            if (httpResponse == null)
+            {
+                throw new DataRecordException($"Aucune réponse de l'API lors de l'ajout d'un nouvel objet. Objet : {addedObject}");
+            }
+        }
 
-        // Update
         public async Task UpdateAsync(int id, TModel transferedObject)
         {
-            string urlAppend = "/" + id;
-
             var mappedValues = _mapper.Map<TDto>(transferedObject);
-            
-            var response  = await client.PutAsJsonAsync(url + urlAppend, mappedValues);
-
-           if (response.IsSuccessStatusCode)
+            var httpResponse = await _client.PutAsJsonAsync(_endpointUrl + id, mappedValues);
+            if (httpResponse == null)
             {
-                MessageBox.Show("User Deleted");
-                //return;
+                throw new DataRecordException($"Aucune réponse de l'API lors de la mise à jour des données. Objet {transferedObject}, mis à jour à l'id {id}");
             }
-           else
-            {
-                MessageBox.Show("Error Code" + response.StatusCode + " : Message - " + response.ReasonPhrase);
-            }
+        }
 
+        public async Task DeleteAsync(int id)
+        {
+            try
+            {
+                HttpResponseMessage response = await _client.DeleteAsync(_endpointUrl + id);
+            }
+            catch (Exception ex)
+            {
+                throw new DataRecordException($"Erreur lors de la suppression de l'objet {id}. Message complet : {ex.Message}", ex);
+            }
         }
     }
-
 }
-

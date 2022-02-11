@@ -17,7 +17,7 @@ namespace Fantastic3D.Dto
         [DataMember]
         public float PurchasePrice { get; set; }
         [DataMember]
-        public Guid Asset { get; set; }        // Asset ID
+        public int AssetId { get; set; }
 
     }
 }

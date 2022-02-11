@@ -27,9 +27,9 @@ namespace Fantastic3D.API.Controllers
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
-            var data = _data.GetAllAsync().Result;
+            var data = await _data.GetAllAsync();
             return (data.Any()) ? Ok(data) : NoContent();
         }
 
@@ -42,11 +42,11 @@ namespace Fantastic3D.API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public IActionResult Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
             try
             {
-                var retrievedData = _data.GetAsync(id).Result;
+                var retrievedData = await _data.GetAsync(id);
                 if (retrievedData == null)
                     return NotFound(id);
                 return Ok(retrievedData);
@@ -61,16 +61,16 @@ namespace Fantastic3D.API.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IActionResult Post([FromBody] TOut newValue)
+        public async Task<IActionResult> Post([FromBody] TOut newValue)
         {
             try
             {
-                _data.AddAsync(newValue);
+                await _data.AddAsync(newValue);
                 return Created(Request.Query.ToString(), newValue);
             }
-            catch (Exception e)
+            catch (DataRecordException dre)
             {
-                return BadRequest(newValue);
+                return BadRequest(dre);
             }
         }
 
@@ -83,16 +83,16 @@ namespace Fantastic3D.API.Controllers
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IActionResult Put(int id, [FromBody] TOut updatedValue)
+        public async Task<IActionResult> Put(int id, [FromBody] TOut updatedValue)
         {
             try
             {
-                _data.UpdateAsync(id, updatedValue);
+                await _data.UpdateAsync(id, updatedValue);
                 return base.Created(Request.Query.ToString(), updatedValue);
             }
-            catch (Exception e)
+            catch (DataRecordException dre)
             {
-                return BadRequest(updatedValue);
+                return BadRequest(updatedValue.ToString() + dre.ToString());
             }
         }
 
@@ -105,11 +105,11 @@ namespace Fantastic3D.API.Controllers
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             try
             {
-                _data.DeleteAsync(id);
+                await _data.DeleteAsync(id);
                 return NoContent();
             }
             catch

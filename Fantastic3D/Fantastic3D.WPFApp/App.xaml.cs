@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -15,11 +16,12 @@ namespace Fantastic3D.GUI
     /// </summary>
     public partial class App : Application
     {
-        private const string SERVER_URL = "";
+        public HttpClient Client;
         public IMapper Mapper { get; }
         public App()
         {
-            // Ajouter l'automapper ici (MapperConfig AddMaps)
+            Client = new HttpClient();
+            Client.BaseAddress = new Uri("https://localhost:7164/api/");
             var configuration = new MapperConfiguration(cfg => cfg.AddMaps(typeof(DtoToModelProfile)));
             Mapper = new Mapper(configuration);
         }
