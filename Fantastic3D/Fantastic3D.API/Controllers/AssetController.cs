@@ -52,7 +52,7 @@ namespace Fantastic3D.API.Controllers
                 _tagsData.AddTagAsync(id, tagId);
                 return Ok($"Tag {tagId} added to asset {id}.");
             }
-            catch (Exception ex)
+            catch (DataRecordException ex)
             {
                 return BadRequest(ex.Message);
             }
@@ -74,7 +74,7 @@ namespace Fantastic3D.API.Controllers
                     return Ok($"Tag {tagId} removed from asset {id}.");
                 return BadRequest("Tag add action did not happen.");
             }
-            catch (Exception ex)
+            catch (DataRecordException ex)
             {
                 return BadRequest(ex.Message);
             }
