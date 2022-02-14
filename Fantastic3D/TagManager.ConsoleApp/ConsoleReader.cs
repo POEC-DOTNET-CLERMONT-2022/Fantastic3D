@@ -16,11 +16,10 @@
             return choices[choiceWithOffset - 1];
         }
 
-        public int ReadId(int lowerBound, int higherBound)
+        public int ReadId(int lowerBound = 0, int higherBound = 0)
         {
             bool valueIsCorrect = false;
             int outputValue = 0;
-            //int cursorPosition = Console.GetCursorPosition();
             while (!valueIsCorrect)
             {
                 var userInput = Console.ReadLine();
@@ -37,18 +36,13 @@
 
         public string ReadText()
         {
-            // TODO : une boucle, tant que c'est "null", refaire un readline
-            bool stringIsCorrect = false;
-
-            var InputUserString = Console.ReadLine();
-            while (!stringIsCorrect)
+            var inputUserString = string.Empty;
+            do
             {
-                if (InputUserString != null)
-                {
-                    stringIsCorrect = true;
-                }
+                inputUserString = Console.ReadLine();
             }
-            return InputUserString;
+            while (!string.IsNullOrEmpty(inputUserString));
+            return inputUserString;
         }
     }
 }

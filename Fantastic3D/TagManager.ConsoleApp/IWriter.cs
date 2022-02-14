@@ -25,7 +25,7 @@ namespace Fantastic3D.Tags
         /// <summary>
         /// Clears the screen and change the title of the current menu section
         /// </summary>
-        public void SetMenuHeader(string title);
+        public void SetMenuHeader(string sectionHeader);
 
     }
 }
