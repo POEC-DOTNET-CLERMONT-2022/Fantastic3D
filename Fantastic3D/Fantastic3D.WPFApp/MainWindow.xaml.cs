@@ -22,7 +22,6 @@ namespace Fantastic3D.GUI
     /// </summary>
     public partial class MainWindow : Window
     {
-
         public INavigator Navigator { get; } = new Navigator();
         public MainWindow()
         {
