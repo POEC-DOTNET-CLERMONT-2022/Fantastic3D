@@ -11,8 +11,8 @@
     {
         public Task<IEnumerable<TTransfered>> GetAllAsync();
         public Task<TTransfered> GetAsync(int id);
-        public Task AddAsync(TTransfered transferedObject);
-        public Task UpdateAsync(int id, TTransfered transferedObject);
+        public Task AddAsync(TTransfered objectToAdd);
+        public Task UpdateAsync(int id, TTransfered objectToUpdate);
         public Task DeleteAsync(int id);
     }
 }
