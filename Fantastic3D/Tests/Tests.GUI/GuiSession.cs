@@ -11,10 +11,7 @@ namespace Fantastic3D.Tests.GUI
 {
     public class GuiSession
     {
-        // Note: append /wd/hub to the URL if you're directing the test at Appium
         private const string WindowsApplicationDriverUrl = "http://127.0.0.1:4727";
-        // Path.GetFullPath(Path.Combine(AppContext.BaseDirectory
-        private const string AppPath = @"Z:\Repos\DevOpsFormation\Projet\Fantastic3D\Fantastic3D.WPFApp\bin\Debug\net6.0-windows\App.Fantastic3DManager.exe";
 
         protected static WindowsDriver<WindowsElement> session;
 
@@ -24,7 +21,7 @@ namespace Fantastic3D.Tests.GUI
             if (session == null)
             {
                 var options = new AppiumOptions();
-                options.AddAdditionalCapability("app", AppPath);
+                options.AddAdditionalCapability("app", System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location));
                 options.AddAdditionalCapability("deviceName", "WindowsPC");
                     
                 session = new WindowsDriver<WindowsElement>(new Uri(WindowsApplicationDriverUrl), options);
