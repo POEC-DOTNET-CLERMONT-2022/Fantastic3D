@@ -52,17 +52,17 @@ namespace Fantastic3D.Persistence
             await _context.SaveChangesAsync();
         }
 
-        public async Task UpdateAsync(int id, TTransfered transferedObject)
+        public async Task UpdateAsync(int id, TTransfered objectToUpdate)
         {
-            var objectToUpdate = _mapper.Map<TEntity>(transferedObject);
+            var mappedObjectToUpdate = _mapper.Map<TEntity>(objectToUpdate);
 
-            if (objectToUpdate == null)
+            if (mappedObjectToUpdate == null)
                 throw new DataRecordException("Could not convert object.");
-            if (objectToUpdate.Id == 0)
-                objectToUpdate.Id = id;
-            if (objectToUpdate.Id != id)
+            if (mappedObjectToUpdate.Id == 0)
+                mappedObjectToUpdate.Id = id;
+            if (mappedObjectToUpdate.Id != id)
                 throw new IdMismatchException("Id sent is the method did not match Id of the object and can potentially cause an update of the wrong object.");
-            if(objectToUpdate is AssetEntity assetToUpdate)
+            if(mappedObjectToUpdate is AssetEntity assetToUpdate)
             {
                 var assetInDb = await _context.Set<AssetEntity>().SingleAsync(item => item.Id == assetToUpdate.Id);
                 if (assetToUpdate.CreatorId == 0)
@@ -73,7 +73,7 @@ namespace Fantastic3D.Persistence
             }
             else
             { 
-                _dataSet.Update(objectToUpdate);
+                _dataSet.Update(mappedObjectToUpdate);
             }
             var affectedRows = await _context.SaveChangesAsync();
             if(affectedRows != 1)

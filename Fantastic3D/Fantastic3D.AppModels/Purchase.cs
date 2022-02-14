@@ -9,26 +9,14 @@ namespace Fantastic3D.AppModels
     public class Purchase : ObservableModel, IManageable
     {
         public int Id { get; set; }
-        private int _purchaseId;
-        
-        private bool _isPaidToCreator;
-        
-        private float _purchasePrice;
-        
-        private Asset _asset;
+        public int OrderId { get; set; }
+        public bool IsPaidToCreator { get; set; }
+        public float PurchasePrice { get; set; }
+        public int AssetId { get; set; }
 
-        public Purchase(int id, int purchaseId, bool isPaidToCreator, float purchasePrice, Asset asset)
+        public Purchase()
         {
-            Id = id;
-            _purchaseId = purchaseId;
-            _isPaidToCreator = isPaidToCreator;
-            _purchasePrice = purchasePrice;
-            _asset = asset;
-        }
 
-        public override string ToString()
-        {
-            return $"Payé au créateur : {_isPaidToCreator}, Prix : {_purchasePrice}, Asset : {_asset}";
         }
     }
 }

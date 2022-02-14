@@ -59,11 +59,11 @@ namespace Fantastic3D.Persistence
             return true;
         }
 
-        public async Task<bool> RemoveTagAsync(int transferedAssetId, int transferedTag)
+        public async Task<bool> RemoveTagAsync(int transferedAssetId, int transferedTagId)
         {
             try
             {
-                var tagToRemove = await _tagsDataSet.SingleAsync(tag => tag.Id == transferedTag);
+                var tagToRemove = await _tagsDataSet.SingleAsync(tag => tag.Id == transferedTagId);
                 var assetToUpdate = await _assetDataSet.SingleAsync(asset => asset.Id == transferedAssetId);
 
                 if (assetToUpdate.Tags != null)

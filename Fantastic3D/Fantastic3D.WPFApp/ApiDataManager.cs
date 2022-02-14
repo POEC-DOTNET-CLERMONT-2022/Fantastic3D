@@ -69,23 +69,23 @@ namespace Fantastic3D.GUI
             }
         }
 
-        public async Task AddAsync(TModel addedObject)
+        public async Task AddAsync(TModel objectToAdd)
         {
-            var mappedObject = _mapper.Map<TDto>(addedObject);
+            var mappedObject = _mapper.Map<TDto>(objectToAdd);
             var httpResponse = await _client.PostAsJsonAsync(_endpointUrl, mappedObject);
             if (httpResponse == null)
             {
-                throw new DataRecordException($"Aucune réponse de l'API lors de l'ajout d'un nouvel objet. Objet : {addedObject}");
+                throw new DataRecordException($"Aucune réponse de l'API lors de l'ajout d'un nouvel objet. Objet : {objectToAdd}");
             }
         }
 
-        public async Task UpdateAsync(int id, TModel transferedObject)
+        public async Task UpdateAsync(int id, TModel objectToUpdate)
         {
-            var mappedValues = _mapper.Map<TDto>(transferedObject);
-            var httpResponse = await _client.PutAsJsonAsync(_endpointUrl + id, mappedValues);
+            var mappedObject = _mapper.Map<TDto>(objectToUpdate);
+            var httpResponse = await _client.PutAsJsonAsync(_endpointUrl + id, mappedObject);
             if (httpResponse == null)
             {
-                throw new DataRecordException($"Aucune réponse de l'API lors de la mise à jour des données. Objet {transferedObject}, mis à jour à l'id {id}");
+                throw new DataRecordException($"Aucune réponse de l'API lors de la mise à jour des données. Objet {objectToUpdate}, mis à jour à l'id {id}");
             }
         }
 
