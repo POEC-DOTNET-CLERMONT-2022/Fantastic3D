@@ -19,8 +19,7 @@ namespace Fantastic3D.GUI.SectionControls
     {
         public UserList UsersList { get; set; } = new UserList();
         public User UserInForm { get; set; } = new User();
-        public IDataManager<User, UserDto> _dataSource = 
-            new ApiDataManager<User, UserDto>(((App)Application.Current).Client, ((App)Application.Current).Mapper);
+        public IDataManager<User, UserDto> _dataSource = ((App)Application.Current).Services.GetService<IDataManager<User, UserDto>>();
 
         public UserListControl()
         {
