@@ -19,9 +19,9 @@ namespace Fantastic3D.Persistence
         where TTransfered : class, IManageable, new()
         where TEntity : class, IManageable, new()
     {
-        LocalDbContext _context;
-        private IMapper _mapper;
-        private DbSet<TEntity> _dataSet;
+        readonly LocalDbContext _context;
+        readonly private IMapper _mapper;
+        readonly private DbSet<TEntity> _dataSet;
 
         public DbDataManager(LocalDbContext context, IMapper mapper)
         {

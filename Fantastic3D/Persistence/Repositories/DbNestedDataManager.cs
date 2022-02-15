@@ -11,105 +11,104 @@ using Fantastic3D.Persistence.Entities;
 
 namespace Fantastic3D.Persistence
 {
-    public class DbNestedDataManager<TTransferedTag>
-        : INestedDataManager<TTransferedTag>
+    public class DbNestedDataManager<TTransferedTag> : INestedDataManager<TTransferedTag>
         where TTransferedTag : TagDto, new()
     {
-        LocalDbContext _context;
-        private IMapper _mapper;
-        private DbSet<AssetEntity> _assetDataSet;
-        private DbSet<TagEntity> _tagsDataSet;
+        private readonly IDbContextFactory<LocalDbContext> _contextFactory;
+        private readonly IMapper _mapper;
 
-        public DbNestedDataManager(LocalDbContext context, IMapper mapper)
+        public DbNestedDataManager(IDbContextFactory<LocalDbContext> contextFactory, IMapper mapper)
         {
-            _context = context;
-            _assetDataSet = context.Set<AssetEntity>();
-            _tagsDataSet = context.Set<TagEntity>();
+            _contextFactory = contextFactory;
             _mapper = mapper;
         }
 
         public async Task<bool> AddTagAsync(int transferedAssetId, int transferedTagId)
         {
+            using LocalDbContext context = _contextFactory.CreateDbContext();
             try
-            { 
-                var tagToAdd = await _tagsDataSet.SingleAsync(tag => tag.Id == transferedTagId);
-                var assetToUpdate = await _assetDataSet.SingleAsync(asset => asset.Id == transferedAssetId);
-                if(assetToUpdate.Tags == null)
+            {
+                var tagToAdd = await context.Tags.SingleAsync(tag => tag.Id == transferedTagId);
+                var assetToUpdate = await context.Assets.SingleAsync(asset => asset.Id == transferedAssetId);
+                if (assetToUpdate.Tags == null)
                     assetToUpdate.Tags = new List<TagEntity>();
                 assetToUpdate.Tags.Add(tagToAdd);
-                await _context.SaveChangesAsync();
+                context.Assets.Update(assetToUpdate);
+                var writtenEntries = await context.SaveChangesAsync();
+                return (writtenEntries == 2);
             }
             catch (InvalidOperationException ioe)
             {
                 return false;
-                throw new InvalidOperationException("Tag or Asset was not found. ", ioe);
+                throw new DataRecordException("Tag or Asset was not found. ", ioe);
             }
             catch (ArgumentNullException ane)
             {
                 return false;
-                throw new ArgumentNullException("Id or DataSource is null. ", ane);
+                throw new DataRecordException("Id or DataSource is null. ", ane);
             }
             catch (Exception ex)
             {
                 return false;
-                throw new Exception("Exception encoutered: ", ex);
+                throw new DataRecordException("Exception encoutered: ", ex);
             }
-            return true;
         }
 
         public async Task<bool> RemoveTagAsync(int transferedAssetId, int transferedTagId)
         {
+            using LocalDbContext context = _contextFactory.CreateDbContext();
             try
             {
-                var tagToRemove = await _tagsDataSet.SingleAsync(tag => tag.Id == transferedTagId);
-                var assetToUpdate = await _assetDataSet.SingleAsync(asset => asset.Id == transferedAssetId);
+                var tagToRemove = await context.Tags.SingleAsync(tag => tag.Id == transferedTagId);
+                var assetToUpdate = await context.Assets.SingleAsync(asset => asset.Id == transferedAssetId);
 
                 if (assetToUpdate.Tags != null)
                 {
                     assetToUpdate.Tags.Remove(tagToRemove);
-                    await _context.SaveChangesAsync();
+                    context.Assets.Update(assetToUpdate);
+                    await context.SaveChangesAsync();
                 }
             }
             catch (InvalidOperationException ioe)
             {
                 return false;
-                throw new InvalidOperationException("Tag or asset was not found. ", ioe);
+                throw new DataRecordException("Tag or asset was not found. ", ioe);
             }
             catch (ArgumentNullException ane)
             {
                 return false;
-                throw new InvalidOperationException("Id or DataSource is null. ", ane);
+                throw new DataRecordException("Id or DataSource is null. ", ane);
             }
             catch (Exception ex)
             {
                 return false;
-                throw new Exception("Unexpected Exception: ", ex);
+                throw new DataRecordException("Unexpected error when deleting data: ", ex);
             }
             return true;
         }
 
         public async Task<IEnumerable<TTransferedTag>> GetTagsAsync(int transferedAssetId)
         {
+            using LocalDbContext context = _contextFactory.CreateDbContext();
             try
             {
-                var assetToRead = await _assetDataSet.SingleAsync(asset => asset.Id == transferedAssetId);
+                var assetToRead = await context.Assets.SingleAsync(asset => asset.Id == transferedAssetId);
                 var tags = assetToRead.Tags;
                 if(tags == null)
                     return Enumerable.Empty<TTransferedTag>();
-                //return tags.Select(tag => _mapper.Map<TTransferedTag>(tag));
                 return _mapper.Map<IEnumerable<TTransferedTag>>(tags);
             }
             catch (InvalidOperationException ioe)
             {
-                throw new InvalidOperationException("Asset was not found. ", ioe);
+                throw new DataRetrieveException("Asset was not found. ", ioe);
             }
             catch (ArgumentNullException ane)
             {
-                throw new InvalidOperationException("Id or DataSource is null. ", ane);
+                throw new DataRetrieveException("Id or DataSource is null. ", ane);
             }
             catch (Exception ex)
             {
-                throw new Exception("Unexpected Exception: ", ex);
+                throw new DataRetrieveException("Unexpected Exception while reading data: ", ex);
             }
         }
     }
