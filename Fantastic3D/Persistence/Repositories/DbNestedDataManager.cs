@@ -11,22 +11,20 @@ using Fantastic3D.Persistence.Entities;
 
 namespace Fantastic3D.Persistence
 {
-    public class DbNestedDataManager<TTransferedTag, TPersistantAsset, TPersistantTag>
-        : INestedDataManager<TTransferedTag, TPersistantAsset, TPersistantTag>
+    public class DbNestedDataManager<TTransferedTag>
+        : INestedDataManager<TTransferedTag>
         where TTransferedTag : TagDto, new()
-        where TPersistantAsset : AssetEntity, new()
-        where TPersistantTag : TagEntity, new()
     {
         LocalDbContext _context;
         private IMapper _mapper;
-        private DbSet<TPersistantAsset> _assetDataSet;
-        private DbSet<TPersistantTag> _tagsDataSet;
+        private DbSet<AssetEntity> _assetDataSet;
+        private DbSet<TagEntity> _tagsDataSet;
 
         public DbNestedDataManager(LocalDbContext context, IMapper mapper)
         {
             _context = context;
-            _assetDataSet = context.Set<TPersistantAsset>();
-            _tagsDataSet = context.Set<TPersistantTag>();
+            _assetDataSet = context.Set<AssetEntity>();
+            _tagsDataSet = context.Set<TagEntity>();
             _mapper = mapper;
         }
 

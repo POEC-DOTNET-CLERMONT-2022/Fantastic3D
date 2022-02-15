@@ -1,7 +1,7 @@
 ﻿namespace Fantastic3D.DataManager
 {
 
-    public interface INestedDataManager<TTransferedTag, TPersistantAsset, TPersistantTag>
+    public interface INestedDataManager<TTransferedTag>
     {
         public Task<IEnumerable<TTransferedTag>> GetTagsAsync(int transferedAssetId);
         public Task<bool> AddTagAsync(int transferedAssetId, int transferedTagId);

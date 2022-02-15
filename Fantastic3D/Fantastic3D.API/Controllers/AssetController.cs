@@ -9,8 +9,8 @@ namespace Fantastic3D.API.Controllers
     [ApiController]
     public class AssetController : GenericController<AssetDto, AssetEntity>
     {
-        internal INestedDataManager<TagDto, AssetEntity, TagEntity> _tagsData;
-        public AssetController(IDataManager<AssetDto, AssetEntity> dataManager, INestedDataManager<TagDto, AssetEntity, TagEntity> nestedDataManager) : base(dataManager)
+        internal INestedDataManager<TagDto> _tagsData;
+        public AssetController(IDataManager<AssetDto, AssetEntity> dataManager, INestedDataManager<TagDto> nestedDataManager) : base(dataManager)
         {
             _tagsData = nestedDataManager;
         }
