@@ -1,5 +1,4 @@
-﻿using System.Runtime.Serialization;
-using Fantastic3D.DataManager;
+﻿using Fantastic3D.DataManager;
 namespace Fantastic3D.AppModels
 {
     /// <summary>
@@ -11,23 +10,22 @@ namespace Fantastic3D.AppModels
 
         public int Id { get; set; }
 
-        private DateTime _date;
+        public DateTime Date { get; private set; }
 
-        private List<Purchase> _purchaseList;
-      
-        private User _purchasingUser;
+        public List<Purchase> PurchaseList { get; private set; }
 
-        public Order(int orderId, DateTime date, List<Purchase> purchaseList, User purchasingUser)
+        public int PurchasingUserId { get; private set; }
+
+        public Order(int id, DateTime date, List<Purchase> purchaseList, int purchasingUserId)
         {
-            Id = orderId;
-            _date = date;
-            _purchaseList = purchaseList;
-            _purchasingUser = purchasingUser;
+            Id = id;
+            Date = date;
+            PurchaseList = purchaseList;
+            PurchasingUserId = purchasingUserId;
         }
 
         public override string ToString()
         {
-            return $"Date : {_date}, Acheteur :{_purchasingUser}";
-        }
+            return $"Date : {Date}, Acheteur :{PurchasingUserId}";        }
     }
 }
