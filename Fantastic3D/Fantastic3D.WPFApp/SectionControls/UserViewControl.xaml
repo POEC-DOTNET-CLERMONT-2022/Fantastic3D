@@ -4,10 +4,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Fantastic3D.GUI.SectionControls"
+             xmlns:converters="clr-namespace:Fantastic3D.GUI.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              x:Name="root">
-    <Grid>
+    <UserControl.Resources>
+        <converters:UserRolesComboBoxConverter x:Key="UserRolesComboBoxConverter"/>
+    </UserControl.Resources>
+        <Grid>
         <StackPanel Margin="20" DataContext="{Binding CurrentUser, ElementName=root}" >
             <TextBlock DockPanel.Dock="Top" FontSize="30"  HorizontalAlignment="Center">Gestion des utilisateurs</TextBlock>
             <Grid Height="350" Margin="20">
@@ -38,7 +42,7 @@
                     </WrapPanel>
                     <WrapPanel>
                         <Label Margin="5" Content="Role : "/>
-                        <ComboBox  ItemsSource="{Binding CurrentUser.Roles}" SelectedItem="{Binding Role}">
+                        <ComboBox  ItemsSource="{Binding Roles}" SelectedItem="{Binding Role, Converter={StaticResource UserRolesComboBoxConverter}}">
                             
                         </ComboBox>
                     </WrapPanel>
