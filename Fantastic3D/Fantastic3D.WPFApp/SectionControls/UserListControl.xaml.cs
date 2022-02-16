@@ -33,7 +33,7 @@ namespace Fantastic3D.GUI.SectionControls
         private void DataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             ((MainWindow)Application.Current.MainWindow).Navigator.NavigateTo(typeof(UserViewControl));
-            ((UserViewControl)((MainWindow)Application.Current.MainWindow).Navigator.CurrentViewControl.Content).CurrentUser = (User)UserDataGrid.CurrentItem;
+            ((UserViewControl)((MainWindow)Application.Current.MainWindow).Navigator.CurrentViewControl.Content).CurrentUser = UsersList.CurrentUser;
         }
         // Get All Users and bind them into the listbox
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -54,6 +54,7 @@ namespace Fantastic3D.GUI.SectionControls
                 if (Users != null)
                 {
                     UsersList.Users = new ObservableCollection<User>(Users);
+                    UserDataGrid.ItemsSource = UsersList.Users;
                 }
                // UserRoleComboBox.ItemsSource = Enum.GetValues(typeof(UserRole)).Cast<UserRole>();
                 //UserRoleComboBox.SelectedItem = UsersList.Users;

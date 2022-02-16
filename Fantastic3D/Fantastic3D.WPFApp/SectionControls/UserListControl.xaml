@@ -10,7 +10,7 @@
     <StackPanel Background="{DynamicResource MaterialDesignBackground}"  >
         <TextBlock DockPanel.Dock="Top" FontSize="30"  HorizontalAlignment="Center">Gestion des utilisateurs</TextBlock>
 
-        <DataGrid x:Name="UserDataGrid" Margin="5" Height="150" SelectedItem="{Binding Path= CurrentUser}" ItemsSource="{Binding Users}" MouseDoubleClick="DataGrid_MouseDoubleClick"  AutoGenerateColumns="False" IsReadOnly="True" Cursor="IBeam" >
+        <DataGrid x:Name="UserDataGrid" Margin="5" Height="150" SelectedItem="{Binding Path=CurrentUser}" ItemsSource="{Binding Users}" MouseDoubleClick="DataGrid_MouseDoubleClick"  AutoGenerateColumns="False" IsReadOnly="True" Cursor="IBeam" >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Psedo" Binding="{Binding Username}"/>
                 <DataGridTextColumn Header="Email" Binding="{Binding Email}"/>
@@ -22,8 +22,9 @@
         </DataGrid>
 
         <WrapPanel HorizontalAlignment="Center"  >
-            <!--<ComboBox x:Name="UserRoleComboBox" Width="100" SelectedItem="{Binding Users.Role}"  ItemsSource="{Binding UserRole}"  >-->
-            <ComboBox x:Name="UserRoleComboBox" Width="100"  />
+            <!--<ComboBox x:Name="UserRoleComboBox" Width="100" SelectedItem="{Binding CurrentUser.Role Users.Role}"  ItemsSource="{Binding UserRole}"  >-->
+            <ComboBox x:Name="UserRoleComboBox" Width="100"  ItemsSource="{Binding CurrentUser.Roles}" SelectedItem="{Binding CurrentUser.Role}"   />
+
 
             <!--</ComboBox>-->
             
@@ -31,7 +32,7 @@
             <Label Content="Role: " />
             <TextBox x:Name="Role" Width="100"  Margin="5" Text="{Binding CurrentUser.Role, UpdateSourceTrigger=PropertyChanged}" Cursor="IBeam"  />
             <Label Content="Psedo: "/>
-            <TextBox x:Name="Username" Width="150" Margin="5" Text="{Binding CurrentUser.Username, UpdateSourceTrigger=PropertyChanged}"  Cursor="IBeam"  />
+            <TextBox x:Name="Username" Width="150" Margin="5" Text="{Binding CurrentUser.Username, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  Cursor="IBeam"  />
             <Label Content="Email: " />
             <TextBox x:Name="Email" Margin="5" Width="200" Text="{Binding CurrentUser.Email, UpdateSourceTrigger=PropertyChanged}" Cursor="IBeam"  />
         </WrapPanel>

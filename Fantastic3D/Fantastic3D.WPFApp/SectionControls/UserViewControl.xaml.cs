@@ -1,4 +1,5 @@
 ﻿using Fantastic3D.AppModels;
+using Fantastic3D.GUI.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,9 @@ namespace Fantastic3D.GUI.SectionControls
     /// </summary>
     public partial class UserViewControl : UserControl
     {
+        public List<User> UserToValidate { get; set; } = new();
+        public INavigator Navigator { get; } = new Navigator();
+
         private static readonly DependencyProperty CurrentUserProperty =
             DependencyProperty.Register("CurrentUser", typeof(User), typeof(UserViewControl));
 
@@ -39,6 +43,23 @@ namespace Fantastic3D.GUI.SectionControls
         public UserViewControl()
         {
             InitializeComponent();
+            UserToValidate = new List<User>();
+            DataContext = UserToValidate;
+        }
+
+        private void Button_Commande(object sender, RoutedEventArgs e)
+        {
+            ((MainWindow)Application.Current.MainWindow).Navigator.NavigateTo(typeof(OrderListControl));
+        }
+
+        private void Button_Avis(object sender, RoutedEventArgs e)
+        {
+            ((MainWindow)Application.Current.MainWindow).Navigator.NavigateTo(typeof(ReviewControl));
+        }
+
+        private void Button_Modele(object sender, RoutedEventArgs e)
+        {
+            ((MainWindow)Application.Current.MainWindow).Navigator.NavigateTo(typeof(ModelListControl)); 
         }
     }
 }

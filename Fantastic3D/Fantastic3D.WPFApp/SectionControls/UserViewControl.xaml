@@ -5,45 +5,46 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Fantastic3D.GUI.SectionControls"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             x:Name="root">
     <Grid>
-        <StackPanel Margin="20" Grid.Column="0">
+        <StackPanel Margin="20" DataContext="{Binding CurrentUser, ElementName=root}" >
             <TextBlock DockPanel.Dock="Top" FontSize="30"  HorizontalAlignment="Center">Gestion des utilisateurs</TextBlock>
             <Grid Height="350" Margin="20">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <StackPanel>
+                <StackPanel >
                     <WrapPanel>
                         <Label Margin="5" Content="Login : "/>
-                        <TextBox Width="150" />
+                        <TextBox x:Name="Plop" Width="150"  Text="{Binding Username}" />
                     </WrapPanel>
                     <WrapPanel>
                         <Label Margin="5" Content="Mot de passe : "/>
-                        <TextBox Width="150" />
+                        <TextBox Width="150" Text="{Binding Password}" />
                     </WrapPanel>
                     <WrapPanel>
                         <Label Margin="5" Content="Email : "/>
-                        <TextBox Width="150" />
+                        <TextBox Width="150" Text="{Binding Email}" />
                     </WrapPanel>
                     <WrapPanel>
                         <Label Margin="5" Content="Nom : "/>
-                        <TextBox Width="150" />
+                        <TextBox Width="150" Text="{Binding FirstName}" />
                     </WrapPanel>
                     <WrapPanel>
                         <Label Margin="5" Content="Prénom : "/>
-                        <TextBox Width="150" />
+                        <TextBox Width="150" Text="{Binding LastName}" />
                     </WrapPanel>
                     <WrapPanel>
                         <Label Margin="5" Content="Role : "/>
-                        <ComboBox>
+                        <ComboBox  ItemsSource="{Binding CurrentUser.Roles}" SelectedItem="{Binding Role}">
                             
                         </ComboBox>
                     </WrapPanel>
                     <WrapPanel>
                         <Label Margin="5" Content="Addresse: "/>
-                        <TextBox x:Name="BillingAddress" Width="200" Margin="5" Text="{Binding CurrentUser.BillingAddress, UpdateSourceTrigger=PropertyChanged}"  />
+                        <TextBox Width="200" Margin="5" Text="{Binding BillingAddress}"  />
                     </WrapPanel>
                     <WrapPanel  Margin="30">
                         <Button Content="Sauvegarder" Width="130" Margin="10" Cursor="Hand"></Button>
@@ -51,13 +52,17 @@
                     </WrapPanel>
                 </StackPanel>
                 <StackPanel Grid.Column="1" Margin="30" Width="200" >
+
                     <Label Content="Infos" />
-                    <Label Content="Identifiants :" />
-                    <Label Content="Date d'inscription :" />
+                    <WrapPanel>
+                        <Label Content="Identifiants :" />
+                        <TextBlock Width="80" Margin="5" Text="{Binding Id}"  />
+                    </WrapPanel>
+
                     <StackPanel HorizontalAlignment="Left" >
-                        <Button Content="Voir Modèles"  Margin="10" Cursor="Hand"></Button>
-                        <Button Content="Voir Avis"  Margin="10" Cursor="Hand"></Button>
-                        <Button Content="Voir Commandes"  Margin="10" Cursor="Hand"></Button>
+                        <Button Content="Voir Modèles"  Margin="10" Click="Button_Modele" Cursor="Hand"></Button>
+                        <Button Content="Voir Avis"  Margin="10" Click="Button_Avis" Cursor="Hand"></Button>
+                        <Button Content="Voir Commandes"  Margin="10" Cursor="Hand" Click="Button_Commande"></Button>
                     </StackPanel>
                 </StackPanel>
                 
