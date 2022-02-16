@@ -5,8 +5,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:Fantastic3D.GUI"
+             xmlns:converters="clr-namespace:Fantastic3D.GUI.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"  x:Name="root">
+    <UserControl.Resources>
+        <converters:PathToBitmapConverter x:Key="PathToBitmapConverter"/>
+    </UserControl.Resources>
     <StackPanel Background="{DynamicResource MaterialDesignBackground}">
         <!--<TextBlock DockPanel.Dock="Top" FontSize="30"  HorizontalAlignment="Center">Gestion des modèles</TextBlock>-->
         <Grid DockPanel.Dock="Bottom">
@@ -16,7 +20,7 @@
             </Grid.ColumnDefinitions>
             <DockPanel DataContext="{Binding ., ElementName=root}" Grid.Column="0">
                 <StackPanel DockPanel.Dock="Left" Width="200">
-                    <Image Height="200" OpacityMask="White" Source="{Binding CurrentAsset.PicturePath}" />
+                    <Image Height="200" Source="{Binding CurrentAsset.PicturePath, Converter={StaticResource PathToBitmapConverter}, FallbackValue=/medias/notfound.png}" />
                     <Button
                           Style="{StaticResource MaterialDesignPaperSecondaryLightButton}"
                           ToolTip="Resource name: MaterialDesignPaperSecondaryLightButton"
