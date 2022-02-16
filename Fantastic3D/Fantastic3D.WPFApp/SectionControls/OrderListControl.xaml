@@ -10,14 +10,13 @@
     
     <StackPanel Background="{DynamicResource MaterialDesignBackground}">
         <StackPanel>
-        <TextBlock DockPanel.Dock="Top" FontSize="30"  HorizontalAlignment="Center">Gestion des commandes</TextBlock>
-
+            <TextBlock DockPanel.Dock="Top" FontSize="30"  HorizontalAlignment="Center">Gestion des commandes</TextBlock>
             <DatePicker
-                  Width="140" Margin="5" 
+                  Width="140" Height="28"
                   materialDesign:HintAssist.Hint="Pick Date"
                   Style="{StaticResource MaterialDesignFilledDatePicker}"
                   materialDesign:TextFieldAssist.HasClearButton="True" />
-            <DataGrid Height="250" d:ItemsSource="{d:SampleData ItemCount=10}" Width="654"/>
+            <DataGrid Margin="10" Height="250" SelectedItem="{Binding Path=CurrentOrder}" ItemsSource="{Binding Orders}" />
 
         </StackPanel>
     </StackPanel>

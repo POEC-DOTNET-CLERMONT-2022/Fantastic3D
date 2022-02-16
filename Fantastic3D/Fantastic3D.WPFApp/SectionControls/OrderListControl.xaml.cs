@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Fantastic3D.AppModels;
+using Fantastic3D.DataManager;
+using Fantastic3D.Dto;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +23,9 @@ namespace Fantastic3D.GUI.SectionControls
     /// </summary>
     public partial class OrderListControl : UserControl
     {
+        public ObservableList<Order> OrdersList { get; set; } = new ObservableList<Order>();
+        public IDataManager<Order, OrderDto> _dataSource = ((App)Application.Current).Services.GetService<IDataManager<Order, OrderDto>>();
+
         public OrderListControl()
         {
             InitializeComponent();

@@ -9,7 +9,6 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <StackPanel Background="{DynamicResource MaterialDesignBackground}"  >
         <TextBlock DockPanel.Dock="Top" FontSize="30"  HorizontalAlignment="Center">Gestion des utilisateurs</TextBlock>
-
         <DataGrid x:Name="UserDataGrid" Margin="5" Height="150" SelectedItem="{Binding Path=CurrentUser}" ItemsSource="{Binding Users}" MouseDoubleClick="DataGrid_MouseDoubleClick"  AutoGenerateColumns="False" IsReadOnly="True" Cursor="IBeam" >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Psedo" Binding="{Binding Username}"/>
@@ -17,43 +16,12 @@
                 <DataGridTextColumn Header="Nom" Binding="{Binding FirstName}"/>
                 <DataGridTextColumn Header="Prénom" Binding="{Binding LastName}"/>
                 <DataGridTextColumn Header="Role" Binding="{Binding Role}"/>
-                
+                <DataGridTextColumn Header="Jennifer"  />
             </DataGrid.Columns>
         </DataGrid>
-
-        <WrapPanel HorizontalAlignment="Center"  >
-            <!--<ComboBox x:Name="UserRoleComboBox" Width="100" SelectedItem="{Binding CurrentUser.Role Users.Role}"  ItemsSource="{Binding UserRole}"  >-->
-            <ComboBox x:Name="UserRoleComboBox" Width="100"  ItemsSource="{Binding CurrentUser.Roles}" SelectedItem="{Binding CurrentUser.Role}"   />
-
-
-            <!--</ComboBox>-->
-            
-            
-            <Label Content="Role: " />
-            <TextBox x:Name="Role" Width="100"  Margin="5" Text="{Binding CurrentUser.Role, UpdateSourceTrigger=PropertyChanged}" Cursor="IBeam"  />
-            <Label Content="Psedo: "/>
-            <TextBox x:Name="Username" Width="150" Margin="5" Text="{Binding CurrentUser.Username, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  Cursor="IBeam"  />
-            <Label Content="Email: " />
-            <TextBox x:Name="Email" Margin="5" Width="200" Text="{Binding CurrentUser.Email, UpdateSourceTrigger=PropertyChanged}" Cursor="IBeam"  />
-        </WrapPanel>
         
         <WrapPanel HorizontalAlignment="Center">
-            <Label Content="Nom: "  />
-            <TextBox x:Name="FirstName" Margin="5" Width="150"  Text="{Binding CurrentUser.FirstName, UpdateSourceTrigger=PropertyChanged}"  Cursor="IBeam" />
-            <Label Content="Prénom: "  />
-            <TextBox x:Name="LastName" Margin="5" Width="150" Text="{Binding CurrentUser.LastName, UpdateSourceTrigger=PropertyChanged}"  Cursor="IBeam" />
-
-            </WrapPanel>
-        <WrapPanel>
-            <Label Margin="5" Content="Addresse: "/>
-            <TextBox x:Name="BillingAddress" Width="680" Margin="5" Text="{Binding CurrentUser.BillingAddress, UpdateSourceTrigger=PropertyChanged}"  />
-
-        </WrapPanel>
-        <WrapPanel HorizontalAlignment="Center">
             <Button Content="Ajouter" Height="24" Margin="5" FontSize="12" Click="Button_AddUser" Cursor="Hand"></Button>
-            <Button Content="Supprimer" Height="24" Margin="5" FontSize="12" Cursor="Hand" Click="Button_DeleteUser"></Button>
-            <Button Content="Editer" Height="24" Margin="5" FontSize="12"  Click="Button_EditUser" Cursor="Hand"></Button>
-            
         </WrapPanel>
     </StackPanel>
 </UserControl>

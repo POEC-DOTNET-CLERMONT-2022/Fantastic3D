@@ -8,9 +8,9 @@
              d:DesignHeight="450" d:DesignWidth="800"
              x:Name="root">
     <Grid>
-        <StackPanel Margin="20" DataContext="{Binding CurrentUser, ElementName=root}" >
-            <TextBlock DockPanel.Dock="Top" FontSize="30"  HorizontalAlignment="Center">Gestion des utilisateurs</TextBlock>
-            <Grid Height="350" Margin="20">
+        <StackPanel Margin="20" DataContext="{Binding EditableUser, ElementName=root}" >
+            
+            <Grid Height="350" Margin="10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
@@ -39,33 +39,29 @@
                     <WrapPanel>
                         <Label Margin="5" Content="Role : "/>
                         <ComboBox  ItemsSource="{Binding CurrentUser.Roles}" SelectedItem="{Binding Role}">
-                            
                         </ComboBox>
                     </WrapPanel>
                     <WrapPanel>
                         <Label Margin="5" Content="Addresse: "/>
                         <TextBox Width="200" Margin="5" Text="{Binding BillingAddress}"  />
                     </WrapPanel>
-                    <WrapPanel  Margin="30">
-                        <Button Content="Sauvegarder" Width="130" Margin="10" Cursor="Hand"></Button>
-                        <Button Content="Annuler" Width="130" Margin="10" Cursor="Hand"></Button>
+                    <WrapPanel  Margin="5">
+                        <Button Content="Sauvegarder" Width="110" Margin="10" Cursor="Hand" Click="Button_Save"></Button>
+                        <Button Content="Supprimer" Width="110" Margin="10" Cursor="Hand"></Button>
                     </WrapPanel>
                 </StackPanel>
                 <StackPanel Grid.Column="1" Margin="30" Width="200" >
-
                     <Label Content="Infos" />
                     <WrapPanel>
                         <Label Content="Identifiants :" />
                         <TextBlock Width="80" Margin="5" Text="{Binding Id}"  />
                     </WrapPanel>
-
                     <StackPanel HorizontalAlignment="Left" >
-                        <Button Content="Voir Modèles"  Margin="10" Click="Button_Modele" Cursor="Hand"></Button>
-                        <Button Content="Voir Avis"  Margin="10" Click="Button_Avis" Cursor="Hand"></Button>
-                        <Button Content="Voir Commandes"  Margin="10" Cursor="Hand" Click="Button_Commande"></Button>
+                        <Button Content="Voir Modèles"  Click="Button_Modele" Cursor="Hand"></Button>
+                        <Button Content="Voir Avis"  Click="Button_Avis" Cursor="Hand"></Button>
+                        <Button Content="Voir Commandes" Cursor="Hand" Click="Button_Commande"></Button>
                     </StackPanel>
                 </StackPanel>
-                
             </Grid>
         </StackPanel>
     </Grid>

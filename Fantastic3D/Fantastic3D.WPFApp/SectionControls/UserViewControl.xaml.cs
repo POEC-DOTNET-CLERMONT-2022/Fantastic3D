@@ -1,4 +1,6 @@
 ﻿using Fantastic3D.AppModels;
+using Fantastic3D.DataManager;
+using Fantastic3D.Dto;
 using Fantastic3D.GUI.Utilities;
 using System;
 using System.Collections.Generic;
@@ -23,18 +25,19 @@ namespace Fantastic3D.GUI.SectionControls
     public partial class UserViewControl : UserControl
     {
         public List<User> UserToValidate { get; set; } = new();
+        public IDataManager<User, UserDto> _dataSource = ((App)Application.Current).Services.GetService<IDataManager<User, UserDto>>();
         public INavigator Navigator { get; } = new Navigator();
 
         private static readonly DependencyProperty CurrentUserProperty =
-            DependencyProperty.Register("CurrentUser", typeof(User), typeof(UserViewControl));
+            DependencyProperty.Register(nameof(EditableUser), typeof(User), typeof(UserViewControl));
 
-        private User currentUser;
-        public User CurrentUser
+        private User editableUser;
+        public User EditableUser
         {
             get { return GetValue(CurrentUserProperty) as User; }
             set
             {
-                if (currentUser != value)
+                if (editableUser != value)
                 {
                     SetValue(CurrentUserProperty, value);
                 }
@@ -61,5 +64,13 @@ namespace Fantastic3D.GUI.SectionControls
         {
             ((MainWindow)Application.Current.MainWindow).Navigator.NavigateTo(typeof(ModelListControl)); 
         }
+
+        private void Button_Save(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show($"Voulez-vous vraiment Editer {EditableUser.Username} ?",
+                    "Suppression", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                _dataSource.UpdateAsync(EditableUser.Id, EditableUser);
+        }
     }
 }
+

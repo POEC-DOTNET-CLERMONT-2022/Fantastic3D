@@ -14,7 +14,7 @@
             <Label Content="Filtres" />
             <ComboBox Width="100" />
             </WrapPanel>
-            <DataGrid Margin="20" Height="250" >
+            <DataGrid Margin="10" Height="250" >
                 <DataGrid.Columns >
                     <DataGridTextColumn Header="De/Pour" />
                     <DataGridTextColumn Header="Commentaires" />

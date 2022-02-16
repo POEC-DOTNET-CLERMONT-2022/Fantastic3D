@@ -31,7 +31,7 @@ namespace Fantastic3D.GUI.SectionControls
         private void DataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             ((MainWindow)Application.Current.MainWindow).Navigator.NavigateTo(typeof(UserViewControl));
-            ((UserViewControl)((MainWindow)Application.Current.MainWindow).Navigator.CurrentViewControl.Content).CurrentUser = UsersList.CurrentUser;
+            ((UserViewControl)((MainWindow)Application.Current.MainWindow).Navigator.CurrentViewControl.Content).EditableUser = UsersList.CurrentUser;
         }
         // Get All Users and bind them into the listbox
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -39,11 +39,6 @@ namespace Fantastic3D.GUI.SectionControls
             LoadUsers();
         }
 
-        private void Test()
-        {
-            //UserRoleComboBox.SelectedItem = UsersList.CurrentUser.Role;
-            UserRoleComboBox.SelectedItem = Role.Text;
-        }
         private async void LoadUsers()
         {
             try
@@ -54,10 +49,6 @@ namespace Fantastic3D.GUI.SectionControls
                     UsersList.Users = new ObservableCollection<User>(Users);
                     UserDataGrid.ItemsSource = UsersList.Users;
                 }
-               // UserRoleComboBox.ItemsSource = Enum.GetValues(typeof(UserRole)).Cast<UserRole>();
-                //UserRoleComboBox.SelectedItem = UsersList.Users;
-               // UserRoleComboBox.SelectedItem = Role.Text;
-
             }
             catch (Exception ex)
             {
@@ -65,28 +56,22 @@ namespace Fantastic3D.GUI.SectionControls
             }
         }
 
-
-
         private async void Button_AddUser(object sender, RoutedEventArgs e)
         {
-            User userToAdd = new User();
-            userToAdd.Username = Username.Text;
-            userToAdd.FirstName = FirstName.Text;
-            userToAdd.LastName = LastName.Text;
-            userToAdd.Email = Email.Text;
-            userToAdd.Password = "";
-            userToAdd.Role = UserRole.Basic;
-            userToAdd.BillingAddress = BillingAddress.Text;
+            //User userToAdd = new User();
+            //userToAdd.Username = Username.Text;
+            //userToAdd.FirstName = FirstName.Text;
+            //userToAdd.LastName = LastName.Text;
+            //userToAdd.Email = Email.Text;
+            //userToAdd.Password = "";
+            //userToAdd.Role = UserRole.Basic;
+            //userToAdd.BillingAddress = BillingAddress.Text;
 
-            var totalUsers = UsersList.Users.Count;
 
-            await _dataSource.AddAsync(userToAdd);
-            LoadUsers();
-            MessageBox.Show("Ajouté avec succès", "ADD", MessageBoxButton.OK, MessageBoxImage.Information);
-        //todo: verifier que k'ajout a etait fiat
+            //await _dataSource.AddAsync(CurrentUser);
+            //LoadUsers();
+            //MessageBox.Show("Ajouté avec succès", "ADD", MessageBoxButton.OK, MessageBoxImage.Information);
         }
-
-
 
         private void Button_DeleteUser(object sender, RoutedEventArgs e)
         {
@@ -95,7 +80,6 @@ namespace Fantastic3D.GUI.SectionControls
                 if (MessageBox.Show($"Voulez-vous vraiment supprimer {UsersList.CurrentUser.Username} ?",
                     "Suppression", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
                     _dataSource.DeleteAsync(UsersList.CurrentUser.Id);
-
             }
             catch
             {
