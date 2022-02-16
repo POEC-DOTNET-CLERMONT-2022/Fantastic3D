@@ -10,7 +10,6 @@ namespace Fantastic3D.Tags
     {
         private IDataHandler<TagEntity> _dataHandler;
         private List<TagEntity> _listTag = new List<TagEntity>();
-        private List<TagTypeEntity> _tagTypes;
 
         public TagManager( IDataHandler<TagEntity> dataHandler, List<TagTypeEntity> tagTypes)
         {
@@ -29,14 +28,7 @@ namespace Fantastic3D.Tags
         {
             if(_listTag.Count == 0)
             {
-                try
-                {
-                    _dataHandler.LoadData(_listTag);
-                }
-                catch (Exception ex)
-                {
-                    // TODO Faire le catch de 
-                }
+                _dataHandler.LoadData(_listTag);
             }
         }
 

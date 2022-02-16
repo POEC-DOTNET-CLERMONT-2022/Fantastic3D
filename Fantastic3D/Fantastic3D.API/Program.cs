@@ -12,9 +12,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddScoped(typeof(IDataManager<,>), typeof(DbDataManager<,>));
-builder.Services.AddScoped(typeof(INestedDataManager<,,>), typeof(DbNestedDataManager<,,>));
+builder.Services.AddScoped(typeof(INestedDataManager<>), typeof(DbNestedDataManager<>));
 builder.Services.AddScoped<DbContext, LocalDbContext>();
-builder.Services.AddDbContext<LocalDbContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultContext")));
+builder.Services.AddDbContextFactory<LocalDbContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultContext")));
 
 var app = builder.Build();
 

@@ -8,17 +8,7 @@ namespace Fantastic3D.Persistence
     public class LocalDbContext : DbContext
     {
         public LocalDbContext(DbContextOptions<LocalDbContext> options) : base(options)
-        {
-            //DbSetForType = new Dictionary<Type, string>
-            //{
-            //    { typeof(UserEntity), nameof(Users) },
-            //    { typeof(AssetEntity), nameof(Assets) },
-            //    { typeof(OrderEntity), nameof(Orders) },
-            //    { typeof(PurchaseEntity), nameof(Purchases) },
-            //    { typeof(ReviewEntity), nameof(Reviews) },
-            //    { typeof(TagEntity), nameof(Tags) },
-            //    { typeof(TagTypeEntity), nameof(TagTypes) },
-            //};
+        {   
         }
         public DbSet<UserEntity> Users { get; set; }
         public DbSet<AssetEntity> Assets { get; set; }

@@ -1,5 +1,8 @@
 ﻿using AutoMapper;
 using Fantastic3D.AppModels;
+using Fantastic3D.DataManager;
+using Fantastic3D.Dto;
+using Fantastic3D.GUI.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -16,14 +19,24 @@ namespace Fantastic3D.GUI
     /// </summary>
     public partial class App : Application
     {
-        public HttpClient Client;
-        public IMapper Mapper { get; }
+        public Utilities.IServiceProvider Services { get; }
         public App()
         {
-            Client = new HttpClient();
-            Client.BaseAddress = new Uri("https://localhost:7164/api/");
+            Services = new ServiceProvider();
+            var client = new HttpClient();
+            client.BaseAddress = new Uri("https://localhost:7164/api/");
+            Services.RegisterService<HttpClient>(client);
+
             var configuration = new MapperConfiguration(cfg => cfg.AddMaps(typeof(DtoToModelProfile)));
-            Mapper = new Mapper(configuration);
+            var mapper = new Mapper(configuration);
+            Services.RegisterService<IMapper>(mapper);
+
+            Services.RegisterService<IDataManager<User, UserDto>>(new ApiDataManager<User, UserDto>(client, mapper));
+            Services.RegisterService<IDataManager<Asset, AssetDto>>(new ApiDataManager<Asset, AssetDto>(client, mapper));
+            
+            // Services.RegisterService<IDataManager<Order, OrderDto>>(new ApiDataManager<Order, OrderDto>(client, mapper));
+            // Services.RegisterService<IDataManager<Review, ReviewDto>>(new ApiDataManager<Review, ReviewDto>(client, mapper));
+
         }
 
         

@@ -9,8 +9,8 @@ namespace Fantastic3D.API.Controllers
     [ApiController]
     public class AssetController : GenericController<AssetDto, AssetEntity>
     {
-        internal INestedDataManager<TagDto, AssetEntity, TagEntity> _tagsData;
-        public AssetController(IDataManager<AssetDto, AssetEntity> dataManager, INestedDataManager<TagDto, AssetEntity, TagEntity> nestedDataManager) : base(dataManager)
+        internal INestedDataManager<TagDto> _tagsData;
+        public AssetController(IDataManager<AssetDto, AssetEntity> dataManager, INestedDataManager<TagDto> nestedDataManager) : base(dataManager)
         {
             _tagsData = nestedDataManager;
         }
@@ -23,11 +23,11 @@ namespace Fantastic3D.API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public IActionResult GetTags(int id)
+        public async Task<IActionResult> GetTags(int id)
         {
             try
             {
-                var retrievedData = _tagsData.GetTagsAsync(id).Result;
+                var retrievedData = await _tagsData.GetTagsAsync(id);
                 if (retrievedData == null)
                     return NotFound(id);
                 return Ok(retrievedData);
@@ -45,12 +45,13 @@ namespace Fantastic3D.API.Controllers
         /// <param name="tagId" example="8">The tag ID.</param>
         [HttpPost("{id}/Tag")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public IActionResult PostTag(int id, [FromBody] int tagId)
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> PostTag(int id, [FromBody] int tagId)
         {
             try
             {
-                _tagsData.AddTagAsync(id, tagId);
-                return Ok($"Tag {tagId} added to asset {id}.");
+                var addSuccess = await _tagsData.AddTagAsync(id, tagId);
+                return addSuccess ? Ok($"Tag {tagId} added to asset {id}.") : BadRequest("No rows were affected.");
             }
             catch (DataRecordException ex)
             {
@@ -65,12 +66,12 @@ namespace Fantastic3D.API.Controllers
         /// <param name="tagId" example="8">The tag ID.</param>
         [HttpDelete("{id}/Tag/{tagId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public IActionResult DeleteTag(int id, int tagId)
+        public async Task<IActionResult> DeleteTag(int id, int tagId)
         {
             try
             {
-                var task = _tagsData.RemoveTagAsync(id, tagId);
-                if (task.Result)
+                var removeSuccess = await _tagsData.RemoveTagAsync(id, tagId);
+                if (removeSuccess)
                     return Ok($"Tag {tagId} removed from asset {id}.");
                 return BadRequest("Tag add action did not happen.");
             }
