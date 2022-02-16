@@ -4,11 +4,13 @@ using Fantastic3D.DataManager;
 using Fantastic3D.Dto;
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Fantastic3D.GUI.SectionControls
 {
@@ -18,7 +20,6 @@ namespace Fantastic3D.GUI.SectionControls
     public partial class UserListControl : UserControl
     {
         public UserList UsersList { get; set; } = new UserList();
-        public User UserInForm { get; set; } = new User();
         public IDataManager<User, UserDto> _dataSource = ((App)Application.Current).Services.GetService<IDataManager<User, UserDto>>();
 
         public UserListControl()
@@ -27,12 +28,22 @@ namespace Fantastic3D.GUI.SectionControls
             DataContext = UsersList;
         }
 
+        private void DataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            ((MainWindow)Application.Current.MainWindow).Navigator.NavigateTo(typeof(UserViewControl));
+            ((UserViewControl)((MainWindow)Application.Current.MainWindow).Navigator.CurrentViewControl.Content).CurrentUser = UsersList.CurrentUser;
+        }
         // Get All Users and bind them into the listbox
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             LoadUsers();
         }
 
+        private void Test()
+        {
+            //UserRoleComboBox.SelectedItem = UsersList.CurrentUser.Role;
+            UserRoleComboBox.SelectedItem = Role.Text;
+        }
         private async void LoadUsers()
         {
             try
@@ -41,7 +52,12 @@ namespace Fantastic3D.GUI.SectionControls
                 if (Users != null)
                 {
                     UsersList.Users = new ObservableCollection<User>(Users);
+                    UserDataGrid.ItemsSource = UsersList.Users;
                 }
+               // UserRoleComboBox.ItemsSource = Enum.GetValues(typeof(UserRole)).Cast<UserRole>();
+                //UserRoleComboBox.SelectedItem = UsersList.Users;
+               // UserRoleComboBox.SelectedItem = Role.Text;
+
             }
             catch (Exception ex)
             {
@@ -49,10 +65,7 @@ namespace Fantastic3D.GUI.SectionControls
             }
         }
 
-        private void Reload_Click(object sender, RoutedEventArgs e)
-        {
-            LoadUsers();
-        }
+
 
         private async void Button_AddUser(object sender, RoutedEventArgs e)
         {
@@ -70,7 +83,7 @@ namespace Fantastic3D.GUI.SectionControls
             await _dataSource.AddAsync(userToAdd);
             LoadUsers();
             MessageBox.Show("Ajouté avec succès", "ADD", MessageBoxButton.OK, MessageBoxImage.Information);
-            // todo : verifier que k'ajout a etait fiat
+        //todo: verifier que k'ajout a etait fiat
         }
 
 
@@ -79,10 +92,10 @@ namespace Fantastic3D.GUI.SectionControls
         {
             try
             {
-                if (MessageBox.Show($"Voulez-vous vraiment supprimer {UsersList.CurrentUser.Username} ?", 
+                if (MessageBox.Show($"Voulez-vous vraiment supprimer {UsersList.CurrentUser.Username} ?",
                     "Suppression", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
                     _dataSource.DeleteAsync(UsersList.CurrentUser.Id);
-                
+
             }
             catch
             {
