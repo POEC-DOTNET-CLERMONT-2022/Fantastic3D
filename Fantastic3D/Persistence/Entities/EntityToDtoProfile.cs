@@ -7,11 +7,24 @@ namespace Fantastic3D.Persistence.Entities
     {
         public EntityToDtoProfile()
         {
-            CreateMap<UserEntity, UserDto>().ReverseMap();
+            CreateMap<UserEntity, UserDto>();
+            CreateMap<UserDto, UserEntity>()
+                .AfterMap((src, dest) =>
+                    {
+                        if (dest.Password != string.Empty)
+                            dest.SetNewPassword(dest.Password);
+                    }
+                );
             CreateMap<TagTypeEntity, TagTypeDto>().ReverseMap();
             CreateMap<TagEntity, TagDto>().ReverseMap();
 
-            CreateMap<AssetEntity, AssetDto>().ReverseMap();
+            CreateMap<AssetEntity, AssetDto>();
+            CreateMap<AssetDto, AssetEntity>()
+                .AfterMap((src, dest) =>
+                {
+                    dest.Tags = new List<TagEntity>();
+                }
+                );
 
             CreateMap<OrderEntity, OrderDto>().ReverseMap();
             CreateMap<PurchaseEntity, PurchaseDto>().ReverseMap();

@@ -8,14 +8,13 @@ namespace Fantastic3D.Persistence.Entities
     /// <summary>
     /// Define an user, email, pass, billing adress and his role 
     /// </summary>
-    [DataContract]
-    public enum UserRole {[DataMember] Admin = 9, [DataMember] Premium = 5, [DataMember] Basic = 0};
+    public enum UserRole {Admin, Premium, Basic};
 
 
     [Table("User")]
     public class UserEntity : IManageable
     {
-        [Key, DataMember, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         [Required, StringLength(20)]
         public string Username { get; set; }

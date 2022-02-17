@@ -27,23 +27,16 @@ namespace Fantastic3D.GUI
 
         public async Task<IEnumerable<TModel>> GetAllAsync()
         {
-            try
-            {
-                var retrievedObjects = await _client.GetFromJsonAsync<IEnumerable<TDto>>(_endpointUrl);
+            var retrievedObjects = await _client.GetFromJsonAsync<IEnumerable<TDto>>(_endpointUrl);
 
-                if (retrievedObjects == null)
-                {
-                    throw new DataRetrieveException("Aucune donnée n'a été récupérée lors d'une opération de récupération générale.");
-                }
-                else
-                {
-                    var mappedObjects = _mapper.Map<IEnumerable<TModel>>(retrievedObjects);
-                    return mappedObjects;
-                }
-            }
-            catch (Exception ex)
+            if (retrievedObjects == null)
             {
-                throw new Exception($"{ex.Message}", ex);
+                throw new DataRetrieveException("Aucune donnée n'a été récupérée lors d'une opération de récupération générale.");
+            }
+            else
+            {
+                var mappedObjects = _mapper.Map<IEnumerable<TModel>>(retrievedObjects);
+                return mappedObjects;
             }
         }
 
