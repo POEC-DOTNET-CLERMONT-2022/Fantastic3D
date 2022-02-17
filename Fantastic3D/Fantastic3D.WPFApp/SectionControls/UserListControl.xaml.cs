@@ -59,6 +59,7 @@ namespace Fantastic3D.GUI.SectionControls
         private async void Button_AddUser(object sender, RoutedEventArgs e)
         {
             ((MainWindow)Application.Current.MainWindow).Navigator.NavigateTo(typeof(UserViewControl));
+            ((UserViewControl)((MainWindow)Application.Current.MainWindow).Navigator.CurrentViewControl.Content).EditableUser = new User();
         }
 
         private void Button_DeleteUser(object sender, RoutedEventArgs e)

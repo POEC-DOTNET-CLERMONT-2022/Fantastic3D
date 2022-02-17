@@ -7,7 +7,8 @@
              xmlns:converters="clr-namespace:Fantastic3D.GUI.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
-             x:Name="root">
+             x:Name="root"
+             Loaded="View_Loaded">
              <UserControl.Resources>
                  <converters:UserRolesComboBoxConverter x:Key="UserRolesComboBoxConverter"/>
              </UserControl.Resources>
@@ -50,9 +51,9 @@
                         <TextBox x:Name="Address" Width="200" Margin="5" Text="{Binding BillingAddress}"  />
                     </WrapPanel>
                     <WrapPanel  Margin="5">
-                        <Button Content="Ajouter" Width="105" Margin="5" Cursor="Hand" Click="Button_Add"></Button>
-                        <Button Content="Sauvegarder" Width="105" Margin="5" Cursor="Hand" Click="Button_Save"></Button>
-                        <Button Content="Supprimer" Width="105" Margin="5" Cursor="Hand" Click="Button_Delete" ></Button>
+                        
+                        <Button x:Name="ValidationButton" Content="Sauvegarder" Width="105" Margin="5" Cursor="Hand" Click="Button_Save"></Button>
+                        <Button x:Name="DeletionButton" Content="Supprimer" Width="105" Margin="5" Cursor="Hand" Click="Button_Delete" ></Button>
                     </WrapPanel>
                 </StackPanel>
                 <StackPanel Grid.Column="1" Margin="30" Width="200" >

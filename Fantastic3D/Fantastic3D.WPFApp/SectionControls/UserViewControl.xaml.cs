@@ -65,11 +65,26 @@ namespace Fantastic3D.GUI.SectionControls
             ((MainWindow)Application.Current.MainWindow).Navigator.NavigateTo(typeof(ModelListControl)); 
         }
 
-        private void Button_Save(object sender, RoutedEventArgs e)
+        private async void Button_Save(object sender, RoutedEventArgs e)
         {
+            if (EditableUser.Id == 0)
+            {
+                try
+                {
+                    await _dataSource.AddAsync(EditableUser);
+                    MessageBox.Show("Ajouté avec succès", "ADD", MessageBoxButton.OK, MessageBoxImage.Information);
+                    ((MainWindow)Application.Current.MainWindow).Navigator.NavigateTo(typeof(UserListControl));
+
+                }
+                catch (DataRecordException ex)
+                {
+                    MessageBox.Show(ex.Message, "Erreur lors de l'ajout", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            else
             if (MessageBox.Show($"Voulez-vous vraiment Editer {EditableUser.Username} ?",
-                    "Suppression", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
-                _dataSource.UpdateAsync(EditableUser.Id, EditableUser);
+                    "Mise à jour (copier collé méchant)", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+               await _dataSource.UpdateAsync(EditableUser.Id, EditableUser);
             ((MainWindow)Application.Current.MainWindow).Navigator.NavigateTo(typeof(UserListControl));
         }
 
@@ -82,35 +97,17 @@ namespace Fantastic3D.GUI.SectionControls
                     _dataSource.DeleteAsync(EditableUser.Id);
                 ((MainWindow)Application.Current.MainWindow).Navigator.NavigateTo(typeof(UserListControl));
             }
-            catch
+            catch(DataRecordException ex)
             {
-
+                MessageBox.Show(ex.ToString(), "Erreur lors de la suppression", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             
         }
 
-        private void Button_Add(object sender, RoutedEventArgs e)
+        private void View_Loaded(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                User newUser = new User();
-                newUser.Username = Username.Text;
-                newUser.FirstName = FirstName.Text;
-                newUser.LastName = LastName.Text;
-                newUser.Email = Email.Text;
-                newUser.Password = Password.Text;
-                newUser.Role = UserRole.Basic; // ComboBoxRole.SelectedItem;
-                newUser.BillingAddress = Address.Text;
-
-                if (MessageBox.Show($"Voulez-vous vraiment Ajouter {newUser.Username} ?",
-                    "Suppression", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
-                    _dataSource.AddAsync(newUser);
-                ((MainWindow)Application.Current.MainWindow).Navigator.NavigateTo(typeof(UserListControl));
-            }
-            catch
-            {
-
-            }
+            ValidationButton.Content = (EditableUser.Id == 0) ? "Ajouter" : "Sauvegarder";
+            DeletionButton.Visibility = (EditableUser.Id == 0) ? Visibility.Hidden : Visibility.Visible;
         }
     }
 }
