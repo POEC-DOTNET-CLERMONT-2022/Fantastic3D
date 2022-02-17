@@ -4,7 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Fantastic3D.GUI.SectionControls"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
+             Loaded="Window_Loaded"
              d:DesignHeight="450" d:DesignWidth="800">
     
     <StackPanel Background="{DynamicResource MaterialDesignBackground}">
@@ -14,9 +15,9 @@
             <Label Content="Filtres" />
             <ComboBox Width="100" />
             </WrapPanel>
-            <DataGrid Margin="10" Height="250" >
+            <DataGrid  Margin="10" Height="250" SelectedItem="{Binding Path=CurrentItem}" ItemsSource="{Binding Items}"  >
                 <DataGrid.Columns >
-                    <DataGridTextColumn Header="De/Pour" />
+                    <DataGridTextColumn Header="De/Pour" Binding="{Binding Note}" />
                     <DataGridTextColumn Header="Commentaires" />
                     <DataGridTextColumn Header="Note" />
                     <DataGridTextColumn Header="Publié" />

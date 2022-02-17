@@ -58,19 +58,7 @@ namespace Fantastic3D.GUI.SectionControls
 
         private async void Button_AddUser(object sender, RoutedEventArgs e)
         {
-            //User userToAdd = new User();
-            //userToAdd.Username = Username.Text;
-            //userToAdd.FirstName = FirstName.Text;
-            //userToAdd.LastName = LastName.Text;
-            //userToAdd.Email = Email.Text;
-            //userToAdd.Password = "";
-            //userToAdd.Role = UserRole.Basic;
-            //userToAdd.BillingAddress = BillingAddress.Text;
-
-
-            //await _dataSource.AddAsync(CurrentUser);
-            //LoadUsers();
-            //MessageBox.Show("Ajouté avec succès", "ADD", MessageBoxButton.OK, MessageBoxImage.Information);
+            ((MainWindow)Application.Current.MainWindow).Navigator.NavigateTo(typeof(UserViewControl));
         }
 
         private void Button_DeleteUser(object sender, RoutedEventArgs e)
@@ -90,19 +78,19 @@ namespace Fantastic3D.GUI.SectionControls
 
         private void Button_EditUser(object sender, RoutedEventArgs e)
         {
-            User newUpdat = new User();
-            newUpdat.Id = UsersList.CurrentUser.Id;
-            newUpdat.Username = Username.Text;
-            newUpdat.FirstName = FirstName.Text;
-            newUpdat.LastName = LastName.Text;
-            newUpdat.Email = Email.Text;
-            newUpdat.Password = "";
-            newUpdat.Role = UserRole.Basic;
-            newUpdat.BillingAddress = BillingAddress.Text;
+            //User newUpdat = new User();
+            //newUpdat.Id = UsersList.CurrentUser.Id;
+            //newUpdat.Username = Username.Text;
+            //newUpdat.FirstName = FirstName.Text;
+            //newUpdat.LastName = LastName.Text;
+            //newUpdat.Email = Email.Text;
+            //newUpdat.Password = "";
+            //newUpdat.Role = UserRole.Basic;
+            //newUpdat.BillingAddress = BillingAddress.Text;
 
-            if (MessageBox.Show($"Voulez-vous vraiment Editer {UsersList.CurrentUser.Username} ?",
-                    "Suppression", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
-                _dataSource.UpdateAsync(UsersList.CurrentUser.Id, newUpdat);
+            //if (MessageBox.Show($"Voulez-vous vraiment Editer {UsersList.CurrentUser.Username} ?",
+            //        "Suppression", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            //    _dataSource.UpdateAsync(UsersList.CurrentUser.Id, newUpdat);
         }
     }
 }

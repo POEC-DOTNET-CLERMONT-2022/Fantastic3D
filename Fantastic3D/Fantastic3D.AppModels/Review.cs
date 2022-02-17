@@ -14,14 +14,9 @@ namespace Fantastic3D.AppModels
         private bool IsPublished { get; set; }
         public int Asset { get; set; }
         public int Author { get; set; }
-        public Review(int id, int note, string comment, bool isPublished, int asset, int author)
+        public Review()
         {
-            Id = id;
-            Note = note;
-            Comment = comment;
-            IsPublished = isPublished;
-            Asset = asset;
-            Author = author;
+
         }
         public override string ToString()
         {

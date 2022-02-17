@@ -22,37 +22,37 @@
                 <StackPanel >
                     <WrapPanel>
                         <Label Margin="5" Content="Login : "/>
-                        <TextBox x:Name="Plop" Width="150"  Text="{Binding Username}" />
+                        <TextBox x:Name="Username" Width="150"  Text="{Binding Username}" />
                     </WrapPanel>
                     <WrapPanel>
                         <Label Margin="5" Content="Mot de passe : "/>
-                        <TextBox Width="150" Text="{Binding Password}" />
+                        <TextBox x:Name="Password" Width="150" Text="{Binding Password}" />
                     </WrapPanel>
                     <WrapPanel>
                         <Label Margin="5" Content="Email : "/>
-                        <TextBox Width="150" Text="{Binding Email}" />
+                        <TextBox x:Name="Email" Width="150" Text="{Binding Email}" />
                     </WrapPanel>
                     <WrapPanel>
                         <Label Margin="5" Content="Nom : "/>
-                        <TextBox Width="150" Text="{Binding FirstName}" />
+                        <TextBox x:Name="FirstName" Width="150" Text="{Binding FirstName}" />
                     </WrapPanel>
                     <WrapPanel>
                         <Label Margin="5" Content="Prénom : "/>
-                        <TextBox Width="150" Text="{Binding LastName}" />
+                        <TextBox x:Name="LastName" Width="150" Text="{Binding LastName}" />
                     </WrapPanel>
                     <WrapPanel>
                         <Label Margin="5" Content="Role : "/>
-                        <ComboBox  ItemsSource="{Binding Roles}" SelectedItem="{Binding Role, Converter={StaticResource UserRolesComboBoxConverter}}">
-                            
+                        <ComboBox x:Name="ComboBoxRole" ItemsSource="{Binding Roles}" SelectedItem="{Binding Role, Converter={StaticResource UserRolesComboBoxConverter}}">
                         </ComboBox>
                     </WrapPanel>
                     <WrapPanel>
                         <Label Margin="5" Content="Addresse: "/>
-                        <TextBox Width="200" Margin="5" Text="{Binding BillingAddress}"  />
+                        <TextBox x:Name="Address" Width="200" Margin="5" Text="{Binding BillingAddress}"  />
                     </WrapPanel>
                     <WrapPanel  Margin="5">
-                        <Button Content="Sauvegarder" Width="110" Margin="10" Cursor="Hand" Click="Button_Save"></Button>
-                        <Button Content="Supprimer" Width="110" Margin="10" Cursor="Hand"></Button>
+                        <Button Content="Ajouter" Width="105" Margin="5" Cursor="Hand" Click="Button_Add"></Button>
+                        <Button Content="Sauvegarder" Width="105" Margin="5" Cursor="Hand" Click="Button_Save"></Button>
+                        <Button Content="Supprimer" Width="105" Margin="5" Cursor="Hand" Click="Button_Delete" ></Button>
                     </WrapPanel>
                 </StackPanel>
                 <StackPanel Grid.Column="1" Margin="30" Width="200" >
@@ -62,9 +62,9 @@
                         <TextBlock Width="80" Margin="5" Text="{Binding Id}"  />
                     </WrapPanel>
                     <StackPanel HorizontalAlignment="Left" >
-                        <Button Content="Voir Modèles"  Click="Button_Modele" Cursor="Hand"></Button>
-                        <Button Content="Voir Avis"  Click="Button_Avis" Cursor="Hand"></Button>
-                        <Button Content="Voir Commandes" Cursor="Hand" Click="Button_Commande"></Button>
+                        <Button Content="Voir Modèles" Margin="5"  Click="Button_Modele" Cursor="Hand"></Button>
+                        <Button Content="Voir Avis" Margin="5" Click="Button_Avis" Cursor="Hand"></Button>
+                        <Button Content="Voir Commandes" Margin="5" Cursor="Hand" Click="Button_Commande"></Button>
                     </StackPanel>
                 </StackPanel>
             </Grid>

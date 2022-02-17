@@ -30,12 +30,13 @@ namespace Fantastic3D.GUI
             Navigator.RegisterViews(new List<Control>()
             {
                 new ModelViewerControl(),
-                new UserViewControl(),
                 new ModelListControl(),
                 new HomeScreenControl(),
                 new ReviewControl(),
                 new UserListControl(),
-                new OrderListControl()
+                new UserViewControl(),
+                new OrderListControl(),
+                new OrderViewControl()
             });
             Navigator.CurrentViewControl = MainContent;
 

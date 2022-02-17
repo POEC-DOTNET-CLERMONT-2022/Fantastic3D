@@ -1,5 +1,9 @@
-﻿using System;
+﻿using Fantastic3D.AppModels;
+using Fantastic3D.DataManager;
+using Fantastic3D.Dto;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,11 +24,43 @@ namespace Fantastic3D.GUI.SectionControls
     /// </summary>
     public partial class ReviewControl : UserControl
     {
+        public ObservableList<Review> ReviewsList { get; set; } = new ObservableList<Review>();
+        //public Asset SelectedAsset { get; set; }
+        public IDataManager<Review, ReviewDto> _dataSource = ((App)Application.Current).Services.GetService<IDataManager<Review, ReviewDto>>();
+
         public ReviewControl()
         {
             InitializeComponent();
-            
+            DataContext = ReviewsList;
         }
 
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            LoadReviews();
+        }
+
+        private async void LoadReviews()
+        {
+            try
+            {
+                var Reviews = await _dataSource.GetAllAsync();
+                if (Reviews != null && Reviews.Any())
+                {
+                    ReviewsList.Items = new ObservableCollection<Review>(Reviews);
+
+                        MessageBox.Show($"{Reviews.Count()} review trouvés.", "Connexion réussie", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                }
+                else
+                {
+                    MessageBox.Show($"Aucun review trouvé. La base de donnée est peut-être vide ou l'API est innaccessible.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Source de données non accessible", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
     }
 }

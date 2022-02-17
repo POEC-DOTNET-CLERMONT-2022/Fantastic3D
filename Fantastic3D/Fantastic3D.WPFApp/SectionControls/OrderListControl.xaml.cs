@@ -3,6 +3,7 @@ using Fantastic3D.DataManager;
 using Fantastic3D.Dto;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,6 +30,32 @@ namespace Fantastic3D.GUI.SectionControls
         public OrderListControl()
         {
             InitializeComponent();
+             DataContext = OrdersList;
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            LoadOrders();
+        }
+        private async void LoadOrders()
+        {
+            try
+            {
+                var Orders = await _dataSource.GetAllAsync();
+                if (Orders != null && Orders.Any())
+                {
+                    OrdersList.Items = new ObservableCollection<Order>(Orders);
+
+                }
+                else
+                {
+                    MessageBox.Show($"Aucune commande trouvé. La base de donnée est peut-être vide ou l'API est innaccessible.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Source de données non accessible", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

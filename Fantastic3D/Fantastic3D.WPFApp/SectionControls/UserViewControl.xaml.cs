@@ -70,6 +70,47 @@ namespace Fantastic3D.GUI.SectionControls
             if (MessageBox.Show($"Voulez-vous vraiment Editer {EditableUser.Username} ?",
                     "Suppression", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
                 _dataSource.UpdateAsync(EditableUser.Id, EditableUser);
+            ((MainWindow)Application.Current.MainWindow).Navigator.NavigateTo(typeof(UserListControl));
+        }
+
+        private void Button_Delete(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (MessageBox.Show($"Voulez-vous vraiment supprimer {EditableUser.Username} ?",
+                    "Suppression", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                    _dataSource.DeleteAsync(EditableUser.Id);
+                ((MainWindow)Application.Current.MainWindow).Navigator.NavigateTo(typeof(UserListControl));
+            }
+            catch
+            {
+
+            }
+            
+        }
+
+        private void Button_Add(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                User newUser = new User();
+                newUser.Username = Username.Text;
+                newUser.FirstName = FirstName.Text;
+                newUser.LastName = LastName.Text;
+                newUser.Email = Email.Text;
+                newUser.Password = Password.Text;
+                newUser.Role = UserRole.Basic; // ComboBoxRole.SelectedItem;
+                newUser.BillingAddress = Address.Text;
+
+                if (MessageBox.Show($"Voulez-vous vraiment Ajouter {newUser.Username} ?",
+                    "Suppression", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                    _dataSource.AddAsync(newUser);
+                ((MainWindow)Application.Current.MainWindow).Navigator.NavigateTo(typeof(UserListControl));
+            }
+            catch
+            {
+
+            }
         }
     }
 }

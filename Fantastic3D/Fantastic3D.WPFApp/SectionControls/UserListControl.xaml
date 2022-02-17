@@ -9,6 +9,9 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <StackPanel Background="{DynamicResource MaterialDesignBackground}"  >
         <TextBlock DockPanel.Dock="Top" FontSize="30"  HorizontalAlignment="Center">Gestion des utilisateurs</TextBlock>
+        <WrapPanel HorizontalAlignment="Center">
+            <Button Content="Ajouter" Height="24" Margin="5" FontSize="12" Click="Button_AddUser" Cursor="Hand"></Button>
+        </WrapPanel>
         <DataGrid x:Name="UserDataGrid" Margin="5" Height="150" SelectedItem="{Binding Path=CurrentUser}" ItemsSource="{Binding Users}" MouseDoubleClick="DataGrid_MouseDoubleClick"  AutoGenerateColumns="False" IsReadOnly="True" Cursor="IBeam" >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Psedo" Binding="{Binding Username}"/>
@@ -16,12 +19,7 @@
                 <DataGridTextColumn Header="Nom" Binding="{Binding FirstName}"/>
                 <DataGridTextColumn Header="Prénom" Binding="{Binding LastName}"/>
                 <DataGridTextColumn Header="Role" Binding="{Binding Role}"/>
-                <DataGridTextColumn Header="Jennifer"  />
             </DataGrid.Columns>
         </DataGrid>
-        
-        <WrapPanel HorizontalAlignment="Center">
-            <Button Content="Ajouter" Height="24" Margin="5" FontSize="12" Click="Button_AddUser" Cursor="Hand"></Button>
-        </WrapPanel>
     </StackPanel>
 </UserControl>
