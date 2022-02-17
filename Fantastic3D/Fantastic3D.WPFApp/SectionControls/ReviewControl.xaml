@@ -15,7 +15,7 @@
             <Label Content="Filtres" />
             <ComboBox Width="100" />
             </WrapPanel>
-            <DataGrid  Margin="10" Height="250" SelectedItem="{Binding Path=CurrentItem}" ItemsSource="{Binding Items}"  >
+            <DataGrid  Margin="10" Height="265" SelectedItem="{Binding Path=CurrentItem}" ItemsSource="{Binding Items}"  >
                 <DataGrid.Columns >
                     <DataGridTextColumn Header="De/Pour" Binding="{Binding Note}" />
                     <DataGridTextColumn Header="Commentaires" />

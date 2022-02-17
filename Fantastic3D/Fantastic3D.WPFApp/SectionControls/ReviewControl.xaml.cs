@@ -47,9 +47,7 @@ namespace Fantastic3D.GUI.SectionControls
                 if (Reviews != null && Reviews.Any())
                 {
                     ReviewsList.Items = new ObservableCollection<Review>(Reviews);
-
                         MessageBox.Show($"{Reviews.Count()} review trouvés.", "Connexion réussie", MessageBoxButton.OK, MessageBoxImage.Information);
-
                 }
                 else
                 {

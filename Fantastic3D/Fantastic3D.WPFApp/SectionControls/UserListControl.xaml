@@ -12,7 +12,7 @@
         <WrapPanel HorizontalAlignment="Center">
             <Button Content="Ajouter" Height="24" Margin="5" FontSize="12" Click="Button_AddUser" Cursor="Hand"></Button>
         </WrapPanel>
-        <DataGrid x:Name="UserDataGrid" Margin="5" Height="150" SelectedItem="{Binding Path=CurrentUser}" ItemsSource="{Binding Users}" MouseDoubleClick="DataGrid_MouseDoubleClick"  AutoGenerateColumns="False" IsReadOnly="True" Cursor="IBeam" >
+        <DataGrid x:Name="UserDataGrid" Margin="10" Height="260" SelectedItem="{Binding Path=CurrentUser}" ItemsSource="{Binding Users}" MouseDoubleClick="DataGrid_MouseDoubleClick"  AutoGenerateColumns="False" IsReadOnly="True" Cursor="IBeam" >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Psedo" Binding="{Binding Username}"/>
                 <DataGridTextColumn Header="Email" Binding="{Binding Email}"/>
