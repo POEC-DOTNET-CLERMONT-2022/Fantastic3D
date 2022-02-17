@@ -14,7 +14,6 @@ namespace Fantastic3D.Tags
         public TagManager( IDataHandler<TagEntity> dataHandler, List<TagTypeEntity> tagTypes)
         {
             _dataHandler = dataHandler;
-            //_tagTypes = tagTypes;
         }
 
         public List<TagEntity> listTag
