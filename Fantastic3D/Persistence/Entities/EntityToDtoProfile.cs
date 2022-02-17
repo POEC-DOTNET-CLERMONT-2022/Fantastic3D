@@ -18,7 +18,13 @@ namespace Fantastic3D.Persistence.Entities
             CreateMap<TagTypeEntity, TagTypeDto>().ReverseMap();
             CreateMap<TagEntity, TagDto>().ReverseMap();
 
-            CreateMap<AssetEntity, AssetDto>().ReverseMap();
+            CreateMap<AssetEntity, AssetDto>();
+            CreateMap<AssetDto, AssetEntity>()
+                .AfterMap((src, dest) =>
+                {
+                    dest.Tags = new List<TagEntity>();
+                }
+                );
 
             CreateMap<OrderEntity, OrderDto>().ReverseMap();
             CreateMap<PurchaseEntity, PurchaseDto>().ReverseMap();
