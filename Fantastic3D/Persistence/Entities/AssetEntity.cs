@@ -34,7 +34,7 @@ namespace Fantastic3D.Persistence.Entities
         //}
         public int CreatorId { get; set; }
         public PublicationStatus Status { get; set; }
-        public virtual UserEntity Creator { get; private set; }
+        public virtual UserEntity Creator { get; set; }
         public virtual ICollection<ReviewEntity> Reviews { get; private set; }
 
         public AssetEntity()
