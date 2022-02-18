@@ -34,11 +34,20 @@
                       materialDesign:HintAssist.Hint="Nom du modèle"
                       Style="{StaticResource MaterialDesignFilledTextBox}"
                       VerticalAlignment="Center" Cursor="IBeam"/>
-                    <TextBox
-                      Text="{Binding CurrentAsset}"
+                    <DockPanel>
+                        <TextBox DockPanel.Dock="Left"
+                                 MinWidth="200"
+                      Text="{Binding CurrentAsset.CreatorName}"
                       materialDesign:HintAssist.Hint="Créateur"
                       Style="{StaticResource MaterialDesignFilledTextBox}"
                       VerticalAlignment="Center" IsEnabled="False" Cursor="IBeam"/>
+                        <Button DockPanel.Dock="Right" x:Name="CheckUserButton" Height="30" Width="170" Click="CheckUserButton_Click" Cursor="Hand">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="AccountSearch" Margin="0,0,10,0"/>
+                                <TextBlock Text="Voir Utilisateur"/>
+                            </StackPanel>
+                        </Button>
+                    </DockPanel>
                     <WrapPanel Orientation="Horizontal">
                         <ComboBox
                                 x:Name="LicenseComboBox"
