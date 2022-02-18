@@ -13,6 +13,7 @@ namespace Fantastic3D.AppModels
         public bool IsPaidToCreator { get; set; }
         public float PurchasePrice { get; set; }
         public int AssetId { get; set; }
+        public string AssetName { get; set; }
 
         public Purchase()
         {

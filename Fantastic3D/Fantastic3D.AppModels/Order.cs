@@ -9,12 +9,12 @@ namespace Fantastic3D.AppModels
     {
 
         public int Id { get; set; }
-
         public DateTime Date { get; private set; }
-
         public List<Purchase> PurchaseList { get; private set; }
-
         public int PurchasingUserId { get; private set; }
+        public string PurchasingUserName { get; private set; }
+        public int TotalPurchasedItems { get; private set; }
+        public float TotalPurchasePrice { get; private set; }
 
         public Order(int id, DateTime date, List<Purchase> purchaseList, int purchasingUserId)
         {

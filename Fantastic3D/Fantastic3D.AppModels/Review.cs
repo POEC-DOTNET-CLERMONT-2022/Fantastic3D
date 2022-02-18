@@ -12,20 +12,14 @@ namespace Fantastic3D.AppModels
         public int Note { get; set; }
         public string Comment { get; set; }
         private bool IsPublished { get; set; }
-        public int Asset { get; set; }
-        public int Author { get; set; }
-        public Review(int id, int note, string comment, bool isPublished, int asset, int author)
-        {
-            Id = id;
-            Note = note;
-            Comment = comment;
-            IsPublished = isPublished;
-            Asset = asset;
-            Author = author;
-        }
+        public int AssetId { get; set; }
+        public string AssetName { get; set; }
+        public int AuthorId { get; set; }
+        public string AuthorName { get; set; }
+
         public override string ToString()
         {
-            return $"Note : {Note}, Commentaire :{Comment}, Publié ?{IsPublished}, Asset :{Asset}, Auteur:{Author} ";
+            return $"Note : {Note}, Commentaire :{Comment}, Publié ?{IsPublished}, Asset :{AssetName}, Auteur:{AuthorName} ";
         }
 
     }
