@@ -80,5 +80,11 @@ namespace Fantastic3D.GUI.SectionControls
             CurrentAsset.Status = Asset.PublicationStatus.Rejected;
             _assetsSource.UpdateAsync(CurrentAsset.Id, CurrentAsset);
         }
+
+        private void CheckUserButton_Click(object sender, RoutedEventArgs e)
+        {
+            ((MainWindow)Application.Current.MainWindow).Navigator.NavigateTo(typeof(UserViewControl));
+            // TODO : Passer un ID à UserViewControl pour afficher l'utilisateur par ID (CurrentAsset.CreatorId)
+        }
     }
 }
