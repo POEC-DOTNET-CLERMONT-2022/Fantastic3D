@@ -18,7 +18,8 @@ namespace Fantastic3D.AppModels
         public string PicturePath { get; set; }
         public ICollection<Tag> Tags { get; private set; }
         public PublicationStatus Status { get; set; }
-        public User Creator { get; private set; }
+        public string CreatorName { get; set; }
+        public int CreatorId { get; set; }
         //public ICollection<Review> Reviews { get; private set; }
 
         public Asset()

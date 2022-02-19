@@ -13,7 +13,7 @@
         <DataGrid x:Name="AssetDataGrid" Height="289" SelectedItem="{Binding Path=SelectedAsset}" ItemsSource="{Binding Items}"  Width="654" AutoGenerateColumns="False" IsReadOnly="True" MouseDoubleClick="DataGrid_MouseDoubleClick" SelectionChanged="DataGrid_SelectionChanged" Cursor="IBeam">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nom" Binding="{Binding Name}"/>
-                <DataGridTextColumn Header="Créateur" Binding="{Binding Creator}"/>
+                <DataGridTextColumn Header="Créateur" Binding="{Binding CreatorName}"/>
                 <DataGridTemplateColumn Header="Prix">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

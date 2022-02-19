@@ -21,6 +21,10 @@ namespace Fantastic3D.Dto
         [DataMember]
         public int AssetId { get; set; }
         [DataMember]
+        public string AssetName { get; set; }
+        [DataMember]
         public int AuthorId { get; set; }
+        [DataMember]
+        public int AuthorName { get; set; }
     }
 }

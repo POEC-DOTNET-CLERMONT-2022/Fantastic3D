@@ -21,6 +21,8 @@ namespace Fantastic3D.Dto
         [DataMember]
         public string PicturePath { get; set; }
         [DataMember]
+        public string CreatorName { get; set; }
+        [DataMember]
         public int CreatorId { get; set; }
         [DataMember]
         /// <summary>
