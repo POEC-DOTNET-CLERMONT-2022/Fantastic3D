@@ -42,8 +42,8 @@ namespace Fantastic3D.GUI.SectionControls
         private async void LoadUsers()
         {
             try
-            { 
-                var Users =  await _dataSource.GetAllAsync();
+            {
+                var Users = await _dataSource.GetAllAsync();
                 if (Users != null)
                 {
                     UsersList.Users = new ObservableCollection<User>(Users);
@@ -75,23 +75,6 @@ namespace Fantastic3D.GUI.SectionControls
 
             }
             LoadUsers();
-        }
-
-        private void Button_EditUser(object sender, RoutedEventArgs e)
-        {
-            //User newUpdat = new User();
-            //newUpdat.Id = UsersList.CurrentUser.Id;
-            //newUpdat.Username = Username.Text;
-            //newUpdat.FirstName = FirstName.Text;
-            //newUpdat.LastName = LastName.Text;
-            //newUpdat.Email = Email.Text;
-            //newUpdat.Password = "";
-            //newUpdat.Role = UserRole.Basic;
-            //newUpdat.BillingAddress = BillingAddress.Text;
-
-            //if (MessageBox.Show($"Voulez-vous vraiment Editer {UsersList.CurrentUser.Username} ?",
-            //        "Suppression", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
-            //    _dataSource.UpdateAsync(UsersList.CurrentUser.Id, newUpdat);
         }
     }
 }

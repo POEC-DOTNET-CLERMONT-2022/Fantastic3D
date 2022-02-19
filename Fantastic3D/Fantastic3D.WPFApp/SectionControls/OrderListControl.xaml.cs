@@ -45,7 +45,6 @@ namespace Fantastic3D.GUI.SectionControls
                 if (Orders != null && Orders.Any())
                 {
                     OrdersList.Items = new ObservableCollection<Order>(Orders);
-
                 }
                 else
                 {

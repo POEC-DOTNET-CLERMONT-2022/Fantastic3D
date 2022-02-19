@@ -42,7 +42,9 @@
                         <TextBox x:Name="LastName" Width="150" Text="{Binding LastName}" />
                     </WrapPanel>
                     <WrapPanel>
+                       
                         <Label Margin="5" Content="Role : "/>
+                        
                         <ComboBox x:Name="ComboBoxRole" ItemsSource="{Binding Roles}" SelectedItem="{Binding Role, Converter={StaticResource UserRolesComboBoxConverter}}">
                         </ComboBox>
                     </WrapPanel>
