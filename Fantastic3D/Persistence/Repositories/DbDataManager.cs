@@ -69,11 +69,13 @@ namespace Fantastic3D.Persistence
                 throw new IdMismatchException("The ID in the endpoint doesn't match the ID of the object in the body and can potentially cause an update of the wrong object.");
             if(mappedObjectToUpdate is AssetEntity assetToUpdate)
             {
-                var assetInDb = await context.Set<AssetEntity>().SingleAsync(item => item.Id == assetToUpdate.Id);
-                if (assetToUpdate.CreatorId == 0)
-                    assetToUpdate.CreatorId = assetInDb.CreatorId;
-                if (!assetToUpdate.Tags.Any() && assetInDb.Tags.Any())
-                    assetToUpdate.Tags = assetInDb.Tags;
+                // TODO : s'assurer que les tags existant en Db ne sont pas perdus lors de l'update
+                //var assetInDb = await context.Set<AssetEntity>().SingleAsync(item => item.Id == assetToUpdate.Id);
+                //if (assetToUpdate.CreatorId == 0)
+                //    assetToUpdate.CreatorId = assetInDb.CreatorId;
+                //if (!assetToUpdate.Tags.Any() && assetInDb.Tags != null && assetInDb.Tags.Any())
+                //    assetToUpdate.Tags = assetInDb.Tags;
+                //assetInDb = assetToUpdate;
                 context.Set<AssetEntity>().Update(assetToUpdate);
             }
             else
