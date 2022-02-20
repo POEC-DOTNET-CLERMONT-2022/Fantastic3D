@@ -32,14 +32,20 @@ namespace Fantastic3D.Persistence
         {
             using LocalDbContext context = _contextFactory.CreateDbContext();
             var result = await context.Set<TEntity>().SingleAsync(item => item.Id == id);
-            return _mapper.Map<TTransfered>(result);
+            return _mapper.Map<TTransfered>(await ResolveLinkedEntities(result, context));
         }
 
         public async Task<IEnumerable<TTransfered>> GetAllAsync()
         {
             using LocalDbContext context = _contextFactory.CreateDbContext();
             var dataList = await context.Set<TEntity>().ToListAsync();
-            return dataList.Select(item => _mapper.Map<TTransfered>(item));
+            var resolvedList = new List<TEntity>();
+            foreach(var item in dataList)
+            {
+                var resolvedItem = await ResolveLinkedEntities(item, context);
+                resolvedList.Add(resolvedItem);
+            }
+            return resolvedList.Select(item => _mapper.Map<TTransfered>(item));
         }
 
         public async Task AddAsync(TTransfered objectToAdd)
@@ -63,11 +69,13 @@ namespace Fantastic3D.Persistence
                 throw new IdMismatchException("The ID in the endpoint doesn't match the ID of the object in the body and can potentially cause an update of the wrong object.");
             if(mappedObjectToUpdate is AssetEntity assetToUpdate)
             {
-                var assetInDb = await context.Set<AssetEntity>().SingleAsync(item => item.Id == assetToUpdate.Id);
-                if (assetToUpdate.CreatorId == 0)
-                    assetToUpdate.CreatorId = assetInDb.CreatorId;
-                if (!assetToUpdate.Tags.Any() && assetInDb.Tags.Any())
-                    assetToUpdate.Tags = assetInDb.Tags;
+                // TODO : s'assurer que les tags existant en Db ne sont pas perdus lors de l'update
+                //var assetInDb = await context.Set<AssetEntity>().SingleAsync(item => item.Id == assetToUpdate.Id);
+                //if (assetToUpdate.CreatorId == 0)
+                //    assetToUpdate.CreatorId = assetInDb.CreatorId;
+                //if (!assetToUpdate.Tags.Any() && assetInDb.Tags != null && assetInDb.Tags.Any())
+                //    assetToUpdate.Tags = assetInDb.Tags;
+                //assetInDb = assetToUpdate;
                 context.Set<AssetEntity>().Update(assetToUpdate);
             }
             else
@@ -90,6 +98,37 @@ namespace Fantastic3D.Persistence
                 throw new DataRecordException("Element to delete wasn't found");
             context.Set<TEntity>().Remove(dataToDelete);
             await context.SaveChangesAsync();
+        }
+
+        private async Task<TEntity> ResolveLinkedEntities(TEntity entity, LocalDbContext currentContext)
+        {
+            switch (entity)
+            {
+                case (AssetEntity asset):
+                    {
+                        asset.Creator = await currentContext.Set<UserEntity>().SingleAsync(user => user.Id == asset.CreatorId);
+                        return asset as TEntity;
+                    }
+                case (OrderEntity order):
+                    {
+                        order.PurchasingUser = await currentContext.Set<UserEntity>().SingleAsync(user => user.Id == order.PurchasingUserId);
+                        order.Purchases = await currentContext.Set<PurchaseEntity>().Where(purchase => purchase.OrderId == order.Id).ToListAsync();
+                        return order as TEntity;
+                    }
+                case (ReviewEntity review):
+                    {
+                        review.Asset = await currentContext.Set<AssetEntity>().SingleAsync(asset => asset.Id == review.AssetId);
+                        review.Author = await currentContext.Set<UserEntity>().SingleAsync(user => user.Id == review.AuthorId);
+                        return review as TEntity;
+                    }
+                case (TagEntity tag):
+                    {
+                        tag.TagType = await currentContext.Set<TagTypeEntity>().SingleAsync(tagType => tagType.Id == tag.TagTypeId);
+                        return tag as TEntity;
+                    }
+                default:
+                    return entity;
+            }
         }
     }
 }

@@ -5,24 +5,18 @@ namespace Fantastic3D.AppModels
     /// Define an order, the order date, the buyer and the list of his purchase
     /// </summary>
     
-    internal class Order : ObservableModel, IManageable
+    public class Order : ObservableModel, IManageable
     {
 
         public int Id { get; set; }
+        public DateTime Date { get;  set; }
 
-        public DateTime Date { get; private set; }
+        public int PurchasesCount { get;  set; }
+        public int PurchasingUserId { get;  set; }
+        public string PurchasingUserName { get;  set; }
+        public int TotalPurchasedItems { get;  set; }
+        public float TotalPurchasePrice { get;  set; }
 
-        public List<Purchase> PurchaseList { get; private set; }
-
-        public int PurchasingUserId { get; private set; }
-
-        public Order(int id, DateTime date, List<Purchase> purchaseList, int purchasingUserId)
-        {
-            Id = id;
-            Date = date;
-            PurchaseList = purchaseList;
-            PurchasingUserId = purchasingUserId;
-        }
 
         public override string ToString()
         {

@@ -15,10 +15,16 @@ namespace Fantastic3D.Persistence.Entities
         public int Id { get; set; }
         public DateTime Date { get; set; }
         public int PurchasingUserId { get; set; }
-        public virtual UserEntity PurchasingUser { get; private set; }
-        public virtual ICollection<PurchaseEntity> Purchases { get; private set; }
+        public virtual UserEntity PurchasingUser { get; set; }
+        public virtual ICollection<PurchaseEntity> Purchases { get; set; }
 
         public OrderEntity() {}
+
+        public OrderEntity(DateTime date, int purchasingUserId)
+        {
+            Date = date;
+            PurchasingUserId = purchasingUserId;
+        }
 
         public override string ToString()
         {

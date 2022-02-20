@@ -16,5 +16,11 @@ namespace Fantastic3D.Dto
         public int PurchasesCount { get; set; }
         [DataMember]
         public int PurchasingUserId { get; set; }
+        [DataMember]
+        public string PurchasingUserName { get; set; }
+        [DataMember]
+        public int TotalPurchasedItems { get; private set; }
+        [DataMember]
+        public float TotalPurchasePrice { get; private set; }
     }
 }

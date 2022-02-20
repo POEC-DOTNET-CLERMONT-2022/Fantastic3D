@@ -73,8 +73,9 @@ namespace Fantastic3D.GUI.SectionControls
 
         private void DataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            ((MainWindow)Application.Current.MainWindow).Navigator.NavigateTo(typeof(ModelViewerControl));
-            ((ModelViewerControl)((MainWindow)Application.Current.MainWindow).Navigator.CurrentViewControl.Content).CurrentAsset = (Asset)AssetDataGrid.CurrentItem;
+
+            ((MainWindow)Application.Current.MainWindow)
+                .Navigator.NavigateTo(typeof(ModelViewerControl), (Asset)AssetDataGrid.CurrentItem);
         }
     }
 }

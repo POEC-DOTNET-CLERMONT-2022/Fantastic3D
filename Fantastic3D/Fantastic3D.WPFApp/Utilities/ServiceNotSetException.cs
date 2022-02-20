@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace Fantastic3D.GUI.Utilities
 {
     [Serializable]
-    internal class ServiceNotSetException : Exception
+    public class ServiceNotSetException : Exception
     {
         public override string Message => "No suitable service was set for this type.";
         public ServiceNotSetException()

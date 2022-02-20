@@ -18,7 +18,11 @@ namespace Fantastic3D.Persistence.Entities
             CreateMap<TagTypeEntity, TagTypeDto>().ReverseMap();
             CreateMap<TagEntity, TagDto>().ReverseMap();
 
-            CreateMap<AssetEntity, AssetDto>();
+            CreateMap<AssetEntity, AssetDto>()
+                .ForMember(
+                    dest => dest.CreatorName,
+                    opt => opt.MapFrom(src => src.Creator.Username)
+                );
             CreateMap<AssetDto, AssetEntity>()
                 .AfterMap((src, dest) =>
                 {
@@ -26,9 +30,34 @@ namespace Fantastic3D.Persistence.Entities
                 }
                 );
 
-            CreateMap<OrderEntity, OrderDto>().ReverseMap();
-            CreateMap<PurchaseEntity, PurchaseDto>().ReverseMap();
-            CreateMap<ReviewEntity, ReviewDto>().ReverseMap();
+            CreateMap<OrderDto, OrderEntity>();
+            CreateMap<OrderEntity, OrderDto>()
+                .ForMember(
+                        dest => dest.PurchasingUserName ,
+                        opt => opt.MapFrom(src => src.PurchasingUser.Username)
+                    )
+                .ForMember(
+                        dest => dest.TotalPurchasedItems,
+                        opt => opt.MapFrom(src => src.Purchases.Count())
+                    )
+                .ForMember(
+                        dest => dest.TotalPurchasePrice,
+                        opt => opt.MapFrom(src => src.Purchases.Sum(p => p.PurchasePrice))
+                    );
+
+            CreateMap<PurchaseDto, PurchaseEntity>();
+            CreateMap<PurchaseEntity, PurchaseDto>()
+                .ForMember(
+                    dest => dest.AssetName,
+                    opt => opt.MapFrom(src => src.Asset.Name)
+                );
+
+            CreateMap<ReviewDto, ReviewEntity>();
+            CreateMap<ReviewEntity, ReviewDto>()
+                .ForMember(
+                    dest => dest.AuthorName,
+                    opt => opt.MapFrom(src => src.Author.Username)
+                );
         }
     }
 }

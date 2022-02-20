@@ -13,13 +13,13 @@ namespace Fantastic3D.AppModels
     {
         private ObservableCollection<T> items;
 
-        private T currentItem;
+        private T? currentItem;
         public T CurrentItem
         {
             get { return currentItem; }
             set
             {
-                if (!currentItem.Equals(value))
+                if (currentItem != null || !currentItem.Equals(value))
                 {
                     currentItem = value;
                     OnNotifyPropertyChanged();

@@ -4,9 +4,54 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Fantastic3D.GUI.SectionControls"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
+             x:Name="root"
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
-    </Grid>
+    <StackPanel Background="{DynamicResource MaterialDesignBackground}" DataContext="{Binding EditableOrder, ElementName=root}"   >
+
+        <WrapPanel HorizontalAlignment="Left" Margin="10, 5, 5,0" >
+            <TextBlock FontSize="30"  HorizontalAlignment="Left">Commandes</TextBlock>
+            <Button Style="{StaticResource MaterialDesignRaisedAccentButton}" materialDesign:ButtonAssist.CornerRadius="25" Content="Retour au commandes" Margin="50, 0, 0, 0" Height="40"  FontSize="12" Click="Button_Back" Cursor="Hand"></Button>
+        </WrapPanel>
+        <WrapPanel >
+            <GroupBox Margin="20" Height="160" Width="300" HorizontalAlignment="Left" Header="Détails"  >
+                <StackPanel>
+                    <StackPanel.Resources>
+                        <system:Double x:Key="IconSize">16</system:Double>
+                    </StackPanel.Resources>
+                    <WrapPanel>
+                        <Label   Margin="5" Content="Date D'achat: "  />
+                        <TextBlock x:Name="Date" Width="150"  Text="{Binding Date, StringFormat=d}" />
+                    </WrapPanel>
+                    <WrapPanel>
+                        <Label   Margin="5" Content="Acheteur:"  />
+                        <TextBlock x:Name="PurchasingUserName" Width="150"  Text="{Binding PurchasingUserName}" />
+                        <Button Margin="10, 0, 0, 0"  Tag="{Binding PurchasingUserId}" Click="ViewUserButton_Click"
+                                              Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryLightButton}"
+                                              ToolTip="Voir l'utilisateur qui a fait la commande"
+                                              IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Cursor="Hand">
+                            <materialDesign:PackIcon
+                                                Kind="UserDetails"
+                                                Height="{StaticResource IconSize}"
+                                                Width="{StaticResource IconSize}"/>
+                        </Button>
+                    </WrapPanel>
+                    <WrapPanel>
+                        <Label   Margin="5" Content="Total: "  />
+                        <TextBlock x:Name="TotalPurchasePrice" Width="150"  Text="{Binding TotalPurchasePrice}" />
+                    </WrapPanel>
+                </StackPanel>
+            </GroupBox>
+            <DataGrid  x:Name="OrderViewDataGrid" Margin="20"   AutoGenerateColumns="False"  IsReadOnly="True" Cursor="IBeam" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Model" Binding="{Binding AssetName}"  />
+                    <DataGridTextColumn Header="Prix" Binding="{Binding TotalPurchasePrice}"/>
+                    <DataGridTextColumn Header="Voir" />
+
+                </DataGrid.Columns>
+            </DataGrid>
+        </WrapPanel>
+    </StackPanel>
 </UserControl>

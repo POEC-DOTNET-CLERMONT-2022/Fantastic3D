@@ -1,5 +1,9 @@
-﻿using System;
+﻿using Fantastic3D.AppModels;
+using Fantastic3D.DataManager;
+using Fantastic3D.Dto;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +24,44 @@ namespace Fantastic3D.GUI.SectionControls
     /// </summary>
     public partial class OrderListControl : UserControl
     {
+        //public ObservableList<Order> OrdersList { get; set; } = new ObservableList<Order>();
+        public OrderList OrdersList { get; set; } = new OrderList();
+        public IDataManager<Order, OrderDto> _dataSource = ((App)Application.Current).Services.GetService<IDataManager<Order, OrderDto>>();
+
         public OrderListControl()
         {
             InitializeComponent();
+            DataContext = OrdersList;
+        }
+
+        private void DataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            ((MainWindow)Application.Current.MainWindow).Navigator.NavigateTo(typeof(OrderViewControl));
+            ((OrderViewControl)((MainWindow)Application.Current.MainWindow).Navigator.CurrentViewControl.Content).EditableOrder = OrdersList.CurrentOrder;
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            LoadOrders();
+        }
+        private async void LoadOrders()
+        {
+            try
+            {
+                var Orders = await _dataSource.GetAllAsync();
+                if (Orders != null && Orders.Any())
+                {
+                    OrdersList.Orders = new ObservableCollection<Order>(Orders);
+                }
+                else
+                {
+                    MessageBox.Show($"Aucune commande trouvé. La base de donnée est peut-être vide ou l'API est innaccessible.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Source de données non accessible", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

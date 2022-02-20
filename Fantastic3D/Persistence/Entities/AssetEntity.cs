@@ -20,21 +20,9 @@ namespace Fantastic3D.Persistence.Entities
         public string FilePath { get; set; }
         public string PicturePath { get; set; }
         public List<TagEntity> Tags { get; set; }
-        //private List<TagEntity> _tags;
-        //public List<TagEntity> Tags {
-        //    get { return _tags == null ? new List<TagEntity>() : _tags; }
-        //    set
-        //    {
-        //        if(_tags == null)
-        //        {
-        //            _tags = new List<TagEntity>();
-        //        }
-        //        _tags.AddRange(value);
-        //    }
-        //}
         public int CreatorId { get; set; }
         public PublicationStatus Status { get; set; }
-        public virtual UserEntity Creator { get; private set; }
+        public virtual UserEntity Creator { get; set; }
         public virtual ICollection<ReviewEntity> Reviews { get; private set; }
 
         public AssetEntity()

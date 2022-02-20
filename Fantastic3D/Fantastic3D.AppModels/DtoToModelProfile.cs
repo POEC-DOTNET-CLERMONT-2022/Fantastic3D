@@ -16,8 +16,7 @@ namespace Fantastic3D.AppModels
             CreateMap<TagTypeDto, TagType>().ReverseMap();
             CreateMap<TagDto, Tag>().ReverseMap();
             CreateMap<AssetDto, Asset>();
-            CreateMap<Asset, AssetDto>()
-                .ForMember(dest => dest.CreatorId, opt => opt.MapFrom(src => src.Creator.Id));
+            CreateMap<Asset, AssetDto>();
             CreateMap<OrderDto, Order>().ReverseMap();
             CreateMap<PurchaseDto, Purchase>().ReverseMap();
             CreateMap<ReviewDto, Review>().ReverseMap();
