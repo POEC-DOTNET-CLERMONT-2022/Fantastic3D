@@ -17,7 +17,7 @@ namespace Fantastic3D.Dto
         [DataMember]
         public int PurchasingUserId { get; set; }
         [DataMember]
-        public int PurchasingUserName { get; set; }
+        public string PurchasingUserName { get; set; }
         [DataMember]
         public int TotalPurchasedItems { get; private set; }
         [DataMember]
