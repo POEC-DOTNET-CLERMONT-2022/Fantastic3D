@@ -18,8 +18,8 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Psedo" Binding="{Binding Username}"/>
                 <DataGridTextColumn Header="Email" Binding="{Binding Email}"/>
-                <DataGridTextColumn Header="Nom" Binding="{Binding FirstName}"/>
-                <DataGridTextColumn Header="Prénom" Binding="{Binding LastName}"/>
+                <DataGridTextColumn Header="Prénom" Binding="{Binding FirstName}"/>
+                <DataGridTextColumn Header="Nom" Binding="{Binding LastName}"/>
                 <DataGridTextColumn Header="Role" Binding="{Binding Role}"/>
             </DataGrid.Columns>
         </DataGrid>
