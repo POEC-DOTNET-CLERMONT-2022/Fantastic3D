@@ -54,5 +54,13 @@ namespace Fantastic3D.GUI.SectionControls
         {
             ((MainWindow)Application.Current.MainWindow).Navigator.NavigateTo(typeof(OrderListControl));
         }
+        private void ViewUserButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (((Button)sender).Tag != null && ((Button)sender).Tag is int userId)
+            {
+                ((MainWindow)Application.Current.MainWindow)
+                    .Navigator.NavigateTo(typeof(UserViewControl), userId);
+            }
+        }
     }
 }
