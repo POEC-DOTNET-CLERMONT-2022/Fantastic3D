@@ -78,10 +78,14 @@
                     <DataGridTemplateColumn  Header="Avis publié ?">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <ToggleButton
+                                <ToggleButton  x:Name="Ispublished"
                                   Style="{StaticResource MaterialDesignSwitchAccentToggleButton}"
-                                  ToolTip="MaterialDesignSwitchAccentToggleButton"
-                                  IsChecked="{Binding IsPublished}" />
+                                  ToolTip="MaterialDesignSwitchAccentToggleButton" IsThreeState="True" 
+                                    
+                                  IsChecked="{Binding IsPublished}" Click="ToggleButton_Click"
+                                   />
+                                  <!--Checked="ToggleButton_Click"
+                                  Unchecked="ToggleButton_Click"-->   
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
