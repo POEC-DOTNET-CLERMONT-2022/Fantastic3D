@@ -75,5 +75,23 @@ namespace Fantastic3D.GUI.SectionControls
                 MessageBox.Show(ex.Message, "Source de données non accessible", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+        private void ViewUserButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (((Button)sender).Tag != null && ((Button)sender).Tag is int userId)
+            {
+                ((MainWindow)Application.Current.MainWindow)
+                    .Navigator.NavigateTo(typeof(UserViewControl), userId);
+            }
+        }
+
+        private void ViewAssetButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (((Button)sender).Tag != null && ((Button)sender).Tag is int assetId)
+            {
+                ((MainWindow)Application.Current.MainWindow)
+                    .Navigator.NavigateTo(typeof(ModelViewerControl), assetId);
+            }
+        }
     }
 }

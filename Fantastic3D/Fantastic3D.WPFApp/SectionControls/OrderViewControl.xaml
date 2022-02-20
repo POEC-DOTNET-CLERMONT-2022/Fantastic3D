@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Fantastic3D.GUI.SectionControls"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              x:Name="root"
@@ -16,18 +17,30 @@
         </WrapPanel>
         <WrapPanel >
             <GroupBox Margin="20" Height="160" Width="300" HorizontalAlignment="Left" Header="Détails"  >
-                <StackPanel  >
+                <StackPanel>
+                    <StackPanel.Resources>
+                        <system:Double x:Key="IconSize">16</system:Double>
+                    </StackPanel.Resources>
                     <WrapPanel>
                         <Label   Margin="5" Content="Date D'achat: "  />
-                        <TextBox x:Name="Date" Width="150"  Text="{Binding Date}" />
+                        <TextBlock x:Name="Date" Width="150"  Text="{Binding Date, StringFormat=d}" />
                     </WrapPanel>
                     <WrapPanel>
                         <Label   Margin="5" Content="Acheteur:"  />
-                        <TextBox x:Name="PurchasingUserName" Width="150"  Text="{Binding PurchasingUserName}" />
+                        <TextBlock x:Name="PurchasingUserName" Width="150"  Text="{Binding PurchasingUserName}" />
+                        <Button Margin="10, 0, 0, 0"  Tag="{Binding PurchasingUserId}" Click="ViewUserButton_Click"
+                                              Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryLightButton}"
+                                              ToolTip="Voir l'utilisateur qui a fait la commande"
+                                              IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Cursor="Hand">
+                            <materialDesign:PackIcon
+                                                Kind="UserDetails"
+                                                Height="{StaticResource IconSize}"
+                                                Width="{StaticResource IconSize}"/>
+                        </Button>
                     </WrapPanel>
                     <WrapPanel>
                         <Label   Margin="5" Content="Total: "  />
-                        <TextBox x:Name="TotalPurchasePrice" Width="150"  Text="{Binding TotalPurchasePrice}" />
+                        <TextBlock x:Name="TotalPurchasePrice" Width="150"  Text="{Binding TotalPurchasePrice}" />
                     </WrapPanel>
                 </StackPanel>
             </GroupBox>

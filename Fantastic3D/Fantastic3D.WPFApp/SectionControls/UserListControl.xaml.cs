@@ -30,8 +30,7 @@ namespace Fantastic3D.GUI.SectionControls
 
         private void DataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            ((MainWindow)Application.Current.MainWindow).Navigator.NavigateTo(typeof(UserViewControl));
-            ((UserViewControl)((MainWindow)Application.Current.MainWindow).Navigator.CurrentViewControl.Content).EditableUser = UsersList.CurrentUser;
+            ((MainWindow)Application.Current.MainWindow).Navigator.NavigateTo(typeof(UserViewControl), UsersList.CurrentUser);
         }
         // Get All Users and bind them into the listbox
         private void Window_Loaded(object sender, RoutedEventArgs e)

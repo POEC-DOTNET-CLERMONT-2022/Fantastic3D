@@ -22,11 +22,11 @@ namespace Fantastic3D.GUI.SectionControls
     /// <summary>
     /// Logique d'interaction pour UserViewControl.xaml
     /// </summary>
-    public partial class UserViewControl : UserControl
+    public partial class UserViewControl : UserControl, IContentLoadableById, IContentLoadableWithModel
     {
         public List<User> UserToValidate { get; set; } = new();
         public IDataManager<User, UserDto> _dataSource = ((App)Application.Current).Services.GetService<IDataManager<User, UserDto>>();
-        
+
 
         private static readonly DependencyProperty CurrentUserProperty =
             DependencyProperty.Register(nameof(EditableUser), typeof(User), typeof(UserViewControl));
@@ -40,9 +40,24 @@ namespace Fantastic3D.GUI.SectionControls
                 if (editableUser != value)
                 {
                     SetValue(CurrentUserProperty, value);
+                    OnContentUpdated();
                 }
             }
         }
+
+        public async void LoadContentById(int id)
+        {
+            try
+            { 
+                EditableUser = await _dataSource.GetAsync(id);
+            }
+            catch (DataRetrieveException ex)
+            {
+                MessageBox.Show(ex.Message, "Utilisateur non trouvé", MessageBoxButton.OK, MessageBoxImage.Error);
+                EditableUser = new User();
+            }
+        }
+
         public UserViewControl()
         {
             InitializeComponent();
@@ -104,10 +119,18 @@ namespace Fantastic3D.GUI.SectionControls
 
         }
 
-        private void View_Loaded(object sender, RoutedEventArgs e)
+        private void OnContentUpdated()
         {
             ValidationButton.Content = (EditableUser.Id == 0) ? "Ajouter" : "Sauvegarder";
             DeletionButton.Visibility = (EditableUser.Id == 0) ? Visibility.Hidden : Visibility.Visible;
+        }
+
+        public void LoadContentWithModel(IManageable modelInstance)
+        {
+            if (modelInstance is User user)
+                EditableUser = user;
+            else
+                throw new NavigationException("Expected " + typeof(User).Name + " type. Type sent was: " + modelInstance.GetType().Name);
         }
     }
 }
