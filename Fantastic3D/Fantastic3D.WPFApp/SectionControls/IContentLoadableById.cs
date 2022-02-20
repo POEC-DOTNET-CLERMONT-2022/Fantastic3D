@@ -9,7 +9,7 @@ namespace Fantastic3D.GUI.SectionControls
     /// <summary>
     /// Interface for views where the contents can be loaded through a simple id.
     /// </summary>
-    internal interface IContentLoadableById
+    public interface IContentLoadableById
     {
         public void LoadContentById(int id);
     }
