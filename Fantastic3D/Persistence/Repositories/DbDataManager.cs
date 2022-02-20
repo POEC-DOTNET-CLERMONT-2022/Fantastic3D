@@ -110,6 +110,7 @@ namespace Fantastic3D.Persistence
                 case (OrderEntity order):
                     {
                         order.PurchasingUser = await currentContext.Set<UserEntity>().SingleAsync(user => user.Id == order.PurchasingUserId);
+                        order.Purchases = await currentContext.Set<PurchaseEntity>().Where(purchase => purchase.OrderId == order.Id).ToListAsync();
                         return order as TEntity;
                     }
                 case (ReviewEntity review):
