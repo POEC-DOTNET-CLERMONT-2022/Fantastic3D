@@ -62,7 +62,7 @@ namespace Fantastic3D.GUI.SectionControls
 
         private void Button_Modele(object sender, RoutedEventArgs e)
         {
-            ((MainWindow)Application.Current.MainWindow).Navigator.NavigateTo(typeof(ModelListControl)); 
+            ((MainWindow)Application.Current.MainWindow).Navigator.NavigateTo(typeof(ModelListControl));
         }
 
         private async void Button_Save(object sender, RoutedEventArgs e)
@@ -84,7 +84,7 @@ namespace Fantastic3D.GUI.SectionControls
             else
             if (MessageBox.Show($"Voulez-vous vraiment Editer {EditableUser.Username} ?",
                     "Mise à jour (copier collé méchant)", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
-               await _dataSource.UpdateAsync(EditableUser.Id, EditableUser);
+                await _dataSource.UpdateAsync(EditableUser.Id, EditableUser);
             ((MainWindow)Application.Current.MainWindow).Navigator.NavigateTo(typeof(UserListControl));
         }
 
@@ -97,11 +97,11 @@ namespace Fantastic3D.GUI.SectionControls
                     _dataSource.DeleteAsync(EditableUser.Id);
                 ((MainWindow)Application.Current.MainWindow).Navigator.NavigateTo(typeof(UserListControl));
             }
-            catch(DataRecordException ex)
+            catch (DataRecordException ex)
             {
                 MessageBox.Show(ex.ToString(), "Erreur lors de la suppression", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
-            
+
         }
 
         private void View_Loaded(object sender, RoutedEventArgs e)

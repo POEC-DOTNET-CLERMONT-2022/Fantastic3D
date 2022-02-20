@@ -25,13 +25,19 @@ namespace Fantastic3D.GUI.SectionControls
     public partial class ReviewControl : UserControl
     {
         public ObservableList<Review> ReviewsList { get; set; } = new ObservableList<Review>();
-        //public Asset SelectedAsset { get; set; }
+
         public IDataManager<Review, ReviewDto> _dataSource = ((App)Application.Current).Services.GetService<IDataManager<Review, ReviewDto>>();
 
         public ReviewControl()
         {
             InitializeComponent();
             DataContext = ReviewsList;
+
+        }
+
+        private void DeleteReview(object sender, RoutedEventArgs e)
+        {
+            LoadReviews();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -47,7 +53,7 @@ namespace Fantastic3D.GUI.SectionControls
                 if (Reviews != null && Reviews.Any())
                 {
                     ReviewsList.Items = new ObservableCollection<Review>(Reviews);
-                        
+
                 }
                 else
                 {

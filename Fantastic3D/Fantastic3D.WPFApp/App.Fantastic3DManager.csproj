@@ -11,6 +11,7 @@
   <ItemGroup>
     <None Remove="medias\Fantastic3DLogo.png" />
     <None Remove="medias\Fantastic3DLogoAppRender.png" />
+    <None Remove="SectionControls\Icone_trash.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,6 +34,7 @@
     <Resource Include="medias\Fantastic3DLogoAppRender.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="SectionControls\Icone_trash.png" />
   </ItemGroup>
 
 </Project>

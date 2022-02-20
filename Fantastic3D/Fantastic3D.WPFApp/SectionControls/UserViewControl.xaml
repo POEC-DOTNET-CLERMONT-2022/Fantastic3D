@@ -9,12 +9,12 @@
              d:DesignHeight="450" d:DesignWidth="800"
              x:Name="root"
              Loaded="View_Loaded">
-             <UserControl.Resources>
-                 <converters:UserRolesComboBoxConverter x:Key="UserRolesComboBoxConverter"/>
-             </UserControl.Resources>
+    <UserControl.Resources>
+        <converters:UserRolesComboBoxConverter x:Key="UserRolesComboBoxConverter"/>
+    </UserControl.Resources>
     <Grid>
         <StackPanel Margin="20" DataContext="{Binding EditableUser, ElementName=root}" >
-            
+
             <Grid Height="350" Margin="10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -42,9 +42,9 @@
                         <TextBox x:Name="LastName" Width="150" Text="{Binding LastName}" />
                     </WrapPanel>
                     <WrapPanel>
-                       
+
                         <Label Margin="5" Content="Role : "/>
-                        
+
                         <ComboBox x:Name="ComboBoxRole" ItemsSource="{Binding Roles}" SelectedItem="{Binding Role, Converter={StaticResource UserRolesComboBoxConverter}}">
                         </ComboBox>
                     </WrapPanel>
@@ -53,7 +53,7 @@
                         <TextBox x:Name="Address" Width="200" Margin="5" Text="{Binding BillingAddress}"  />
                     </WrapPanel>
                     <WrapPanel  Margin="5">
-                        
+
                         <Button x:Name="ValidationButton" Content="Sauvegarder" Width="105" Margin="5" Cursor="Hand" Click="Button_Save"></Button>
                         <Button x:Name="DeletionButton" Content="Supprimer" Width="105" Margin="5" Cursor="Hand" Click="Button_Delete" ></Button>
                     </WrapPanel>

@@ -30,7 +30,13 @@ namespace Fantastic3D.GUI.SectionControls
         public OrderListControl()
         {
             InitializeComponent();
-             DataContext = OrdersList;
+            DataContext = OrdersList;
+        }
+
+        private void DataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            ((MainWindow)Application.Current.MainWindow).Navigator.NavigateTo(typeof(OrderViewControl));
+            ((OrderViewControl)((MainWindow)Application.Current.MainWindow).Navigator.CurrentViewControl.Content).EditableOrder = OrdersList.CurrentItem;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

@@ -47,7 +47,7 @@ namespace Fantastic3D.GUI.SectionControls
                 if (Users != null)
                 {
                     UsersList.Users = new ObservableCollection<User>(Users);
-                    UserDataGrid.ItemsSource = UsersList.Users;
+                    //UserDataGrid.ItemsSource = UsersList.Users;
                 }
             }
             catch (Exception ex)
