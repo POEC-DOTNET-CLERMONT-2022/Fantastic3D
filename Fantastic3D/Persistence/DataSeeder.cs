@@ -14,13 +14,7 @@ namespace Fantastic3D.Persistence
         {
             if (!context.Set<UserEntity>().Any())
             {
-                var userList = new List<UserEntity>()
-                {
-                    new UserEntity("Alain", "Alain", "Terieur", "aterr@hotmail.com", "1234", "110 avenue des près", UserRole.Admin),
-                    new UserEntity("DaFlash", "Barry", "Badlen", "bbadlen@csi.ccpd.gov", "1234", "1 avenue des bolides", UserRole.Premium),
-                    new UserEntity("Kiki", "Carl", "Ikki", "carliki@hotmail.com", "1234", "3 chemin du Kernel", UserRole.Basic),
-                };
-                context.AddRange(userList);
+                context.AddRange(GetDummyData<UserEntity>());
                 context.SaveChanges();
             }
             if (!context.Set<TagTypeEntity>().Any())
@@ -38,20 +32,21 @@ namespace Fantastic3D.Persistence
                 context.AddRange(GetDummyData<AssetEntity>());
                 context.SaveChanges();
             }
-            // TODO : Ajouter manuellement un jeu de données Plausible pour les types suivnats
-            // (Fixture ne gère pas les dépendances fortes des ID)
-            //if (!context.Set<OrderEntity>().Any())
-            //{
-            //    context.AddRange(GetDummyData<OrderEntity>());
-            //}
-            //if (!context.Set<PurchaseEntity>().Any())
-            //{
-            //    context.AddRange(GetDummyData<PurchaseEntity>());
-            //}
-            //if (!context.Set<ReviewEntity>().Any())
-            //{
-            //    context.AddRange(GetDummyData<ReviewEntity>());
-            //}
+            if (!context.Set<OrderEntity>().Any())
+            {
+                context.AddRange(GetDummyData<OrderEntity>());
+                context.SaveChanges();
+            }
+            if (!context.Set<PurchaseEntity>().Any())
+            {
+                context.AddRange(GetDummyData<PurchaseEntity>());
+                context.SaveChanges();
+            }
+            if (!context.Set<ReviewEntity>().Any())
+            {
+                context.AddRange(GetDummyData<ReviewEntity>());
+                context.SaveChanges();
+            }
             context.SaveChanges();
         }
 
