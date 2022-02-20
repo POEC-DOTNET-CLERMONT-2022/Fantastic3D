@@ -13,11 +13,11 @@
         <StackPanel >
             <TextBlock DockPanel.Dock="Top" FontSize="30"  HorizontalAlignment="Center">Gestion des commandes</TextBlock>
             <DatePicker
-                  Width="140" Height="28"
+                  Width="140" 
                   materialDesign:HintAssist.Hint="Pick Date"
                   Style="{StaticResource MaterialDesignFilledDatePicker}"
                   materialDesign:TextFieldAssist.HasClearButton="True" />
-            <DataGrid  x:Name="OrderDataGrid" SelectedItem="{Binding Path=CurrentOrder}" ItemsSource="{Binding Orders}"  Margin="10" Height="265" AutoGenerateColumns="False" MouseDoubleClick="DataGrid_MouseDoubleClick"  IsReadOnly="True">
+            <DataGrid  x:Name="OrderDataGrid" SelectedItem="{Binding Path=CurrentOrder}" ItemsSource="{Binding Orders}"  Margin="10" Height="245" AutoGenerateColumns="False" MouseDoubleClick="DataGrid_MouseDoubleClick"  IsReadOnly="True">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
                     <DataGridTextColumn Header="Date" Binding="{Binding Date,  StringFormat={}{0:MM/dd/yyyy}}"/>

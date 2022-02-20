@@ -31,7 +31,7 @@
                     </WrapPanel>
                 </StackPanel>
             </GroupBox>
-            <DataGrid  x:Name="OrderViewDataGrid" Margin="20"  DataContext="{Binding EditableOrder, ElementName=root}"  AutoGenerateColumns="False"  IsReadOnly="True" Cursor="IBeam" >
+            <DataGrid  x:Name="OrderViewDataGrid" Margin="20"   AutoGenerateColumns="False"  IsReadOnly="True" Cursor="IBeam" >
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Model" Binding="{Binding AssetName}"  />
                     <DataGridTextColumn Header="Prix" Binding="{Binding TotalPurchasePrice}"/>
