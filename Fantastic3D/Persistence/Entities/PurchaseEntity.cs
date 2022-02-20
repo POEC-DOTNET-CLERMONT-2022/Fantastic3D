@@ -17,7 +17,16 @@ namespace Fantastic3D.Persistence.Entities
         public float PurchasePrice { get; set; }
         public int AssetId { get; set; }
         public virtual AssetEntity Asset { get; private set; }
+        public virtual OrderEntity Order { get; private set; }
 
         public PurchaseEntity() {}
+
+        public PurchaseEntity(int orderId, bool isPaidToCreator, float purchasePrice, int assetId)
+        {
+            OrderId = orderId;
+            IsPaidToCreator = isPaidToCreator;
+            PurchasePrice = purchasePrice;
+            AssetId = assetId;
+        }
     }
 }

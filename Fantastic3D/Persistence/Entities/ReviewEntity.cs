@@ -16,13 +16,21 @@ namespace Fantastic3D.Persistence.Entities
         public int Note { get; set; }
         public string Comment { get; set; }
         public bool IsPublished { get; set; }
-
         public int AssetId { get; set; }
         public int AuthorId { get; set; }
         public virtual AssetEntity Asset { get; set; }
         public virtual UserEntity Author { get; set; }
 
         public ReviewEntity(){}
+
+        public ReviewEntity(int note, string comment, bool isPublished, int assetId, int authorId)
+        {
+            Note = note;
+            Comment = comment;
+            IsPublished = isPublished;
+            AssetId = assetId;
+            AuthorId = authorId;
+        }
     }
 
 }

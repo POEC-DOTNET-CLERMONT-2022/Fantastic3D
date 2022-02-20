@@ -20,6 +20,12 @@ namespace Fantastic3D.Persistence.Entities
 
         public OrderEntity() {}
 
+        public OrderEntity(DateTime date, int purchasingUserId)
+        {
+            Date = date;
+            PurchasingUserId = purchasingUserId;
+        }
+
         public override string ToString()
         {
             return $"Date : {Date}, Acheteur :{PurchasingUser}";
