@@ -13,18 +13,18 @@
         <StackPanel >
             <TextBlock DockPanel.Dock="Top" FontSize="30"  HorizontalAlignment="Center">Gestion des commandes</TextBlock>
             <DatePicker
-                  Width="140" 
-                  materialDesign:HintAssist.Hint="Pick Date"
+                  Width="180" 
+                  materialDesign:HintAssist.Hint="Filtrer par date..."
                   Style="{StaticResource MaterialDesignFilledDatePicker}"
                   materialDesign:TextFieldAssist.HasClearButton="True" />
-            <DataGrid  x:Name="OrderDataGrid" SelectedItem="{Binding Path=CurrentOrder}" ItemsSource="{Binding Orders}"  Margin="10" Height="245" AutoGenerateColumns="False" MouseDoubleClick="DataGrid_MouseDoubleClick"  IsReadOnly="True">
+            <DataGrid  x:Name="OrderDataGrid" SelectedItem="{Binding Path=CurrentOrder}" ItemsSource="{Binding Orders}"  Margin="10" Height="245" AutoGenerateColumns="False" MouseDoubleClick="DataGrid_MouseDoubleClick"  IsReadOnly="True" Cursor="IBeam">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
-                    <DataGridTextColumn Header="Date" Binding="{Binding Date,  StringFormat={}{0:MM/dd/yyyy}}"/>
-                    <DataGridTextColumn Header="PurchasingUserName" Binding="{Binding PurchasingUserName}"/>
+                    <DataGridTextColumn Header="Date" Binding="{Binding Date, StringFormat=d}"/>
+                    <DataGridTextColumn Header="Acheteur" Binding="{Binding PurchasingUserName}"/>
                    
-                    <DataGridTextColumn Header="PurchasesCount" Binding="{Binding PurchasesCount}"/>
-                    <DataGridTextColumn Header="TotalPurchasePrice" Binding="{Binding TotalPurchasePrice}"/>
+                    <DataGridTextColumn Header="Nombre d'Assets achetés" Binding="{Binding PurchasesCount}"/>
+                    <DataGridTextColumn Header="Prix total de l'achat" Binding="{Binding TotalPurchasePrice}"/>
 
 
                 </DataGrid.Columns>
