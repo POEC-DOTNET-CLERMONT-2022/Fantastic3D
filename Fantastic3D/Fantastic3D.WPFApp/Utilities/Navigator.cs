@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using Fantastic3D.AppModels;
+using Fantastic3D.DataManager;
+using Fantastic3D.GUI.SectionControls;
 
 namespace Fantastic3D.GUI.Utilities
 {
@@ -50,6 +52,32 @@ namespace Fantastic3D.GUI.Utilities
                 return false;
             CurrentViewControl.Content = _previousViews.Pop();
                 return true;
+        }
+
+        public void NavigateTo(Type viewWithContent, int id)
+        {
+            NavigateTo(viewWithContent);
+            if(CurrentViewControl.Content is IContentLoadableById newView)
+            {
+                newView.LoadContentById(id);
+            }
+            else
+            {
+                throw new NavigationException();
+            }
+        }
+
+        public void NavigateTo(Type viewWithContent, IManageable modelInstance)
+        {
+            NavigateTo(viewWithContent);
+            if (CurrentViewControl.Content is IContentLoadableWithModel newView)
+            {
+                newView.LoadContentWithModel(modelInstance);
+            }
+            else
+            {
+                throw new NavigationException();
+            }
         }
     }
 }
