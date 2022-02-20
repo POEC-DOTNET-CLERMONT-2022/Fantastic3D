@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Fantastic3D.AppModels;
+using Fantastic3D.DataManager;
+using Fantastic3D.Dto;
+using Fantastic3D.GUI.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +24,35 @@ namespace Fantastic3D.GUI.SectionControls
     /// </summary>
     public partial class OrderViewControl : UserControl
     {
+        public List<Order> OrderToValidate { get; set; } = new();
+        public IDataManager<Order, OrderDto> _dataSource = ((App)Application.Current).Services.GetService<IDataManager<Order, OrderDto>>();
+        
+
+        public static readonly DependencyProperty CurrentOrderProperty =
+            DependencyProperty.Register(nameof(EditableOrder), typeof(Order), typeof(OrderViewControl));
+
+        private Order editableOrder;
+        public Order EditableOrder
+        {
+            get { return GetValue(CurrentOrderProperty) as Order; }
+            set
+            {
+                if (editableOrder != value)
+                {
+                    SetValue(CurrentOrderProperty, value);
+                }
+            }
+        }
         public OrderViewControl()
         {
             InitializeComponent();
+            OrderToValidate = new List<Order>();
+            DataContext = OrderToValidate;
+        }
+
+        private void Button_Back(object sender, RoutedEventArgs e)
+        {
+            ((MainWindow)Application.Current.MainWindow).Navigator.NavigateTo(typeof(OrderListControl));
         }
     }
 }
