@@ -11,7 +11,7 @@ namespace Fantastic3D.AppModels
         public int Id { get; set; }
         public int Note { get; set; }
         public string Comment { get; set; }
-        private bool IsPublished { get; set; }
+        public bool IsPublished { get; set; }
         public int AssetId { get; set; }
         public string AssetName { get; set; }
         public int AuthorId { get; set; }

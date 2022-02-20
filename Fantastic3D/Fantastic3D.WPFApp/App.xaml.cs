@@ -33,9 +33,8 @@ namespace Fantastic3D.GUI
 
             Services.RegisterService<IDataManager<User, UserDto>>(new ApiDataManager<User, UserDto>(client, mapper));
             Services.RegisterService<IDataManager<Asset, AssetDto>>(new ApiDataManager<Asset, AssetDto>(client, mapper));
-            
-            // Services.RegisterService<IDataManager<Order, OrderDto>>(new ApiDataManager<Order, OrderDto>(client, mapper));
-            // Services.RegisterService<IDataManager<Review, ReviewDto>>(new ApiDataManager<Review, ReviewDto>(client, mapper));
+            Services.RegisterService<IDataManager<Order, OrderDto>>(new ApiDataManager<Order, OrderDto>(client, mapper));
+            Services.RegisterService<IDataManager<Review, ReviewDto>>(new ApiDataManager<Review, ReviewDto>(client, mapper));
 
         }
 
