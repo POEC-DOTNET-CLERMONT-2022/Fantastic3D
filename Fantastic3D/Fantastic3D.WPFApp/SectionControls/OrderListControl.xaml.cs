@@ -24,7 +24,8 @@ namespace Fantastic3D.GUI.SectionControls
     /// </summary>
     public partial class OrderListControl : UserControl
     {
-        public ObservableList<Order> OrdersList { get; set; } = new ObservableList<Order>();
+        //public ObservableList<Order> OrdersList { get; set; } = new ObservableList<Order>();
+        public OrderList OrdersList { get; set; } = new OrderList();
         public IDataManager<Order, OrderDto> _dataSource = ((App)Application.Current).Services.GetService<IDataManager<Order, OrderDto>>();
 
         public OrderListControl()
@@ -36,7 +37,7 @@ namespace Fantastic3D.GUI.SectionControls
         private void DataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             ((MainWindow)Application.Current.MainWindow).Navigator.NavigateTo(typeof(OrderViewControl));
-            ((OrderViewControl)((MainWindow)Application.Current.MainWindow).Navigator.CurrentViewControl.Content).EditableOrder = OrdersList.CurrentItem;
+            ((OrderViewControl)((MainWindow)Application.Current.MainWindow).Navigator.CurrentViewControl.Content).EditableOrder = OrdersList.CurrentOrder;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -50,7 +51,7 @@ namespace Fantastic3D.GUI.SectionControls
                 var Orders = await _dataSource.GetAllAsync();
                 if (Orders != null && Orders.Any())
                 {
-                    OrdersList.Items = new ObservableCollection<Order>(Orders);
+                    OrdersList.Orders = new ObservableCollection<Order>(Orders);
                 }
                 else
                 {

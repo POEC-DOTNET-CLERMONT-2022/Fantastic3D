@@ -26,7 +26,7 @@ namespace Fantastic3D.GUI.SectionControls
     {
         public List<User> UserToValidate { get; set; } = new();
         public IDataManager<User, UserDto> _dataSource = ((App)Application.Current).Services.GetService<IDataManager<User, UserDto>>();
-        public INavigator Navigator { get; } = new Navigator();
+        
 
         private static readonly DependencyProperty CurrentUserProperty =
             DependencyProperty.Register(nameof(EditableUser), typeof(User), typeof(UserViewControl));

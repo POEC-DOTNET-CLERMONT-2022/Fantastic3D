@@ -24,7 +24,7 @@ namespace Fantastic3D.GUI.SectionControls
     /// </summary>
     public partial class ReviewControl : UserControl
     {
-        public ObservableList<Review> ReviewsList { get; set; } = new ObservableList<Review>();
+        public ReviewList ReviewsList { get; set; } = new ReviewList();
 
         public IDataManager<Review, ReviewDto> _dataSource = ((App)Application.Current).Services.GetService<IDataManager<Review, ReviewDto>>();
 
@@ -32,12 +32,22 @@ namespace Fantastic3D.GUI.SectionControls
         {
             InitializeComponent();
             DataContext = ReviewsList;
-
+            
         }
 
         private void DeleteReview(object sender, RoutedEventArgs e)
         {
-            LoadReviews();
+            try
+            {
+                if (MessageBox.Show($"Voulez-vous vraiment supprimer {ReviewsList.CurrentReview.AuthorName} ?",
+                    "Suppression", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                    _dataSource.DeleteAsync(ReviewsList.CurrentReview.Id);
+                LoadReviews();
+            }
+            catch (DataRecordException ex)
+            {
+                MessageBox.Show(ex.ToString(), "Erreur lors de la suppression", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -52,7 +62,7 @@ namespace Fantastic3D.GUI.SectionControls
                 var Reviews = await _dataSource.GetAllAsync();
                 if (Reviews != null && Reviews.Any())
                 {
-                    ReviewsList.Items = new ObservableCollection<Review>(Reviews);
+                    ReviewsList.Reviews = new ObservableCollection<Review>(Reviews);
 
                 }
                 else

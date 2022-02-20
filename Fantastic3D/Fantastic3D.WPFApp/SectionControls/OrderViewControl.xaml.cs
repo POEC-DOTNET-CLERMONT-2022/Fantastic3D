@@ -26,9 +26,9 @@ namespace Fantastic3D.GUI.SectionControls
     {
         public List<Order> OrderToValidate { get; set; } = new();
         public IDataManager<Order, OrderDto> _dataSource = ((App)Application.Current).Services.GetService<IDataManager<Order, OrderDto>>();
-        public INavigator Navigator { get; } = new Navigator();
+        
 
-        private static readonly DependencyProperty CurrentOrderProperty =
+        public static readonly DependencyProperty CurrentOrderProperty =
             DependencyProperty.Register(nameof(EditableOrder), typeof(Order), typeof(OrderViewControl));
 
         private Order editableOrder;

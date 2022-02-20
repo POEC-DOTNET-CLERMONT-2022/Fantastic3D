@@ -6,25 +6,35 @@
              xmlns:local="clr-namespace:Fantastic3D.GUI.SectionControls"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
+             x:Name="root"
              d:DesignHeight="450" d:DesignWidth="800">
-    <StackPanel Background="{DynamicResource MaterialDesignBackground}"  >
+    <StackPanel Background="{DynamicResource MaterialDesignBackground}" DataContext="{Binding EditableOrder, ElementName=root}"   >
 
-        <WrapPanel HorizontalAlignment="Left" Margin="10, 5, 5,0">
+        <WrapPanel HorizontalAlignment="Left" Margin="10, 5, 5,0" >
             <TextBlock FontSize="30"  HorizontalAlignment="Left">Commandes</TextBlock>
             <Button Style="{StaticResource MaterialDesignRaisedAccentButton}" materialDesign:ButtonAssist.CornerRadius="25" Content="Retour au commandes" Margin="50, 0, 0, 0" Height="40"  FontSize="12" Click="Button_Back" Cursor="Hand"></Button>
         </WrapPanel>
-        <WrapPanel>
-            <GroupBox Margin="20" Height="160" Width="300" HorizontalAlignment="Left" Header="Détails">
-                <StackPanel>
-                    <Label   Margin="5" Content="Date D'achat: "/>
-                    <Label   Margin="5" Content="Acheteur:"/>
-                    <Label   Margin="5" Content="Total: "/>
+        <WrapPanel >
+            <GroupBox Margin="20" Height="160" Width="300" HorizontalAlignment="Left" Header="Détails"  >
+                <StackPanel  >
+                    <WrapPanel>
+                        <Label   Margin="5" Content="Date D'achat: "  />
+                        <TextBox x:Name="Date" Width="150"  Text="{Binding Date}" />
+                    </WrapPanel>
+                    <WrapPanel>
+                        <Label   Margin="5" Content="Acheteur:"  />
+                        <TextBox x:Name="PurchasingUserName" Width="150"  Text="{Binding PurchasingUserName}" />
+                    </WrapPanel>
+                    <WrapPanel>
+                        <Label   Margin="5" Content="Total: "  />
+                        <TextBox x:Name="TotalPurchasePrice" Width="150"  Text="{Binding TotalPurchasePrice}" />
+                    </WrapPanel>
                 </StackPanel>
             </GroupBox>
-            <DataGrid Margin="20" >
+            <DataGrid  x:Name="OrderViewDataGrid" Margin="20"  DataContext="{Binding EditableOrder, ElementName=root}"  AutoGenerateColumns="False"  IsReadOnly="True" Cursor="IBeam" >
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Model" />
-                    <DataGridTextColumn Header="Prix" />
+                    <DataGridTextColumn Header="Model" Binding="{Binding AssetName}"  />
+                    <DataGridTextColumn Header="Prix" Binding="{Binding TotalPurchasePrice}"/>
                     <DataGridTextColumn Header="Voir" />
 
                 </DataGrid.Columns>
