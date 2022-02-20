@@ -50,7 +50,8 @@
                                 <Button Height="24" Click="DeleteReview"  >
                                     <Button.Template>
                                         <ControlTemplate>
-                                            <Image Source="/SectionControls/Icone_trash.png"/>
+                                            <materialDesign:PackIcon Kind="TrashCanOutline" />
+                                            <!--<Image Source="/SectionControls/Icone_trash.png"/>-->
                                         </ControlTemplate>
                                     </Button.Template>
                                 </Button>
