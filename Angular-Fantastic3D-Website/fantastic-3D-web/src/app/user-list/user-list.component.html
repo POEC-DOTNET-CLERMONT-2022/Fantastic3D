@@ -1,31 +1,36 @@
-<div class="container" *ngIf="iUserList; else noDatas">
-    <div class="row my-4">
-      <button [disabled]="iUserList.previous === null"
-              (click)="callPage(-20)"
-              class="col-2 btn btn-info"
-      >
-        Previous
-      </button>
-      <button [disabled]="iUserList.next === null"
-              (click)="callPage(20)"
-              class="col-2 btn btn-info offset-8"
-      >
-        Next
-      </button>
-    </div>
-    <div>
-      <h2 class="text-center">Utilisateurs de {{ offset+1 }} à {{ offset+20 }}</h2>
-      <div class="row mb-5">
-        <div class="card-user col-xl-2 col-lg-3 col-md-4 col-sm-6 text-center my-3"
-             *ngFor="let user of UserArray">
-             <!-- routerLink="/User/{{ user.id }}" -->
-          <h3>{{user.username|titlecase}}</h3>
-        </div>
-      </div>
-    </div>
+<div class="container" *ngIf="UserArray; else noDatas">
+  <!-- <div class="row my-4">
+ TODO : Code de pagination. En cas de pagination, remplacer UserArray par l'interface iUserList qui contient les infos de pagination
+      <button [disabled]="iUserList.previous === null" (click)="callPage(-20)" class="col-2 btn btn-info">
+      Previous
+    </button>
+    <button [disabled]="iUserList.next === null" (click)="callPage(20)" class="col-2 btn btn-info offset-8">
+      Next
+    </button> 
+  </div>-->
+  <button type="button" class="btn btn-secondary" routerLink="/User/New/">Ajouter un utilisateur</button>
+  <div>
+    <h2 class="text-center">Gestion des utilisateurs</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Nom d'utilisateur</th>
+          <th>Prénom</th>
+          <th>Nom</th>
+          <th>Editer</th>
+        </tr>
+      </thead>
+      <tr *ngFor="let user of UserArray" routerLink="/User/{{ user.id }}">
+        <td>{{user.username}}</td>
+        <td>{{user.firstName}}</td>
+        <td>{{user.lastName}}</td>
+        <td> <button type="button" class="btn btn-primary" routerLink="/User/Edit/ + {{user.id}}">Editer</button>
+        </td>
+      </tr>
+    </table>
   </div>
-  
-  <ng-template #noDatas>
-    Un problème est survenu pendant la récupération des données.
-  </ng-template>
-  
+</div>
+
+<ng-template #noDatas>
+  Un problème est survenu pendant la récupération des données.
+</ng-template>

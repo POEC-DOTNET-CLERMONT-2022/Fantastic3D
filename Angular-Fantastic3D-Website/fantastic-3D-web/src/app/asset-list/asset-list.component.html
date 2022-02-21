@@ -1,0 +1,37 @@
+<!-- <div class="container" *ngIf="AssetArray; else noDatas">
+    <div class="row my-4">
+     TODO : Code de pagination. En cas de pagination, remplacer AssetArray par l'interface iAssetList qui contient les infos de pagination
+        <button [disabled]="iAssetList.previous === null" (click)="callPage(-20)" class="col-2 btn btn-info">
+        Previous
+      </button>
+      <button [disabled]="iAssetList.next === null" (click)="callPage(20)" class="col-2 btn btn-info offset-8">
+        Next
+      </button> 
+    </div>
+    <div>
+        <h2 class="text-center">Gestion des utilisateurs</h2>
+        <table class="row mb-5">
+            <thead>
+                <tr>
+                    <th>Nom d'utilisateur</th>
+                    <th>Prénom</th>
+                    <th>Nom</th>
+                    <th>Editer</th>
+                </tr>
+            </thead>
+            <tr class="card-Asset col-xl-2 col-lg-3 col-md-4 col-sm-6 text-center my-3" *ngFor="let Asset of AssetArray"
+                routerLink="/Asset/{{ Asset.id }}">
+                <td>{{Asset.name}}</td>
+                <td>{{Asset.des}}</td>
+                <td>{{Asset.lastName}}</td>
+                <td> <button type="button" class="btn btn-primary"
+                        routerLink="/Asset/Edit/ + {{Asset.id}}">Edit</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<ng-template #noDatas>
+    Un problème est survenu pendant la récupération des données.
+</ng-template>-->
