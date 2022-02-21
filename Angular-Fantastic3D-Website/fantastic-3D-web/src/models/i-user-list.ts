@@ -1,8 +1,8 @@
-import { User } from "./user";
+import { IUser } from "./i-user";
 
 export interface IUserList {
   count: number;
   next: string;
   previous: string;
-  results: User[];
+  results: IUser[];
 }
