@@ -35,6 +35,19 @@ namespace Fantastic3D.GUI.SectionControls
             
         }
 
+        private async void ToggleButton_Click(object sender, RoutedEventArgs e)
+        {
+            if(ReviewsList.CurrentReview.IsPublished == true)
+            {
+                ReviewsList.CurrentReview.IsPublished = false;
+            }
+            else
+            {
+                ReviewsList.CurrentReview.IsPublished = true;
+            }
+            await _dataSource.UpdateAsync(ReviewsList.CurrentReview.Id, ReviewsList.CurrentReview);
+            LoadReviews();
+        }
         private void DeleteReview(object sender, RoutedEventArgs e)
         {
             try
@@ -54,6 +67,7 @@ namespace Fantastic3D.GUI.SectionControls
         {
             LoadReviews();
         }
+
 
         private async void LoadReviews()
         {
@@ -93,5 +107,7 @@ namespace Fantastic3D.GUI.SectionControls
                     .Navigator.NavigateTo(typeof(ModelViewerControl), assetId);
             }
         }
+
+
     }
 }
