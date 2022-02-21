@@ -1,0 +1,32 @@
+<div class="container" *ngIf="iUserList; else noDatas">
+    <div class="row my-4">
+      <button [disabled]="iUserList.previous === null"
+              (click)="callPage(-20)"
+              class="col-2 btn btn-info"
+      >
+        Previous
+      </button>
+      <button [disabled]="iUserList.next === null"
+              (click)="callPage(20)"
+              class="col-2 btn btn-info offset-8"
+      >
+        Next
+      </button>
+    </div>
+    <div>
+      <h2 class="text-center">Utilisateurs de {{ offset+1 }} à {{ offset+20 }}</h2>
+      <div class="row mb-5">
+        <div class="card-user col-xl-2 col-lg-3 col-md-4 col-sm-6 text-center my-3"
+             *ngFor="let user of UserArray"
+             routerLink="/users/{{ user.id }}"
+        >
+          <h3>{{user.username|titlecase}}</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <ng-template #noDatas>
+    Un problème est survenu pendant la récupération des données...
+  </ng-template>
+  
