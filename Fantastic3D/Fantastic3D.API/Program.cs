@@ -16,6 +16,18 @@ builder.Services.AddScoped(typeof(INestedDataManager<>), typeof(DbNestedDataMana
 builder.Services.AddScoped<DbContext, LocalDbContext>();
 builder.Services.AddDbContextFactory<LocalDbContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultContext")));
 
+string _allowCorsPolicyName = "allowSpecificOrigins";
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: _allowCorsPolicyName,
+        builder =>
+        {
+            builder.AllowAnyOrigin();
+            builder.AllowAnyMethod();
+        });
+});
+
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
@@ -36,5 +48,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseAuthorization();
+app.UseCors(_allowCorsPolicyName);
 app.MapControllers();
 app.Run();
