@@ -8,7 +8,7 @@
       Next
     </button> 
   </div>-->
-  <button type="button" class="btn btn-secondary" routerLink="/User/New/">Ajouter un utilisateur</button>
+  <button type="button" class="btn btn-secondary" routerLink="/user/new/">Ajouter un utilisateur</button>
   <div>
     <h2 class="text-center">Gestion des utilisateurs</h2>
     <table>
@@ -20,11 +20,11 @@
           <th>Editer</th>
         </tr>
       </thead>
-      <tr *ngFor="let user of UserArray" routerLink="/User/{{ user.id }}">
+      <tr *ngFor="let user of UserArray">
         <td>{{user.username}}</td>
         <td>{{user.firstName}}</td>
         <td>{{user.lastName}}</td>
-        <td> <button type="button" class="btn btn-primary" routerLink="/User/Edit/ + {{user.id}}">Editer</button>
+        <td> <button type="button" class="btn btn-primary" routerLink="/user/{{user.id}}">Editer</button>
         </td>
       </tr>
     </table>
