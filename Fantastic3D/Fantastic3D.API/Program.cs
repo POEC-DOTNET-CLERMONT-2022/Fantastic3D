@@ -14,7 +14,12 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped(typeof(IDataManager<,>), typeof(DbDataManager<,>));
 builder.Services.AddScoped(typeof(INestedDataManager<>), typeof(DbNestedDataManager<>));
 builder.Services.AddScoped<DbContext, LocalDbContext>();
-builder.Services.AddDbContextFactory<LocalDbContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultContext")));
+#if DEBUG
+string _connexionStringContext = "DefaultContext";
+#else
+string _connexionStringContext = "DockerContext";
+#endif
+builder.Services.AddDbContextFactory<LocalDbContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString(_connexionStringContext)));
 
 var app = builder.Build();
 
