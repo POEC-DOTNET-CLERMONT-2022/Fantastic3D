@@ -1,0 +1,28 @@
+# Sample de fichier récupéré sur https://github.com/docker/awesome-compose
+services:
+  webapi:
+    build: Fantastic3D/Fantastic3D.API
+    ports:
+      - 80:80
+  db:
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: emhsF9?xY~U~9AP<5&JUA{aVQc$h
+    # mssql server image isn't available for arm64 architecture, so we use azure-sql instead
+    image: mcr.microsoft.com/azure-sql-edge:1.0.4
+    # Décommenter cette ligne pour utiliser MS SQL Server au lieu de Azure-SQL
+    #image: mcr.microsoft.com/mssql/server
+    restart: always
+    healthcheck:
+        test: ["CMD-SHELL", "/opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P emhsF9?xY~U~9AP<5&JUA{aVQc$h -Q 'SELECT 1' || exit 1"]
+        interval: 10s
+        retries: 10
+        start_period: 10s
+        timeout: 3s
+  # webapp:
+  #   build: angular
+  #   ports:
+  #     - 4200:4200
+  #   volumes:
+  #     - ./angular:/project
+  #     - /project/node_modules
