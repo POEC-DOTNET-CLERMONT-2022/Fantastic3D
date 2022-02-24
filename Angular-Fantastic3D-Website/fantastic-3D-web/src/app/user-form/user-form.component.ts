@@ -12,7 +12,7 @@ export class UserFormComponent implements OnInit {
 
   user: User;
   private readonly activatedRoute: ActivatedRoute;
-  private readonly userService: ApiClientService
+  private readonly userService: ApiClientService;
   constructor(activatedRoute: ActivatedRoute, userService: ApiClientService) {
     this.activatedRoute = activatedRoute;
     this.userService = userService;

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiClientService } from 'src/services/api-client.service';
 
 @Component({
   selector: 'app-main-menu',
@@ -13,9 +14,19 @@ export class MainMenuComponent implements OnInit {
   static pathUserForm: string = 'user';
   urlUserForm: string = '/' + MainMenuComponent.pathUserForm;
 
-  constructor() { }
+  private readonly fetchService: ApiClientService;
+  public apiIsOnline: boolean = false;
+
+  constructor(fetchService: ApiClientService) {
+    this.fetchService = fetchService;
+  }
 
   ngOnInit(): void {
+    this.tryLoadApi();
+  }
+
+  tryLoadApi(): void {
+    this.apiIsOnline = this.fetchService.getApiStatus();
   }
 
 }
