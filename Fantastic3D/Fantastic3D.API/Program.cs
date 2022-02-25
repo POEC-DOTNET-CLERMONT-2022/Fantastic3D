@@ -25,7 +25,15 @@ builder.Services.AddCors(options =>
         {
             builder.AllowAnyOrigin();
             builder.AllowAnyMethod();
+            builder.AllowAnyHeader();
         });
+});
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("WritingRights", policy =>
+       policy.RequireAssertion(context => context.User.HasClaim(c => c.Type == "Any:ReadWrite")
+       ));
 });
 
 var app = builder.Build();
