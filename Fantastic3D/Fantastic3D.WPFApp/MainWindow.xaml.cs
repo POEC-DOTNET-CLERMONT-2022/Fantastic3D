@@ -61,7 +61,7 @@ namespace Fantastic3D.GUI
 
         private void MenuOrdersButton_Click(object sender, RoutedEventArgs e)
         {
-            Navigator.NavigateTo(typeof(OrderListControl));
+            Navigator.NavigateTo(typeof(OrderListControl), 0);
         }
 
         private void MenuReviewsButton_Click(object sender, RoutedEventArgs e)

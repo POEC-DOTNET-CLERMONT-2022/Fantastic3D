@@ -11,6 +11,9 @@
     <UserControl.Resources>
         <converters:UserRolesComboBoxConverter x:Key="UserRolesComboBoxConverter"/>
     </UserControl.Resources>
+
+    
+
     <Grid>
         <StackPanel Margin="20" DataContext="{Binding EditableUser, ElementName=root}" >
 

@@ -27,6 +27,7 @@ namespace Fantastic3D.GUI.SectionControls
         public ReviewList ReviewsList { get; set; } = new ReviewList();
 
         public IDataManager<Review, ReviewDto> _dataSource = ((App)Application.Current).Services.GetService<IDataManager<Review, ReviewDto>>();
+        private int _filterId = 0;
 
         public ReviewControl()
         {
@@ -88,6 +89,19 @@ namespace Fantastic3D.GUI.SectionControls
             {
                 MessageBox.Show(ex.Message, "Source de données non accessible", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        public void CollectionViewSource_OnFilter(object sender, FilterEventArgs e)
+        {
+            var review = e.Item as Review;
+
+            if (review.AuthorId == _filterId || _filterId == 0)
+            {
+                e.Accepted = true;
+                return;
+            }
+
+            e.Accepted = false;
         }
 
         private void ViewUserButton_Click(object sender, RoutedEventArgs e)
