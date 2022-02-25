@@ -11,6 +11,7 @@
   <ItemGroup>
     <None Remove="medias\Fantastic3DLogo.png" />
     <None Remove="medias\Fantastic3DLogoAppRender.png" />
+    <None Remove="medias\notfound.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,6 +27,9 @@
   <ItemGroup>
     <Content Include="medias\Fantastic3DLogo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="medias\notfound.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 
