@@ -20,7 +20,7 @@ namespace Fantastic3D.AppModels
         public PublicationStatus Status { get; set; }
         public string CreatorName { get; set; }
         public int CreatorId { get; set; }
-        //public ICollection<Review> Reviews { get; private set; }
+        public bool Active { get; set; }
 
         public Asset()
         {

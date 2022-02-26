@@ -22,5 +22,6 @@ namespace Fantastic3D.Dto
         public int TotalPurchasedItems { get; private set; }
         [DataMember]
         public float TotalPurchasePrice { get; private set; }
+        public bool Active { get; set; }
     }
 }

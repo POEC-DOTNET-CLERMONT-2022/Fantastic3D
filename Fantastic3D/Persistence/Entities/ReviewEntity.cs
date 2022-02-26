@@ -20,6 +20,7 @@ namespace Fantastic3D.Persistence.Entities
         public int AuthorId { get; set; }
         public virtual AssetEntity Asset { get; set; }
         public virtual UserEntity Author { get; set; }
+        public bool Active { get; set; } = true;
 
         public ReviewEntity(){}
 

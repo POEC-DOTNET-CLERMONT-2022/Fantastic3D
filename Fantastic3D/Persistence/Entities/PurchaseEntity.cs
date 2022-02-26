@@ -18,6 +18,7 @@ namespace Fantastic3D.Persistence.Entities
         public int AssetId { get; set; }
         public virtual AssetEntity Asset { get; private set; }
         public virtual OrderEntity Order { get; private set; }
+        public bool Active { get; set; } = true;
 
         public PurchaseEntity() {}
 

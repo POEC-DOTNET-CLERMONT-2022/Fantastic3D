@@ -51,6 +51,10 @@ namespace Fantastic3D.API.Controllers
                     return NotFound(id);
                 return Ok(retrievedData);
             }
+            catch (DataRetrieveException dre)
+            {
+                return NotFound(dre.Message);
+            }
             catch (InvalidOperationException ioe)
             {
                 return BadRequest(ioe.Message);
@@ -112,9 +116,9 @@ namespace Fantastic3D.API.Controllers
                 await _data.DeleteAsync(id);
                 return NoContent();
             }
-            catch
+            catch (DataRecordException dre)
             {
-                return NotFound(id);
+                return NotFound(dre.Message);
             }
         }
     }

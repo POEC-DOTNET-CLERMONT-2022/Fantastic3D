@@ -25,9 +25,15 @@ namespace Fantastic3D.GUI.SectionControls
     public partial class ModelViewerControl : UserControl, IContentLoadableWithModel, IContentLoadableById
     {
         public List<Asset> ModelsToValidate { get; set; } = new();
+        private IDataManager<Asset, AssetDto> _dataSource = ((App)Application.Current).Services.GetService<IDataManager<Asset, AssetDto>>();
+        private Asset _nextAssetToValidate;
 
         private static readonly DependencyProperty CurrentAssetProperty =
-            DependencyProperty.Register("CurrentAsset", typeof(Asset), typeof(ModelViewerControl));
+            DependencyProperty.Register(nameof(CurrentAsset), typeof(Asset), typeof(ModelViewerControl));
+        private static readonly DependencyProperty LicencesListProperty =
+            DependencyProperty.Register(nameof(LicencesList), typeof(List<string>), typeof(ModelViewerControl));
+        private static readonly DependencyProperty FormatsListProperty =
+            DependencyProperty.Register(nameof(FormatsList), typeof(List<string>), typeof(ModelViewerControl));
 
         private Asset currentAsset;
 
@@ -57,8 +63,22 @@ namespace Fantastic3D.GUI.SectionControls
         public ModelViewerControl()
         {
             InitializeComponent();
-            ModelsToValidate = new List<Asset>();
+        }
+
+        private async void LoadUnpublishedAssetsListAsync()
+        {
+
+            ModelsToValidate = (await _dataSource.GetAllAsync()).Where(asset => asset.Status == Asset.PublicationStatus.Unpublished).ToList();
             NextModelsList.ItemsSource = ModelsToValidate;
+            if(ModelsToValidate.Count > 1)
+            {
+                _nextAssetToValidate = ModelsToValidate[1];
+                NextButton.IsEnabled = true;
+            }
+            else
+            {
+                NextButton.IsEnabled = false;
+            }
         }
 
         /// <summary>
@@ -66,6 +86,7 @@ namespace Fantastic3D.GUI.SectionControls
         /// </summary>
         private void OnContentLoaded()
         {
+            LoadUnpublishedAssetsListAsync();
             PublishButton.IsEnabled = (CurrentAsset.Status == Asset.PublicationStatus.Unpublished);
             RejectButton.IsEnabled = (CurrentAsset.Status == Asset.PublicationStatus.Unpublished);
         }
@@ -74,7 +95,9 @@ namespace Fantastic3D.GUI.SectionControls
         public void LoadContentWithModel(IManageable modelInstance)
         {
             if(modelInstance is Asset asset)
+            { 
                 CurrentAsset = asset;
+            }
             else
                 throw new NavigationException("Expected " + typeof(Asset).Name + " type. Type sent was: " + modelInstance.GetType().Name);
         }
@@ -127,5 +150,10 @@ namespace Fantastic3D.GUI.SectionControls
                 .Navigator.NavigateTo(typeof(UserViewControl), CurrentAsset.CreatorId);
         }
 
+        private void NextButton_Click(object sender, RoutedEventArgs e)
+        {
+            ((MainWindow)Application.Current.MainWindow)
+                .Navigator.NavigateTo(typeof(ModelViewerControl), _nextAssetToValidate);
+        }
     }
 }

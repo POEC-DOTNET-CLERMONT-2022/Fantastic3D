@@ -17,6 +17,7 @@ namespace Fantastic3D.Persistence.Entities
         public int PurchasingUserId { get; set; }
         public virtual UserEntity PurchasingUser { get; set; }
         public virtual ICollection<PurchaseEntity> Purchases { get; set; }
+        public bool Active { get; set; } = true;
 
         public OrderEntity() {}
 

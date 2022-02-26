@@ -23,5 +23,6 @@ namespace Fantastic3D.Dto
         /// </summary>
         [DataMember]
         public bool IsOnlyOne { get; private set; }
+        public bool Active { get; set; }
     }
 }

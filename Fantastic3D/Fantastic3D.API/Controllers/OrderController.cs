@@ -17,7 +17,7 @@ namespace Fantastic3D.API.Controllers
         /// <summary>
         /// Retrieves all the users.
         /// </summary>
-        [HttpGet("{id}/Purchase/")]
+        [HttpGet("{orderId}/Purchase/")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> GetPurchases(int orderId)
@@ -31,11 +31,11 @@ namespace Fantastic3D.API.Controllers
         /// Retrieves the informations of a database content
         /// </summary>
         /// <param name="id" example="5">The element ID.</param>
-        [HttpGet("{id}/Purchase/{purchaseId}")]
+        [HttpGet("{orderId}/Purchase/{purchaseId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetPurchase(int id, int purchaseId)
+        public async Task<IActionResult> GetPurchase(int orderId, int purchaseId)
         {
             try
             {
@@ -51,14 +51,14 @@ namespace Fantastic3D.API.Controllers
         }
 
         // POST api/<OrderController>/101/Purchases
-        [HttpPost("{id}/Purchase/")]
+        [HttpPost("{orderId}/Purchase/")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> PostPurchase(int id, [FromBody] PurchaseDto newValue)
+        public async Task<IActionResult> PostPurchase(int orderId, [FromBody] PurchaseDto newValue)
         {
             try
             {
-                newValue.OrderId = id;
+                newValue.OrderId = orderId;
                 await _purchasesData.AddAsync(newValue);
                 return Created(Request.Query.ToString(), newValue);
             }
@@ -74,10 +74,10 @@ namespace Fantastic3D.API.Controllers
         /// </summary>
         /// <param name="id" example="5">The user's ID.</param>
         /// <param name="value">Full description of an user</param>
-        [HttpPut("{id}/Purchase/{purchaseId}")]
+        [HttpPut("{orderId}/Purchase/{purchaseId}")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> PutPurchase(int id, int purchaseId, [FromBody] PurchaseDto updatedValue)
+        public async Task<IActionResult> PutPurchase(int orderId, int purchaseId, [FromBody] PurchaseDto updatedValue)
         {
             try
             {
@@ -95,19 +95,19 @@ namespace Fantastic3D.API.Controllers
         /// Deletes a value by its id.
         /// </summary>
         /// <param name="id" example="5">The user's ID.</param>
-        [HttpDelete("{id}/Purchase/{purchaseId}")]
+        [HttpDelete("{orderId}/Purchase/{purchaseId}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> DeletePurchase(int id, int purchaseId)
+        public async Task<IActionResult> DeletePurchase(int orderId, int purchaseId)
         {
             try
             {
                 await _purchasesData.DeleteAsync(purchaseId);
                 return NoContent();
             }
-            catch
+            catch (DataRecordException dre)
             {
-                return NotFound(purchaseId);
+                return NotFound(dre.Message);
             }
         }
     }

@@ -21,5 +21,6 @@ namespace Fantastic3D.Dto
         public string BillingAddress { get; set; } = string.Empty;
         [DataMember]
         public string Role { get; set; } = string.Empty;
+        public bool Active { get; set; }
     }
 }

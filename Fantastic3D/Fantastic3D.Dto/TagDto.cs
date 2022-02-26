@@ -14,5 +14,6 @@ namespace Fantastic3D.Dto
         public string Name { get; set; } = string.Empty;
         [DataMember]
         public int TagTypeId { get; set; }   // Tag Type ID
+        public bool Active { get; set; }
     }
 }

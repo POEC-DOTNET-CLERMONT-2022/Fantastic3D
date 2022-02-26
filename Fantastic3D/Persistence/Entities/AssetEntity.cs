@@ -24,6 +24,7 @@ namespace Fantastic3D.Persistence.Entities
         public PublicationStatus Status { get; set; }
         public virtual UserEntity Creator { get; set; }
         public virtual ICollection<ReviewEntity> Reviews { get; private set; }
+        public bool Active { get; set; } = true;
 
         public AssetEntity()
         {

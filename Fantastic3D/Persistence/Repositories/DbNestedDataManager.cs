@@ -27,7 +27,7 @@ namespace Fantastic3D.Persistence
         {
             using LocalDbContext context = _contextFactory.CreateDbContext();
             try
-            {
+            { 
                 var tagToAdd = await context.Tags.SingleAsync(tag => tag.Id == transferedTagId);
                 var assetToUpdate = await context.Assets.SingleAsync(asset => asset.Id == transferedAssetId);
                 if (assetToUpdate.Tags == null)
@@ -52,6 +52,7 @@ namespace Fantastic3D.Persistence
                 return false;
                 throw new DataRecordException("Exception encoutered: ", ex);
             }
+            return true;
         }
 
         public async Task<bool> RemoveTagAsync(int transferedAssetId, int transferedTagId)
@@ -96,6 +97,7 @@ namespace Fantastic3D.Persistence
                 var tags = assetToRead.Tags;
                 if(tags == null)
                     return Enumerable.Empty<TTransferedTag>();
+                //return tags.Select(tag => _mapper.Map<TTransferedTag>(tag));
                 return _mapper.Map<IEnumerable<TTransferedTag>>(tags);
             }
             catch (InvalidOperationException ioe)

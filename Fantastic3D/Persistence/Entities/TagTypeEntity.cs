@@ -23,6 +23,7 @@ namespace Fantastic3D.Persistence.Entities
         /// Defines if a tag must only be used once or can be used multiple times.
         /// </summary>
         public bool IsOnlyOne { get; private set; }
+        public bool Active { get; set; } = true;
 
         public TagTypeEntity(string name, bool isMandatory, bool isOnlyOne)
         {
