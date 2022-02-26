@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from "src/models/user";
 import { ApiClientService } from 'src/services/api-client.service';
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
+import { MainMenuComponent } from '../main-menu/main-menu.component';
+import { DialogService } from 'src/services/dialog.service';
 
 @Component({
   selector: 'app-user-form',
@@ -10,12 +12,18 @@ import { ActivatedRoute } from "@angular/router";
 })
 export class UserFormComponent implements OnInit {
 
-  user: User;
+  private readonly router: Router;
   private readonly activatedRoute: ActivatedRoute;
-  private readonly userService: ApiClientService
-  constructor(activatedRoute: ActivatedRoute, userService: ApiClientService) {
+  private readonly userService: ApiClientService;
+  private readonly dialog: DialogService;
+  user: User;
+
+
+  constructor(router: Router, activatedRoute: ActivatedRoute, userService: ApiClientService, dialog: DialogService) {
+    this.router = router;
     this.activatedRoute = activatedRoute;
     this.userService = userService;
+    this.dialog = dialog;
     this.user = new User();
   }
   roles = [
@@ -33,16 +41,26 @@ export class UserFormComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log(this.user);
+    var actionConfirmed: boolean = true;
     if (this.user.id == 0) {
       this.userService.postUser(this.user).subscribe((newUser: User) => console.log(newUser));
     }
     else {
+
+      this.dialog.confirm('Voulez-vous vraiment mettre à jour ' + this.user.username + ' ?').subscribe((response: boolean) => actionConfirmed = response);
       this.userService.updateUserById(this.user.id, this.user).subscribe((newUser: User) => console.log(newUser));
+    }
+    if (actionConfirmed) {
+      this.router.navigate(['user']);
     }
   }
   onDelete(): void {
-    this.userService.deleteUserById(this.user.id);
+    var suppressionConfirmed: boolean = false;
+    this.dialog.confirm('Voulez-vous vraiment supprimer ' + this.user.username + ' ?').subscribe((response: boolean) => suppressionConfirmed = response);
+    if (suppressionConfirmed) {
+      this.userService.deleteUserById(this.user.id);
+      this.router.navigate(['user']);
+    }
   }
 
 }
