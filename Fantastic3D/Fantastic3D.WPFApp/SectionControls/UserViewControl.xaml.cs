@@ -74,12 +74,12 @@ namespace Fantastic3D.GUI.SectionControls
 
         private void Button_Avis(object sender, RoutedEventArgs e)
         {
-            ((MainWindow)Application.Current.MainWindow).Navigator.NavigateTo(typeof(ReviewControl), EditableUser.Id);
+            ((MainWindow)Application.Current.MainWindow).Navigator.NavigateTo(typeof(ReviewControl), EditableUser);
         }
 
         private void Button_Modele(object sender, RoutedEventArgs e)
         {
-            ((MainWindow)Application.Current.MainWindow).Navigator.NavigateTo(typeof(ModelListControl), EditableUser.Id);
+            ((MainWindow)Application.Current.MainWindow).Navigator.NavigateTo(typeof(ModelListControl), EditableUser);
         }
 
         private async void Button_Save(object sender, RoutedEventArgs e)
