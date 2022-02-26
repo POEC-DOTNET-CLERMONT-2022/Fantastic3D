@@ -47,7 +47,7 @@ export class UserFormComponent implements OnInit {
     }
     else {
 
-      this.dialog.confirm('Voulez-vous vraiment mettre à jour ' + this.user.username + ' ?').subscribe((response: boolean) => actionConfirmed = response);
+      this.dialog.confirm('Voulez-vous vraiment mettre � jour ' + this.user.username + ' ?').subscribe((response: boolean) => actionConfirmed = response);
       this.userService.updateUserById(this.user.id, this.user).subscribe((newUser: User) => console.log(newUser));
     }
     if (actionConfirmed) {
