@@ -4,15 +4,13 @@
             <a class="navbar-brand">
                 <img src="assets/img/Fantastic3DLogo.png" class="logo">
             </a>
-            <span class="navbar-brand">Fantastic 3D Manager</span>
         </div>
-        <ul class="nav navbar-nav">
-            <li class="active">
-                <a href="Users">Utilisateurs</a>
-            </li>
-            <li>
-                <a href="Configuration">Configuration</a>
-            </li>
-        </ul>
+        <div class="nav navbar-nav">
+            <button routerLink="/user" class="btn btn-primary" [disabled]="!{ apiIsOnline }">Utilisateurs</button>
+            <button href="Configuration" class="btn btn-primary">Configuration</button>
+        </div>
     </div>
 </nav>
+<div *ngIf="!{ apiIsOnline }" class="d-flex justify-content-center">
+    <p>L'API n'est pas disponible. <button class="btn btn-secondary" (click)="tryLoadApi()">Essayer de recharger</button></p>
+</div>

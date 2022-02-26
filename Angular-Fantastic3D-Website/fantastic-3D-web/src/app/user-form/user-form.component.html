@@ -1,57 +1,82 @@
-<div class="container mt-5 d-flex justify-content-center"><h1>Ajouter un utilisateur</h1></div>
+<div class="container mt-5 d-flex justify-content-center">
+  <h1 *ngIf="user.id==0; else editHeader">Ajouter un utilisateur</h1>
+  <ng-template #editHeader>
+    <h1>Éditer l'utilisateur {{user.username}}</h1>
+  </ng-template>
+</div>
 
 <div class="container mt-5">
-    <form (ngSubmit)="onSubmit()" #formAccount="ngForm">
+  <form #formAccount="ngForm">
+    <div class="col-6 mx-auto">
       <div class="row">
-        <div  class="col-6 mx-auto">
-            <label for="name">Nom réel</label>
-            <input class="form-control"
-                 placeholder="Nom réel"
-                 type="text"
-                 required
-                 minlength="3"
-                 pattern="[a-zA-Z'\-'\s]*"
-                 [(ngModel)]="user.username"
-                 [name]="'name'"
-                 [class.is-invalid]="nameInput.touched && nameInput.invalid"
-                 [class.is-valid]="nameInput.touched && nameInput.valid"
-                 #nameInput="ngModel"
-            >
-            <label for="email">Email</label>
-            <input class="form-control"
-                    placeholder="Email"
-                    type="text"
-                    required
-                    minlength="3"
-                    pattern="[a-zA-Z@\-\.\s]*"
-                    [(ngModel)]="user.email"
-                    [name]="'email'"
-                    [class.is-invalid]="emailInput.touched && emailInput.invalid"
-                    [class.is-valid]="emailInput.touched && emailInput.valid"
-                    #emailInput="ngModel"
-            >
-            <label for="nickname">Pseudonyme</label>
-            <input class="form-control"
-                 placeholder="Pseudonyme"
-                 type="text"
-                 required
-                 minlength="3"
-                 pattern="[a-zA-Z'\-'\s]*"
-                 [(ngModel)]="user.lastName"
-                 [name]="'nickname'"
-                 [class.is-invalid]="nicknameInput.touched && nicknameInput.invalid"
-                 [class.is-valid]="nicknameInput.touched && nicknameInput.valid"
-                 #nicknameInput="ngModel"
-          >
-          <div><p>Le wallet et la library seront vides par défaut.</p></div>
+        <div class="col">
+          <label for="username">Nom d'utilisateur</label>
+          <input class="form-control" placeholder="Nom d'utilisateur" [(ngModel)]="user.username" [name]="'username'"
+            type="text" required minlength="3" pattern="[a-zA-Z'\-'\s]*"
+            [class.is-invalid]="nameInput.touched && nameInput.invalid"
+            [class.is-valid]="nameInput.touched && nameInput.valid" #nameInput="ngModel">
+        </div>
+        <div class="col">
+          <label for="email">Email</label>
+          <input class="form-control" placeholder="Email" [(ngModel)]="user.email" [name]="'email'" type="text" required
+            minlength="3" pattern="[a-zA-Z@\-\.\s]*" [class.is-invalid]="emailInput.touched && emailInput.invalid"
+            [class.is-valid]="emailInput.touched && emailInput.valid" #emailInput="ngModel">
         </div>
       </div>
-      <div class="mx-auto d-flex justify-content-center">
-        <button class="btn btn-primary" [disabled]="formAccount.invalid">
-          Soumettre
+      <div class="row">
+        <div class="col">
+          <label for="firstName">Prénom</label>
+          <input class="form-control" placeholder="Prénom" [(ngModel)]="user.firstName" [name]="'firstName'" type="text"
+            required minlength="3" pattern="[a-zA-Z'\-'\s]*"
+            [class.is-invalid]="firstNameInput.touched && firstNameInput.invalid"
+            [class.is-valid]="firstNameInput.touched && firstNameInput.valid" #firstNameInput="ngModel">
+        </div>
+        <div class="col">
+          <label for="lastName">Nom</label>
+          <input class="form-control" placeholder="Nom" [(ngModel)]="user.lastName" [name]="'lastName'" type="text"
+            required minlength="3" pattern="[a-zA-Z'\-'\s]*"
+            [class.is-invalid]="lastNameInput.touched && lastNameInput.invalid"
+            [class.is-valid]="lastNameInput.touched && lastNameInput.valid" #lastNameInput="ngModel">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="firstName">Rôle</label>
+          <select [name]="'role'" class="form-control" [(ngModel)]="user.role"
+            [class.is-invalid]="roleInput.touched && roleInput.invalid"
+            [class.is-valid]="roleInput.touched && roleInput.valid" #roleInput="ngModel">
+            <option [ngValue]="null" disabled>Rôle</option>
+            <option *ngFor="let role of roles" [ngValue]="role.name">{{role.name}}</option>
+          </select>
+        </div>
+        <div class="col">
+          <label for="password">Mot de passe</label>
+          <input class="form-control" placeholder="Mot de pase" [(ngModel)]="user.password" [name]="'password'"
+            type="password" required minlength="8" [class.is-invalid]="passwordInput.touched && passwordInput.invalid"
+            [class.is-valid]="passwordInput.touched && passwordInput.valid" #passwordInput="ngModel">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="billingAddress">Adresse</label>
+          <input class="form-control" placeholder="Adresse" [(ngModel)]="user.billingAddress" [name]="'billingAddress'"
+            type="text" required minlength="3" pattern="[a-zA-Z'\-'\s]*"
+            [class.is-invalid]="billingAddressInput.touched && billingAddressInput.invalid"
+            [class.is-valid]="billingAddressInput.touched && billingAddressInput.valid" #billingAddressInput="ngModel">
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center">
+
+      <div class="row">
+        <button class="btn btn-primary" (click)="onSubmit()" [disabled]="formAccount.invalid">
+          Enregistrer
+        </button>
+
+        <button class="btn btn-danger" (click)="onDelete()" [hidden]="user.id==0">
+          Supprimer l'utilisateur
         </button>
       </div>
-    </form>
-  </div>
-  
-  
+    </div>
+  </form>
+</div>
