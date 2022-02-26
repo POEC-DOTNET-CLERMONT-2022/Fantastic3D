@@ -55,15 +55,7 @@ export class ApiClientService {
       body,
       this.headers);
   }
-  // getApiStatus(): Observable<boolean> {
-    
-  //    this.httpClient.head(this.baseUrl).subscribe((httpResponse => console.log(httpResponse)));
-  //    let result = new Su
-  //    bject<boolean>();
-  //    result.next(false);
-  //    return result.asObservable();
-  // }
-  
+
   private source = interval(3000);
 
   getApiStatus(): boolean {
@@ -85,7 +77,7 @@ export class ApiClientService {
     return this.httpClient.get<User>(this.baseUrl + this.userEndpoint + id);
   }
   deleteUserById(id: number): void {
-    this.httpClient.delete<User>(this.baseUrl + this.userEndpoint + id);
+    this.httpClient.delete<User>(this.baseUrl + this.userEndpoint + id).subscribe(resp => console.log(resp));
   }
 
   getUsers(): Observable<User[]> {
