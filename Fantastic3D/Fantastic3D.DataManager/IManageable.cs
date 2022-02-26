@@ -6,5 +6,9 @@
     public interface IManageable
     {
         public int Id { get; set; }
+        /// <summary>
+        /// Allows a soft deletion in the DataBase by putting the "Active" bool to false.
+        /// </summary>
+        public bool Active { get; set; }
     }
 }

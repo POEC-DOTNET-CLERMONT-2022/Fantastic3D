@@ -17,6 +17,7 @@ namespace Fantastic3D.Persistence.Entities
         public int TagTypeId { get; set; }
         public virtual TagTypeEntity TagType { get; set; }
         public virtual ICollection<AssetEntity> Assets { get; private set; }
+        public bool Active { get; set; } = true;
 
         public TagEntity() { }
 

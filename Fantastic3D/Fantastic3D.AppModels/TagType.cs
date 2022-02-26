@@ -20,6 +20,7 @@ namespace Fantastic3D.AppModels
         /// Defines if a tag must only be used once or can be used multiple times.
         /// </summary>
         public bool IsOnlyOne { get; private set; }
+        public bool Active { get; set; }
 
         public TagType(string name, bool isMandatory, bool isOnlyOne)
         {

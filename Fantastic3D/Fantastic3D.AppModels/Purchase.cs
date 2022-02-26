@@ -14,6 +14,7 @@ namespace Fantastic3D.AppModels
         public float PurchasePrice { get; set; }
         public int AssetId { get; set; }
         public string AssetName { get; set; }
+        public bool Active { get; set; }
 
         public Purchase()
         {

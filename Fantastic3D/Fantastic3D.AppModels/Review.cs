@@ -16,6 +16,7 @@ namespace Fantastic3D.AppModels
         public string AssetName { get; set; }
         public int AuthorId { get; set; }
         public string AuthorName { get; set; }
+        public bool Active { get; set; }
 
         public override string ToString()
         {

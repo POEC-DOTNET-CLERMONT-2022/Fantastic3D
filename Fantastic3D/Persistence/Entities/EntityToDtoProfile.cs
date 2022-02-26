@@ -7,7 +7,9 @@ namespace Fantastic3D.Persistence.Entities
     {
         public EntityToDtoProfile()
         {
-            CreateMap<UserEntity, UserDto>();
+            CreateMap<UserEntity, UserDto>()
+                .ForMember(dest => dest.Password, opt => opt.MapFrom(src => "")
+                );
             CreateMap<UserDto, UserEntity>()
                 .AfterMap((src, dest) =>
                     {

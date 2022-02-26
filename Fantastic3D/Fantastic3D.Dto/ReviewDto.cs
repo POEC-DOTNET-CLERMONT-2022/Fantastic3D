@@ -26,5 +26,6 @@ namespace Fantastic3D.Dto
         public int AuthorId { get; set; }
         [DataMember]
         public string AuthorName { get; set; }
+        public bool Active { get; set; }
     }
 }

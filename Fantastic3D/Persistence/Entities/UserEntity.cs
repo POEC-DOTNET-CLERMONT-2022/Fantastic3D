@@ -35,6 +35,7 @@ namespace Fantastic3D.Persistence.Entities
 
         public virtual ICollection<AssetEntity> CreatedAssets { get; private set; }
         public virtual ICollection<ReviewEntity> Reviews { get; private set; }
+        public bool Active { get; set; } = true;
 
         public UserEntity() {}
 

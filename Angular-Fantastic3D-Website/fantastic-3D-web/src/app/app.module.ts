@@ -12,6 +12,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { UserFormComponent } from './user-form/user-form.component';
 import { ApiClientService } from 'src/services/api-client.service';
+import { DialogService } from 'src/services/dialog.service';
 import { AssetListComponent } from './asset-list/asset-list.component';
 
 @NgModule({
