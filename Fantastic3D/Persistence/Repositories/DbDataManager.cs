@@ -32,13 +32,15 @@ namespace Fantastic3D.Persistence
         {
             using LocalDbContext context = _contextFactory.CreateDbContext();
             var result = await context.Set<TEntity>().SingleAsync(item => item.Id == id);
+            if (!result.Active)
+                throw new DataRetrieveException("This element has been deleted and can't be retrieved.");
             return _mapper.Map<TTransfered>(await ResolveLinkedEntities(result, context));
         }
 
         public async Task<IEnumerable<TTransfered>> GetAllAsync()
         {
             using LocalDbContext context = _contextFactory.CreateDbContext();
-            var dataList = await context.Set<TEntity>().ToListAsync();
+            var dataList = await context.Set<TEntity>().Where(item => item.Active).ToListAsync();
             var resolvedList = new List<TEntity>();
             foreach(var item in dataList)
             {
@@ -92,11 +94,11 @@ namespace Fantastic3D.Persistence
         public async Task DeleteAsync(int id)
         {
             using LocalDbContext context = _contextFactory.CreateDbContext();
-            // Todo : [DbRepository/DEL] remplacer Find par une creation d'objet ayant juste l'ID recherché
             var dataToDelete = context.Set<TEntity>().Find(id);
             if (dataToDelete == null)
                 throw new DataRecordException("Element to delete wasn't found");
-            context.Set<TEntity>().Remove(dataToDelete);
+            dataToDelete.Active = false;
+            context.Set<TEntity>().Update(dataToDelete);
             await context.SaveChangesAsync();
         }
 
