@@ -105,9 +105,9 @@ namespace Fantastic3D.API.Controllers
                 await _purchasesData.DeleteAsync(purchaseId);
                 return NoContent();
             }
-            catch
+            catch (DataRecordException dre)
             {
-                return NotFound(purchaseId);
+                return NotFound(dre.Message);
             }
         }
     }
