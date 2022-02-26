@@ -3,15 +3,24 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:Fantastic3D.GUI.SectionControls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
-             x:Name="root"
-             Loaded="Window_Loaded">
-    <StackPanel Background="{DynamicResource MaterialDesignBackground}" DataContext="{Binding AssetsList, ElementName=root}">
+             Loaded="Window_Loaded"  DataContext="{Binding AssetsList, ElementName=.}">
+    <UserControl.Resources>
+        <CollectionViewSource x:Key="ModelListViewSource" Filter="ModelListViewSource_OnFilter" Source="{Binding Items}"/>
+    </UserControl.Resources>
+    <StackPanel Background="{DynamicResource MaterialDesignBackground}">
         <TextBlock DockPanel.Dock="Top" FontSize="30"  HorizontalAlignment="Center">Gestion des modèles</TextBlock>
-
-        <DataGrid x:Name="AssetDataGrid" Height="289" SelectedItem="{Binding Path=SelectedAsset}" ItemsSource="{Binding Items}" Width="654" AutoGenerateColumns="False" IsReadOnly="True" MouseDoubleClick="DataGrid_MouseDoubleClick" SelectionChanged="DataGrid_SelectionChanged" Cursor="IBeam">
+        <ComboBox x:Name="PublicationFilter" materialDesign:HintAssist.Hint="Filtrer les modèles" Width="200px">
+            <ComboBoxItem Content="Tous" Selected="PublicationFilter_Selected"/>
+            <ComboBoxItem Content="Non publiés" Selected="PublicationFilter_Selected"/>
+            <ComboBoxItem Content="Publiés" Selected="PublicationFilter_Selected"/>
+            <ComboBoxItem Content="Refusés" Selected="PublicationFilter_Selected"/>
+            <ComboBoxItem Content="Effacés" Selected="PublicationFilter_Selected"/>
+        </ComboBox>
+        <DataGrid x:Name="AssetDataGrid" Height="289" SelectedItem="{Binding Path=SelectedAsset}" ItemsSource="{Binding Source={StaticResource ModelListViewSource}}" Width="654" AutoGenerateColumns="False" IsReadOnly="True" MouseDoubleClick="DataGrid_MouseDoubleClick" SelectionChanged="DataGrid_SelectionChanged" Cursor="IBeam">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nom" Binding="{Binding Name}"/>
                 <DataGridTextColumn Header="Créateur" Binding="{Binding CreatorName}"/>
