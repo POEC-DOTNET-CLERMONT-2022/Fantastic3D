@@ -6,12 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main-menu.component.scss']
 })
 export class MainMenuComponent implements OnInit {
-  static pathUserList: string = 'user';
-  urlUserList: string = '/' + MainMenuComponent.pathUserList;
+  static pathUsers: string = 'user';
+  pathUsers: string = '/' + MainMenuComponent.pathUsers;
   static pathUserNew: string = 'user/new';
   urlUserNew: string = '/' + MainMenuComponent.pathUserNew;
-  static pathUserForm: string = 'user';
-  urlUserForm: string = '/' + MainMenuComponent.pathUserForm;
 
   constructor() { }
 
