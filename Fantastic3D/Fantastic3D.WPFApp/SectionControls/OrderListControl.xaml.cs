@@ -83,7 +83,6 @@ namespace Fantastic3D.GUI.SectionControls
         {
             _filterId = 0;
             LoadOrders();
-            
         }
 
         public void LoadContentByDate()
@@ -94,19 +93,6 @@ namespace Fantastic3D.GUI.SectionControls
         {
             _filterId = id;
             LoadOrders();
-            
-            //switch (monMachinRecu)
-            //{
-            //    case User u:
-            //        _filterUserId = u.Id;
-            //        _filterAssetId = 0;
-            //        break;
-
-            //    default:
-            //        _filterUserId = 0;
-            //        _filterAssetId = 0;
-            //        break;
-            //}
         }
     }
 }

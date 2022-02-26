@@ -52,11 +52,7 @@ namespace Fantastic3D.GUI.SectionControls
                     break;
             }
 
-            //if (modelInstance is User user)
-            //    EditableUser = user;
-            //else
-            //    throw new NavigationException("Expected " + typeof(User).Name + " type. Type sent was: " + modelInstance.GetType().Name);
-        }
+          }
 
 
         private async void ToggleButton_Click(object sender, RoutedEventArgs e)
