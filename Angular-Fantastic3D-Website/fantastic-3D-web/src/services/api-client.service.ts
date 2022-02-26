@@ -55,7 +55,6 @@ export class ApiClientService {
       body,
       this.headers);
   }
-
   // getApiStatus(): Observable<boolean> {
     
   //    this.httpClient.head(this.baseUrl).subscribe((httpResponse => console.log(httpResponse)));
