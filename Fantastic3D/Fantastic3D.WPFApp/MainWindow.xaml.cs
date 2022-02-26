@@ -51,7 +51,7 @@ namespace Fantastic3D.GUI
         private void MenuModelButton_Click(object sender, RoutedEventArgs e)
         {
 
-            Navigator.NavigateTo(typeof(ModelListControl));
+            Navigator.NavigateTo(typeof(ModelListControl), null);
         }
 
         private void MenuUsersButton_Click(object sender, RoutedEventArgs e)
