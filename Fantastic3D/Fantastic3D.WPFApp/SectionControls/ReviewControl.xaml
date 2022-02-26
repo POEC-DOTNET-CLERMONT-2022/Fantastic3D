@@ -20,7 +20,7 @@
             <TextBlock DockPanel.Dock="Top" FontSize="30"  HorizontalAlignment="Center">Gestion des avis</TextBlock>
             <WrapPanel HorizontalAlignment="Center">
                 <Label Content="Filtres" />
-                <ComboBox Width="100" />
+                <ComboBox Width="100"  />
             </WrapPanel>
             <DataGrid x:Name="ReviewDataGrid" Margin="10" Height="265" SelectedItem="{Binding CurrentReview}" ItemsSource="{Binding Source={StaticResource ReviewViewSource}}" AutoGenerateColumns="False"   IsReadOnly="True"   >
                 <DataGrid.Columns >

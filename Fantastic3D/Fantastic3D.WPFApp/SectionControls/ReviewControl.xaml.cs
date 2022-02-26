@@ -1,6 +1,7 @@
 ﻿using Fantastic3D.AppModels;
 using Fantastic3D.DataManager;
 using Fantastic3D.Dto;
+using Fantastic3D.GUI.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -22,12 +23,13 @@ namespace Fantastic3D.GUI.SectionControls
     /// <summary>
     /// Logique d'interaction pour ReviewControl.xaml
     /// </summary>
-    public partial class ReviewControl : UserControl
+    public partial class ReviewControl : UserControl, IContentLoadableWithModel
     {
         public ReviewList ReviewsList { get; set; } = new ReviewList();
 
         public IDataManager<Review, ReviewDto> _dataSource = ((App)Application.Current).Services.GetService<IDataManager<Review, ReviewDto>>();
-        private int _filterId = 0;
+        private int _filterUserId = 0;
+        private int _filterAssetId = 0;
 
         public ReviewControl()
         {
@@ -35,6 +37,27 @@ namespace Fantastic3D.GUI.SectionControls
             DataContext = ReviewsList;
             
         }
+        public void LoadContentWithModel(IManageable modelInstance)
+        {
+            switch (modelInstance)
+            {
+                case User u:
+                    _filterUserId = u.Id;
+                    _filterAssetId = 0;
+                    break;
+
+                default:
+                    _filterUserId = 0;
+                    _filterAssetId = 0;
+                    break;
+            }
+
+            //if (modelInstance is User user)
+            //    EditableUser = user;
+            //else
+            //    throw new NavigationException("Expected " + typeof(User).Name + " type. Type sent was: " + modelInstance.GetType().Name);
+        }
+
 
         private async void ToggleButton_Click(object sender, RoutedEventArgs e)
         {
@@ -95,7 +118,7 @@ namespace Fantastic3D.GUI.SectionControls
         {
             var review = e.Item as Review;
 
-            if (review.AuthorId == _filterId || _filterId == 0)
+            if (review.AuthorId == _filterUserId || _filterUserId == 0)
             {
                 e.Accepted = true;
                 return;
