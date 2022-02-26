@@ -29,6 +29,7 @@ namespace Fantastic3D.Dto
         /// Status ID. Use the AvailableStatus Array to match Status and IDs
         /// </summary>
         public string Status { get; set; }
+        public bool Active { get; set; }
 
     }
 }

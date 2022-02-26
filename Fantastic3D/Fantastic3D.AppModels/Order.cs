@@ -16,10 +16,11 @@ namespace Fantastic3D.AppModels
         public string PurchasingUserName { get;  set; }
         public int TotalPurchasedItems { get;  set; }
         public float TotalPurchasePrice { get;  set; }
-
+        public bool Active { get ; set; }
 
         public override string ToString()
         {
-            return $"Date : {Date}, Acheteur :{PurchasingUserId}";        }
+            return $"Date : {Date}, Acheteur :{PurchasingUserId}";
+        }
     }
 }

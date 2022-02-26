@@ -13,6 +13,7 @@ namespace Fantastic3D.AppModels
         private string _name;
 
         private TagType _tagType;
+        public bool Active { get; set; }
 
         public Tag(string name, TagType tagType)
         {
