@@ -45,6 +45,8 @@ namespace Fantastic3D.GUI.SectionControls
             }
         }
 
+
+
         public async void LoadContentById(int id)
         {
             try
@@ -67,17 +69,17 @@ namespace Fantastic3D.GUI.SectionControls
 
         private void Button_Commande(object sender, RoutedEventArgs e)
         {
-            ((MainWindow)Application.Current.MainWindow).Navigator.NavigateTo(typeof(OrderListControl));
+            ((MainWindow)Application.Current.MainWindow).Navigator.NavigateTo(typeof(OrderListControl), EditableUser.Id);
         }
 
         private void Button_Avis(object sender, RoutedEventArgs e)
         {
-            ((MainWindow)Application.Current.MainWindow).Navigator.NavigateTo(typeof(ReviewControl));
+            ((MainWindow)Application.Current.MainWindow).Navigator.NavigateTo(typeof(ReviewControl), EditableUser);
         }
 
         private void Button_Modele(object sender, RoutedEventArgs e)
         {
-            ((MainWindow)Application.Current.MainWindow).Navigator.NavigateTo(typeof(ModelListControl));
+            ((MainWindow)Application.Current.MainWindow).Navigator.NavigateTo(typeof(ModelListControl), EditableUser);
         }
 
         private async void Button_Save(object sender, RoutedEventArgs e)

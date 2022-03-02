@@ -9,7 +9,9 @@
              mc:Ignorable="d" 
              Loaded="Window_Loaded"
              d:DesignHeight="450" d:DesignWidth="800">
-
+    <UserControl.Resources>
+        <CollectionViewSource x:Key="ReviewViewSource" Filter="CollectionViewSource_OnFilter" Source="{Binding Reviews}"/>
+    </UserControl.Resources>
     <StackPanel Background="{DynamicResource MaterialDesignBackground}">
         <StackPanel>
             <StackPanel.Resources>
@@ -18,9 +20,9 @@
             <TextBlock DockPanel.Dock="Top" FontSize="30"  HorizontalAlignment="Center">Gestion des avis</TextBlock>
             <WrapPanel HorizontalAlignment="Center">
                 <Label Content="Filtres" />
-                <ComboBox Width="100" />
+                <ComboBox Width="100"  />
             </WrapPanel>
-            <DataGrid x:Name="ReviewDataGrid" Margin="10" Height="265" SelectedItem="{Binding CurrentReview}" ItemsSource="{Binding Reviews}" AutoGenerateColumns="False"   IsReadOnly="True"   >
+            <DataGrid x:Name="ReviewDataGrid" Margin="10" Height="265" SelectedItem="{Binding CurrentReview}" ItemsSource="{Binding Source={StaticResource ReviewViewSource}}" AutoGenerateColumns="False"   IsReadOnly="True"   >
                 <DataGrid.Columns >
                     <DataGridTextColumn Header="Id" Binding="{Binding Id}" />
 
