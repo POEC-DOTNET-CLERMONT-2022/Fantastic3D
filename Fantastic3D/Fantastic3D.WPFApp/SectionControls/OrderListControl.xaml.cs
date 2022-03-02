@@ -22,12 +22,14 @@ namespace Fantastic3D.GUI.SectionControls
     /// <summary>
     /// Logique d'interaction pour OrderListControl.xaml
     /// </summary>
-    public partial class OrderListControl : UserControl
+    public partial class OrderListControl : UserControl, IContentLoadableById
     {
         //public ObservableList<Order> OrdersList { get; set; } = new ObservableList<Order>();
         public OrderList OrdersList { get; set; } = new OrderList();
         public IDataManager<Order, OrderDto> _dataSource = ((App)Application.Current).Services.GetService<IDataManager<Order, OrderDto>>();
+        private int _filterId = 0;
 
+        private DateTime _OrderDate = DateTime.Now;
         public OrderListControl()
         {
             InitializeComponent();
@@ -55,13 +57,42 @@ namespace Fantastic3D.GUI.SectionControls
                 }
                 else
                 {
-                    MessageBox.Show($"Aucune commande trouvé. La base de donnée est peut-être vide ou l'API est innaccessible.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show($"Aucune commande trouvée. La base de donnée est peut-être vide ou l'API est innaccessible.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Source de données non accessible", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        public void CollectionViewSource_OnFilter(object sender, FilterEventArgs e)
+        {
+            var order = e.Item as Order;
+
+            if (order.PurchasingUserId == _filterId || _filterId == 0)
+            {
+                e.Accepted = true;
+                return;
+            }
+
+            e.Accepted = false;
+        }
+
+        private void ClearFilter()
+        {
+            _filterId = 0;
+            LoadOrders();
+        }
+
+        public void LoadContentByDate()
+        {
+            _OrderDate = (DateTime)DatePicker.SelectedDate;
+        }
+        public void LoadContentById(int id)
+        {
+            _filterId = id;
+            LoadOrders();
         }
     }
 }

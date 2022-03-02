@@ -1,6 +1,7 @@
 ﻿using Fantastic3D.AppModels;
 using Fantastic3D.DataManager;
 using Fantastic3D.Dto;
+using Fantastic3D.GUI.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -22,11 +23,13 @@ namespace Fantastic3D.GUI.SectionControls
     /// <summary>
     /// Logique d'interaction pour ReviewControl.xaml
     /// </summary>
-    public partial class ReviewControl : UserControl
+    public partial class ReviewControl : UserControl, IContentLoadableWithModel
     {
         public ReviewList ReviewsList { get; set; } = new ReviewList();
 
         public IDataManager<Review, ReviewDto> _dataSource = ((App)Application.Current).Services.GetService<IDataManager<Review, ReviewDto>>();
+        private int _filterUserId = 0;
+        private int _filterAssetId = 0;
 
         public ReviewControl()
         {
@@ -34,6 +37,23 @@ namespace Fantastic3D.GUI.SectionControls
             DataContext = ReviewsList;
             
         }
+        public void LoadContentWithModel(IManageable modelInstance)
+        {
+            switch (modelInstance)
+            {
+                case User u:
+                    _filterUserId = u.Id;
+                    _filterAssetId = 0;
+                    break;
+
+                default:
+                    _filterUserId = 0;
+                    _filterAssetId = 0;
+                    break;
+            }
+
+          }
+
 
         private async void ToggleButton_Click(object sender, RoutedEventArgs e)
         {
@@ -88,6 +108,19 @@ namespace Fantastic3D.GUI.SectionControls
             {
                 MessageBox.Show(ex.Message, "Source de données non accessible", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        public void CollectionViewSource_OnFilter(object sender, FilterEventArgs e)
+        {
+            var review = e.Item as Review;
+
+            if (review.AuthorId == _filterUserId || _filterUserId == 0)
+            {
+                e.Accepted = true;
+                return;
+            }
+
+            e.Accepted = false;
         }
 
         private void ViewUserButton_Click(object sender, RoutedEventArgs e)
