@@ -15,7 +15,7 @@
     <StackPanel Background="{DynamicResource MaterialDesignBackground}">
         <StackPanel >
             <TextBlock DockPanel.Dock="Top" FontSize="30"  HorizontalAlignment="Center">Gestion des commandes</TextBlock>
-            <DatePicker x:Name="DatePicker" SelectedDate="{x:Static sys:DateTime.Now}" SelectedDateChanged="" 
+            <DatePicker x:Name="DatePickerFilter" SelectedDateChanged="DatePickerFilter_SelectedDateChanged"
                   Width="180" 
                   materialDesign:HintAssist.Hint="Filtrer par date..."
                   Style="{StaticResource MaterialDesignFilledDatePicker}"

@@ -29,7 +29,7 @@ namespace Fantastic3D.GUI.SectionControls
         public IDataManager<Order, OrderDto> _dataSource = ((App)Application.Current).Services.GetService<IDataManager<Order, OrderDto>>();
         private int _filterId = 0;
 
-        private DateTime _OrderDate = DateTime.Now;
+        private DateTime? _orderDate = null;
         public OrderListControl()
         {
             InitializeComponent();
@@ -70,7 +70,7 @@ namespace Fantastic3D.GUI.SectionControls
         {
             var order = e.Item as Order;
 
-            if (order.PurchasingUserId == _filterId || _filterId == 0)
+            if ((order.PurchasingUserId == _filterId || _filterId == 0) && (_orderDate == null || order.Date == _orderDate))
             {
                 e.Accepted = true;
                 return;
@@ -85,14 +85,20 @@ namespace Fantastic3D.GUI.SectionControls
             LoadOrders();
         }
 
-        public void LoadContentByDate()
+        public void DatePickerFilter_SelectedDateChanged()
         {
-            _OrderDate = (DateTime)DatePicker.SelectedDate;
+            _orderDate = DatePickerFilter.SelectedDate;
+            LoadOrders();
         }
         public void LoadContentById(int id)
         {
             _filterId = id;
             LoadOrders();
+        }
+
+        private void DatePickerFilter_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }
