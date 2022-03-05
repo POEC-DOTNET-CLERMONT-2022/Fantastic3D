@@ -8,8 +8,8 @@ namespace Fantastic3D.Tags
     /// </summary>
     internal class TagManager
     {
-        private IDataHandler<TagEntity> _dataHandler;
-        private List<TagEntity> _listTag = new List<TagEntity>();
+        private readonly IDataHandler<TagEntity> _dataHandler;
+        private readonly List<TagEntity> _listTag = new List<TagEntity>();
 
         public TagManager( IDataHandler<TagEntity> dataHandler, List<TagTypeEntity> tagTypes)
         {
