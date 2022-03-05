@@ -40,7 +40,7 @@ namespace Fantastic3D.Persistence.Entities
                     )
                 .ForMember(
                         dest => dest.TotalPurchasedItems,
-                        opt => opt.MapFrom(src => src.Purchases.Count())
+                        opt => opt.MapFrom(src => src.Purchases.Count)
                     )
                 .ForMember(
                         dest => dest.TotalPurchasePrice,
