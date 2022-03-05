@@ -9,25 +9,23 @@ namespace Fantastic3D.AppModels
     public class Tag : ObservableModel, IManageable
     {
         public int Id { get; set; }
-
-        private string _name;
-
-        private TagType _tagType;
+        public string Name { get; set; }
+        public TagType TagType { get; set; }
         public bool Active { get; set; }
 
         public Tag(string name, TagType tagType)
         {
-            _name = name;
-            _tagType = tagType;
+            Name = name;
+            TagType = tagType;
         }
 
         public override string ToString()
         {
-            return $"{_name} (de type {_tagType.Name})";
+            return $"{Name} (de type {TagType.Name})";
         }
         public void Rename(string newName)
         {
-            _name = newName;
+            Name = newName;
         }
     }
 }
