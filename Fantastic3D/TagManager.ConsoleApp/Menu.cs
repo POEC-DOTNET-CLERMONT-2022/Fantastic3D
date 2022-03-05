@@ -4,10 +4,10 @@ namespace Fantastic3D.Tags
 {
     internal class Menu
     {
-        private IReader _reader;
-        private IWriter _writer;
-        private TagManager _tagManager;
-        private List<TagTypeEntity> _tagTypes;
+        private readonly IReader _reader;
+        private readonly IWriter _writer;
+        private readonly TagManager _tagManager;
+        private readonly List<TagTypeEntity> _tagTypes;
 
         public Menu(IReader reader, IWriter writer, TagManager tagManager, List<TagTypeEntity> tagTypes)
         {

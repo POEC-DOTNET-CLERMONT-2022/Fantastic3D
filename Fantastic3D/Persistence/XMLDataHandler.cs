@@ -5,7 +5,7 @@ namespace Fantastic3D.Persistence
 {
     public class XmlDataHandler<T> : IDataHandler<T> where T: IManageable
     {
-        private string _xmlDataPath;
+        private readonly string _xmlDataPath;
         private readonly DataContractSerializer _dataSerializer = new DataContractSerializer(typeof(List<T>));
 
         public string GetPath => _xmlDataPath;

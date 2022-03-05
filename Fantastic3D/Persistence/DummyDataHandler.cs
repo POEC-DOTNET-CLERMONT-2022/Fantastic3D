@@ -59,8 +59,6 @@ namespace Fantastic3D.Persistence
                     });
                     break;
                 case List<AssetEntity> assetsList:
-                    //var tagList = new List<TagEntity>();
-                    //var fakeUser = new UserEntity(1, "fakeuser", "Fake", "User", "fake.user@dontmind.me", "foobar", "1 avenue de la Data, Dropville", UserRole.Premium);
                     assetsList.AddRange(new List<AssetEntity>()
                     {
                         new AssetEntity("Puffin lowPoly", "A low-poly puffin. How convenient!", 0f, "puffin.fbx", "atlantic-puffin-2.jpg", 1),

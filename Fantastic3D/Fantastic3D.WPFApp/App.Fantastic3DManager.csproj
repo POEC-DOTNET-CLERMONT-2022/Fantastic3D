@@ -6,6 +6,7 @@
     <RootNamespace>Fantastic3D.GUI</RootNamespace>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+	<UICulture>fr-FR</UICulture>
   </PropertyGroup>
 
   <ItemGroup>
@@ -34,7 +35,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="medias\Fantastic3DLogoAppRender.png">
+    <Resource Include="medias\fantastic3dlogoapprender.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

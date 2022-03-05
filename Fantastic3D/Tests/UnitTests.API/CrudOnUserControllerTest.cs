@@ -24,9 +24,6 @@ namespace Fantastic3D.Tests.API
         [TestInitialize]
         public void InitTest()
         {
-            _mockData.Setup(
-
-                );
         }
 
         [TestMethod]
@@ -41,7 +38,6 @@ namespace Fantastic3D.Tests.API
             // Assert
             var okObjectResult = actionResult as OkObjectResult;
             Assert.IsNotNull(okObjectResult);
-            var returnedObject = okObjectResult.Value as 
 
         }
     }
